@@ -1,0 +1,245 @@
+%% input encoding (utf8 allows Umlauts and accents directly)
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+%% language
+\usepackage[german,english]{babel}
+\selectlanguage{english}
+
+%% figures
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{tikz-cd}
+
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{calc}
+\usetikzlibrary{intersections}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{quotes}
+
+\tikzset{>={Latex[length=6pt,width=5pt]}}
+
+\pgfplotsset{compat=1.16}
+
+\definecolor{darkgreen}{rgb}{0,.6,0.2}
+
+%% color scheme
+%% https://coolors.co/00ad6b-2282e2-8400b8-dc2c3d-e6a100-8f6b28
+\definecolor{myblue}{RGB}{34, 130, 226}
+\definecolor{myred}{RGB}{220, 44, 61}
+\definecolor{myyellow}{RGB}{230, 161, 0}
+\definecolor{mygreen}{RGB}{0, 173, 107}
+\definecolor{mygray}{RGB}{184, 184, 184}
+\definecolor{mypurple}{RGB}{71, 0, 99}
+\definecolor{mybrown}{RGB}{143,107,40}
+
+%% math
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{tensor}
+\usepackage{mathrsfs}
+\usepackage{array}
+\usepackage{extarrows}
+\usepackage{bigints}
+\usepackage{bm}
+\usepackage{nicematrix}
+
+\numberwithin{equation}{section}
+
+%% formatting
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{needspace}
+\usepackage{caption}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.5em}
+
+\captionsetup{width=0.9\textwidth}
+
+\renewcommand*{\arraystretch}{1.2}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	linkcolor={myblue},
+	citecolor={myred},
+	urlcolor={mygreen}
+}
+
+
+%% theorems etc.
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+\tcbuselibrary{skins}
+\tcbuselibrary{breakable}
+
+\newtcbox{\inlinebox}[1][mygray]{on line,
+arc=3pt,colback=#1!3,colframe=#1,
+before upper={\rule[-3pt]{0pt}{10pt}},boxrule=1pt,
+boxsep=0pt,left=2pt,right=2pt,top=1pt,bottom=.5pt}
+
+\newcommand{\exe}{\inlinebox[myred]{exercise}}
+\newcommand{\exes}{\inlinebox[myred]{exercises}}
+
+\newcommand{\todo}{\inlinebox[mygray]{TODO}}
+\newcommand{\source}{\inlinebox[mygray]{src?}}
+
+\newtcbtheorem[number within=chapter]{definition}{Definition}
+{
+	enhanced,breakable,
+	frame hidden,
+	colframe=myred,
+	colback=myred!3,
+	coltitle=black,
+	fonttitle=\bfseries,
+	colbacktitle=myred!3,
+	borderline={0.2mm}{0mm}{myred},
+	attach boxed title to top text left,
+	boxed title style={boxrule=0.2mm,skin=enhancedfirst jigsaw,bottom=0mm}
+}
+{def}
+
+\newtcbtheorem[use counter from=definition]{notation}{Notation}
+{
+	enhanced,breakable,
+	frame hidden,
+	colframe=myred,
+	colback=myred!3,
+	coltitle=black,
+	fonttitle=\bfseries,
+	colbacktitle=myred!3,
+	borderline={0.2mm}{0mm}{myred},
+	attach boxed title to top text left,
+	boxed title style={boxrule=0.2mm,skin=enhancedfirst jigsaw,bottom=0mm}
+}
+{not}
+
+\newtcbtheorem[use counter from=definition]{example}{Example}
+{
+	enhanced,breakable,
+	frame hidden,
+	colframe=myyellow,
+	colback=myyellow!3,
+	coltitle=black,
+	fonttitle=\bfseries,
+	colbacktitle=myyellow!3,
+	borderline={0.2mm}{0mm}{myyellow},
+	attach boxed title to top text left,
+	boxed title style={boxrule=0.2mm,skin=enhancedfirst jigsaw}
+}
+{exa}
+
+\newtcbtheorem[use counter from=definition]{myremark}{Remark}
+{
+	enhanced,breakable,
+	frame hidden,
+	colframe=myyellow,
+	colback=myyellow!3,
+	coltitle=black,
+	fonttitle=\bfseries,
+	colbacktitle=myyellow!3,
+	borderline={0.2mm}{0mm}{myyellow},
+	attach boxed title to top text left,
+	boxed title style={boxrule=0.2mm,skin=enhancedfirst jigsaw}
+}
+{rem}
+
+\newtcbtheorem[use counter from=definition]{proposition}{Proposition}
+{
+	enhanced,breakable,
+	frame hidden,
+	colframe=mygreen,
+	colback=mygreen!3,
+	coltitle=black,
+	fonttitle=\bfseries,
+	colbacktitle=mygreen!3,
+	borderline={0.2mm}{0mm}{mygreen},
+	attach boxed title to top text left,
+	boxed title style={boxrule=0.2mm,skin=enhancedfirst jigsaw}
+}
+{prop}
+
+\newtcbtheorem[use counter from=definition]{fact}{Fact}
+{
+	enhanced,breakable,
+	frame hidden,
+	colframe=mygreen,
+	colback=mygreen!3,
+	coltitle=black,
+	fonttitle=\bfseries,
+	colbacktitle=mygreen!3,
+	borderline={0.2mm}{0mm}{mygreen},
+	attach boxed title to top text left,
+	boxed title style={boxrule=0.2mm,skin=enhancedfirst jigsaw}
+}
+{fact}
+
+\newtcbtheorem[use counter from=definition]{lemma}{Lemma}
+{
+	enhanced,breakable,
+	frame hidden,
+	colframe=myblue,
+	colback=myblue!3,
+	coltitle=black,
+	fonttitle=\bfseries,
+	colbacktitle=myblue!3,
+	borderline={0.2mm}{0mm}{myblue},
+	attach boxed title to top text left,
+	boxed title style={boxrule=0.2mm,skin=enhancedfirst jigsaw}
+}
+{lem}
+
+\newtcbtheorem[use counter from=definition]{theorem}{Theorem}
+{
+	enhanced,breakable,
+	frame hidden,
+	colframe=mypurple,
+	colback=mypurple!3,
+	coltitle=black,
+	fonttitle=\bfseries,
+	colbacktitle=mypurple!3,
+	borderline={0.2mm}{0mm}{mypurple},
+	attach boxed title to top text left,
+	boxed title style={boxrule=0.2mm,skin=enhancedfirst jigsaw}
+}
+{thm}
+
+\newtcbtheorem[use counter from=definition]{corollary}{Corollary}
+{
+	enhanced,breakable,
+	frame hidden,
+	colframe=mybrown,
+	colback=mybrown!3,
+	coltitle=black,
+	fonttitle=\bfseries,
+	colbacktitle=mybrown!3,
+	borderline={0.2mm}{0mm}{mybrown},
+	attach boxed title to top text left,
+	boxed title style={boxrule=0.2mm,skin=enhancedfirst jigsaw}
+}
+{cor}
+
+\newtcbtheorem[use counter from=definition]{exercise}{Exercise}
+{
+	enhanced,breakable,
+	frame hidden,
+	colframe=myyellow,
+	colback=myyellow!3,
+	coltitle=black,
+	fonttitle=\bfseries,
+	colbacktitle=myyellow!3,
+	borderline={0.2mm}{0mm}{myyellow},
+	attach boxed title to top text left,
+	boxed title style={boxrule=0.2mm,skin=enhancedfirst jigsaw}
+}
+{exe}
