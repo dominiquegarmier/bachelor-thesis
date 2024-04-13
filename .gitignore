@@ -6,5 +6,6 @@
 *.blg
 *.fls
 *.fdb_latexmk
+*.dvi
 
 thesis.pdf
