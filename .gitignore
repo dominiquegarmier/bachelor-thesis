@@ -7,5 +7,6 @@
 *.fls
 *.fdb_latexmk
 *.dvi
+*.out
 
 main.pdf
