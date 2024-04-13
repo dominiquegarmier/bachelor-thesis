@@ -2,5 +2,9 @@
 *.log
 *.out
 *.toc
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
 
 thesis.pdf
