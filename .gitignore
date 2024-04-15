@@ -2,5 +2,11 @@
 *.log
 *.out
 *.toc
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.dvi
+*.out
 
-thesis.pdf
+main.pdf
