@@ -1,0 +1,131 @@
+\chapter{Invariants of Metric Spaces}
+
+In this chapter we introduce a tool that will later become important to construct concrete clustering functors.
+
+\begin{definition}{Extended Non-Negative Real Numbers}{}
+The extended non-negativ real numbers $\E$ is the category defined such that
+\begin{enumerate}
+    \item $\ob(\E) := [0, +\infty] = [0, +\infty) \sqcup \{+\infty\}$
+    \item $\mor_\E(a,b) := \begin{cases}
+        \{(a,b)\} & \text{if $a \geq b$} \\
+        \hfil \emptyset & \text{else}
+    \end{cases}$
+\end{enumerate}
+with the composition $(a,b) \circ (b,c) := (a,c)$.
+\end{definition}
+Notice that this is a category whos morphisms are not given by maps. \Apriori\ it might seem unnecessary to encode the ordering on $[0, +\infty]$ using a category. However in conjunction with another category we can use functoriality.
+
+\begin{definition}{Covariants and Contravariants}{}
+Let $\M \in \{\gen, \inj, \iso\}$. A functor
+$$\mathfrak{J}: \M \to \mathbb{E}$$
+is called an \emph{covariant}
+\footnote{its called invariant in the paper}
+if $\Jf$ is a covariant functor and a \emph{contravariant} if $\Jf$ is a contravariant functor.
+\end{definition}
+
+\begin{myremark}{}{}
+Recall that by the properties of functors we have that for $\phi \in \mor_\M(X,Y)$
+\begin{equation*}
+\begin{tikzcd}
+X \arrow[r,"\phi"] \arrow[d,"\Jf"] & Y \arrow[d,"\Jf"] \\
+\E \arrow[r,"\geq"]              & \E   
+\end{tikzcd}       
+\end{equation*}
+commutes. In particular $\Jf$ assigns a number to every metric space such that if there exists $\phi \in \mor_\M(X,Y)$ we have $\Jf(X) \geq \Jf(Y)$.
+\end{myremark}
+Such an invariant gives a concrete meaning to the previously mentioned intuition of morphisms in $\gen, \inj$ and $\iso$ mapping from "larger" to "smaller" spaces.
+\todo[cite and still need to mention this]
+
+\begin{proposition}{Covariants and Contravariants}{}
+Let $\Jf: \mathcal{M} \to \E$ be a covariant, $\eta: \mathbb{E} \to \mathbb{E}$ be monotonically increasing
+and $\nu: \mathbb{E} \to \mathbb{E}$ monotonically decreasing. Then
+\begin{enumerate}
+    \item $\eta \circ \Jf$ is a covariant.
+    \item $\nu \circ \Jf$ is a conrtavariant.
+\end{enumerate}
+Furthermore the statement remains true if we interchange covariants and contravariants.
+\end{proposition}
+
+\begin{proof}
+By composition of functors \ref{defprop:composition_of_functors} it is sufficient to notice that $\eta: \E \to \E$ induces a covariant (endo-) functor and $\nu: \E \to \E$ a contra variant (endo-) functor on $\E$.
+\end{proof}
+
+
+\section{Invariants of $\gen$ and $\iso$}
+When it comes to invariants the spaces $\gen$ and $\iso$ are in some sense the least interesting.
+
+\begin{proposition}{Invariants of $\gen$}{}
+All invariants of $\gen$ are constant.
+\end{proposition}
+\begin{proof}
+As seen before $\mor_\gen(X,Y) \neq \emptyset$ for every $X,Y \in \ob(\gen)$. In particular there exist $\phi \in \mor_\gen(X,Y)$ and $\psi \in \mor_\gen(Y,X)$ and by the previous remark we have $\Jf(X) \geq \Jf(Y) \geq \Jf(X)$.
+\end{proof}
+
+\begin{proposition}{Invariants of $\iso$}{}
+An invariant $\Jf$ of $\iso$ is a choice of a value in $\E$ for every isometry class of metric spaces.
+\end{proposition}
+
+\begin{proof}
+We adapt the previous proof and notice that $\mor_\iso(X,Y) \neq \emptyset$ if and only if $X$ and $Y$ are isometric. Thus every invariant $\Jf$ restricted to a single isometry class is constant and otherwise there are no constraints on $\Jf$.
+\end{proof}
+
+\section{Invariants on $\inj$}
+
+\begin{example}{Separation}{}
+Consider $\Jf_\sep: \inj \to \E$ with $\Jf_\sep(X) := \sep(X)$. This is an invariant of $\inj$. \\
+
+Indeed let $x \neq y$ in $X$ such that $d(x,y) = \sep(X)$ then since $\phi$ is injective we have $\phi(x) \neq \phi(y)$ and since $\phi$ is distance non-increasing we have
+
+$$\sep(X) = d(x,y) \ge d(\phi(x), \phi(y)) \ge \sep(Y).$$
+
+If $|X| \le 1$ then $\sep(X) = \infty$ and functoriality follows directly.
+\end{example}
+
+\begin{example}{Diameter}{}
+\todo[does this example work?]
+\end{example}
+
+There are two ways of thinking about $\Jf_\sep$. One is to think of it describing the minimal feature size of a metric space. However the other is think about being able to embed a two-point space into that metric space. We can generalize this notion by considering the embedding of more complex spaces.
+
+\begin{defprop}{$k$-fold Separation}{}
+We define the $k$-fold separation invariants.
+\begin{align*}
+\Jf^-_k &:= \inf \{\varepsilon > 0: \mor_\inj(\Delta_k(\varepsilon), X) \neq \emptyset\} \\
+\Jf^+_k &:= \sup \{\varepsilon > 0: \mor_\inj(X,\Delta_k(\varepsilon)) \neq \emptyset\}
+\end{align*}
+$\Jf^-_k,\Jf^+_k: \inj \to \E$ are invariants of $\inj$.
+\end{defprop}
+
+\begin{proof}
+We will proof functoriality for $\Jf^-_k$. The proof for $\Jf^+_k$ is analogous. Consider the set $S_X := \{\varepsilon > 0: \mor_\inj(\Delta_k(\varepsilon), X) \neq \emptyset\}$.
+
+For $\phi \in \mor_\inj(X,Y)$ we would like to show $S_X \subset S_Y$ which implies $\Jf^-_k(X) \geq \Jf^-_k(Y)$. Let $\varepsilon \in S_X$ and $\psi \in \mor_\inj(\Delta_k(\varepsilon, X))$. Then we have $\psi \circ \phi \in \mor_\inj(\Delta_k(\varepsilon), Y)$ and therefore $\varepsilon \in S_Y$.
+\end{proof}
+
+\begin{myremark}{}{}
+Notice that $\Jf^-_2 = \Jf_\sep$.
+\end{myremark}
+
+\todo[draw picture of a both the above]
+
+\todo[can the above the visualised nicely?]
+
+In the above invariants we used spaces of the type $\Delta_k(\varepsilon)$ as sorts of \emph{template spaces} which we embedded into or in which we embedded our metric space. We can generalized this notion further by using arbitrary metric spaces as \emph{templates}.
+
+\begin{definition}{Generative Model}{}
+Let $\Omega \subset \M$ be a collection of metric spaces. And $\eta: \Omega \to \R$ a map.
+We call $(\Omega, \eta)$ a generative model.
+\todo[intro the notion of valued and regular gen. model]
+\end{definition}
+
+\begin{defprop}{Generative Invariant}{}
+Let $(\Omega, \eta)$ be a generative model. Then we can define the \emph{invariant generated by $(\Omega, \eta)$}.
+\begin{align*}
+\Jf^-_\Omega &:= \inf\{\eta(\omega): \omega \in \Omega \text{ s.t. } \mor_\inj(\omega, X) \neq \emptyset\} \\
+\Jf^+_\Omega &:= \sup\{\eta(\omega): \omega \in \Omega \text{ s.t. } \mor_\inj(X, \omega) \neq \emptyset\}
+\end{align*}
+$\Jf^-_\Omega, \Jf^+_\Omega: \inj \to \E$ is in fact an invariant.
+\end{defprop}
+\begin{proof}
+\todo
+\end{proof}

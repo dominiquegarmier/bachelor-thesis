@@ -1,0 +1,67 @@
+\chapter{Overview of Clustering Algorithms}
+\cite{Jain1988-en}
+
+\section{$k$-means}
+A classical algorithm for data clustering is the so-called $k$-means algorithm \cite[chapter~\todo]{Scitovski2021}. It consists of splitting a finite subset $A \subset \R^n$ into $k$ optimal partitions. \footnote{See ... \cite{Scitovski2021} for a more general formulation}
+
+\begin{definition}{$k$-means Clustering}{}
+Let $X \subset \R^n$ be a finite subset and $k \in \N$. $k$-means clustering refers to finding a solution to the optimization problem:
+
+\begin{equation}
+\label{eq:kmean_optimization}
+\argmin_{S_1, \dots, S_k \subset X \text{ disjoint, non-empty}} \sum_{i = 1}^k \sum_{x \in S_k} \|x - \mu_k\|^2
+\end{equation}
+where $\mu_k := \frac{1}{|S_k|}\sum_{x \in S_k} x$.
+\end{definition}
+
+Since $X$ is a finite set the optimization \ref{eq:kmean_optimization} runs over finitely many partitions and thus has a minimum.
+
+In general it is however not feasible to compute \ref{eq:kmean_optimization}\cite{Dasgupta2008}. There do however exist algorithms for computing approximate solutions:
+
+\begin{definition}{Lloyd's Algorithms}{}
+\end{definition}
+
+\section{Linkage-Clustering}
+
+\begin{definition}{Single Linkage Clustering}{}
+\end{definition}
+
+\section{Preserving Structure}
+
+Instead of thinking about clustering algorithms as recognizing certain structures in our data. We can ask for a clustering algorithm to not detect unwanted noise in our data. Or formulated differently we want a clustering algorithm to be invariant under certain transformations.
+
+\begin{example}{Cocktail Reception}{}
+Consider a top down photograph of a cocktail reception, where every person attending is represented by a point in $\R^2$. We would now like to find a clustering algorithm that detects friendship groups.
+
+It would seem sensible that any such algorithm should fulfill a few properties:
+
+\begin{enumerate}
+    \item Translation and Rotation Invariance: We would hope that, no-matter how we oriented the camera to take the top-down picture, we detect the same friendship groups.
+    \item Scale Invariance: Whether we measure the distances in meters or centimeter shouldn't affect the outcome of our clustering algorithm.
+\end{enumerate}
+\todo[add illustration]
+\end{example}
+
+\section{Kleinberg's Impossibility Theorem}
+It is apparent that as we required more and more invariants from a clustering algorithm it be comes harder and harder to construct one.
+There exists an important result in this regard. Kleinbergsays that for certain seemingly reasonable requirements there exists not clustering algorithm satisfying them \cite{Kleinberg2002}.
+
+\begin{definition}{Scale Invariance}{}
+\end{definition}
+
+\begin{definition}{Richness}{}
+\end{definition}
+
+\begin{definition}{Consitency}{}
+\end{definition}
+
+\begin{theorem}{Kleinberg \cite{Kleinberg2002}}{}
+\source
+\end{theorem}
+
+We can now think about the previously mentioned clustering algorithms.
+
+\begin{enumerate}
+    \item $k$-means: Is not rich (clearly)
+    \item
+\end{enumerate}

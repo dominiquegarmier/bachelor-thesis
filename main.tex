@@ -7,27 +7,28 @@
 
 \input{titlepage}
 
-\input{contents/abstract}
+\input{abstract}
 
 \tableofcontents
 
 % content
-\input{contents/introduction}
-\input{contents/notation}
+\input{chapters/introduction}
 
-\input{contents/preliminaries}
-\input{contents/categories_and_functors}
-\input{contents/defining_clustering_schemes}
-\input{contents/invariants}
-\input{contents/excessive_clustering_schemes}
-\input{contents/classical_schemes.tex}
-\input{contents/hierarchical_schemes.tex}
+% preliminaries
+\input{chapters/preliminaries}
+\input{chapters/overview}
+\input{chapters/categories}
+
+\input{chapters/clustering}
+\input{chapters/invariants}
+
+\input{chapters/classical}
+\input{chapters/hierarchical}
 
 \appendix
-\input{contents/appendix}
-\input{contents/layout}
+\input{appendix/appendix}
 
-\bibliographystyle{plain}
+\bibliographystyle{alpha}
 \bibliography{bib}
 
 \end{document}

@@ -4,7 +4,7 @@
 \usepackage{lmodern}
 
 %% language
-\usepackage[german,english]{babel}
+\usepackage[english]{babel}
 \selectlanguage{english}
 
 %% figures
@@ -91,8 +91,8 @@ boxsep=0pt,left=2pt,right=2pt,top=1pt,bottom=.5pt}
 \newcommand{\exe}{\inlinebox[myred]{exercise}}
 \newcommand{\exes}{\inlinebox[myred]{exercises}}
 
-\newcommand{\todo}{\inlinebox[mygray]{TODO}}
-\newcommand{\source}{\inlinebox[mygray]{src?}}
+\newcommand*{\todo}[1][]{\inlinebox[mypurple]{\textbf{TODO} #1}}
+\newcommand*{\source}[1][]{\inlinebox[myblue]{\textbf{SOURCE} #1}}
 
 \newtcbtheorem[number within=chapter]{definition}{Definition}
 {
@@ -108,6 +108,21 @@ boxsep=0pt,left=2pt,right=2pt,top=1pt,bottom=.5pt}
 	boxed title style={boxrule=0.2mm,skin=enhancedfirst jigsaw,bottom=0mm}
 }
 {def}
+
+\newtcbtheorem[use counter from=definition]{defprop}{Definition \& Proposition}
+{
+	enhanced,breakable,
+	frame hidden,
+	colframe=myred,
+	colback=myred!3,
+	coltitle=black,
+	fonttitle=\bfseries,
+	colbacktitle=myred!3,
+	borderline={0.2mm}{0mm}{myred},
+	attach boxed title to top text left,
+	boxed title style={boxrule=0.2mm,skin=enhancedfirst jigsaw,bottom=0mm}
+}
+{defprop}
 
 \newtcbtheorem[use counter from=definition]{notation}{Notation}
 {
@@ -138,6 +153,7 @@ boxsep=0pt,left=2pt,right=2pt,top=1pt,bottom=.5pt}
 	boxed title style={boxrule=0.2mm,skin=enhancedfirst jigsaw}
 }
 {exa}
+
 
 \newtcbtheorem[use counter from=definition]{myremark}{Remark}
 {
@@ -245,10 +261,56 @@ boxsep=0pt,left=2pt,right=2pt,top=1pt,bottom=.5pt}
 {exe}
 
 \def\R{\mathbb R}
-\def\C{\mathbb C}
+\def\Cb{\mathbb C}
 \def\N{\mathbb N}
 \def\Z{\mathbb Z}
 \def\Q{\mathbb Q}
+\def\E{\mathbb E}
 
 \def\mor{\mathrm {Mor}}
 \def\ob{\mathrm {Ob}}
+
+% partitions
+\def\P{\mathfrak{P}}
+
+% categories
+\def\M{\mathcal{M}}
+\def\C{\mathcal{C}}
+\def\H{\mathcal{H}}
+\def\A{\mathcal{A}}
+\def\B{\mathcal{B}}
+
+\def\gen{{\mathcal{M}_\mathrm{gen}}}
+\def\inj{{\mathcal{M}_\mathrm{inj}}}
+\def\iso{{\mathcal{M}_\mathrm{iso}}}
+
+% functors
+\def\Cf{\mathfrak{C}}
+\def\Rf{\mathfrak{R}}
+\def\Jf{\mathfrak{J}}
+\def\Ff{\mathfrak{F}}
+\def\Hf{\mathfrak{H}}
+\def\Tf{\mathfrak{T}}
+
+\def\id{\mathrm{id}}
+
+\def\refines{\preceq_\mathrm{ref}}
+
+% latin stuff
+\def\eg{\emph{e.g.}}
+\def\Eg{\emph{E.g.}}
+\def\ie{\emph{i.e.}}
+\def\Ie{\emph{I.e.}}
+\def\etc{\emph{etc.}}
+\def\st{\text{s.t.}}
+
+\def\apriori{\emph{a priori}}
+\def\Apriori{\emph{A priori}}
+
+\def\sep{\mathrm{sep}}
+\def\diam{\mathrm{diam}}
+
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\image}{im}
+\DeclareMathOperator*{\kernel}{ker}
