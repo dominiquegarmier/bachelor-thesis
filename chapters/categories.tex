@@ -1,9 +1,6 @@
 \chapter{Categories and Functors}
-It is well known \source that there is no such thing as a set of all sets. However one might still want to reason about such collections. For this reason we define the notion of a class.
-
-... for our purpose we only care about the fact that a class can contain mathematical objects...
-
 \section{Categories}
+
 The idea of categories is to abstractly define the notion of composition.
 For example the composition of maps between sets or the composition of linear maps between vector space \etc\
 But it can also describe the composition of objects other than maps.
@@ -11,7 +8,7 @@ But it can also describe the composition of objects other than maps.
 \begin{definition}{Category}{}
 \cite{Roman2017} \source A category $\C$ consits of
 \begin{enumerate}
-    \item \textbf{Objects}: $\ob(\C)$, which is a class mathematical objects. \Ie\ it need not be a proper set.
+    \item \textbf{Objects}: $\ob(\C)$, which is a class\footnote{a class is a collection of mathematical objects}. \Ie\ it need not be a proper set.
     
     \item \textbf{Morphisms}: For every $A, B \in \ob(\C)$ we have a set $\mor(A,B)$. An element $f \in \mor(A,B)$ is called a morphism from $A$ to $B$ and we often write 
     $$
@@ -31,6 +28,7 @@ But it can also describe the composition of objects other than maps.
 \end{enumerate}
 \end{definition}
 
+The reason why the objects of categories are not necessarily a sets is that sets require the axiom of regularity and as such there is no set of all sets.
 \begin{notation}{}{}
 We will often define the class of objects using the following notation:
 \begin{equation*}
@@ -49,10 +47,10 @@ It is however common to have a category where we have no morphisms between certa
 The most familiar way of thinking about a category is to see morphisms as maps and the composition as the composition of maps. There are many example of such categories.
 
 \begin{example}{Category of Sets}{}
-Consider the category $\C_\mathrm{set}$ consisting of
+Consider the category $\mathrm{Set}$ consisting of
 \begin{enumerate}
-    \item $\ob(\C_\mathrm{set}) := \{X: \text{$X$ is a set}\}$
-    \item $\mor_{\C_\mathrm{set}}(X,Y) := \{f: X \to Y: \text{$f$ is a map}\}$
+    \item $\ob(\mathrm{Set}) := \{X: \text{$X$ is a set}\}$
+    \item $\mor_{\mathrm{Set}}(X,Y) := \{f: X \to Y: \text{$f$ is a map}\}$
 \end{enumerate}
 In this case composition is simply the composition of maps and the identity is given by the identity map $\id_A: x \in A \mapsto x \in A$.
 \end{example}
@@ -60,32 +58,35 @@ In this case composition is simply the composition of maps and the identity is g
 Instead of taking arbitrary sets and maps between them we can also study categories where the objects have additional structure and the morphisms preserve that structure.
 
 \begin{example}{Topological Spaces}{}
-Similar to the previous category we can define $\C_\mathrm{top}$ with
+Similar to the previous category we can define $\mathrm{Top}$ with
 \begin{enumerate}
-    \item $\ob(\C_\mathrm{top}) := \{(X,\tau) : \text{$X$ a set and $\tau$ a topology}\}$
-    \item $\mor_{\C_\mathrm{top}}(X,Y) := \{f: X \to Y: \text{$f$ is continuous}\}$
+    \item $\ob(\mathrm{Top}) := \{(X,\tau) : \text{$X$ a set and $\tau$ a topology}\}$
+    \item $\mor_{\mathrm{Top}}(X,Y) := \{f: X \to Y: \text{$f$ is continuous}\}$
 \end{enumerate}
-with the usual composition of maps and identity function.\\
+with the usual composition of maps and identity function.
+The reason this is in fact a category is that the composition of continuous maps is still continuous.\\
 
-The reason this is in fact a category is that the composition of continuous maps is still continuous.
+Similarly we can define the category of \emph{based topological} spaces $\mathrm{Top}_\bullet$. In this case objects are just tuples $(X,x_0)$ with $x_0 \in X$ and morphisms are called \emph{based maps} which are continuous maps $f: (X,x_0) \to (Y,y_0)$ such that $f(x_0) = y_0$.
 \end{example}
 
 \begin{example}{Vector Spaces}{}
-Let $\mathbb{K}$ be a field. Another structure that one might want to study is that of $\C_{\mathrm{vec}, \mathbb{K}}$ where
+Let $\mathbb{K}$ be a field. Another structure that one might want to study is that of $\mathrm{Vec}_\mathbb{K}$ where
 \begin{enumerate}
-    \item $\ob(\C_{\mathrm{vec}, \mathbb{K}}) := \{V : \text{$V$ is a vector space over $\mathbb{K}$}\}$
-    \item $\mor_{\C_{\mathrm{vec}, \mathbb{K}}}(V,W) := \{f: V \to W : \text{$f$ is a $\mathbb{K}$-linear map}\}$
+    \item $\ob(\mathrm{Vec}_\mathbb{K}) := \{V : \text{$V$ is a vector space over $\mathbb{K}$}\}$
+    \item $\mor_{\mathrm{Vec}_\mathbb{K}}(V,W) := \{f: V \to W : \text{$f$ is a $\mathbb{K}$-linear map}\}$
 \end{enumerate}
 then this is a again a category for same reasons as in the previous example.
 \end{example}
 
-In all previous examples morphisms where maps, however this is not necessary. In case morphisms are not maps it is not be as clear what the composition $\circ$ should be.
+In all previous examples morphisms where maps, however this is not necessary. In case morphisms are not maps it is not as clear what the composition $\circ$ should be.
+
+To illustrate this here are two examples:
 
 \begin{example}{Category of Ordering}{}
-Consider the category $\C_{\mathrm{ord}(\R)}$ with
+Consider the category $\mathrm{Ord}_\R$ with
 \begin{enumerate}
-    \item $\ob(\C_{\mathrm{ord}(\R)}) := \R$
-    \item $\mor_{\C_{\mathrm{ord}(\R)}}(a,b) := \begin{cases}
+    \item $\ob(\mathrm{Ord}_\R) := \R$
+    \item $\mor_{\mathrm{Ord}_\R}(a,b) := \begin{cases}
         \{(a,b)\} & \text{if $a \ge b$} \\
         \hfil \emptyset & \text{else}
     \end{cases}$
@@ -105,8 +106,7 @@ and the composition is given by $g \circ h = gh$ and identity by $e \in G$.
 \end{example}
 
 \section{Functors}
-Categories are used to study morphisms between objects. Similarly we can now also study morphisms or \emph{functors} between categories.
-
+We would now like to study maps between categories. It is not yet clear what such a map is suppose to look like and what properties it must have.
 
 \begin{definition}{Functor}{}
 We differentiate between \emph{covariant} and \emph{contravariant} \emph{functors}. 
@@ -146,24 +146,10 @@ where $e_X$ denotes the identity morphism. And for every $f \in \mor_\A(X,Y)$ an
 A covariant functor is sometimes also simply called a functor.
 \end{definition}
 
-\begin{myremark}{Functoriality}{}
 The additional requirements \ref{eq:functor_functoriality_identity} and \ref{eq:functor_functoriality_covar} respectively \ref{eq:functor_functoriality_contravar} are sometimes referred to as \emph{functoriality} also outside of category theory.
 
-We can represent these properties in terms of commutative diagrams
-
-\todo
-
-Particularly we ask for every $X,Y \in \ob(\A)$ and every $\phi \in \mor_\A(X,Y)$ that the diagram commutes.
-
-\begin{equation*}
-\begin{tikzcd}
-X \rar["\phi"] \dar[maps to, "\Ff"] & Y \dar[maps to, "\Ff"] \\
-\Ff(X) \rar["\Ff(\phi)"]              & \Ff(Y)   
-\end{tikzcd}       
-\end{equation*}
-
-\end{myremark}
 Similar to functions we can also compose functors. We will use this to construct particular functors later on.
+
 \begin{defprop}{Composition of Functors}{composition_of_functors}
 Let $\A, \B, \C$ be three categories and
 $$
@@ -177,7 +163,7 @@ The proof is left as an exercise to the reader.
 \todo[should i prove this?]
 
 \subsection{Examples of Functors}
-
+Here are some examples that are relatively easy to construct
 \begin{example}{Group Homomorphism as a Functor}{}
 Let $G_1, G_2$ be groups, $\phi: G_1 \to G_2$ be a group homomorphism and $\mathcal{G}_1,\mathcal{G}_2$ the corresponding categories \ref{exa:group-category}. The goal is to construct a corresponding functor 
 $$
@@ -203,21 +189,31 @@ and since group homomorphisms map the neutral element to the neutral element he 
 \end{example}
 
 \begin{example}{The Adjoint Covariant Functor}{}
-Consider the category $\C_{\mathrm{vec}, \mathbb{K}}$. Then we can define the functor
+Consider the category $\mathrm{Vec}_\mathbb{K}$. Then we can define the functor
 $$
-^* : \C_{\mathrm{vec}, \mathbb{K}} \to \C_{\mathrm{vec}, \mathbb{K}}
+^* : \mathrm{Vec}_\mathbb{K} \to \mathrm{Vec}_\mathbb{K}
 $$
 which maps a vector space $V$ to its (algebraic) dual $V^*$ and maps a linear map $f: V \to W$ to its adjoint map $f^*: W^* \to V^*$. It is an exercise of linear algebra to verify that this is indeed a contravariant functor.
 \end{example}
 
+From algebraic topology there are also examples of functors.
 \begin{example}{Fundamental Group Functor}{}
 \cite{Hatcher2001}
 \todo
+The map that assigns based topological $(X,x_0)$ spaces to their fundamental group $\pi_1(X,x_0)$ and assigns continuous functions $f: (X,x_0) \to (Y,y_0)$ to the group homomorphism 
+$$
+\pi_1(X,x_0) \ni [\alpha] \mapsto [f \circ \alpha] \in \pi_1(Y,y_0)
+$$
+Is a functor
+$$
+\pi: \mathrm{Top}_\bullet \to \mathrm{Grp}
+$$
 \end{example}
 
 \begin{example}{Homology Functor}{}
 \cite{Hatcher2001}
 \todo
+The the map that assigns a topological space $X$ to its singular homology group chain complex $H_\bullet(X)$ and assigns continuous functions $f: X \to Y$ to the chain map $f_*: H_\bullet(X) \to H_\bullet(Y)$ is a functor from the category of topological spaces to the category of chain complexes of abelian groups.
 \end{example}
 
 

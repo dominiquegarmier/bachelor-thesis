@@ -1,4 +1,5 @@
 \chapter{Clustering Functors}
+\label{chapter__clustering_functor}
 
 \todo[talk about how this is a "rich" definition of clustering algorithms]
 
@@ -48,6 +49,7 @@ for some $b \in B$.
 \todo[do the above remarks deserve a yellow border?]
 
 \section{Partitions}
+\label{section__partitions}
 In this section we define some machinery that will be use to define the outputs of clustering schemes.
 
 \begin{definition}{Partitions of Finite Sets}{}
@@ -106,34 +108,6 @@ This will be familiar to anyone who has seen \emph{persistent homology} where su
 \source One can expand the above definitions to allow $|X| = \infty$. 
 In the case of the quasi-dendogram we would have to then pose an additional discreteness constraint on $\theta$
 \end{myremark}
-
-\begin{figure}
-    \centering
-    \begin{tikzpicture}
-    \filldraw[color=red!60, fill=red!5, very thick](-4.25,0) ellipse (2 and 1 / 3);
-    \filldraw[color=red!60, fill=red!5, very thick](0,0) ellipse (2 and 1 / 3);
-    \filldraw[color=red!60, fill=red!5, very thick](4.25,0) ellipse (2 and 1 / 3);
-    
-    \filldraw[color=red!60, fill=red!5, very thick](-2.125,1.5) ellipse (4 and 2 / 3);
-    \filldraw[color=red!60, fill=red!5, very thick](4.25,1.5) ellipse (2 and 1 / 3);
-    
-    \filldraw[color=red!60, fill=red!5, very thick](0,3) ellipse (6 and 1);
-
-    \foreach \y in {0,1.5,3}
-    {
-        \fill[color=red!60] (-5.25,\y) circle (2pt);
-        \fill[color=red!60] (-3.25,\y) circle (2pt);
-        
-        \fill[color=red!60] (-1,\y) circle (2pt);
-        \fill[color=red!60] (1,\y) circle (2pt);
-        
-        \fill[color=red!60] (3.25,\y) circle (2pt);
-        \fill[color=red!60] (5.25,\y) circle (2pt);
-    }
-    \end{tikzpicture}
-    \caption{\todo Visualization of a dendogram. (... notice how this is a dendogram since the top most partition is the trivial partition)}
-    \label{fig:enter-label}
-\end{figure}
 
 \section{Outputs of Clustering Schemes}
 
@@ -208,8 +182,12 @@ A classical clustering functor $\Cf: \M \to \C$ is called \emph{surjective} if f
 \end{equation*}
 \end{definition}
 
-\todo[kmeans is not surjective, as it limits the number of classes]
+We have seen this concept previously when discussing Kleinbergs theorem \ref{thm:kleinberg}, there it was called richness \ref{def:richness}.
 
+As previously mentioned the $k$-means clustering algorithm\ref{def:kmeans_clustering_algo} is clearly not surjective. As it limits the number of clusters.
+\todo[better wording]
+
+We will see later that surjective clustering functors are in some cases unique. Another relatively straightforward property of surjective functors is that they factor any other clustering functor:
 
 \begin{proposition}{}{universality_of_surjective_functors}
 Let $\mathfrak{S}: \M \to \C$ be a surjective functor. Then for any clustering functor $\Cf: \M \to \C$ there exists a functor $\Tf_\Cf: \M \to \M$ that changes the metric such that
@@ -219,6 +197,7 @@ Let $\mathfrak{S}: \M \to \C$ be a surjective functor. Then for any clustering f
 \end{equation*}
 \end{proposition}
 
+\mynote[move below to chapter 7?]
 A surprising fact about surjective clustering functors is given by the following lemma:
 
 \begin{lemma}{}{surjective_implies_eventually_discrete}
@@ -227,12 +206,13 @@ Let $\Cf: \M \to \C$ be a surjective clustering functor and $(X,d)$ a finite met
     \item $\Cf(X,\lambda \cdot d)$ is discrete for all $\lambda > \lambda_0$
     \item $\Cf(X,\mu \cdot d)$ is trivial for all $0 < \mu \le \mu_0$
 \end{enumerate}
+\mynote[dedupe this from chapter 7]
 \end{lemma}
 
 Indeed this now motivates us to define the smallest resp. largest values for which the condition in the lemma holds. This gives us:
 
 \begin{definition}{}{}
-Let $\Cf: \M \to \C$ be surjective clustering scheme. Due to the previous lemma we can define
+Let $\Cf: \M \to \C$ be surjective clustering functor. Due to the previous lemma we can define
 \begin{align*}
 \diam^\Cf(X) &:= \sup\{ \lambda > 0: \Cf(X,\lambda \cdot d) \text{ is trivial}\} < \infty\\
 \sep^\Cf(X) &:= \inf\{ \lambda > 0: \Cf(X,\lambda \cdot d) \text{ is discrete}\} < \infty

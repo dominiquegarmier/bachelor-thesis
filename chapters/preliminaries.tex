@@ -1,47 +1,46 @@
 \chapter{Preliminaries and Notations}
 
 \section{Metric Spaces}
-From now on, unless otherwise mentioned, \todo[is it ever?] metric spaces $(X,d)$ are finite \ie\ $|X| < \infty$.
+From now on, unless otherwise mentioned, \todo[is it ever?] metric spaces $(X,d)$ are non-empty and finite \ie\ $0 < |X| < \infty$.
 
-\begin{notation}{Metric Spaces}{}
-When there is no risk of confusion we will simply write $X$ denoting a metric space as opposed to $(X,d)$
-\end{notation}
+Furthermore, when there is no risk of confusion we will simply write $X$ denoting a metric space as opposed to $(X,d)$
 
-\begin{definition}{Separation and Diameter}{}
+\begin{definition}{}{}
 The \emph{separation} of a metric space $(X,d)$ is given by
 \begin{equation*}
-\sep(X,d) = \sep(X) := \inf\{d(x,y): x,y \in X, x \neq y\} \in \R_{\geq 0} \sqcup \{\infty\}.
+\sep(X,d) = \sep(X) := \inf\{d(x,y): x,y \in X, x \neq y\}
 \end{equation*}
-We use the convention that $\inf \emptyset = \infty$.
-\end{definition}
-
-\begin{definition}{Symmetric Positive Definitie Function}{}
-$$
-W: X \times X \to [0, +\infty]
-$$
-is called \emph{connected} if ...
-\end{definition}
-
-\begin{definition}{Shortest Distance Metric}{shortest_dist_metric}
-\end{definition}
-
-\begin{definition}{Diameter}{}
-The \emph{diameter} of a metric space $(X,d)$ is given by
+and the \emph{diameter}
 \begin{equation*}
 \diam(X,d) = \diam(X) := \sup\{d(x,y): x,y \in X\}
 \end{equation*}
+We use the convention that $\inf \emptyset = \infty$. 
 \end{definition}
 
-\begin{myremark}{}{}
-Since in our setting $X$ is finite we have $\sep(X) > 0$. And both the infimum and supremum in $\sep(X)$ and $\diam(X)$ are realized, provided $\sep(X) \neq \infty$.
-\end{myremark}
+Since we restrict ourselves to non-empty finite metric spaces we have $\diam(X) \geq \sep(X) > 0$ provided $|X| \neq 1$.
 
-\begin{defprop}{Minimal Sub-Dominant Ultrametric}{}
+\subsection{Constructing Metrics}
+Later on we will have to construct metrics with very particular properties. The easiest way to do this is to start with symmetric positive (definite) functions. We present two ways such a function can induce a metric.
+
+\begin{definition}{}{shortest_dist_metric}
+We say that a symmetric positive definite function
+$$
+W: X \times X \to [0, +\infty]
+$$
+\emph{represents a connected graph} or is \emph{connected} if for any $x,y \in X$ there exists a sequence $x = x_0, \dots, x_n = y$ such that $W(x_{i-1}, x_{i}) < \infty$ for all $i = 1, \dots, n$.
+\end{definition}
+
+\begin{definition}{}{}
+Given a symmetric positive definite function $W$ representing a connected graph we can define the shortest distance metric
+\begin{equation*}
+    d^W(x,y) := \inf\left\{ \sum_{k = 1}^N W(x_{k-1}, x_k): N \in \N \text{ and } x = x_0, \dots, x_N = y\right\}
+\end{equation*}
+\end{definition}
+
+
+
+\begin{defprop}{}{}
+\source[we only present this here since its in the paper]
+
+Minimal Sub-Dominant Ultrametric
 \end{defprop}
-
-\section{Notation}
-\begin{tabular}{c c}
-    $\mathcal{C,H}$ & category, ... \\
-    $\mathfrak{F,C,R}$ & functor, ... \\ 
-\end{tabular}
-

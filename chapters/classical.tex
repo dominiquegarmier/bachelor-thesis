@@ -35,8 +35,17 @@ x \sim y \quad \text{if} \quad \exists \omega \in \Omega \,\exists \phi \in \mor
 
 $\Cf^\Omega$ is indeed a clustering functor. Let $f: X \to Y$ be a morphism and $x \sim y$. Then we have an $\omega \in \Omega$ and a $\phi \in \mor_\M(\omega, X)$ such that \ref{eq:represented_clustering_functor_condition} holds. But then $f \circ \phi \in \mor_\M(\omega,Y)$ has the same properties and it follows that $f(x) \sim f(y)$.
 
+\begin{myremark}{}{}
+
+$$
+\Cf^\Omega(\omega) = (\omega, \{\omega\})
+$$
+
+We also have $\Cf^\Omega$ is the finest clustering functor such that $\omega \in \Omega$ get mapped into the trivial partition.
+\end{myremark}
+
 \begin{proposition}{Surjective Generative Model}{}
-\todo[is this prop true?]
+\newresult
 Let $\Omega$ be a generative model then the following are equivalent:
 \begin{enumerate}
     \item $\Cf^\Omega$ is surjective
@@ -108,6 +117,27 @@ Let $\Cf: \gen \to \C$ be a clustering functor then $\Cf$ is splitting at $\delt
 \begin{proof}
 To show $\Rf_\delta \refines \Cf$ we can adapt the proof of the previous proposition \ref{prop:splitting_inj}. It therefore remains to show $\Cf \refines \Rf_\delta$. \todo
 \end{proof}
+
+\begin{lemma}{}{}
+\newresult
+Let $\Cf: \M \to \C$ be a surjective clustering functor. Let $(X,d) \in \ob(\M)$ then there exists $\lambda \geq \lambda' > 0$ such that
+\begin{enumerate}
+    \item $\Cf(X, \lambda \cdot d)$ is discrete
+    \item $\Cf(X, \lambda' \cdot d)$ is trivial
+\end{enumerate}
+\end{lemma}
+
+\begin{corollary}{}{}
+\newresult
+
+\todo[maybe we can remove this corollary and inline it into the proof of the next]
+Let $\Cf: \M \to \C$ be a surjective clustering functor. Then there exists a $\delta > 0$ such that $\Cf$ splits at $\delta$.
+\end{corollary}
+
+\begin{corollary}{}{}
+\newresult
+Let $\M \in \{\gen, \inj\}$ and $\Cf: \M \to \C$ a surjective clustering functor then $\Cf \refines \Rf_\delta$ for some $\delta > 0$. More over we have $\Cf = \Rf_\delta$ if $\M = \gen$
+\end{corollary}
 
 \section{Scaling Invariant Clustering Functors}
 

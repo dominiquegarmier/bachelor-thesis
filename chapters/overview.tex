@@ -1,67 +1,113 @@
-\chapter{Overview of Clustering Algorithms}
-\cite{Jain1988-en}
+\chapter{Data Clustering}
 
-\section{$k$-means}
-A classical algorithm for data clustering is the so-called $k$-means algorithm \cite[chapter~\todo]{Scitovski2021}. It consists of splitting a finite subset $A \subset \R^n$ into $k$ optimal partitions. \footnote{See ... \cite{Scitovski2021} for a more general formulation}
+\section{Overview of Clustering Algorithms}
+We would like to present a few clustering methods to contrast against the methods we will present in the latter half of this report. These are commonly used methods in computer and data science.
 
-\begin{definition}{$k$-means Clustering}{}
-Let $X \subset \R^n$ be a finite subset and $k \in \N$. $k$-means clustering refers to finding a solution to the optimization problem:
+\subsection[$k$-means]{$k$-means \cite[Section~3.1]{Scitovski2021}}
+A common method of clustering is to find a $k$-partition of the points according to some criterion.
+One such example is the \emph{$k$-means} clustering objective.
 
-\begin{equation}
+Let $x_1, \dots, x_n \in \R^d$ be a set of points.
+
+\begin{definition}{$k$-means Clustering}{kmeans_clustering}
+For $k \in \N$ the $k$-means clustering objective refers to finding a partition $C_1, \dots, C_k$ of $x_1, \dots, x_n$ such that
+\begin{equation*}
 \label{eq:kmean_optimization}
-\argmin_{S_1, \dots, S_k \subset X \text{ disjoint, non-empty}} \sum_{i = 1}^k \sum_{x \in S_k} \|x - \mu_k\|^2
-\end{equation}
-where $\mu_k := \frac{1}{|S_k|}\sum_{x \in S_k} x$.
+    \sum_{i = 1}^k \sum_{x \in C_i} \|x - \mu_i\|^2
+\end{equation*}
+is minimal, where $\mu_k := \frac{1}{|S_k|}\sum_{x \in S_k} x$ is the center of $C_k$.
+\end{definition}
+To find such a partition we would have to check all possible partitions of $x_1, \dots, x_n$. This is computationally unfeasible.
+
+In practice we use approximate methods such as Lloyd's algorithm \cite[Section~3.1.2]{Scitovski2021}. We also simply call this the $k$-means algorithm.
+
+\subsection[Linkage-Clustering]{Linkage-Clustering \cite[Section~4.2.2]{Everitt2011}}
+Another way of clustering data points is based on graph theory and the idea of consecutively connecting more points.
+As an output of this method we obtain a dendogram\footnote{see section \ref{section__partitions} for an in depth definition of dendograms.}
+
+Let $x_1, \dots, x_n \in \R^d$ be a set of distinct data points.
+\begin{definition}{Linkage-Clustering }{linkage_clustering}
+Let $d$ be a distance function between clusters. We start with the partition $B^{(0)}_j := \{x_j\}$ for $j = 1, \dots, n$.
+Given a partition
+$$
+B^{(k)}_1, \dots, B^{(k)}_{n - k} \quad \text{of} \quad x_1, \dots, x_n
+$$
+we successively merge the clusters $i$ and $j$ such that
+$$
+d(B^{(k)}_i,B^{(k)}_j)
+$$
+is minimal.
 \end{definition}
 
-Since $X$ is a finite set the optimization \ref{eq:kmean_optimization} runs over finitely many partitions and thus has a minimum.
-
-In general it is however not feasible to compute \ref{eq:kmean_optimization}\cite{Dasgupta2008}. There do however exist algorithms for computing approximate solutions:
-
-\begin{definition}{Lloyd's Algorithms}{}
-\end{definition}
-
-\section{Linkage-Clustering}
-
-\begin{definition}{Single Linkage Clustering}{}
-\end{definition}
+There are multiple distance functions that we could use in the previous definition.
+\begin{align*}
+d_\mathrm{min} (B_i, B_j) &:= \min\{d(x,y): x \in B_i, y \in B_j\}\\
+d_\mathrm{max} (B_i, B_j) &:= \max\{d(x,y): x \in B_i, y \in B_j\}\\
+d_\mathrm{avg}(B_i,B_j) &:= \frac{1}{|B_i||B_j|} \sum_{x \in B_i, y \in B_j} d(x,y)\\
+\end{align*}
+If we use $d_\mathrm{min}$ we call it \emph{single-linkage clustering}, when using $d_\mathrm{max}$ we call it \emph{complete-linkage clustering} and \emph{average-linkage clustering} if we use $d_\mathrm{avg}$.
 
 \section{Preserving Structure}
+An important aspect of clustering methods is that they remain invariant under certain transformations.
 
-Instead of thinking about clustering algorithms as recognizing certain structures in our data. We can ask for a clustering algorithm to not detect unwanted noise in our data. Or formulated differently we want a clustering algorithm to be invariant under certain transformations.
+The idea is that if a clustering algorithm is invariant under certain transformations it captures information of other features.
 
-\begin{example}{Cocktail Reception}{}
-Consider a top down photograph of a cocktail reception, where every person attending is represented by a point in $\R^2$. We would now like to find a clustering algorithm that detects friendship groups.
+\begin{example}{}{}
+Consider a finite set $S \subset \R^2$ representing people at a gathering.\\
 
-It would seem sensible that any such algorithm should fulfill a few properties:
-
-\begin{enumerate}
-    \item Translation and Rotation Invariance: We would hope that, no-matter how we oriented the camera to take the top-down picture, we detect the same friendship groups.
-    \item Scale Invariance: Whether we measure the distances in meters or centimeter shouldn't affect the outcome of our clustering algorithm.
-\end{enumerate}
-\todo[add illustration]
+When searching for a clustering algorithm to detect friendship groups, it would make sense to only consider algorithms with the following invariances:
+\begin{itemize}
+    \item Translation Invariance
+    \item Rotation Invariance
+    \item Scale Invariance
+\end{itemize}
+The intuition being that such attributes are merely artifacts of the data collection process.
 \end{example}
 
-\section{Kleinberg's Impossibility Theorem}
+\subsection[Kleinberg's Impossibility Theorem]{Kleinberg's Impossibility Theorem \cite{Kleinberg2002}}
 It is apparent that as we required more and more invariants from a clustering algorithm it be comes harder and harder to construct one.
-There exists an important result in this regard. Kleinbergsays that for certain seemingly reasonable requirements there exists not clustering algorithm satisfying them \cite{Kleinberg2002}.
+There exists an important result in this regard. Kleinberg says that for certain seemingly reasonable requirements there exist no clustering algorithms satisfying them.
+
+In the context of Kleinberg's theorem we define a clustering algorithm as a procedure that maps a finite metric space $(X,d)$ to a partition of $X$.\footnote{in chapter \ref{chapter__clustering_functor} we will formalize the definition of a clustering algorithm.}
+
+Kleinberg goes on to present a set of seemingly reasonable properties a clustering algorithm can have.
 
 \begin{definition}{Scale Invariance}{}
+We say that a clustering algorithm $\Cf$ is \emph{scale invariant} if for every $\lambda > 0$ we have
+$$
+\Cf(X,d) = \Cf(X, \lambda \cdot d).
+$$
+\Ie\ re scaling the metric does not affect the clustering algorithm.
 \end{definition}
 
-\begin{definition}{Richness}{}
+\begin{definition}{Richness}{richness}
+A clustering algorithm $\Cf$ is \emph{rich} if for every set $X$ and every partition $P$ of $X$ there exists a metric $d$ on $X$ such that $\Cf(X,d) = P$.
 \end{definition}
 
-\begin{definition}{Consitency}{}
+\begin{definition}{Consistency}{}
+Let $\Cf$ be a clustering algorithm, $(X,d)$ a finite metric space and
+$$
+P = \Cf(X,d).
+$$
+We say that $\Cf$ is consistent if for any metric $d'$ on $X$ such that
+\begin{itemize}
+    \item $d'(x,y) \leq d(x,y)$ if $x\sim_P y$
+    
+    \item $d'(x,y) \geq d(x,y)$ if $x \not\sim_P y$.
+\end{itemize}
+we have $\Cf(X,d) = \Cf(X,d')$. Note that $\sim_P$ is the equivalence relation induced by the partition $P$.
 \end{definition}
 
-\begin{theorem}{Kleinberg \cite{Kleinberg2002}}{}
-\source
+
+However in combination it is impossible to construct a clustering algorithm that satisfies them all.
+
+
+\begin{theorem}{Kleinberg}{kleinberg}
+There exists no clustering algorithm that is scale invariant, rich and consistent at the same time.
 \end{theorem}
 
-We can now think about the previously mentioned clustering algorithms.
+Furthermore if we drop any of the requirements we can again find clustering algorithms satisfying the remaining properties.
 
-\begin{enumerate}
-    \item $k$-means: Is not rich (clearly)
-    \item
-\end{enumerate}
+The $k$-means algorithm \ref{def:kmeans_clustering} is clearly not rich since we restrict ourselves to partitions with $k$ parts. It is however scale invariant.
+
+\source[is kmeans consistent? dont want to prove this]
