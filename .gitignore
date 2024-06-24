@@ -9,5 +9,6 @@
 *.dvi
 *.out
 *.synctex.gz
+*.synctex.gz\(busy\)
 
 main.pdf
