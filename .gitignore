@@ -12,3 +12,5 @@
 *.synctex.gz\(busy\)
 
 main.pdf
+
+.vscode

@@ -1,9 +1,21 @@
 \chapter{Preliminaries and Notations}
 
 \section{Metric Spaces}
-From now on, unless otherwise mentioned, \todo[is it ever?] metric spaces $(X,d)$ are non-empty and finite \ie\ $0 < |X| < \infty$.
-
-Furthermore, when there is no risk of confusion we will simply write $X$ denoting a metric space as opposed to $(X,d)$
+As a quick reminder:
+\begin{definition}{Metric Space}{}
+A metric space $(X,d)$ is a set $X$ and a metric \Ie\ a map
+\begin{equation*}
+d: X \times X \to [0, +\infty],
+\end{equation*}
+such that for all $x,y,z \in X$ the following hold:
+\begin{enumerate}
+    \item $d(x,y) = 0$ if and only if $x = y$
+    \item $d(x,y) = d(y,x)$
+    \item $d(x,z) \leq d(x,y) + d(y,z)$
+\end{enumerate}
+\end{definition}
+From now on we primarily work with finite non-empty metric spaces, that is $0 < |X| < \infty$.
+Furthermore, when there is no risk of confusion we will simply write $X$ denoting a metric space as opposed to $(X,d)$.
 
 \begin{definition}{}{}
 The \emph{separation} of a metric space $(X,d)$ is given by
@@ -17,7 +29,7 @@ and the \emph{diameter}
 We use the convention that $\inf \emptyset = \infty$. 
 \end{definition}
 
-Since we restrict ourselves to non-empty finite metric spaces we have $\diam(X) \geq \sep(X) > 0$ provided $|X| \neq 1$.
+If $X$ is finite non-empty we have $\diam(X) \geq \sep(X) > 0$ provided.
 
 \subsection{Constructing Metrics}
 Later on we will have to construct metrics with very particular properties. The easiest way to do this is to start with symmetric positive (definite) functions. We present two ways such a function can induce a metric.

@@ -3,9 +3,9 @@
 \section{Overview of Clustering Algorithms}
 We would like to present a few clustering methods to contrast against the methods we will present in the latter half of this report. These are commonly used methods in computer and data science.
 
-\subsection[$k$-means]{$k$-means \cite[Section~3.1]{Scitovski2021}}
+\subsection{$k$-means}
 A common method of clustering is to find a $k$-partition of the points according to some criterion.
-One such example is the \emph{$k$-means} clustering objective.
+One such example is the \emph{$k$-means} clustering objective $k$-means \cite[Section~3.1]{Scitovski2021}.
 
 Let $x_1, \dots, x_n \in \R^d$ be a set of points.
 
@@ -19,11 +19,12 @@ is minimal, where $\mu_k := \frac{1}{|S_k|}\sum_{x \in S_k} x$ is the center of 
 \end{definition}
 To find such a partition we would have to check all possible partitions of $x_1, \dots, x_n$. This is computationally unfeasible.
 
-In practice we use approximate methods such as Lloyd's algorithm \cite[Section~3.1.2]{Scitovski2021}. We also simply call this the $k$-means algorithm.
+In practice, we use approximate methods such as Lloyd's algorithm \cite[Section~3.1.2]{Scitovski2021}.
+We also simply call this the $k$-means algorithm.
 
-\subsection[Linkage-Clustering]{Linkage-Clustering \cite[Section~4.2.2]{Everitt2011}}
-Another way of clustering data points is based on graph theory and the idea of consecutively connecting more points.
-As an output of this method we obtain a dendogram\footnote{see section \ref{section__partitions} for an in depth definition of dendograms.}
+\subsection{Linkage-Clustering}
+Another way of clustering data points is based on graph theory and the idea of consecutively connecting more points \cite[Section~4.2.2]{Everitt2011}.
+As an output of this method we obtain a dendogram\footnote{See section \ref{section__partitions} for an in depth definition of dendograms.}
 
 Let $x_1, \dots, x_n \in \R^d$ be a set of distinct data points.
 \begin{definition}{Linkage-Clustering }{linkage_clustering}
@@ -64,9 +65,10 @@ When searching for a clustering algorithm to detect friendship groups, it would 
 The intuition being that such attributes are merely artifacts of the data collection process.
 \end{example}
 
-\subsection[Kleinberg's Impossibility Theorem]{Kleinberg's Impossibility Theorem \cite{Kleinberg2002}}
-It is apparent that as we required more and more invariants from a clustering algorithm it be comes harder and harder to construct one.
-There exists an important result in this regard. Kleinberg says that for certain seemingly reasonable requirements there exist no clustering algorithms satisfying them.
+\subsection{Kleinberg's Impossibility Theorem}
+It is apparent that as we required more and more invariants from a clustering algorithm it becomes harder and harder to construct one.
+There exists an important result in this regard.
+Kleinberg says that for certain seemingly reasonable requirements there exist no clustering algorithms satisfying them \cite{Kleinberg2002}.
 
 In the context of Kleinberg's theorem we define a clustering algorithm as a procedure that maps a finite metric space $(X,d)$ to a partition of $X$.\footnote{in chapter \ref{chapter__clustering_functor} we will formalize the definition of a clustering algorithm.}
 
@@ -77,7 +79,7 @@ We say that a clustering algorithm $\Cf$ is \emph{scale invariant} if for every 
 $$
 \Cf(X,d) = \Cf(X, \lambda \cdot d).
 $$
-\Ie\ re scaling the metric does not affect the clustering algorithm.
+\Ie\ Re-scaling the metric does not affect the clustering algorithm.
 \end{definition}
 
 \begin{definition}{Richness}{richness}
@@ -92,21 +94,20 @@ $$
 We say that $\Cf$ is consistent if for any metric $d'$ on $X$ such that
 \begin{itemize}
     \item $d'(x,y) \leq d(x,y)$ if $x\sim_P y$
-    
     \item $d'(x,y) \geq d(x,y)$ if $x \not\sim_P y$.
 \end{itemize}
 we have $\Cf(X,d) = \Cf(X,d')$. Note that $\sim_P$ is the equivalence relation induced by the partition $P$.
 \end{definition}
 
 
-However in combination it is impossible to construct a clustering algorithm that satisfies them all.
+However, in combination it is impossible to construct a clustering algorithm that satisfies them all.
 
 
 \begin{theorem}{Kleinberg}{kleinberg}
 There exists no clustering algorithm that is scale invariant, rich and consistent at the same time.
 \end{theorem}
 
-Furthermore if we drop any of the requirements we can again find clustering algorithms satisfying the remaining properties.
+Furthermore, if we drop any of the requirements we can again find clustering algorithms satisfying the remaining properties.
 
 The $k$-means algorithm \ref{def:kmeans_clustering} is clearly not rich since we restrict ourselves to partitions with $k$ parts. It is however scale invariant.
 
