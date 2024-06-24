@@ -8,5 +8,6 @@
 *.fdb_latexmk
 *.dvi
 *.out
+*.synctex.gz
 
 main.pdf
