@@ -10,7 +10,7 @@ Interestingly we will see that we can encode many structures using this single c
 \begin{definition}{Category \cite[Section~1.2]{Roman2017}}{}
 A category $\C$ consists of
 \begin{enumerate}
-    \item \textbf{Objects}: $\ob(\C)$, which is a class\footnote{A class is a collection of mathematical objects}. \Ie\ it need not be a proper set.
+    \item \textbf{Objects}: $\ob(\C)$, which is a class\footnote{A class is a collection of mathematical objects.}. \Ie\ it need not be a proper set.
     
     \item \textbf{Morphisms}: For every $A, B \in \ob(\C)$ we have a set $\mor(A,B)$. An element $f \in \mor(A,B)$ is called a morphism from $A$ to $B$, and we often write 
     $$
@@ -23,9 +23,9 @@ A category $\C$ consists of
     f \circ (g \circ h) = (f \circ g) \circ h.
     $$
 
-    \item \textbf{Identity}: For each object $A \in \ob(\C)$ there exists a morphism $e_A \in \mor(A,A)$ such that for $f \in \mor(A,B)$ and $g \in \mor(B,A)$ we have
+    \item \textbf{Identity}: For each object $A,B \in \ob(\C)$ there exists a morphism $e_A \in \mor(A,A)$ such that for $f \in \mor(A,B)$ and $g \in \mor(B,A)$ we have
     $$
-    f \circ e_A = f \quad \text{and} \quad e_A \circ g = g
+    f \circ e_A = f \quad \text{and} \quad e_A \circ g = g.
     $$
 \end{enumerate}
 \end{definition}
@@ -163,9 +163,9 @@ two co- or contra- variant functors. Then $\mathfrak{G}$ and $\Ff$ can be compos
 $$\mathfrak{G} \Ff: \A \to \C$$
 which is still a functor. Particularly $\mathfrak{G} \Ff$ is covariant if and only if both $\mathfrak{G}$ and $\Ff$ have the same type. Moreover, the composition of functors is associative.
 \end{defprop}
-\begin{proof}
+\begin{proofidea}
 Simply apply the definition of a functor.
-\end{proof}
+\end{proofidea}
 
 \subsection{Examples of Functors}
 
@@ -182,7 +182,6 @@ which maps a vector space $V$ to its (algebraic) dual $V^*$ and maps a linear ma
 From algebraic topology there are also examples of functors.
 \begin{example}{Fundamental Group Functor}{}
 \cite{Hatcher2001}
-\todo
 The map that assigns based topological $(X,x_0)$ spaces to their fundamental group $\pi_1(X,x_0)$ and assigns continuous functions $f: (X,x_0) \to (Y,y_0)$ to the group homomorphism 
 $$
 \pi_1(X,x_0) \ni [\alpha] \mapsto [f \circ \alpha] \in \pi_1(Y,y_0)
@@ -195,7 +194,6 @@ $$
 
 \begin{example}{Homology Functor}{}
 \cite{Hatcher2001}
-\todo
 The map that assigns a topological space $X$ to its singular homology group chain complex $H_\bullet(X)$ and assigns continuous functions $f: X \to Y$ to the chain map $f_*: H_\bullet(X) \to H_\bullet(Y)$ is a functor from the category of topological spaces to the category of chain complexes of Abelian groups.
 \end{example}
 
