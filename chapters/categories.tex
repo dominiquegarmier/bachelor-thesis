@@ -150,7 +150,7 @@ where $e_X$ denotes the identity morphism. And for every $f \in \mor_\A(X,Y)$ an
 A covariant functor is sometimes also simply called a functor.
 \end{definition}
 
-The additional requirements \ref{eq:functor_functoriality_identity} and \ref{eq:functor_functoriality_covar} respectively \ref{eq:functor_functoriality_contravar} are sometimes referred to as \emph{functoriality} also outside of category theory.
+The additional requirements \eqref{eq:functor_functoriality_identity} and \eqref{eq:functor_functoriality_covar} respectively \eqref{eq:functor_functoriality_contravar} are sometimes referred to as \emph{functoriality} also outside of category theory.
 
 Similar to functions we can also compose functors. We will use this to construct particular functors later on.
 
@@ -238,10 +238,12 @@ where $\alpha_\C$ maps objects to their underlying set. And morphisms get mapped
 
 In particular, we will use the following notation related to the forgetful functor.
 
-\begin{notation}{}{}
+\begin{notation}{}{factorizing_forgetful_functor}
 Let $\A, \B$ be categories with forgetful functors $\alpha_\A, \alpha_\B$ respectively. We say that a functor $\Ff: \A \to \B$ \emph{factorizes the forgetful functor} if
 \begin{equation*}
     \Ff \circ \alpha_\B = \alpha_\A.
 \end{equation*}
 This means that $\Ff$ preserves the underlying map of morphisms.
 \end{notation}
+
+\medskip We now have all the required tools to define clustering functors in the next chapters.

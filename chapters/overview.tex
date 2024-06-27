@@ -23,6 +23,7 @@ In practice, we use approximate methods such as Lloyd's algorithm \cite[Section~
 We also simply call this the $k$-means algorithm.
 
 \subsection{Linkage-Clustering}
+\label{section__linkage_clustering}
 Another way of clustering data points is based on graph theory and the idea of consecutively connecting more points \cite[Section~4.2.2]{Everitt2011}.
 As an output of this method we obtain a
 dendogram\footnote{See section \ref{section__partitions} for an in depth definition of dendograms.}.
@@ -50,6 +51,7 @@ d_\mathrm{avg}(B_i,B_j) &:= \frac{1}{|B_i||B_j|} \sum_{x \in B_i, y \in B_j} d(x
 If we use $d_\mathrm{min}$ we call it \emph{single-linkage clustering}, when using $d_\mathrm{max}$ we call it \emph{complete-linkage clustering} and \emph{average-linkage clustering} if we use $d_\mathrm{avg}$.
 
 \section{Preserving Structure}
+\label{seciton__preserving_structure}
 An important aspect of clustering methods is that they remain invariant under certain transformations.
 
 The idea is that if a clustering algorithm is invariant under certain transformations it captures information of other features.
@@ -69,11 +71,11 @@ The intuition being that such attributes are merely artifacts of the data collec
 \subsection{Kleinberg's Impossibility Theorem}
 It is apparent that as we required more and more invariants from a clustering algorithm it becomes harder and harder to construct one.
 There exists an important result in this regard.
-Kleinberg showed that for certain seemingly reasonable requirements there exist no clustering algorithms satisfying them \cite{Kleinberg2002}.
+\textsc{Kleinberg} showed that for certain seemingly reasonable requirements there exist no clustering algorithms satisfying them \cite{Kleinberg2002}.
 
-In the context of Kleinberg's theorem we define a clustering algorithm as a procedure that maps a finite metric space $(X,d)$ to a partition of $X$.\footnote{in chapter \ref{chapter__clustering_functor} we will formalize the definition of a clustering algorithm.}
+In the context of this theorem we define a clustering algorithm as a procedure that maps a finite metric space $(X,d)$ to a partition of $X$.\footnote{in chapter \ref{chapter__clustering_functor} we will formalize the definition of a clustering algorithm.}
 
-Kleinberg goes on to present a set of seemingly reasonable properties a clustering algorithm can have.
+\textsc{Kleinberg} goes on to present a set of seemingly reasonable properties a clustering algorithm can have.
 
 \begin{definition}{Scale Invariance}{}
 We say that a clustering algorithm $\Cf$ is \emph{scale invariant} if for every $\lambda > 0$ we have

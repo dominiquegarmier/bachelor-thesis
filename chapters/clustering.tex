@@ -1,13 +1,13 @@
 \chapter{Clustering Functors}
 \label{chapter__clustering_functor}
 
-\todo[talk about how this is a "rich" definition of clustering algorithms]
+In this chapter we introduce the notion of a \emph{clustering functor}.
+We will use the language of categories and build upon the discussion in section \ref{seciton__preserving_structure}, where we thought of clustering algorithms as preserving certain structures.
+Ultimately a clustering functor will be a functor, with certain properties, from a category of finite metric spaces to a category of partitions.
+This construction closely follows the one by \textsc{Carlsson} and \textsc{M\'emoli} \cite{Carlsson2010}.
 
-In this chapter we define a specific kind of functor which will be the object of study for the remainder of this report.
-
-
-
-\section{Categories of Finite Metric Spaces}
+\section{Finite Metric Spaces}
+\label{section__finite_metric_spaces}
 
 \begin{definition}{Finite Metric Spaces}{}
 We define three categories $\iso, \inj$ and $\gen$ all sharing the same objects:
@@ -16,66 +16,62 @@ We define three categories $\iso, \inj$ and $\gen$ all sharing the same objects:
 \ob(\M) := \{(X,d_X): \text{$X$ a finite set and $d_X$ a metric}\}
 \end{equation*}
 
-The three categories are distinguished by their morphisms. For $A, B \in \ob(\M)$ we define:
-\begin{align*}
-\mor_\gen(A,B) &:= \{f: A \to B: \text{$f$ distance non-increasing}\} \\
-\mor_\inj(A,B) &:= \{f: A \to B: \text{$f$ distance non-increasing injective}\} \\
-\mor_\iso(A,B) &:= \{f: A \to B: \text{$f$ isometry}\} \\
-\end{align*}
-
-\todo[format this better]
+The three categories are distinguished by their morphisms. For $A, B \in \ob(\M)$ we set:
+\begin{itemize}
+    \item $\mor_\gen(A,B)$ the distance non-increasing functions $f: A \to B$.
+    \item $\mor_\inj(A,B)$ the distance non-increasing injective functions $f: A \to B$.
+    \item $\mor_\iso(A,B)$ the isometries $f: A \to B$.
+\end{itemize}
+The composition of morphisms is given by the composition of functions and the identity morphism is the identity function.
 \end{definition}
 
+Depending on what kind of structures we want to preserve we can choose one of the three categories.
+By construction, we have the inclusions
+\begin{equation}
+    \label{eq:inclusions_of_finite_metric_space_categories}
+    \iso \subset \inj \subset \gen.
+\end{equation}
+Furthermore, this inclusion yields functors $\iso \to \inj \to \gen$.
 
-By construction we have inclusions $\iso \subset \inj \subset \gen$. As we will see later that this can be seen as looking for different levels of invariances. Somewhere there exists a sweetspot of existence and richness \todo[better wording].
-
-
-\begin{myremark}{Structure of $\iso$}{}
-The structure of $\iso$ is perhaps the easiest to understand. We can consider the isometry classes of metric spaces. Then there exist morphisms between $A, B \in \ob(\iso)$ if and only they are in the same isometry class.
-
-Thinking of morphisms as edges in a graph and the metric spaces as the edges we get a graph that consists of disjoint cliques.
-
-\todo[clean up my ramblings]
-\end{myremark}
-
-\begin{myremark}{Structure of $\gen$}{}
-The category $\gen$ is special in the sense that it most morphisms. Indeed for any $A,B \in \ob(\gen)$ non-empty there exists the morphism:
+\begin{myremark}{}{}
+$\iso$ is the category with the fewest morphisms. Indeed, between most objects there are no morphisms.
+All morphisms are within the same isometry class and have an inverse.\par
+\medskip
+$\gen$ has the most morphisms. In particular for any metric spaces $A,B \in \ob(\gen)$ we have the morphism
 $$
 \mathrm{const}_b: A \to B, \ a \mapsto b
 $$
 for some $b \in B$.
 \end{myremark}
 
-\todo[do the above remarks deserve a yellow border?]
-
-\section{Partitions}
+\section{Partitions and Dendograms}
 \label{section__partitions}
-In this section we define some machinery that will be use to define the outputs of clustering schemes.
 
 \begin{definition}{Partitions of Finite Sets}{}
-Let $X$ be a finite set. A partition $P$ of $X$ is the set of equivalence classes $X/_{\sim_P}$ for some equivalence relation $\sim_P$ on $X$.
-The set of all such partitions is denoted by $\P(X)$.
+Let $X$ be a finite set. A partition $P$ of $X$ is the set of equivalence classes $X/_{\sim_P}$ for some equivalence relation $\sim_P$ on $X$. The set of all such partitions is denoted by $\P(X)$.\par
+
+\medskip Furthermore:
+\begin{itemize}
+    \item We interchangeably use $P$ - the partition and $\sim_P$ - the corresponding equivalence relation.
+    \item A single equivalence class $X_\alpha \in P$ will be called a \emph{block} of $P$.
+\end{itemize}
 \end{definition}
 
-\begin{myremark}{}{}
-The above construction gives a bijection between the set of partitions $\P(X)$ and the equivalence relations on $X$. We will interchangeably use the notation $P$ as a partition and $\sim_P$ as the corresponding equivalence relation.
-\end{myremark}
-
-It naturally makes sense to use partitions as outputs of clustering algorithms, where an equivalence class of a partition is interpreted as a \emph{cluster}.
+It naturally makes sense to use partitions as outputs of clustering algorithms, where a block of a partition is to be interpreted as a \emph{cluster}.
 
 At this point we need some additional structure that will allow us to define categories based on partitions.
 
-\begin{definition}{Pullback Partition}{}
-Let $f: X \to Y$ be a map. For some $Q \in \P(Y)$ we $f$ induces an equivalence relation $\sim_P$ on $X$:
+\begin{definition}{}{}
+Let $f: X \to Y$ be a map. For some partition $P \in \P(Y)$ we define $f^*(P) \in \P(X)$ to be the partition such that
 \begin{equation*}
-\forall x,y \in X: x \sim_P y \iff f(x) \sim_Q f(y)
+    \forall x,y \in X: x \sim_{f^*(P)} y \iff f(x) \sim_P f(y).
 \end{equation*}
-And we denote $f_*(Q) := P \in \P(X)$.
+We call $f^*(P)$ the \emph{pullback partition of $P$ w.r.t. $f$}.
 \end{definition}
 
-There is an intuitive partial order one can define on $\mathfrak{P}(X)$.
-\begin{definition}
-{Refinement Partial Order}{}
+Additionally, we can define a partial order on $\P(X)$.
+
+\begin{definition}{}{}
 Let $P, Q \in \mathfrak{P}(X)$ then we write $P \refines Q$ if
 \begin{equation*}
     \forall x,y \in X: x \sim_P y \implies x \sim_Q y.
@@ -83,10 +79,7 @@ Let $P, Q \in \mathfrak{P}(X)$ then we write $P \refines Q$ if
 This defines a partial order on $\P(X)$
 \end{definition}
 
-To not limit ourselves to features at a single scale we introduce the notion of a (quasi)-dendogram. 
-(Recall the ... clustering described in ... chapter one ... \todo)
-
-\begin{definition}{Trivial and Discrete Partitions}{}
+\begin{definition}{}{}
 We say that $P \in \P(X)$ is:
 \begin{enumerate}
     \item \emph{discrete} if $x \sim_P y \iff x = y$.
@@ -94,141 +87,71 @@ We say that $P \in \P(X)$ is:
 \end{enumerate}
 \end{definition}
 
-\begin{definition}{Quasi-Dendogram}{}
-A montonic map $\theta: \R_{\leq0} \to \mathfrak{P}(X)$ i.e.
-\begin{equation*}
-    r \leq s \implies  \theta(r) \refines \theta(s)
-\end{equation*}
-is called a quasi-dendogram. If $\theta(t)$ is trivial for some $t \in \mathbb{R}$ we say that $\theta$ is a dendogram.
+Naturally if $Q$ is discrete and $P$ is trivial then $Q \refines R \refines P$ for all $R \in \P(X)$.
+
+Like in the section $\ref{section__finite_metric_spaces}$ we also want to consider hierarchical clustering.
+For this we introduce the notion of a dendogram.
+
+\begin{definition}{Dendogram}{dendogram}
+A map $\theta: \R_{\leq0} \to \mathfrak{P}(X)$ with
+\begin{itemize}
+    \item $\forall r,s \in \R_{\leq0}: r \leq s \implies  \theta(r) \refines \theta(s)$
+    \item $\exists r \in \R_{\leq0}$ such that $\theta(r)$ is trivial
+    \item $\forall r \in \R_{\leq0} \,\exists \varepsilon > 0$ such that $\theta$ is constant on $[r, r + \varepsilon)$
+\end{itemize}
+is called a \emph{dendogram}. Sometimes we will refer to the $r$ as being the \emph{scale}.
 \end{definition}
 
-This will be familiar to anyone who has seen \emph{persistent homology} where such properties are referred to as \emph{persistence} \source. 
+This will be familiar to anyone who has seen \emph{persistent homology} where such properties are referred to as \emph{persistence} \cite{Carlsson2014}. 
 
 \begin{myremark}{}{}
-\source One can expand the above definitions to allow $|X| = \infty$. 
-In the case of the quasi-dendogram we would have to then pose an additional discreteness constraint on $\theta$
+Since all our metric spaces are finite we could decide to drop the last requirement in the definition of a dendogram. Dendograms would still have discrete scale \ie\ constant on intervals.
+However, it would not be clear what value the dendogram would have at the endpoints of the intervals.
+This point will be particularly necessary for some uniqueness theorems we present later.
 \end{myremark}
 
-\section{Outputs of Clustering Schemes}
+We can finally define the categories which will be the \emph{outputs} of clustering functors.
 
-\begin{definition}{Outputs of Standard Clustering Schemes}{}
-Here we define the category of outputs of \emph{standard clustering schemes}. We have:
+\begin{definition}{}{output_classical_clustering_functors}
+Consider the category $\C$ of outputs of \emph{classical clustering functors}. It is defined by
 \begin{equation*}
-    \ob(\C) := \{(X, P_X): X \text{ a finite set and } P_X \in \P(X)\}
+    \ob(\C) := \{(X, P): X \text{ a finite set and } P \in \P(X)\}
 \end{equation*}
-And morphisms:
+and for all $(X,P), (Y,Q) \in \ob(\C)$ we have the morphisms
 \begin{equation*}
-    \mor_\C((X, P_X), (Y,P_Y)) = \{f: X \to Y: P_X \refines f_*(P_Y)\}
+    \mor_\C((X,P), (Y,Q)) := \{f: X \to Y: P \refines f_*(Q)\}.
 \end{equation*}
-The composition is given by the composition of maps and the identity is the identity function.
+As before, the composition is given by composition of maps and the identity is the identity map.
 \end{definition}
 
-\todo i think there is an intuition here about morphisms being in some sense monotonic, related to how funcitons are distance non increasing in $\gen$
-
-\begin{definition}{Outputs of Hierarchical Clustering Schemes}{}
-Now we define the outputs of \emph{hierarchical clustering schemes}. We define:
+\begin{definition}{}{output_hierarchical_clustering_functors}
+Similar to before we define the category $\H$ of outputs of \emph{hierarchical clustering functors}, given by
 \begin{equation*}
-    \ob(\C) := \{(X, \theta_X): X \text{ a finite set and } \theta_X: \R_{\geq0} \to \P(X) \text{ a quasi-dendogram}\}
+    \ob(\H) := \{(X, \theta_X): X \text{ a finite set and } \theta_X: \R_{\geq0} \to \P(X) \text{a dendogram}\}
 \end{equation*}
-And morphisms:
+and for all $(X, \theta_X), (Y, \theta_Y) \in \ob(\H)$ we have the morphisms
 \begin{equation*}
-    \mor_\C((X, \theta_X), (Y,\theta_Y)) = \{f: X \to Y: \forall r \in \R_{\geq0}: \theta_X(r) \refines f_*(\theta_Y(r)) \}
+    \mor_\H((X, \theta_X), (Y,\theta_Y)) :=
+    \left\{f: X \to Y: \forall r \in \R_{\geq0}: \theta_X(r) \refines f_*(\theta_Y(r)) \right\}
 \end{equation*}
-The composition is given by the composition of maps and the identity is the identity function.
-\todo[format the equations]
+the composition and identity are defined as before.
 \end{definition}
+
+Another way of thinking about morphisms in $\H$ is that given $(X,P), (Y,Q) \in \ob(\C)$, $f \in \mor_\H((X,P), (Y,Q))$ is simply a map $f: X \to Y$ such that
+$$
+\forall x,y \in X: x \sim_P y \implies f(x) \sim_Q f(y).
+$$
 
 \section{Clustering Functors}
-Finally we can define the clustering functor. For the remainder of the report we will study existences and characterizations of such objects.
 \begin{definition}{Clustering Functor}{}
-A \emph{clustering functor} is a functor from $\M \in \{\iso, \inj, \gen\}$ to $\A \in \{\C, \H\}$
-$$\Cf : \M \longrightarrow \A.$$
-Such that for the forgetful functors $\alpha, \beta$ on $\M$ and $\A$ respectively we have
-\begin{equation*}
-    \beta \circ \Cf = \alpha.
-\end{equation*}
-If $\A = \C$ then $\Cf$ is called a \emph{classical clustering functor} and if $\A = \H$ then we call it a \emph{hierarchical clustering functor}.
+Let $\M \in \{\iso, \inj, \gen\}$ and $\A \in \{\C, \H\}$. An $\M$-functorial \emph{clustering functor} (or $\M$ clustering functor) is a functor from $\M$ to $\A$
+$$\Cf : \M \longrightarrow \A$$
+such that $\Cf$ factorizes the forgetful functors (see \ref{not:factorizing_forgetful_functor}) \par
+
+\medskip If $\A = \C$ we say that $\Cf$ is \emph{classical} and otherwise if $\A = \H$ we say it is \emph{hierarchical}.
 \end{definition}
 
-\todo[intution about categories being invariances]
+Recall the inclusions \eqref{eq:inclusions_of_finite_metric_space_categories} and their induced functors.
+Given a clustering functor on a larger category, say $\Cf: \gen \to \C$, this immediately induces clustering functors on the smaller categories by pre-composition with the inclusion functors $\iso \to \inj \to \gen$. We will use the same symbol for the induced functors. \par
 
-\todo[size of $\M$ inversely correlates to diversity of such functors]
-
-\section{Excessive Clustering Functor}
-\begin{definition}{Excessive Clustering Scheme}{}
-A classical clustering functor $\Cf: \M \to \C$ is called \emph{excessive} if for every $(X,d) \in \ob(\M)$ and $(X,P_X) = \Cf(X,d)$ we have that for every $X_\alpha \in P_X$
-\begin{equation*}
-    \Cf(X_\alpha, d|_{X_\alpha \times X_\alpha}) = (X,\{X_\alpha\}).
-\end{equation*}
-\end{definition}
-In other words if $\Cf$ is excessive it can be thought of as being nilpotent in a certain sense.
-
-\begin{myremark}{Excessive Clustering Algorithms}{}
-The notion of excessiveness exists in the more general setting of clustering alogrithms (which are not necessarily clustering functors).
-\end{myremark}
-
-\todo[reference to first chapter]
-In particular there we have encountered examples of non excessive clustering algorithms.
-
-\todo[explain why agglomerative / kmeans ... clustering is non excessive]
-
-\todo[give an example of a excessive clustering that we have seen before]
-
-\section{Surjective Clustering Functor}
-\begin{definition}{Surjective Clustering Functor}{}
-A classical clustering functor $\Cf: \M \to \C$ is called \emph{surjective} if for every finite set $X$ and every $P_X \in \P(X)$ there exists a metric $d_X$ on $X$ such that
-\begin{equation*}
-    \Cf(X,d_X) = (X,P_X)
-\end{equation*}
-\end{definition}
-
-We have seen this concept previously when discussing Kleinbergs theorem \ref{thm:kleinberg}, there it was called richness \ref{def:richness}.
-
-As previously mentioned the $k$-means clustering algorithm\ref{def:kmeans_clustering_algo} is clearly not surjective. As it limits the number of clusters.
-\todo[better wording]
-
-We will see later that surjective clustering functors are in some cases unique. Another relatively straightforward property of surjective functors is that they factor any other clustering functor:
-
-\begin{proposition}{}{universality_of_surjective_functors}
-Let $\mathfrak{S}: \M \to \C$ be a surjective functor. Then for any clustering functor $\Cf: \M \to \C$ there exists a functor $\Tf_\Cf: \M \to \M$ that changes the metric such that
-
-\begin{equation*}
-\Cf = \mathfrak{S} \circ \Tf_\Cf
-\end{equation*}
-\end{proposition}
-
-\mynote[move below to chapter 7?]
-A surprising fact about surjective clustering functors is given by the following lemma:
-
-\begin{lemma}{}{surjective_implies_eventually_discrete}
-Let $\Cf: \M \to \C$ be a surjective clustering functor and $(X,d)$ a finite metric space. Then there exists $\lambda_0, \mu_0 > 0$ such that
-\begin{enumerate}
-    \item $\Cf(X,\lambda \cdot d)$ is discrete for all $\lambda > \lambda_0$
-    \item $\Cf(X,\mu \cdot d)$ is trivial for all $0 < \mu \le \mu_0$
-\end{enumerate}
-\mynote[dedupe this from chapter 7]
-\end{lemma}
-
-Indeed this now motivates us to define the smallest resp. largest values for which the condition in the lemma holds. This gives us:
-
-\begin{definition}{}{}
-Let $\Cf: \M \to \C$ be surjective clustering functor. Due to the previous lemma we can define
-\begin{align*}
-\diam^\Cf(X) &:= \sup\{ \lambda > 0: \Cf(X,\lambda \cdot d) \text{ is trivial}\} < \infty\\
-\sep^\Cf(X) &:= \inf\{ \lambda > 0: \Cf(X,\lambda \cdot d) \text{ is discrete}\} < \infty
-\end{align*}
-called the \emph{intrinsic separation} and \emph{diameter} of $X$. 
-\end{definition}
-Additionally, it is easy to check that we can use $\lambda_0 = \sep^\Cf(X)$ and $\mu_0 = \diam^\Cf(X)$ in the previous lemma.
-
-Later we will use $\sep^\Cf(X)$ and $\diam^\Cf(X)$ but first we have to show an important property.
-
-\begin{lemma}{}{mutliplicativity_of_intrinsic_sizes}
-Let $\Cf: \M \to \C$ be surjective. Then for all $(X,d) \in \ob(\M)$ and $\lambda > 0$ we have
-\begin{align*}{}{}
-    \diam^\Cf(X,\lambda \cdot d) &= \lambda \cdot \diam^\Cf(X,\lambda) \\
-    \sep^\Cf(X,\lambda \cdot d) &= \lambda \cdot \sep^\Cf(X,\lambda)
-\end{align*}
- \end{lemma}
-
-In the next chapters we will use the tools from this chapter to first classify classical clustering functors and then hierarchical clustering functors.
+\medskip With this in mind it makes sense to think of the categories $\iso, \inj, \gen$ as being different levels of \emph{structure} a clustering functor can \emph{preserve} where $\iso$ is the least restrictive and $\gen$ the most restrictive.

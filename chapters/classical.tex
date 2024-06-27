@@ -1,4 +1,86 @@
-\chapter{Classifying Classical Clustering Functors}
+\chapter{Properties of Classical Clustering Functors}
+
+\section{Elementary Properties}
+\subsection{Excessive Clustering Functors}
+\begin{definition}{Excessive Clustering Scheme}{}
+A classical clustering functor $\Cf: \M \to \C$ is called \emph{excessive} if for every $(X,d) \in \ob(\M)$ and $(X,P_X) = \Cf(X,d)$ we have that for every $X_\alpha \in P_X$
+\begin{equation*}
+    \Cf(X_\alpha, d|_{X_\alpha \times X_\alpha}) = (X,\{X_\alpha\}).
+\end{equation*}
+\end{definition}
+In other words if $\Cf$ is excessive it can be thought of as being nilpotent in a certain sense.
+
+\begin{myremark}{Excessive Clustering Algorithms}{}
+The notion of excessiveness exists in the more general setting of clustering alogrithms (which are not necessarily clustering functors).
+\end{myremark}
+
+\todo[reference to first chapter]
+In particular there we have encountered examples of non excessive clustering algorithms.
+
+\todo[explain why agglomerative / kmeans ... clustering is non excessive]
+
+\todo[give an example of a excessive clustering that we have seen before]
+
+\subsection{Surjective Clustering Functors}
+\begin{definition}{Surjective Clustering Functor}{}
+A classical clustering functor $\Cf: \M \to \C$ is called \emph{surjective} if for every finite set $X$ and every $P_X \in \P(X)$ there exists a metric $d_X$ on $X$ such that
+\begin{equation*}
+    \Cf(X,d_X) = (X,P_X)
+\end{equation*}
+\end{definition}
+
+We have seen this concept previously when discussing \textsc{Kleinberg}'s theorem \ref{thm:kleinberg}, there it was called richness \ref{def:richness}.
+
+As previously mentioned the $k$-means clustering algorithm\ref{def:kmeans_clustering} is clearly not surjective. As it limits the number of clusters.
+\todo[better wording]
+
+We will see later that surjective clustering functors are in some cases unique. Another relatively straightforward property of surjective functors is that they factor any other clustering functor:
+
+\begin{proposition}{}{universality_of_surjective_functors}
+Let $\mathfrak{S}: \M \to \C$ be a surjective functor. Then for any clustering functor $\Cf: \M \to \C$ there exists a functor $\Tf_\Cf: \M \to \M$ that changes the metric such that
+
+\begin{equation*}
+\Cf = \mathfrak{S} \circ \Tf_\Cf
+\end{equation*}
+\end{proposition}
+
+\mynote[move below to chapter 7?]
+A surprising fact about surjective clustering functors is given by the following lemma:
+
+\begin{lemma}{}{surjective_implies_eventually_discrete}
+Let $\Cf: \M \to \C$ be a surjective clustering functor and $(X,d)$ a finite metric space. Then there exists $\lambda_0, \mu_0 > 0$ such that
+\begin{enumerate}
+    \item $\Cf(X,\lambda \cdot d)$ is discrete for all $\lambda > \lambda_0$
+    \item $\Cf(X,\mu \cdot d)$ is trivial for all $0 < \mu \le \mu_0$
+\end{enumerate}
+\mynote[dedupe this from chapter 7]
+\end{lemma}
+
+Indeed this now motivates us to define the smallest resp. largest values for which the condition in the lemma holds. This gives us:
+
+\begin{definition}{}{}
+Let $\Cf: \M \to \C$ be surjective clustering functor. Due to the previous lemma we can define
+\begin{align*}
+\diam^\Cf(X) &:= \sup\{ \lambda > 0: \Cf(X,\lambda \cdot d) \text{ is trivial}\} < \infty\\
+\sep^\Cf(X) &:= \inf\{ \lambda > 0: \Cf(X,\lambda \cdot d) \text{ is discrete}\} < \infty
+\end{align*}
+called the \emph{intrinsic separation} and \emph{diameter} of $X$. 
+\end{definition}
+Additionally, it is easy to check that we can use $\lambda_0 = \sep^\Cf(X)$ and $\mu_0 = \diam^\Cf(X)$ in the previous lemma.
+
+Later we will use $\sep^\Cf(X)$ and $\diam^\Cf(X)$ but first we have to show an important property.
+
+\begin{lemma}{}{mutliplicativity_of_intrinsic_sizes}
+Let $\Cf: \M \to \C$ be surjective. Then for all $(X,d) \in \ob(\M)$ and $\lambda > 0$ we have
+\begin{align*}{}{}
+    \diam^\Cf(X,\lambda \cdot d) &= \lambda \cdot \diam^\Cf(X,\lambda) \\
+    \sep^\Cf(X,\lambda \cdot d) &= \lambda \cdot \sep^\Cf(X,\lambda)
+\end{align*}
+ \end{lemma}
+
+
+
+
 
 \begin{proposition}{Classification of $\iso$ Clustering Functors}{}
 Let $\Cf: \iso \to \C$ be a clustering functor. Then there exists a choice ... moreover any such choice is a clustering functor.
@@ -33,7 +115,7 @@ x \sim y \quad \text{if} \quad \exists \omega \in \Omega \,\exists \phi \in \mor
 \end{equation}
 \end{definition}
 
-$\Cf^\Omega$ is indeed a clustering functor. Let $f: X \to Y$ be a morphism and $x \sim y$. Then we have an $\omega \in \Omega$ and a $\phi \in \mor_\M(\omega, X)$ such that \ref{eq:represented_clustering_functor_condition} holds. But then $f \circ \phi \in \mor_\M(\omega,Y)$ has the same properties and it follows that $f(x) \sim f(y)$.
+$\Cf^\Omega$ is indeed a clustering functor. Let $f: X \to Y$ be a morphism and $x \sim y$. Then we have an $\omega \in \Omega$ and a $\phi \in \mor_\M(\omega, X)$ such that \eqref{eq:represented_clustering_functor_condition} holds. But then $f \circ \phi \in \mor_\M(\omega,Y)$ has the same properties and it follows that $f(x) \sim f(y)$.
 
 \begin{myremark}{}{}
 
