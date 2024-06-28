@@ -1,4 +1,138 @@
-\chapter{Properties of Classical Clustering Functors}
+\chapter{Classification of Classical Clustering Functors}
+
+\begin{example}{Vietoris Rips Functor}{}
+    $\Rf_\delta$
+\end{example}
+
+\begin{myremark}{$\iso$ Clustering Functors}{}
+\end{myremark}
+
+For this reason from now on we will unless otherwise mentioned use $\M \in \{\inj, \gen\}$.
+
+\section{Excessive and Representable Clustering Functors}
+\begin{definition}{Excessive Clustering Functors}{}
+\end{definition}
+
+\begin{definition}{Representable Clustering Functors}{}
+\end{definition}
+
+\begin{myremark}{}{}
+    Alternative characterization of representable
+\end{myremark}
+
+\begin{definition}{Generative Metric}{}
+\end{definition}
+
+\begin{theorem}{Excessive iff Representable}{}
+\end{theorem}
+
+\begin{theorem}{}{}
+    Factorization Theorem
+\end{theorem}
+
+\section{Surjective Clustering Functors}
+
+\begin{definition}{Surjective Clustering Functors}{}
+    A classical clustering functor $\Cf: \M \to \C$ is called \emph{surjective} if for every finite set $X$ and every $P_X \in \P(X)$ there exists a metric $d_X$ on $X$ such that
+
+    \begin{equation*}
+        \Cf(X,d_X) = (X,P_X)
+    \end{equation*}
+
+\end{definition}
+
+The important property of the Vietoris rips functor that we used in the previous factorization theorem was that it is surjective. We can actually express this in a more general way:
+
+\begin{proposition}{}{}
+    Let $\mathfrak{S}: \M \to \C$ be a surjective functor. Then for any clustering functor $\Cf: \M \to \C$ there exists a functor $\Tf_\Cf: \M \to \M$ that changes the metric such that
+
+    \begin{equation*}
+        \Cf = \mathfrak{S} \circ \Tf_\Cf
+    \end{equation*}
+
+    \newresult
+\end{proposition}
+
+A surprising fact about surjective clustering functors is given by the following lemma:
+
+\begin{lemma}{}{surjective_implies_eventually_discrete}
+    Let $\Cf: \M \to \C$ be a surjective clustering functor and $(X,d)$ a finite metric space. Then there exists $\lambda_0,\lambda_1 > 0$ such that
+    \begin{enumerate}
+        \item $\Cf(X,\mu \cdot d)$ is trivial for all $0 < \lambda \le \lambda_0$
+        \item $\Cf(X,\lambda \cdot d)$ is discrete for all $\lambda \ge \lambda_1$
+    \end{enumerate}
+
+    \newresult
+\end{lemma}
+
+\section{Splitting}
+
+\begin{definition}
+    Splitting...
+\end{definition}
+
+\begin{definition}{Left Regular}{}
+    \todo[better name]
+    \newresult
+\end{definition}
+
+\begin{myremark}{Connection to Regularity in Dendograms}{}
+\end{myremark}
+
+\begin{proposition}{}{splitting_vietoris_inj}
+    Let $\Cf: \inj \to \C$ be a clustering functor that splits at $\delta > 0$. Then we have $\Rf_\delta \refines \Cf$.
+\end{proposition}
+
+\begin{proposition}{}{splitting_vietoris_gen}
+    Let $\Cf: \gen \to \C$ be a clustering functor then $\Cf$ is splitting at $\delta > 0$ if and only if $\Rf_\delta = \Cf$.
+\end{proposition}
+
+\begin{corollary}{}{}
+    Let $\Cf: \M \to \C$ be a surjective left regular clustering functor. Then $\Cf$ is splitting at some $\delta_0 > 0$.
+
+    \newresult
+\end{corollary}
+
+\begin{corollary}{Surjective implies Vietoris}{}
+    Let $\Cf: \M \to \C$ be a surjective left regular clustering functor. Then $\Cf = \R_{\delta_0}$.
+
+    \newresult
+\end{corollary}
+
+\section{Scale Invariant Clustering Functors}
+
+\begin{definition}{Scale Invariance}{scale_invariance}
+    A clustering functor $\Cf: \M \to \C$ is called \emph{scale invariant} if for all $\lambda > 0$ and $(X,d) \in \ob(\M)$ we have:
+    \begin{equation*}
+        \Cf((X,d)) = \Cf(X,\lambda \cdot d)).
+    \end{equation*}
+\end{definition}
+
+\begin{proposition}{Scale Invariance in $\gen$}{}
+    Let $\Cf: \gen \to \C$ be a scale invariant functor then either
+    \begin{enumerate}
+        \item $\Cf(X,d)$ is trivial for all $(X,d) \in \ob(\gen)$
+        \item $\Cf(X,d)$ is discrete for all $(X,d) \in \ob(\gen)$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    $\Delta_2(\delta) \to X \to \Delta_2(\delta')$
+\end{proof}
+
+\begin{proposition}{Scale Invariance in $\inj$}{}
+    Let $\Cf: \inj \to \C$ be a scale invariant functor then...
+\end{proposition}
+
+\begin{proof}
+    $\Delta_{|X|}(\delta) \to X \to \Delta_{|X|}(\delta')$
+\end{proof}
+
+
+% new layout above ^^^
+\chapter*{Old classical clustering functors}
+% old layout below vvv
+
 
 \section{Elementary Properties}
 \subsection{Excessive Clustering Functors}
@@ -76,11 +210,7 @@ Let $\Cf: \M \to \C$ be surjective. Then for all $(X,d) \in \ob(\M)$ and $\lambd
     \diam^\Cf(X,\lambda \cdot d) &= \lambda \cdot \diam^\Cf(X,\lambda) \\
     \sep^\Cf(X,\lambda \cdot d) &= \lambda \cdot \sep^\Cf(X,\lambda)
 \end{align*}
- \end{lemma}
-
-
-
-
+\end{lemma}
 
 \begin{proposition}{Classification of $\iso$ Clustering Functors}{}
 Let $\Cf: \iso \to \C$ be a clustering functor. Then there exists a choice ... moreover any such choice is a clustering functor.
