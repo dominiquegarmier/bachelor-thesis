@@ -136,7 +136,7 @@ The important property of the Vietoris rips functor that we used in the previous
     \newresult
 \end{proposition}
 
-A surprising fact about surjective clustering functors is given by the following lemma:
+A surprising fact about surjective clustering functors:
 
 \begin{lemma}{}{surjective_implies_eventually_discrete}
     Let $\Cf: \M \to \C$ be a surjective clustering functor and $(X,d)$ a finite metric space. Then there exists $\lambda_0,\lambda_1 > 0$ such that
@@ -150,6 +150,9 @@ A surprising fact about surjective clustering functors is given by the following
 
 \section{Splitting}
 
+A central property of the Vietoris-Rips functor is its behavior with respect to the two point space $\Delta_2(\lambda)$. In particular, we have that $\Rf_\delta(\Delta_2(\lambda))$ is trivial if and only if $\lambda \le \delta$ and discrete otherwise.
+This motivates the following definitions.
+
 \begin{definition}{}{}
     A clustering functor $\Cf: \M \to \C$ is called \emph{splitting} at $\delta_0 > 0$ if we have
     \begin{enumerate}
@@ -158,29 +161,9 @@ A surprising fact about surjective clustering functors is given by the following
     \end{enumerate}
 \end{definition}
 
-\begin{definition}{}{}
-    A clustering functor $\Cf: \M \to \C$ is \emph{left-regular} if for all $(X,d) \in \ob(\M)$ there exists some $\lambda \in (0, 1)$ such that
-    $$
-    \Cf(X,d) = \Cf(X, \lambda \cdot d).
-    $$
-    
-    \newresult[new def, make sure this makes sense]
-\end{definition}
-
-Notice that $\Rf_\delta$ is left-regular. In fact, we could have also defined the notion of \emph{right-regular}. See the previous remark \ref{rem:left_regularity_of_dendograms}.\par
-
-\begin{myremark}{}{left_regularity_classical_clusteirng_functors}
-    \medskip It might seem overly restrictive to ask for left-regularity.
-    However, if we take some $(X, d) \in \ob(\M)$ and consider the function 
-    $$
-    \lambda \mapsto \Cf(X, \lambda \cdot d),
-    $$
-    then left-regularity ensures that this function is constant on $(a, b]$ for some $a < b$.
-
-    \newresult[make sure this makes sense]
-\end{myremark}
 
 
+The following results show that what extend splitting is a characterizing property of the Vietoris-Rips functor.
 
 \begin{proposition}{}{splitting_vietoris_inj}
     Let $\Cf: \inj \to \C$ be a left-regular clustering functor that splits at $\delta > 0$. Then we have $\Rf_\delta \refines \Cf$.
@@ -206,13 +189,34 @@ Notice that $\Rf_\delta$ is left-regular. In fact, we could have also defined th
 
 \subsection{Vietoris-Rips Uniqueness}
 
-As previously mentioned the Vietoris-Rips functor is surjective. We will now show that under the assumption of left-regularity it is in fact also the only surjective $\gen$ clustering functor.
+As previously mentioned the Vietoris-Rips functor is surjective.
+In this section we present the new result that under certain technical assumptions the Vietoris-Rips is the unique surjective $\gen$ clustering functor.
 
-\begin{lemma}{}{}
-    Let $\Cf: \M \to \C$ be a surjective left-regular clustering functor. Then $\Cf$ is splitting at some $\delta > 0$.
+We will later discuss the implications this has on \textsc{Kleinberg}'s theorem \ref{thm:kleinberg}. 
+
+\begin{definition}{}{}
+    A clustering functor $\Cf: \M \to \C$ is \emph{left-regular} if for all $(X,d) \in \ob(\M)$ there exists some $\lambda \in (0, 1)$ such that
+    $$
+    \Cf(X,d) = \Cf(X, \lambda \cdot d).
+    $$
+    
+    \newresult[new def, make sure this makes sense]
+\end{definition}
+
+Notice that $\Rf_\delta$ is left-regular. In fact, we could have also defined the notion of \emph{right-regular}. For this see the previous remark \ref{rem:left_regularity_of_dendograms}.\par
+
+\begin{myremark}{}{left_regularity_classical_clusteirng_functors}
+    \medskip It might seem overly restrictive to ask for left-regularity.
+    However, if we take some $(X, d) \in \ob(\M)$ and consider the function 
+    $$
+    \lambda \mapsto \Cf(X, \lambda \cdot d),
+    $$
+    then left-regularity ensures that this function is constant on $(a, b]$ for some $a < b$.
 
     \newresult[make sure this makes sense]
-\end{lemma}
+\end{myremark}
+
+Assuming left-regularity and building on lemma \ref{lem:surjective_implies_eventually_discrete} we can now finally show that the Vietoris-Rips functor is the only surjective $\gen$ clustering functor.
 
 \begin{theorem}{}{}
     Let $\Cf: \gen \to \C$ be a surjective left-regular clustering functor. Then
@@ -224,7 +228,26 @@ As previously mentioned the Vietoris-Rips functor is surjective. We will now sho
     \newresult[make sure this makes sense]
 \end{theorem}
 
+\begin{lemma}{}{}
+    Let $\Cf: \M \to \C$ be a surjective left-regular clustering functor. Then $\Cf$ is splitting at some $\delta > 0$.
+
+    \newresult[make sure this makes sense] \todo[inline this lemma?]
+\end{lemma}
+
+\begin{proof}[Proof of Lemma]
+    By lemma \ref{lem:surjective_implies_eventually_discrete} we know that there exists $\lambda_0, \lambda_1 > 0$ such that...
+
+    \todo[]
+\end{proof}
+
+\begin{proof}[Proof of Theorem]
+\end{proof}
+
+
+
 \section{Scale Invariant Clustering Functors}
+
+We will quickly talk about scale invariance inspired by Kleinberg's Theorem \ref{thm:kleinberg}, and see where it fails. 
 
 \begin{definition}{Scale Invariance}{scale_invariance}
     A clustering functor $\Cf: \M \to \C$ is called \emph{scale invariant} if for all $\lambda > 0$ and $(X,d) \in \ob(\M)$ we have:
