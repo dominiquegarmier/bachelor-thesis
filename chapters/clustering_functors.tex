@@ -104,7 +104,7 @@ is called a \emph{dendogram}. Sometimes we will refer to the $r$ as being the \e
 
 This will be familiar to anyone who has seen \emph{persistent homology} where such properties are referred to as \emph{persistence} \cite{Carlsson2014}. 
 
-\begin{myremark}{}{}
+\begin{myremark}{}{left_regularity_of_dendograms}
 Since all our metric spaces are finite we could decide to drop the last requirement in the definition of a dendogram. Dendograms would still have discrete scale \ie\ constant on intervals.
 However, it would not be clear what value the dendogram would have at the endpoints of the intervals.
 This point will be particularly necessary for some uniqueness theorems we present later.
@@ -151,6 +151,12 @@ such that $\Cf$ factorizes the forgetful functors (see \ref{not:factorizing_forg
 \medskip If $\A = \C$ we say that $\Cf$ is \emph{classical} and otherwise if $\A = \H$ we say it is \emph{hierarchical}.
 \end{definition}
 
+For a hierarchical clustering functor $\Cf$ we will use the simplified notation:
+$$
+\Cf(X,d;r) := \theta_X(r)
+$$
+where we have $\theta_X := \Cf(X,d)$.
+
 
 \begin{myremark}{}{induced_functor_by_inclusion}
 Recall the inclusions \eqref{eq:inclusions_of_finite_metric_space_categories} and their induced functors.
@@ -158,3 +164,16 @@ Given a clustering functor on a larger category, say $\Cf: \gen \to \C$, this im
 \end{myremark}
 
 With this in mind it makes sense to think of the categories $\iso, \inj, \gen$ as being different levels of \emph{structure} a clustering functor can \emph{preserve} where $\iso$ is the least restrictive and $\gen$ the most restrictive.
+
+
+\begin{myremark}{}{}
+We can extend the partial order $\refines$ on $\P(X)$ to a partial order on clustering functors.
+In particular if $\Cf, \mathfrak{D}: \M \to \C$ are classical clustering functors we write $\Cf \refines \mathfrak{D}$ if
+\begin{equation*}
+    \forall X \in \ob(\M): \Cf(X) \refines \mathfrak{D}(X).
+\end{equation*}
+And in case of hierarchical clustering functors $\Cf, \mathfrak{D}: \M \to \H$ we write $\Cf \refines \mathfrak{D}$ if
+\begin{equation*}
+    \forall X \in \ob(\M) \, \forall r \in \R_{\geq0}: \Cf(X,r) \refines \mathfrak{D}(X,r).
+\end{equation*}
+\end{myremark}
