@@ -13,7 +13,7 @@ This construction closely follows the one by \textsc{Carlsson} and \textsc{M\'em
 We define three categories $\iso, \inj$ and $\gen$ all sharing the same objects:
 
 \begin{equation*}
-\ob(\M) := \{(X,d_X): \text{$X$ a finite set and $d_X$ a metric}\}
+\ob(\M) := \{(X,d_X): \text{$X$ a finite non-empty set and $d_X$ a metric}\}
 \end{equation*}
 
 The three categories are distinguished by their morphisms. For $A, B \in \ob(\M)$ we set:
@@ -151,7 +151,10 @@ such that $\Cf$ factorizes the forgetful functors (see \ref{not:factorizing_forg
 \medskip If $\A = \C$ we say that $\Cf$ is \emph{classical} and otherwise if $\A = \H$ we say it is \emph{hierarchical}.
 \end{definition}
 
-Recall the inclusions \eqref{eq:inclusions_of_finite_metric_space_categories} and their induced functors.
-Given a clustering functor on a larger category, say $\Cf: \gen \to \C$, this immediately induces clustering functors on the smaller categories by pre-composition with the inclusion functors $\iso \to \inj \to \gen$. We will use the same symbol for the induced functors. \par
 
-\medskip With this in mind it makes sense to think of the categories $\iso, \inj, \gen$ as being different levels of \emph{structure} a clustering functor can \emph{preserve} where $\iso$ is the least restrictive and $\gen$ the most restrictive.
+\begin{myremark}{}{induced_functor_by_inclusion}
+Recall the inclusions \eqref{eq:inclusions_of_finite_metric_space_categories} and their induced functors.
+Given a clustering functor on a larger category, say $\Cf: \gen \to \C$, this immediately induces clustering functors on the smaller categories by pre-composition with the inclusion functors $\iso \to \inj \to \gen$. We will use the same symbol for the induced functors.
+\end{myremark}
+
+With this in mind it makes sense to think of the categories $\iso, \inj, \gen$ as being different levels of \emph{structure} a clustering functor can \emph{preserve} where $\iso$ is the least restrictive and $\gen$ the most restrictive.
