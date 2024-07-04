@@ -95,23 +95,23 @@ Let $\M \in \{\inj, \gen\}$. A clustering functor $\Cf: \M \to \C$ is representa
 \todo
 \end{proof}
 
-\subsection{Factorization Theorem}
-\todo[this subsection is kind of irrelevant]
+% \subsection{Factorization Theorem}
+% \todo[this subsection is kind of irrelevant]
 
-\begin{definition}{Bounded Generative Model}{}
-We say that $\Omega$ is \emph{bounded} if for all $k \in \N$ we have
-$$
-\sup\{\diam(X): X \in \Omega \text{ and } |X| = k\} < \infty
-$$
-\end{definition}
-Notice that if $|\Omega| < \infty$ then $\Omega$ is clearly bounded.
+% \begin{definition}{Bounded Generative Model}{}
+% We say that $\Omega$ is \emph{bounded} if for all $k \in \N$ we have
+% $$
+% \sup\{\diam(X): X \in \Omega \text{ and } |X| = k\} < \infty
+% $$
+% \end{definition}
+% Notice that if $|\Omega| < \infty$ then $\Omega$ is clearly bounded.
 
-\begin{definition}{Generative Metric}{}
-\end{definition}
+% \begin{definition}{Generative Metric}{}
+% \end{definition}
 
-\begin{theorem}{}{}
-    Factorization Theorem
-\end{theorem}
+% \begin{theorem}{}{}
+%     Factorization Theorem
+% \end{theorem}
 
 \section{Surjective Clustering Functors}
 
@@ -171,9 +171,6 @@ The following results show that what extend splitting is a characterizing proper
     \newresult[make sure this makes sense]
 \end{proposition}
 
-\begin{proof}
-    \todo[]
-\end{proof}
 
 \begin{proposition}{}{splitting_vietoris_gen}
     Let $\Cf: \gen \to \C$ be a left-regular clustering functor then $\Cf$ is splitting at $\delta > 0$ if and only if $\Rf_\delta = \Cf$.
@@ -181,7 +178,11 @@ The following results show that what extend splitting is a characterizing proper
     \newresult[make sure this makes sense]
 \end{proposition}
 
-\begin{proof}
+\begin{proof}[Proof of Proposition \ref{prop:splitting_vietoris_inj}]
+    \todo[]
+\end{proof}
+
+\begin{proof}[Proof of Proposition \ref{prop:splitting_vietoris_gen}]
     It remains to show that $\Cf \refines \Rf_\delta$.
 
     \todo[]
@@ -277,242 +278,242 @@ We will quickly talk about scale invariance inspired by Kleinberg's Theorem \ref
 \end{proof}
 
 
-% new layout above ^^^
-\chapter*{Old classical clustering functors}
-% old layout below vvv
+% % new layout above ^^^
+% \chapter*{Old classical clustering functors}
+% % old layout below vvv
 
 
-\section{Elementary Properties}
-\subsection{Excessive Clustering Functors}
-\begin{definition}{Excessive Clustering Scheme}{}
-A classical clustering functor $\Cf: \M \to \C$ is called \emph{excessive} if for every $(X,d) \in \ob(\M)$ and $(X,P_X) = \Cf(X,d)$ we have that for every $X_\alpha \in P_X$
-\begin{equation*}
-    \Cf(X_\alpha, d|_{X_\alpha \times X_\alpha}) = (X,\{X_\alpha\}).
-\end{equation*}
-\end{definition}
-In other words if $\Cf$ is excessive it can be thought of as being nilpotent in a certain sense.
+% \section{Elementary Properties}
+% \subsection{Excessive Clustering Functors}
+% \begin{definition}{Excessive Clustering Scheme}{}
+% A classical clustering functor $\Cf: \M \to \C$ is called \emph{excessive} if for every $(X,d) \in \ob(\M)$ and $(X,P_X) = \Cf(X,d)$ we have that for every $X_\alpha \in P_X$
+% \begin{equation*}
+%     \Cf(X_\alpha, d|_{X_\alpha \times X_\alpha}) = (X,\{X_\alpha\}).
+% \end{equation*}
+% \end{definition}
+% In other words if $\Cf$ is excessive it can be thought of as being nilpotent in a certain sense.
 
-\begin{myremark}{Excessive Clustering Algorithms}{}
-The notion of excessiveness exists in the more general setting of clustering alogrithms (which are not necessarily clustering functors).
-\end{myremark}
+% \begin{myremark}{Excessive Clustering Algorithms}{}
+% The notion of excessiveness exists in the more general setting of clustering alogrithms (which are not necessarily clustering functors).
+% \end{myremark}
 
-\todo[reference to first chapter]
-In particular there we have encountered examples of non excessive clustering algorithms.
+% \todo[reference to first chapter]
+% In particular there we have encountered examples of non excessive clustering algorithms.
 
-\todo[explain why agglomerative / kmeans ... clustering is non excessive]
+% \todo[explain why agglomerative / kmeans ... clustering is non excessive]
 
-\todo[give an example of a excessive clustering that we have seen before]
+% \todo[give an example of a excessive clustering that we have seen before]
 
-\subsection{Surjective Clustering Functors}
-\begin{definition}{Surjective Clustering Functor}{}
-A classical clustering functor $\Cf: \M \to \C$ is called \emph{surjective} if for every finite set $X$ and every $P_X \in \P(X)$ there exists a metric $d_X$ on $X$ such that
-\begin{equation*}
-    \Cf(X,d_X) = (X,P_X)
-\end{equation*}
-\end{definition}
+% \subsection{Surjective Clustering Functors}
+% \begin{definition}{Surjective Clustering Functor}{}
+% A classical clustering functor $\Cf: \M \to \C$ is called \emph{surjective} if for every finite set $X$ and every $P_X \in \P(X)$ there exists a metric $d_X$ on $X$ such that
+% \begin{equation*}
+%     \Cf(X,d_X) = (X,P_X)
+% \end{equation*}
+% \end{definition}
 
-We have seen this concept previously when discussing \textsc{Kleinberg}'s theorem \ref{thm:kleinberg}, there it was called richness \ref{def:richness}.
+% We have seen this concept previously when discussing \textsc{Kleinberg}'s theorem \ref{thm:kleinberg}, there it was called richness \ref{def:richness}.
 
-As previously mentioned the $k$-means clustering algorithm\ref{def:kmeans_clustering} is clearly not surjective. As it limits the number of clusters.
-\todo[better wording]
+% As previously mentioned the $k$-means clustering algorithm\ref{def:kmeans_clustering} is clearly not surjective. As it limits the number of clusters.
+% \todo[better wording]
 
-We will see later that surjective clustering functors are in some cases unique. Another relatively straightforward property of surjective functors is that they factor any other clustering functor:
+% We will see later that surjective clustering functors are in some cases unique. Another relatively straightforward property of surjective functors is that they factor any other clustering functor:
 
-\begin{proposition}{}{universality_of_surjective_functors}
-Let $\mathfrak{S}: \M \to \C$ be a surjective functor. Then for any clustering functor $\Cf: \M \to \C$ there exists a functor $\Tf_\Cf: \M \to \M$ that changes the metric such that
+% \begin{proposition}{}{universality_of_surjective_functors}
+% Let $\mathfrak{S}: \M \to \C$ be a surjective functor. Then for any clustering functor $\Cf: \M \to \C$ there exists a functor $\Tf_\Cf: \M \to \M$ that changes the metric such that
 
-\begin{equation*}
-\Cf = \mathfrak{S} \circ \Tf_\Cf
-\end{equation*}
-\end{proposition}
+% \begin{equation*}
+% \Cf = \mathfrak{S} \circ \Tf_\Cf
+% \end{equation*}
+% \end{proposition}
 
-\mynote[move below to chapter 7?]
-A surprising fact about surjective clustering functors is given by the following lemma:
+% \mynote[move below to chapter 7?]
+% A surprising fact about surjective clustering functors is given by the following lemma:
 
-\begin{lemma}{}{surjective_implies_eventually_discrete}
-Let $\Cf: \M \to \C$ be a surjective clustering functor and $(X,d)$ a finite metric space. Then there exists $\lambda_0, \mu_0 > 0$ such that
-\begin{enumerate}
-    \item $\Cf(X,\lambda \cdot d)$ is discrete for all $\lambda > \lambda_0$
-    \item $\Cf(X,\mu \cdot d)$ is trivial for all $0 < \mu \le \mu_0$
-\end{enumerate}
-\mynote[dedupe this from chapter 7]
-\end{lemma}
+% \begin{lemma}{}{surjective_implies_eventually_discrete}
+% Let $\Cf: \M \to \C$ be a surjective clustering functor and $(X,d)$ a finite metric space. Then there exists $\lambda_0, \mu_0 > 0$ such that
+% \begin{enumerate}
+%     \item $\Cf(X,\lambda \cdot d)$ is discrete for all $\lambda > \lambda_0$
+%     \item $\Cf(X,\mu \cdot d)$ is trivial for all $0 < \mu \le \mu_0$
+% \end{enumerate}
+% \mynote[dedupe this from chapter 7]
+% \end{lemma}
 
-Indeed this now motivates us to define the smallest resp. largest values for which the condition in the lemma holds. This gives us:
+% Indeed this now motivates us to define the smallest resp. largest values for which the condition in the lemma holds. This gives us:
 
-\begin{definition}{}{}
-Let $\Cf: \M \to \C$ be surjective clustering functor. Due to the previous lemma we can define
-\begin{align*}
-\diam^\Cf(X) &:= \sup\{ \lambda > 0: \Cf(X,\lambda \cdot d) \text{ is trivial}\} < \infty\\
-\sep^\Cf(X) &:= \inf\{ \lambda > 0: \Cf(X,\lambda \cdot d) \text{ is discrete}\} < \infty
-\end{align*}
-called the \emph{intrinsic separation} and \emph{diameter} of $X$. 
-\end{definition}
-Additionally, it is easy to check that we can use $\lambda_0 = \sep^\Cf(X)$ and $\mu_0 = \diam^\Cf(X)$ in the previous lemma.
+% \begin{definition}{}{}
+% Let $\Cf: \M \to \C$ be surjective clustering functor. Due to the previous lemma we can define
+% \begin{align*}
+% \diam^\Cf(X) &:= \sup\{ \lambda > 0: \Cf(X,\lambda \cdot d) \text{ is trivial}\} < \infty\\
+% \sep^\Cf(X) &:= \inf\{ \lambda > 0: \Cf(X,\lambda \cdot d) \text{ is discrete}\} < \infty
+% \end{align*}
+% called the \emph{intrinsic separation} and \emph{diameter} of $X$. 
+% \end{definition}
+% Additionally, it is easy to check that we can use $\lambda_0 = \sep^\Cf(X)$ and $\mu_0 = \diam^\Cf(X)$ in the previous lemma.
 
-Later we will use $\sep^\Cf(X)$ and $\diam^\Cf(X)$ but first we have to show an important property.
+% Later we will use $\sep^\Cf(X)$ and $\diam^\Cf(X)$ but first we have to show an important property.
 
-\begin{lemma}{}{mutliplicativity_of_intrinsic_sizes}
-Let $\Cf: \M \to \C$ be surjective. Then for all $(X,d) \in \ob(\M)$ and $\lambda > 0$ we have
-\begin{align*}{}{}
-    \diam^\Cf(X,\lambda \cdot d) &= \lambda \cdot \diam^\Cf(X,\lambda) \\
-    \sep^\Cf(X,\lambda \cdot d) &= \lambda \cdot \sep^\Cf(X,\lambda)
-\end{align*}
-\end{lemma}
+% \begin{lemma}{}{mutliplicativity_of_intrinsic_sizes}
+% Let $\Cf: \M \to \C$ be surjective. Then for all $(X,d) \in \ob(\M)$ and $\lambda > 0$ we have
+% \begin{align*}{}{}
+%     \diam^\Cf(X,\lambda \cdot d) &= \lambda \cdot \diam^\Cf(X,\lambda) \\
+%     \sep^\Cf(X,\lambda \cdot d) &= \lambda \cdot \sep^\Cf(X,\lambda)
+% \end{align*}
+% \end{lemma}
 
-\begin{proposition}{Classification of $\iso$ Clustering Functors}{}
-Let $\Cf: \iso \to \C$ be a clustering functor. Then there exists a choice ... moreover any such choice is a clustering functor.
-\end{proposition}
-In light of the previous proposition let now $\M \in \{\inj, \gen\}$
-
-
-A very important functor is the:
-\begin{definition}{Vietoris Rips Functor}{}
-$\Rf_\delta$
-\end{definition}
-
-\todo[to what degree should I discuss the relevance of VR in other domains?]
+% \begin{proposition}{Classification of $\iso$ Clustering Functors}{}
+% Let $\Cf: \iso \to \C$ be a clustering functor. Then there exists a choice ... moreover any such choice is a clustering functor.
+% \end{proposition}
+% In light of the previous proposition let now $\M \in \{\inj, \gen\}$
 
 
+% A very important functor is the:
+% \begin{definition}{Vietoris Rips Functor}{}
+% $\Rf_\delta$
+% \end{definition}
 
-\begin{proposition}{Vietoris Rips Functor}{}
-$\Rf_\delta$ is an excessive and surjective clustering functor.
-\end{proposition}
-
-\section{Representable Clustering Functors}
-
-
-$\Cf^\Omega$ is indeed a clustering functor. Let $f: X \to Y$ be a morphism and $x \sim y$. Then we have an $\omega \in \Omega$ and a $\phi \in \mor_\M(\omega, X)$ such that \eqref{eq:represented_clustering_functor_condition} holds. But then $f \circ \phi \in \mor_\M(\omega,Y)$ has the same properties and it follows that $f(x) \sim f(y)$.
-
-\begin{myremark}{}{}
-
-$$
-\Cf^\Omega(\omega) = (\omega, \{\omega\})
-$$
-
-We also have $\Cf^\Omega$ is the finest clustering functor such that $\omega \in \Omega$ get mapped into the trivial partition.
-\end{myremark}
-
-\begin{proposition}{Surjective Generative Model}{}
-\newresult
-Let $\Omega$ be a generative model then the following are equivalent:
-\begin{enumerate}
-    \item $\Cf^\Omega$ is surjective
-    \item $\exists \omega \in \Omega$ with $|\omega| = 2$ and for all $k \in \N$ we have 
-    $$
-    \sup\{\diam(\omega): \omega \in \Omega \text{ and } |\omega| = k\} < \infty.
-    $$ 
-\end{enumerate}
-furthermore such a generative model $\Omega$ is called \emph{surjective}.
-\end{proposition}
+% \todo[to what degree should I discuss the relevance of VR in other domains?]
 
 
 
+% \begin{proposition}{Vietoris Rips Functor}{}
+% $\Rf_\delta$ is an excessive and surjective clustering functor.
+% \end{proposition}
+
+% \section{Representable Clustering Functors}
 
 
-\begin{theorem}{Excessive Clustering Schemes}{}
-Let $\M \in \{\inj, \gen\}$ then a clustering functor $\Cf: \M \to \C$ is representable if and only if it is excessive.
-\end{theorem}
+% $\Cf^\Omega$ is indeed a clustering functor. Let $f: X \to Y$ be a morphism and $x \sim y$. Then we have an $\omega \in \Omega$ and a $\phi \in \mor_\M(\omega, X)$ such that \eqref{eq:represented_clustering_functor_condition} holds. But then $f \circ \phi \in \mor_\M(\omega,Y)$ has the same properties and it follows that $f(x) \sim f(y)$.
 
-\begin{definition}{Generative Metric \cite{Carlsson2010}}{}
-Let $\Omega$ be a generative model. Let $(X,d)$ be a metric space, we define a symmetric positive definite function $W^\Omega: X \times X \to [0,+\infty]$. With:
-\begin{equation*}
-W^\Omega(x,y) := \begin{cases}
-    1/2 & 
-    \begin{array}{cc}
-         \text{if } \exists \, \omega \in \Omega \ \exists \, \phi \in \mor_{\M}(\omega, (X,d))\\
-         \text{ such that } \{x,y\} \subset \image(\phi)
-    \end{array}\\
-    1 & \hfil \text{else}
-\end{cases}
-\end{equation*}
-\end{definition}
+% \begin{myremark}{}{}
+
+% $$
+% \Cf^\Omega(\omega) = (\omega, \{\omega\})
+% $$
+
+% We also have $\Cf^\Omega$ is the finest clustering functor such that $\omega \in \Omega$ get mapped into the trivial partition.
+% \end{myremark}
+
+% \begin{proposition}{Surjective Generative Model}{}
+% \newresult
+% Let $\Omega$ be a generative model then the following are equivalent:
+% \begin{enumerate}
+%     \item $\Cf^\Omega$ is surjective
+%     \item $\exists \omega \in \Omega$ with $|\omega| = 2$ and for all $k \in \N$ we have 
+%     $$
+%     \sup\{\diam(\omega): \omega \in \Omega \text{ and } |\omega| = k\} < \infty.
+%     $$ 
+% \end{enumerate}
+% furthermore such a generative model $\Omega$ is called \emph{surjective}.
+% \end{proposition}
 
 
 
 
-\begin{myremark}{}{}
-Let $d_{W^\Omega}$ be the shortest path distance metric \ref{def:shortest_dist_metric} then $(X,d) \mapsto (X,d_{W^\Omega})$ induces a functor $\Tf^\Omega: \M \to \M$.
-\end{myremark}
 
-\begin{theorem}{Factorizing Theorem}{}
-Let $\Omega$ \footnote{\cite{Carlsson2010} provides a construction of $\Tf^\Omega$ that works for finite generative models.} be a generative model then we have
-\begin{equation*}
-\Cf^\Omega = \Rf_1 \circ \mathfrak{T}^\Omega
-\end{equation*}
-\end{theorem}
+% \begin{theorem}{Excessive Clustering Schemes}{}
+% Let $\M \in \{\inj, \gen\}$ then a clustering functor $\Cf: \M \to \C$ is representable if and only if it is excessive.
+% \end{theorem}
 
-\section{Splitting Clustering Functors}
+% \begin{definition}{Generative Metric \cite{Carlsson2010}}{}
+% Let $\Omega$ be a generative model. Let $(X,d)$ be a metric space, we define a symmetric positive definite function $W^\Omega: X \times X \to [0,+\infty]$. With:
+% \begin{equation*}
+% W^\Omega(x,y) := \begin{cases}
+%     1/2 & 
+%     \begin{array}{cc}
+%          \text{if } \exists \, \omega \in \Omega \ \exists \, \phi \in \mor_{\M}(\omega, (X,d))\\
+%          \text{ such that } \{x,y\} \subset \image(\phi)
+%     \end{array}\\
+%     1 & \hfil \text{else}
+% \end{cases}
+% \end{equation*}
+% \end{definition}
 
-\begin{definition}{Splitting}{}
-We say that a clustering functor $\Cf: \M \to \C$ is \emph{splitting} at $\delta_0 > 0$ if we have
 
-\begin{enumerate}
-    \item $\Cf(\Delta_2(\delta))$ is trivial for all $\delta < \delta_0$.
-    \item $\Cf(\Delta_2(\delta))$ is discrete for all $\delta \geq \delta_0$.
-\end{enumerate}
 
-\todo[check inequalities, check with def of vietoris-rips]
-\end{definition}
 
-\begin{proposition}{}{splitting_inj}
-Let $\Cf: \inj \to \C$ be a clustering functor that splits at $\delta > 0$. Then we have $\Rf_\delta \refines \Cf$.
-\end{proposition}
+% \begin{myremark}{}{}
+% Let $d_{W^\Omega}$ be the shortest path distance metric \ref{def:shortest_dist_metric} then $(X,d) \mapsto (X,d_{W^\Omega})$ induces a functor $\Tf^\Omega: \M \to \M$.
+% \end{myremark}
 
-\begin{proposition}{}{}
-Let $\Cf: \gen \to \C$ be a clustering functor then $\Cf$ is splitting at $\delta > 0$ if and only if $\Rf_\delta = \Cf$.
-\end{proposition}
+% \begin{theorem}{Factorizing Theorem}{}
+% Let $\Omega$ \footnote{\cite{Carlsson2010} provides a construction of $\Tf^\Omega$ that works for finite generative models.} be a generative model then we have
+% \begin{equation*}
+% \Cf^\Omega = \Rf_1 \circ \mathfrak{T}^\Omega
+% \end{equation*}
+% \end{theorem}
 
-\begin{proof}
-To show $\Rf_\delta \refines \Cf$ we can adapt the proof of the previous proposition \ref{prop:splitting_inj}. It therefore remains to show $\Cf \refines \Rf_\delta$. \todo
-\end{proof}
+% \section{Splitting Clustering Functors}
 
-\begin{lemma}{}{}
-\newresult
-Let $\Cf: \M \to \C$ be a surjective clustering functor. Let $(X,d) \in \ob(\M)$ then there exists $\lambda \geq \lambda' > 0$ such that
-\begin{enumerate}
-    \item $\Cf(X, \lambda \cdot d)$ is discrete
-    \item $\Cf(X, \lambda' \cdot d)$ is trivial
-\end{enumerate}
-\end{lemma}
+% \begin{definition}{Splitting}{}
+% We say that a clustering functor $\Cf: \M \to \C$ is \emph{splitting} at $\delta_0 > 0$ if we have
 
-\begin{corollary}{}{}
-\newresult
+% \begin{enumerate}
+%     \item $\Cf(\Delta_2(\delta))$ is trivial for all $\delta < \delta_0$.
+%     \item $\Cf(\Delta_2(\delta))$ is discrete for all $\delta \geq \delta_0$.
+% \end{enumerate}
 
-\todo[maybe we can remove this corollary and inline it into the proof of the next]
-Let $\Cf: \M \to \C$ be a surjective clustering functor. Then there exists a $\delta > 0$ such that $\Cf$ splits at $\delta$.
-\end{corollary}
+% \todo[check inequalities, check with def of vietoris-rips]
+% \end{definition}
 
-\begin{corollary}{}{}
-\newresult
-Let $\M \in \{\gen, \inj\}$ and $\Cf: \M \to \C$ a surjective clustering functor then $\Cf \refines \Rf_\delta$ for some $\delta > 0$. More over we have $\Cf = \Rf_\delta$ if $\M = \gen$
-\end{corollary}
+% \begin{proposition}{}{splitting_inj}
+% Let $\Cf: \inj \to \C$ be a clustering functor that splits at $\delta > 0$. Then we have $\Rf_\delta \refines \Cf$.
+% \end{proposition}
 
-\section{Scaling Invariant Clustering Functors}
+% \begin{proposition}{}{}
+% Let $\Cf: \gen \to \C$ be a clustering functor then $\Cf$ is splitting at $\delta > 0$ if and only if $\Rf_\delta = \Cf$.
+% \end{proposition}
 
-\begin{definition}{Scale Invariance}{scale_invariance}
-A clustering functor $\Cf: \M \to \C$ is called \emph{scale invariant} if for all $\lambda > 0$ and $(X,d) \in \ob(\M)$ we have:
-\begin{equation*}
-    \Cf((X,d)) = \Cf(X,\lambda \cdot d)).
-\end{equation*}
-\end{definition}
+% \begin{proof}
+% To show $\Rf_\delta \refines \Cf$ we can adapt the proof of the previous proposition \ref{prop:splitting_inj}. It therefore remains to show $\Cf \refines \Rf_\delta$. \todo
+% \end{proof}
 
-\begin{proposition}{Scale Invariance in $\gen$}{}
-Let $\Cf: \gen \to \C$ be a scale invariant functor then either
-\begin{enumerate}
-    \item $\Cf(X,d)$ is trivial for all $(X,d) \in \ob(\gen)$
-    \item $\Cf(X,d)$ is discrete for all $(X,d) \in \ob(\gen)$
-\end{enumerate}
-\end{proposition}
+% \begin{lemma}{}{}
+% \newresult
+% Let $\Cf: \M \to \C$ be a surjective clustering functor. Let $(X,d) \in \ob(\M)$ then there exists $\lambda \geq \lambda' > 0$ such that
+% \begin{enumerate}
+%     \item $\Cf(X, \lambda \cdot d)$ is discrete
+%     \item $\Cf(X, \lambda' \cdot d)$ is trivial
+% \end{enumerate}
+% \end{lemma}
 
-\begin{proof}
-$\Delta_2(\delta) \to X \to \Delta_2(\delta')$
-\end{proof}
+% \begin{corollary}{}{}
+% \newresult
 
-\begin{proposition}{Scale Invariance in $\inj$}{}
-Let $\Cf: \inj \to \C$ be a scale invariant functor then...
-\end{proposition}
+% \todo[maybe we can remove this corollary and inline it into the proof of the next]
+% Let $\Cf: \M \to \C$ be a surjective clustering functor. Then there exists a $\delta > 0$ such that $\Cf$ splits at $\delta$.
+% \end{corollary}
 
-\begin{proof}
-$\Delta_{|X|}(\delta) \to X \to \Delta_{|X|}(\delta')$
-\end{proof}
+% \begin{corollary}{}{}
+% \newresult
+% Let $\M \in \{\gen, \inj\}$ and $\Cf: \M \to \C$ a surjective clustering functor then $\Cf \refines \Rf_\delta$ for some $\delta > 0$. More over we have $\Cf = \Rf_\delta$ if $\M = \gen$
+% \end{corollary}
+
+% \section{Scaling Invariant Clustering Functors}
+
+% \begin{definition}{Scale Invariance}{scale_invariance}
+% A clustering functor $\Cf: \M \to \C$ is called \emph{scale invariant} if for all $\lambda > 0$ and $(X,d) \in \ob(\M)$ we have:
+% \begin{equation*}
+%     \Cf((X,d)) = \Cf(X,\lambda \cdot d)).
+% \end{equation*}
+% \end{definition}
+
+% \begin{proposition}{Scale Invariance in $\gen$}{}
+% Let $\Cf: \gen \to \C$ be a scale invariant functor then either
+% \begin{enumerate}
+%     \item $\Cf(X,d)$ is trivial for all $(X,d) \in \ob(\gen)$
+%     \item $\Cf(X,d)$ is discrete for all $(X,d) \in \ob(\gen)$
+% \end{enumerate}
+% \end{proposition}
+
+% \begin{proof}
+% $\Delta_2(\delta) \to X \to \Delta_2(\delta')$
+% \end{proof}
+
+% \begin{proposition}{Scale Invariance in $\inj$}{}
+% Let $\Cf: \inj \to \C$ be a scale invariant functor then...
+% \end{proposition}
+
+% \begin{proof}
+% $\Delta_{|X|}(\delta) \to X \to \Delta_{|X|}(\delta')$
+% \end{proof}
