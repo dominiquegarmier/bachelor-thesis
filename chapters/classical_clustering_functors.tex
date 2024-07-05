@@ -87,7 +87,7 @@ $$
 \newresult[]
 \end{proof}
 
-\begin{theorem}{}{}
+\begin{theorem}{\source}{}
 Let $\M \in \{\inj, \gen\}$. A clustering functor $\Cf: \M \to \C$ is representable if and only if it is excessive.
 \end{theorem}
 
@@ -124,6 +124,10 @@ Let $\M \in \{\inj, \gen\}$. A clustering functor $\Cf: \M \to \C$ is representa
 
 \end{definition}
 
+\begin{myremark}{}{vietoris_rips_is_surjective}
+    The Vietoris-Rips functor $\Rf_\delta$ is surjective.
+\end{myremark}
+
 The important property of the Vietoris rips functor that we used in the previous factorization theorem was that it is surjective. We can actually express this in a more general way:
 
 \begin{proposition}{}{}
@@ -136,6 +140,10 @@ The important property of the Vietoris rips functor that we used in the previous
     \newresult
 \end{proposition}
 
+\begin{proof}
+    \newresult[]
+\end{proof}
+
 A surprising fact about surjective clustering functors:
 
 \begin{lemma}{}{surjective_implies_eventually_discrete}
@@ -147,6 +155,36 @@ A surprising fact about surjective clustering functors:
 
     \newresult
 \end{lemma}
+
+\begin{proof}
+    Let $(X,d) \in \ob(\M)$ since $\Cf$ is surjective there exists metrics $d_0, d_1$ on $X$ such that $\Cf(X,d_0)$ is trivial and $\Cf(X,d_1)$ is discrete.
+
+    \paragraph*{Trivial Part} We take
+    $$
+    \lambda_0 := \frac{\sep(X,d_0)}{\diam(X,d)}.
+    $$ 
+    Notice that for any $\lambda \le \lambda_0$ we have that $\diam(X,\lambda \cdot d) \le \sep(X,d_0)$.
+    Because of this the function
+    \begin{align*}
+        f: (X, d_0) &\longrightarrow (X, \lambda \cdot d)\\
+        x &\longmapsto x
+    \end{align*}
+    is distance non-increasing (and injective) \ie\ $f \in \mor_\M((X,d_0), (X,\lambda \cdot d))$. Moreover, since $f$ is the identity on the set $X$ we have $f_*(P) = P$ for any partition $P$ of $X$.
+
+    By functoriality of $\Cf$ we now have that $\Cf(X,d_0) \refines f_*(\Cf(X,\lambda \cdot d)) = \Cf(X,\lambda \cdot d)$. Therefore, $\Cf(X,\lambda \cdot d)$ must be trivial.
+
+    \paragraph*{Discrete Part} Repeat an analogous argument using
+    $$
+    \lambda_1 := \frac{\diam(X,d_1)}{\sep(X,d)}.
+    $$
+    But this time consider for $\lambda \ge \lambda_1$ the function
+    \begin{align*}
+        f: (X, \lambda \cdot d) &\longrightarrow (X, d_1)\\
+        x &\longmapsto x.
+    \end{align*}
+    We conclude by showing $\Cf(X,\lambda \cdot d) \refines f_*(\Cf(X,d_1)) = \Cf(X,d_1)$. 
+    \newresult[check this]
+\end{proof}
 
 \section{Splitting}
 
@@ -163,19 +201,21 @@ This motivates the following definitions.
 
 
 
-The following results show that what extend splitting is a characterizing property of the Vietoris-Rips functor.
+The following results show that what extend splitting is a characterizing property of the Vietoris-Rips functor \cite[Theorem~6.4]{Carlsson2010}.
 
 \begin{proposition}{}{splitting_vietoris_inj}
-    Let $\Cf: \inj \to \C$ be a left-regular clustering functor that splits at $\delta > 0$. Then we have $\Rf_\delta \refines \Cf$.
-
-    \newresult[make sure this makes sense]
+    Let $\Cf: \inj \to \C$ be a clustering functor that splits at $\delta > 0$. Then we have 
+    $$
+    \Rf_\delta \refines \Cf.
+    $$
 \end{proposition}
 
 
 \begin{proposition}{}{splitting_vietoris_gen}
-    Let $\Cf: \gen \to \C$ be a left-regular clustering functor then $\Cf$ is splitting at $\delta > 0$ if and only if $\Rf_\delta = \Cf$.
-
-    \newresult[make sure this makes sense]
+    Let $\Cf: \gen \to \C$ be a clustering functor then $\Cf$ is splitting at $\delta > 0$ if and only if 
+    $$
+    \Cf = \Rf_\delta
+    $$
 \end{proposition}
 
 \begin{proof}[Proof of Proposition \ref{prop:splitting_vietoris_inj}]
@@ -183,7 +223,7 @@ The following results show that what extend splitting is a characterizing proper
 \end{proof}
 
 \begin{proof}[Proof of Proposition \ref{prop:splitting_vietoris_gen}]
-    It remains to show that $\Cf \refines \Rf_\delta$.
+    Clearly $\Rf_\delta$ is splitting at $\delta$. In view of the previous proposition it remains to show that $\Cf \refines \Rf_\delta$.
 
     \todo[]
 \end{proof}
@@ -212,39 +252,50 @@ Notice that $\Rf_\delta$ is left-regular. In fact, we could have also defined th
     $$
     \lambda \mapsto \Cf(X, \lambda \cdot d),
     $$
-    then left-regularity ensures that this function is constant on $(a, b]$ for some $a < b$.
-
-    \newresult[make sure this makes sense]
+    which will be piecewise constant and takes only finitely many values.
+    Left-regularity ensures that this function is constant on $(a, b]$ for some $a < b$.
 \end{myremark}
 
 Assuming left-regularity and building on lemma \ref{lem:surjective_implies_eventually_discrete} we can now finally show that the Vietoris-Rips functor is the only surjective $\gen$ clustering functor.
 
 \begin{theorem}{}{}
-    Let $\Cf: \gen \to \C$ be a surjective left-regular clustering functor. Then
-    $$
-    \Cf = \Rf_{\delta}.
-    $$
-    Where $\delta$ is given by the previous lemma.
+    Let $\Cf: \gen \to \C$ be left-regular then the following are equivalent
 
+    \begin{itemize}
+        \item $\Cf$ is surjective
+        \item $\Cf = \Rf_{\delta}$ for some $\delta > 0$
+    \end{itemize}
     \newresult[make sure this makes sense]
 \end{theorem}
 
-\begin{lemma}{}{}
+\begin{lemma}{}{surjective_implies_splitting}
     Let $\Cf: \M \to \C$ be a surjective left-regular clustering functor. Then $\Cf$ is splitting at some $\delta > 0$.
 
-    \newresult[make sure this makes sense] \todo[inline this lemma?]
+    \newresult[make sure this makes sense]
 \end{lemma}
 
 \begin{proof}[Proof of Lemma]
-    By lemma \ref{lem:surjective_implies_eventually_discrete} we know that there exists $\lambda_0, \lambda_1 > 0$ such that...
+    By lemma \ref{lem:surjective_implies_eventually_discrete} we know that there exists $\lambda_0, \lambda_1 > 0$ such that for all $\lambda \le \lambda_0$ we have $\Cf(X, \lambda \cdot d)$ is trivial and for all $\lambda' \ge \lambda_1$ we have $\Cf(X, \lambda' \cdot d)$ is discrete.
 
-    \todo[]
+    Let now $\lambda \ge \lambda'$ by functoriality and considering the distance non-increasing function
+    \begin{align*}
+        f: (X, \lambda \cdot d) &\longrightarrow (X, \lambda' \cdot d)\\
+        x &\longmapsto x
+    \end{align*}
+    we have that $\Cf(X, \lambda \cdot d) \refines f_*(\Cf(X, \lambda' \cdot d)) = \Cf(X, \lambda' \cdot d)$. $\star$
+
+    If we now use $(X,d) = \Delta_2(1)$ we have that the map $\lambda \mapsto \Cf(\Delta_2(\lambda))$ is piecewise constant and can take at most two values.
+
+    Thus, by $\star$ there must exist some $\delta_0 > 0$ such that for $\delta < \delta_0 < \delta'$ we have that $\Cf(\Delta_2(\delta))$ is trivial and $\Cf(\Delta_2(\delta'))$ is discrete.
+    As for the value at $\delta_0$ we recall the previous remark \ref{rem:left_regularity_classical_clusteirng_functors} and conclude that $\Cf(\Delta_2(\delta_0))$ is trivial.
+    \newresult[check this]
 \end{proof}
 
 \begin{proof}[Proof of Theorem]
+    We have already shown that $\Rf_\delta$ is surjective \ref{rem:vietoris_rips_is_surjective}.
+
+    Assuming that $\Cf$ is left-regular and surjective, combining lemma \ref{lem:surjective_implies_splitting} and proposition \ref{prop:splitting_vietoris_gen} we have that $\Cf = \Rf_{\delta}$.
 \end{proof}
-
-
 
 \section{Scale Invariant Clustering Functors}
 
