@@ -1,34 +1,45 @@
-\chapter{Properties of Hierarchical Clustering Functors}
+\chapter{Hierarchical Clustering Functors}
+\section{Scaling}
 
+\begin{definition}{Scaling}{}
+We say that a hierarchical clustering functor $\Hf: \M \to \H$ is scaling if ...
+\end{definition}
 
-
-
-\section{Scale Invariant Extension}
-\todo
-\begin{definition}{Scale Invariant Extension}{scale_invar_ext}
+\begin{definition}{Scaling Extension}{scale_invar_ext}
 Let $\Cf: \M \to \C$ a classical clustering functor then we can \emph{extend} it to an almost unique scale invariant hierarchical functor
 $$
 \Hf_\Cf: \M \to \H
 $$
 \end{definition}
 
-\begin{corollary}{Representation of Scale Invariant Functors}{}
-this is a corollary from excessive iff represented and represented $\Rf_1 \circ \Tf$.
-\end{corollary}
-
-\begin{myremark}{}{}
-We can extend the previous corollary if we use a mon. decreasing $\eta: \E \to \E$.
-\end{myremark}
-
+\section{Surjectivity}
+\todo[some notes...]
+Surjectivity in (scaling) hierarchical clustering functors might be stronger, we need to check this.
+If it turns out to be stronger, I might be able to prove the next theorem in more generality.
 
 \section{Kleinberg's Conditions}
 
+\begin{myremark}{Modified Kleinberg Conditions}{}
+    \cite[Comment~7.3.1]{Carlsson2010}
+
+    \todo[write this up]
+
+    \begin{itemize}
+        \item consistency becomes $\gen$ functoriality
+        \item richness becomes surjectivity
+        \item scale invariance becomes scaling
+    \end{itemize}
+\end{myremark}
+
 \begin{theorem}{Uniqueness of Kleinberg's Conditions}{}
-    Let $\Hf: \gen \to \H$ be a hierarchical clustering functor fulfilling Kleinberg's conditions then
+    Let $\Hf: \gen \to \H$ be a hierarchical clustering functor fulfilling the modified Kleinberg conditions then
 
     $$
-    \Hf = \sigma_\delta \Rf
+    \Hf = s_\delta \Rf
     $$
 
-    \todo[define $\sigma_\delta$]
+    \todo[define $s_\delta$]
+    \newresult[check this]
 \end{theorem}
+
+\todo[it might be possible to show the above theorem even for $\inj$]

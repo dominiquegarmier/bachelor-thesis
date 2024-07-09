@@ -12,18 +12,18 @@ A category $\C$ consists of
 \begin{enumerate}
     \item \textbf{Objects}: $\ob(\C)$, which is a class\footnote{A class is a collection of mathematical objects.}. \Ie\ it need not be a proper set.
     
-    \item \textbf{Morphisms}: For every $A, B \in \ob(\C)$ we have a set $\mor(A,B)$. An element $f \in \mor(A,B)$ is called a morphism from $A$ to $B$, and we often write 
+    \item \textbf{Morphisms}: For every $A, B \in \ob(\C)$ we have a set $\mor_\C(A,B)$. An element $f \in \mor_\C(A,B)$ is called a morphism from $A$ to $B$, and we often write 
     $$
     f: A \to B,
     $$
-    even though $f$ is not always a map. Furthermore, $\mor(A,B)$ and $\mor(C,D)$ are disjoint unless $A = C$ and $B = D$.
+    even though $f$ is not always a map. Furthermore, $\mor_\C(A,B)$ and $\mor_\C(C,D)$ are disjoint unless $A = C$ and $B = D$.
     
     \item \textbf{Composition}: For every $f \in \mor_\C(A,B)$ and $g \in \mor_\C(B,C)$ there exists a $g \circ f \in \mor_\C(A,C)$ called the composition of $g$ after $f$ and the composition needs to be associative: 
     $$
     f \circ (g \circ h) = (f \circ g) \circ h.
     $$
 
-    \item \textbf{Identity}: For each object $A,B \in \ob(\C)$ there exists a morphism $e_A \in \mor(A,A)$ such that for $f \in \mor(A,B)$ and $g \in \mor(B,A)$ we have
+    \item \textbf{Identity}: For each object $A,B \in \ob(\C)$ there exists a morphism $e_A \in \mor_C(A,A)$ such that for $f \in \mor_C(A,B)$ and $g \in \mor_C(B,A)$ we have
     $$
     f \circ e_A = f \quad \text{and} \quad e_A \circ g = g.
     $$

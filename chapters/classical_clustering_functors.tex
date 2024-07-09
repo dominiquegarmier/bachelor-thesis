@@ -27,7 +27,7 @@ Then we have $d(f(x), f(y)) \leq d(x,y) \leq \delta$ and therefore $f(x) \sim_{P
 By taking the transitive closure we get the statement.
 \end{proof}
 
-\begin{myremark}{$\iso$ Clustering Functors}{}
+\begin{myremark}{$\iso$ Clustering Functors \cite{Carlsson2010}}{}
 Let $\mathcal{I}$ denote a collection of representatives of isometry classes of finite metric spaces.
 For each $X \in \mathcal{I}$ consider the isometry group $\mathrm{Iso}(X)$. \par
 
@@ -44,7 +44,7 @@ It is in fact for this reason that algorithms like single linkage clustering \re
 From now on, unless otherwise mentioned, we use $\M \in \{\inj, \gen\}$.
 
 \section{Excessive and Representable Clustering Functors}
-\begin{definition}{Excessive Clustering Functors}{}
+\begin{definition}{Excessive Clustering Functors \cite{Carlsson2010}}{}
 A clustering functor $\Cf: \M \to \C$ is called \emph{excessive} if for every $(X,d) \in \ob(\M)$ and $(X,P) = \Cf(X,d)$ we have that for every block $X_\alpha \in P$:
 $$
 \Cf(X_\alpha, d|_{X_\alpha \times X_\alpha}) = (X, \{X_\alpha\})
@@ -55,7 +55,7 @@ Let $\Omega$ be a family of finite non-empty metric spaces. Such $\Omega$'s can 
 
 
 
-\begin{definition}{Representable Clustering Functors}{}
+\begin{definition}{Representable Clustering Functors \cite{Carlsson2010}}{}
 We define the clustering functor \emph{represented by $\Omega$}
 $$
 \Cf^\Omega \M \to \C
@@ -87,7 +87,7 @@ $$
 \newresult[]
 \end{proof}
 
-\begin{theorem}{\source}{}
+\begin{theorem}{\cite{Carlsson2010}}{}
 Let $\M \in \{\inj, \gen\}$. A clustering functor $\Cf: \M \to \C$ is representable if and only if it is excessive.
 \end{theorem}
 
@@ -115,7 +115,7 @@ Let $\M \in \{\inj, \gen\}$. A clustering functor $\Cf: \M \to \C$ is representa
 
 \section{Surjective Clustering Functors}
 
-\begin{definition}{Surjective Clustering Functors}{}
+\begin{definition}{Surjective Clustering Functors \source}{}
     A classical clustering functor $\Cf: \M \to \C$ is called \emph{surjective} if for every finite set $X$ and every $P_X \in \P(X)$ there exists a metric $d_X$ on $X$ such that
 
     \begin{equation*}
@@ -211,7 +211,7 @@ The following results show that what extend splitting is a characterizing proper
 \end{proposition}
 
 
-\begin{proposition}{}{splitting_vietoris_gen}
+\begin{proposition}{\source}{splitting_vietoris_gen}
     Let $\Cf: \gen \to \C$ be a clustering functor then $\Cf$ is splitting at $\delta > 0$ if and only if 
     $$
     \Cf = \Rf_\delta
@@ -228,7 +228,7 @@ The following results show that what extend splitting is a characterizing proper
     \todo[]
 \end{proof}
 
-\subsection{Vietoris-Rips Uniqueness}
+\subsection[Vietoris-Rips Uniqueness]{Vietoris-Rips Uniqueness \newresult[]}
 
 As previously mentioned the Vietoris-Rips functor is surjective.
 In this section we present the new result that under certain technical assumptions the Vietoris-Rips is the unique surjective $\gen$ clustering functor.
@@ -299,7 +299,7 @@ Assuming left-regularity and building on lemma \ref{lem:surjective_implies_event
 
 \section{Scale Invariant Clustering Functors}
 
-We will quickly talk about scale invariance inspired by Kleinberg's Theorem \ref{thm:kleinberg}, and see where it fails. 
+We will quickly talk about scale invariance inspired by \textsc{Kleinberg}'s conditions from theorem \ref{thm:kleinberg}, and see where this fails. \source
 
 \begin{definition}{Scale Invariance}{scale_invariance}
     A clustering functor $\Cf: \M \to \C$ is called \emph{scale invariant} if for all $\lambda > 0$ and $(X,d) \in \ob(\M)$ we have:
@@ -308,8 +308,10 @@ We will quickly talk about scale invariance inspired by Kleinberg's Theorem \ref
     \end{equation*}
 \end{definition}
 
-\begin{proposition}{Scale Invariance in $\gen$}{}
-    Let $\Cf: \gen \to \C$ be a scale invariant functor then either
+We now get two interesting distinct behavior of scale invariant clustering functors. First we consider the case of $\gen$.
+
+\begin{proposition}{}{}
+    Let $\Cf: \gen \to \C$ be a scale invariant clustering functor then either
     \begin{enumerate}
         \item $\Cf(X,d)$ is trivial for all $(X,d) \in \ob(\gen)$
         \item $\Cf(X,d)$ is discrete for all $(X,d) \in \ob(\gen)$
@@ -317,17 +319,31 @@ We will quickly talk about scale invariance inspired by Kleinberg's Theorem \ref
 \end{proposition}
 
 \begin{proof}
+    \todo
+
     $\Delta_2(\delta) \to X \to \Delta_2(\delta')$
 \end{proof}
 
+In case of $\inj$ we have more interesting behavior.
+
 \begin{proposition}{Scale Invariance in $\inj$}{}
-    Let $\Cf: \inj \to \C$ be a scale invariant functor then...
+    Let $\Cf: \inj \to \C$ be a scale invariant functor then there exists a $k \in \N \cup \{0, \infty\}$ such that for all $(X,d) \in \ob(\inj)$:
+
+    \begin{itemize}
+        \item If $|X| > k$ then $\mathfrak{C}(X,d)$ is trivial.
+        \item If $|X| \le k$ then $\mathfrak{C}(X,d)$ is discrete.
+    \end{itemize}
+
+    Notice that if $k \in \{0, \infty\}$ then we recover the behavior from $\gen$.
 \end{proposition}
 
 \begin{proof}
+    \todo
+
     $\Delta_{|X|}(\delta) \to X \to \Delta_{|X|}(\delta')$
 \end{proof}
 
+It is immediately clear that such clustering functors can't be surjective.
 
 % % new layout above ^^^
 % \chapter*{Old classical clustering functors}
