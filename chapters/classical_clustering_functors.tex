@@ -220,12 +220,14 @@ The following results show that what extend splitting is a characterizing proper
 
 \begin{proof}[Proof of Proposition \ref{prop:splitting_vietoris_inj}]
     \todo[]
+    \source[proof from paper]
 \end{proof}
 
 \begin{proof}[Proof of Proposition \ref{prop:splitting_vietoris_gen}]
     Clearly $\Rf_\delta$ is splitting at $\delta$. In view of the previous proposition it remains to show that $\Cf \refines \Rf_\delta$.
 
     \todo[]
+    \source[proof from paper]
 \end{proof}
 
 \subsection[Vietoris-Rips Uniqueness]{Vietoris-Rips Uniqueness \newresult[]}
@@ -319,15 +321,28 @@ We now get two interesting distinct behavior of scale invariant clustering funct
 \end{proposition}
 
 \begin{proof}
-    \todo
+    \source[]
+    By scale invariance we either have that $\Cf(\Delta_2(\delta))$ is trivial or discrete for all $\delta > 0$.
 
-    $\Delta_2(\delta) \to X \to \Delta_2(\delta')$
+    Let $|X| \ge 2$ otherwise the statement is clear. Then for any $x \neq x'$ in $X$ we can find $\delta, \delta' > 0$ and morphisms in $\gen$
+    $$
+    \Delta_2(\delta) \overset{f}\longrightarrow X \overset{g}\longrightarrow \Delta_2(\delta')
+    $$
+    such that $\image(f) = \{x, x'\}$. By functoriality we get
+    $$
+    \Cf(\Delta_2(\delta)) \refines f_*\Cf(X,d) \refines \Cf(\Delta_2(\delta')).
+    $$
+    And since $x \neq x'$ was arbitrary in $X$ we get that if
+    \begin{itemize}
+        \item $\Cf(\Delta_2(\delta))$ is trivial then $\Cf(X)$ is trivial.
+        \item $\Cf(\Delta_2(\delta))$ is discrete then $\Cf(X)$ is discrete.
+    \end{itemize}
 \end{proof}
 
 In case of $\inj$ we have more interesting behavior.
 
 \begin{proposition}{Scale Invariance in $\inj$}{}
-    Let $\Cf: \inj \to \C$ be a scale invariant functor then there exists a $k \in \N \cup \{0, \infty\}$ such that for all $(X,d) \in \ob(\inj)$:
+    Let $\Cf: \inj \to \C$ be a scale invariant functor then there exists a $k \in \N \sqcup \{0, \infty\}$ such that for all $(X,d) \in \ob(\inj)$:
 
     \begin{itemize}
         \item If $|X| > k$ then $\mathfrak{C}(X,d)$ is trivial.
@@ -338,12 +353,27 @@ In case of $\inj$ we have more interesting behavior.
 \end{proposition}
 
 \begin{proof}
-    \todo
+    \source[]
+    Notice that for $n \le n'$ there exists a morphism in $\inj$
+    $$
+    \Delta_n(\delta) \longrightarrow \Delta_{n'}(\delta)
+    $$
+    therefore we get that
+    $$
+    \Cf(\Delta_n(\delta)) \refines \Cf(\Delta_{n'}(\delta)).
+    $$
+    On the other hand any permutation of $\Delta_n(\delta)$ is also a morphism in $\inj$, this gives that $\Cf(\Delta_n(\delta))$ is either discrete or trivial.
 
-    $\Delta_{|X|}(\delta) \to X \to \Delta_{|X|}(\delta')$
+    So together we get that there exists some $k \in \N \sqcup \{0, \infty\}$ such that
+    \begin{itemize}
+        \item $\forall n > k: \Cf(\Delta_n(\delta))$ is trivial.
+        \item $\forall n \le k: \Cf(\Delta_n(\delta))$ is discrete.
+    \end{itemize}
+    By scale invariance this does not depend on $\delta$. We can now repeat the same argument as in the previous proposition to get the statement\footnote{By using $n = |X|$ we can find morphisms $f,g$ in $\inj$.}.
+
 \end{proof}
 
-It is immediately clear that such clustering functors can't be surjective.
+It is immediately clear that scale invariant clustering functors can not be surjective.
 
 % % new layout above ^^^
 % \chapter*{Old classical clustering functors}

@@ -1,14 +1,31 @@
 \chapter{Preliminaries and Notations}
 
+
+\todo[better formulation]
+This chapter serves as a concise place to find definitions which will be used throughout. Feel free to skip it and refer back to it when needed.
+
 \section{Equivalence Relations}
 
-\begin{definition}{equivalence relation}{}
-    \todo
+\begin{definition}{}{}
+    \todo[should i keep this?]
+
+    Let $X$ be a set, a \emph{relation} on $X$ is a subset $R \subseteq X \times X$. And we write $x \sim_R y$ if $(x,y) \in R$.
+    A relation with the following properties is called an \emph{equivalence relation}
+    \begin{enumerate}
+        \item \emph{Reflexivity}: $\forall x \in X: x \sim_R x$
+        \item \emph{Symmetry}: $\forall x,y \in X: x \sim_R y \implies y \sim_R x$
+        \item \emph{Transitivity}: $\forall x,y,z \in X: x \sim_R y \text{ and } y \sim_R z \implies x \sim_R z$
+    \end{enumerate}
+    We will often omit the explicit reference to the set $R$ and simply write $\sim$ or use other symbols.
 \end{definition}
 
-\begin{definition}{generated relation / transitive closure}{}
-    \todo
+\begin{definition}{}{}
+    Given a relation $R$ on a set $X$ the \emph{transitive closure} of $X$ is the minimal (with respect to $\subseteq$) $R^+ \subset X \times X$ such that $R \subset R^+$ and $R^+$ is transitive.
 \end{definition}
+
+In particular if $R$ is reflexive and symmetric then $R^+$ is an equivalence relation. We will use this fact as often time we will simply define a symmetric and reflexive relation then taking its transitive closure.
+
+\todo[characterization with paths]
 
 \section{Metric Spaces}
 As a quick reminder:
@@ -36,7 +53,7 @@ and the \emph{diameter}
 \begin{equation*}
 \diam(X,d) := \diam(X) := \sup\{d(x,y): x,y \in X\}
 \end{equation*}
-We use the convention that $\inf \emptyset = \infty$. 
+We use the convention that $\inf \emptyset = \infty$.
 \end{definition}
 
 If $X$ is finite non-empty we have $\diam(X) \geq \sep(X) > 0$ provided.
@@ -69,5 +86,5 @@ Minimal Sub-Dominant Ultrametric
 
 
 \begin{definition}{Simplex $\Delta_k(\delta)$}{}
-    \todo[move this to a better placez]
+    \todo[move this to a better place]
 \end{definition}

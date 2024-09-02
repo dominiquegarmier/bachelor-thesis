@@ -1,9 +1,24 @@
 \chapter{Hierarchical Clustering Functors}
-\section{Scaling}
+
+\begin{definition}{Surjective}{}
+    A hierarchical clustering functor $\Hf$ is said to be \emph{surjective} if for every possible output of a hierarchical clustering functor \ie\ $(X, \theta_X) \in \ob(\H)$ there exists a metric on $X$ such that $\Hf(X,d) = (X, \theta_X)$.
+\end{definition}
+
+Notice given some surjective hierarchical clustering functor $\Hf$ then any $t \in \R_{\geq0}$ induces a surjective classical clustering functor $\Cf_t(X,d) := \Hf(X, d; t)$.
+
+
+\todo[I need to find out if this is equivalent]
+One could define an alternative notion of surjectivity by asking that the induced functor $\Cf_t$ is surjective for all $t \in \R_{\geq0}$.
 
 \begin{definition}{Scaling}{}
-We say that a hierarchical clustering functor $\Hf: \M \to \H$ is scaling if ...
+A hierarchical clustering functor $\Hf: \H \to \H$ is \emph{scaling} if for all $(X,d) \in \ob(\M)$ we have
+$$
+\Hf(X, \lambda d) = \sigma_\lambda \Hf(X,d)
+$$
+\todo[define notation earlier]
 \end{definition}
+This is an alternative to scale invariance.
+
 
 \begin{definition}{Scaling Extension}{scale_invar_ext}
 Let $\Cf: \M \to \C$ a classical clustering functor then we can \emph{extend} it to an almost unique scale invariant hierarchical functor
@@ -12,12 +27,6 @@ $$
 $$
 \end{definition}
 
-\section{Surjectivity}
-\todo[some notes...]
-Surjectivity in (scaling) hierarchical clustering functors might be stronger, we need to check this.
-If it turns out to be stronger, I might be able to prove the next theorem in more generality.
-
-\section{Kleinberg's Conditions}
 
 \begin{myremark}{Modified Kleinberg Conditions}{}
     \cite[Comment~7.3.1]{Carlsson2010}
@@ -35,7 +44,7 @@ If it turns out to be stronger, I might be able to prove the next theorem in mor
     Let $\Hf: \gen \to \H$ be a hierarchical clustering functor fulfilling the modified Kleinberg conditions then
 
     $$
-    \Hf = s_\delta \Rf
+    \Hf = \sigma_\delta \Rf
     $$
 
     \todo[define $s_\delta$]
