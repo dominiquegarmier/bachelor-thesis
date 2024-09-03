@@ -55,7 +55,7 @@ Let $\Omega$ be a family of finite non-empty metric spaces. Such $\Omega$'s can 
 
 
 
-\begin{definition}{Representable Clustering Functors \cite{Carlsson2010}}{}
+\begin{definition}{Representable Clustering Functors \cite{Carlsson2010}}{construction_of_representable_clustering_functors}
 We define the clustering functor \emph{represented by $\Omega$}
 $$
 \Cf^\Omega \M \to \C
@@ -77,22 +77,39 @@ Notice that for $(X,d) \in \Omega$ we have $\Cf^\Omega(X,d) = (X, \{X\})$.
 This leads to an alternative characterization of $\Cf^\Omega$.
 
 \begin{proposition}{}{}
-For any clustering functor $\Cf$ such that $\Cf(X)$ is trivial for all $X \in \Omega$ we have
+For any clustering functor $\Cf$ such that $\Cf(X,d)$ is trivial for all $(X,d) \in \Omega$ we have
 $$
 \Cf^\Omega \refines \Cf
 $$
 \end{proposition}
 
 \begin{proof}
-\newresult[]
+Let $(X,d) \in \ob(\M)$ and $(X,P) = \Cf^\Omega(X,d)$ and $(X,Q) = \Cf(X,d)$. We want to show that $P \refines Q$.
+
+Let $x,y \in X$ such that the generating condition of $P$ holds. \Ie\ there exists $\omega \in \Omega$ and $\phi \in \mor_\M(\omega, (X,d))$ such that $\{x,y\} \subset \image(\phi)$.
+
+But then since $\Cf(\omega)$ is trivial by assumption and by functoriality $\Cf(\omega) \refines f_*(\Cf(X,d))$ we get that $x \sim_Q y$. Taking the transitive closure gives the statement.
+
+
+\newresult[check this]
 \end{proof}
+
+Importantly $\Cf^\Omega$ is finest clustering functor such that $\Cf^\Omega(X,d)$ is trivial for all $(X,d) \in \Omega$. The existence of this minimal clustering functor follows by our initial construction \ref{def:construction_of_representable_clustering_functors}.
 
 \begin{theorem}{\cite{Carlsson2010}}{}
 Let $\M \in \{\inj, \gen\}$. A clustering functor $\Cf: \M \to \C$ is representable if and only if it is excessive.
 \end{theorem}
 
 \begin{proof}
-\todo
+First we show that $\Cf^\Omega$ is excessive. So let $(X,d) \in \ob(\M)$ and $(X,P) = \Cf^\Omega(X,d)$ with $X_\alpha \in P$.
+
+Let $x,y \in X_\alpha$ such that there exists $\omega \in \Omega$ and $\phi \in \mor_\M(\omega, (X,d))$ such that $\{x,y\} \subset \image(\phi)$. But since the injection $\iota: X_\alpha \to X$ is injective and distance non-increasing we get that $\iota \circ \phi \in \mor_\M(\omega, (X_\alpha, d|_{X_\alpha \times X_\alpha}))$. By taking the transitive closure we conclude that $\Cf^\Omega(X_\alpha, d|_{X_\alpha \times X_\alpha}) = (X, \{X_\alpha\})$ and $\Cf^\Omega$ is excessive.
+
+It remains to show that any excessive clustering functor is representable. For this consider
+$$
+\Omega := \{(X_\alpha, d|_{X_\alpha \times X_\alpha}): (X, \{X_\alpha\}_\alpha) = \Cf(X,d) \text{ for } (X,d) \in \ob(\M)\}.
+$$
+\todo[finish this]
 \end{proof}
 
 % \subsection{Factorization Theorem}
@@ -160,31 +177,34 @@ A surprising fact about surjective clustering functors:
 \begin{proof}
     Let $(X,d) \in \ob(\M)$ since $\Cf$ is surjective there exists metrics $d_0, d_1$ on $X$ such that $\Cf(X,d_0)$ is trivial and $\Cf(X,d_1)$ is discrete.
 
-    \paragraph*{Trivial Part} We take
-    $$
-    \lambda_0 := \frac{\sep(X,d_0)}{\diam(X,d)}.
-    $$ 
-    Notice that for any $\lambda \le \lambda_0$ we have that $\diam(X,\lambda \cdot d) \le \sep(X,d_0)$.
-    Because of this the function
-    \begin{align*}
-        f: (X, d_0) &\longrightarrow (X, \lambda \cdot d)\\
-        x &\longmapsto x
-    \end{align*}
-    is distance non-increasing (and injective) \ie\ $f \in \mor_\M((X,d_0), (X,\lambda \cdot d))$. Moreover, since $f$ is the identity on the set $X$ we have $f_*(P) = P$ for any partition $P$ of $X$.
+    \begin{enumerate}
+        \item We take
+        $$
+        \lambda_0 := \frac{\sep(X,d_0)}{\diam(X,d)}.
+        $$ 
+        Notice that for any $\lambda \le \lambda_0$ we have that $\diam(X,\lambda \cdot d) \le \sep(X,d_0)$.
+        Because of this the function
+        \begin{align*}
+            f: (X, d_0) &\longrightarrow (X, \lambda \cdot d)\\
+            x &\longmapsto x
+        \end{align*}
+        is distance non-increasing (and injective) \ie\ $f \in \mor_\M((X,d_0), (X,\lambda \cdot d))$. Moreover, since $f$ is the identity on the set $X$ we have $f_*(P) = P$ for any partition $P$ of $X$.
 
-    By functoriality of $\Cf$ we now have that $\Cf(X,d_0) \refines f_*(\Cf(X,\lambda \cdot d)) = \Cf(X,\lambda \cdot d)$. Therefore, $\Cf(X,\lambda \cdot d)$ must be trivial.
+        By functoriality of $\Cf$ we now have that $\Cf(X,d_0) \refines f_*(\Cf(X,\lambda \cdot d)) = \Cf(X,\lambda \cdot d)$. Therefore, $\Cf(X,\lambda \cdot d)$ must be trivial.
 
-    \paragraph*{Discrete Part} Repeat an analogous argument using
-    $$
-    \lambda_1 := \frac{\diam(X,d_1)}{\sep(X,d)}.
-    $$
-    But this time consider for $\lambda \ge \lambda_1$ the function
-    \begin{align*}
-        f: (X, \lambda \cdot d) &\longrightarrow (X, d_1)\\
-        x &\longmapsto x.
-    \end{align*}
-    We conclude by showing $\Cf(X,\lambda \cdot d) \refines f_*(\Cf(X,d_1)) = \Cf(X,d_1)$. 
-    \newresult[check this]
+        \item Repeat an analogous argument using
+        $$
+        \lambda_1 := \frac{\diam(X,d_1)}{\sep(X,d)}.
+        $$
+        But this time consider for $\lambda \ge \lambda_1$ the function
+        \begin{align*}
+            f: (X, \lambda \cdot d) &\longrightarrow (X, d_1)\\
+            x &\longmapsto x.
+        \end{align*}
+        We conclude by showing $\Cf(X,\lambda \cdot d) \refines f_*(\Cf(X,d_1)) = \Cf(X,d_1)$. 
+        
+        \newresult[check this]
+    \end{enumerate}
 \end{proof}
 
 \section{Splitting}
