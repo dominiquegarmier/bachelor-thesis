@@ -127,7 +127,7 @@ As before, the composition is given by composition of maps and the identity is t
 \begin{definition}{}{output_hierarchical_clustering_functors}
 Similar to before we define the category $\H$ of \emph{outputs of hierarchical clustering functors}, given by
 \begin{equation*}
-    \ob(\H) := \{(X, \theta_X): X \text{ a finite set and } \theta_X: \R_{\geq0} \to \P(X) \text{a dendogram}\}
+    \ob(\H) := \{(X, \theta_X): X \text{ a finite set and } \theta_X: \R_{\geq0} \to \P(X) \ \text{a dendogram}\}
 \end{equation*}
 and for all $(X, \theta_X), (Y, \theta_Y) \in \ob(\H)$ we have the morphisms
 \begin{equation*}
@@ -142,6 +142,16 @@ $$
 \forall x,y \in X: x \sim_P y \implies f(x) \sim_Q f(y).
 $$
 
+\begin{definition}{}{shift_functor}
+\todo[check if this is correct; take reciprocal?]
+
+We define the \emph{shift} functor $\sigma_\lambda: \H \to \H$ for some $\lambda > 0$. Given $(X, \theta_X) \in \ob(\H)$ we have
+$$
+\sigma_\lambda(X, \theta_X(r)) := (X, \theta_X(r \cdot \lambda)) \quad \forall r \in \R_{\geq0}.
+$$
+By checking the condition on morphisms in \ref{def:output_hierarchical_clustering_functors} we see that this induces a functor.
+\end{definition}
+
 \section{Clustering Functors}
 \begin{definition}{Clustering Functor}{}
 Let $\M \in \{\iso, \inj, \gen\}$ and $\A \in \{\C, \H\}$. An $\M$-functorial \emph{clustering functor} (or $\M$ clustering functor) is a functor from $\M$ to $\A$
@@ -153,11 +163,9 @@ such that $\Cf$ factorizes the forgetful functors (see \ref{not:factorizing_forg
 
 For a hierarchical clustering functor $\Cf$ we will use the simplified notation:
 $$
-\Cf(X,d;r) := \theta_X(r)
+\Cf(X,d;r) := (X,\theta_X(r)).
 $$
-where we have $\theta_X := \Cf(X,d)$.
-\todo[better notation]
-
+More over for any $r \in \R_{\geq0}$ a hierarchical clustering functor $\Cf$ induces a classical clustering functor $\Cf(\ \cdot \ ;r)$.
 
 \begin{myremark}{}{induced_functor_by_inclusion}
 Recall the inclusions \eqref{eq:inclusions_of_finite_metric_space_categories} and their induced functors.
