@@ -144,25 +144,29 @@ $$
 \begin{myremark}{}{vietoris_rips_is_surjective}
     The Vietoris-Rips functor $\Rf_\delta$ is surjective.
 \end{myremark}
+For this consider any finite set $X$ and partition $P$ of $X$. We can now define the metric $d$ on $X$ by
+\begin{equation*}
+    d(x,y) := \begin{cases}
+        0 & \text{if } x = y\\
+        \delta & x \neq y \text{ and } x \sim_P y\\
+        2\delta & \text{otherwise}
+    \end{cases}.
+\end{equation*}
+It is easy to check that $\Rf_\delta(X,d) = (X,P)$.
+The following property of surjective clustering functors hints that surjectivity and the Vietoris-Rips functor are closely related.
 
-\todo[this is outdated]
-The important property of the Vietoris rips functor that we used in the previous factorization theorem was that it is surjective. We can actually express this in a more general way:
-
-\begin{proposition}{}{}
-    Let $\mathfrak{S}: \M \to \C$ be a surjective functor. Then for any clustering functor $\Cf: \M \to \C$ there exists a functor $\Tf_\Cf: \M \to \M$ that changes the metric such that
-
-    \begin{equation*}
-        \Cf = \mathfrak{S} \circ \Tf_\Cf
-    \end{equation*}
-
-    \newresult \todo[remove this?]
-\end{proposition}
-
-\begin{proof}
-    \newresult[]
-\end{proof}
-
-A surprising fact about surjective clustering functors:
+% \todo[this is outdated]
+% The important property of the Vietoris rips functor that we used in the previous factorization theorem was that it is surjective. We can actually express this in a more general way:
+% \begin{proposition}{}{}
+%     Let $\mathfrak{S}: \M \to \C$ be a surjective functor. Then for any clustering functor $\Cf: \M \to \C$ there exists a functor $\Tf_\Cf: \M \to \M$ that changes the metric such that
+%     \begin{equation*}
+%         \Cf = \mathfrak{S} \circ \Tf_\Cf
+%     \end{equation*}
+%     \newresult \todo[remove this?]
+% \end{proposition}
+% \begin{proof]
+%     \newresult[]
+% \end{proof}
 
 \begin{lemma}{}{surjective_implies_eventually_discrete}
     Let $\Cf: \M \to \C$ be a surjective clustering functor and $(X,d)$ a finite metric space. Then there exists $\lambda_0,\lambda_1 > 0$ such that
@@ -171,7 +175,7 @@ A surprising fact about surjective clustering functors:
         \item $\Cf(X,\lambda \cdot d)$ is discrete for all $\lambda \ge \lambda_1$
     \end{enumerate}
 
-    \newresult
+    \newresult[I need to check this again]
 \end{lemma}
 
 \begin{proof}
@@ -240,26 +244,40 @@ The following results show that what extend splitting is a characterizing proper
 \end{proposition}
 
 \begin{proof}[Proof of Proposition \ref{prop:splitting_vietoris_inj}]
-    \todo[]
+    Let $(X,d) \in \ob(\inj)$ with $(X,P) = \Cf(X,d)$ and $x \neq y$ in $X$ with $d(x,y) \leq \delta$.
+    Then there is a map $f \in \mor_\inj(\Delta_2(\delta), (X,d))$ with $\{x,y\} = \image(f)$.
+    Since $\Cf(\Delta_2(\delta))$ is trivial we have by functoriality that $x \sim_P y$
+
+    Taking the transitive closure we get that $\Rf_\delta(X,d) \refines P$ and the statement follows by generality of $(X,d)$.
     \source[proof from paper]
 \end{proof}
 
 \begin{proof}[Proof of Proposition \ref{prop:splitting_vietoris_gen}]
-    Clearly $\Rf_\delta$ is splitting at $\delta$. In view of the previous proposition it remains to show that $\Cf \refines \Rf_\delta$.
+    \begin{description}
+        \item[$\impliedby$:] Clearly $\Rf_\delta$ is splitting at $\delta$.
+        \item[$\implies$:] Let $\Cf$ be splitting at $\delta$. In view of the previous proposition it remains to show that $\Cf \refines \Rf_\delta$.
+        
+        Let $(X,d) \in \ob(\gen)$ with $(X,P) = \Cf(X,d)$ and $(X,R) = \Rf_\delta(X,d)$. We will show that $P \refines R$, more precisely we show that for all $x,y \in X$ we have $x \not\sim_R y \implies x \not\sim_P y$. For this we define
+        $$
+        \delta_0 := \min\{d(x,y): x,y \in X \text{ and } x \not\sim_R y\}
+        $$
+        Let now $x,y \in X$ such that $x \not\sim_R y$.
+        Then we can find a map $f \in \mor_\gen((X,d), \Delta_2(\delta_0))$ such that $f(x) \neq f(y)$\footnote{One particular way to construct such an $f$ would be to send every $x' \sim_R x$ to one point in $\Delta_2(\delta_0)$ and every $x' \not\sim_R x$ to the other point. By the way we defined $\delta_0$ this map would in fact be distance non-increasing.}.
 
-    \todo[]
+        Since $\delta_0 > \delta$ and $\Cf$ is splitting we get $f(x) \not\sim f(y)$ so by functoriality we have $x \not\sim_P y$.
+    \end{description}
     \source[proof from paper]
 \end{proof}
 
-\subsection[Vietoris-Rips Uniqueness]{Vietoris-Rips Uniqueness \newresult[]}
+\section[Vietoris-Rips Uniqueness]{Vietoris-Rips Uniqueness \newresult[]}
 
 As previously mentioned the Vietoris-Rips functor is surjective.
 In this section we present the new result that under certain technical assumptions the Vietoris-Rips is the unique surjective $\gen$ clustering functor.
 
-We will later discuss the implications this has on \textsc{Kleinberg}'s theorem \ref{thm:kleinberg}. 
+We will later \todo[proper ref] \ref{thm:kleinbergs_uniqueness_conditions} discuss the implications this has on \textsc{Kleinberg}'s theorem \ref{thm:kleinberg}. 
 
 \begin{definition}{}{}
-    A clustering functor $\Cf: \M \to \C$ is \emph{left-regular} if for all $(X,d) \in \ob(\M)$ there exists some $\lambda \in (0, 1)$ such that
+    A clustering functor $\Cf: \M \to \C$ is \emph{regular} if for all $(X,d) \in \ob(\M)$ there exists some $\lambda \in (0, 1)$ such that
     $$
     \Cf(X,d) = \Cf(X, \lambda \cdot d).
     $$
@@ -267,25 +285,25 @@ We will later discuss the implications this has on \textsc{Kleinberg}'s theorem 
     \newresult[new def, make sure this makes sense]
 \end{definition}
 
-Notice that $\Rf_\delta$ is left-regular. In fact, we could have also defined the notion of \emph{right-regular}. For this see the previous remark \ref{rem:left_regularity_of_dendograms}.\par
+Notice that $\Rf_\delta$ is regular. The reason we ask for $\lambda \in (0,1)$ and not $\lambda \in (1, \infty)$ is that this corresponds to the regularity condition \ref{rem:left_regularity_of_dendograms} for dendograms.\par
 
 \begin{myremark}{}{left_regularity_classical_clusteirng_functors}
-    \medskip It might seem overly restrictive to ask for left-regularity.
+    \medskip It might seem overly restrictive to ask for regularity.
     However, if we take some $(X, d) \in \ob(\M)$ and consider the function 
     $$
     \lambda \mapsto \Cf(X, \lambda \cdot d),
     $$
     which will be piecewise constant and takes only finitely many values.
-    Left-regularity ensures that this function is constant on $(a, b]$ for some $a < b$.
+    Regularity ensures that this function is constant on $(a, b]$ for some $a < b$.
 \end{myremark}
 
-Assuming left-regularity and building on lemma \ref{lem:surjective_implies_eventually_discrete} we can now finally show that the Vietoris-Rips functor is the only surjective $\gen$ clustering functor.
+Assuming regularity and building on lemma \ref{lem:surjective_implies_eventually_discrete} we can now finally show that the Vietoris-Rips functor is the only surjective regular $\gen$ clustering functor.
 
 \begin{theorem}{}{}
-    Let $\Cf: \gen \to \C$ be left-regular then the following are equivalent
+    Let $\Cf: \gen \to \C$ then the following are equivalent
 
     \begin{itemize}
-        \item $\Cf$ is surjective
+        \item $\Cf$ is surjective and regular
         \item $\Cf = \Rf_{\delta}$ for some $\delta > 0$
     \end{itemize}
     \newresult[make sure this makes sense]
@@ -315,9 +333,9 @@ Assuming left-regularity and building on lemma \ref{lem:surjective_implies_event
 \end{proof}
 
 \begin{proof}[Proof of Theorem]
-    We have already shown that $\Rf_\delta$ is surjective \ref{rem:vietoris_rips_is_surjective}.
+    For the first implication recall that we have already discussed that $\Rf_\delta$ is surjective (see: \ref{rem:vietoris_rips_is_surjective}) and also regular.
 
-    Assuming that $\Cf$ is left-regular and surjective, combining lemma \ref{lem:surjective_implies_splitting} and proposition \ref{prop:splitting_vietoris_gen} we have that $\Cf = \Rf_{\delta}$.
+    Assuming that $\Cf$ is left-regular and surjective, from the above lemma we get that $\Cf$ is splitting at some $\delta > 0$ so by \ref{prop:splitting_vietoris_gen} we have that $\Cf = \Rf_{\delta}$.
 \end{proof}
 
 \section{Scale Invariant Clustering Functors}
