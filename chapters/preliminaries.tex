@@ -58,33 +58,12 @@ We use the convention that $\inf \emptyset = \infty$.
 
 If $X$ is finite non-empty we have $\diam(X) \geq \sep(X) > 0$ provided.
 
-\subsection{Constructing Metrics}
-Later on we will have to construct metrics with very particular properties. The easiest way to do this is to start with symmetric positive (definite) functions. We present two ways such a function can induce a metric.
-
-\begin{definition}{}{shortest_dist_metric}
-We say that a symmetric positive definite function
-$$
-W: X \times X \to [0, +\infty]
-$$
-\emph{represents a connected graph} or is \emph{connected} if for any $x,y \in X$ there exists a sequence $x = x_0, \dots, x_n = y$ such that $W(x_{i-1}, x_{i}) < \infty$ for all $i = 1, \dots, n$.
-\end{definition}
-
-\begin{definition}{}{}
-Given a symmetric positive definite function $W$ representing a connected graph we can define the shortest distance metric
-\begin{equation*}
-    d^W(x,y) := \inf\left\{ \sum_{k = 1}^N W(x_{k-1}, x_k): N \in \N \text{ and } x = x_0, \dots, x_N = y\right\}
-\end{equation*}
-\end{definition}
-
-
-
-\begin{defprop}{}{}
-\source[we only present this here since its in the paper]
-
-Minimal Sub-Dominant Ultrametric
-\end{defprop}
-
-
 \begin{definition}{Simplex $\Delta_k(\delta)$}{}
-    \todo[move this to a better place]
+    Let $k \in \N$ and $\delta > 0$. Then we define the \emph{$k$-simplex} with size $\delta$ as the metric space $(X,d)$ where $X = \{1, \dots, k\}$ and the metric
+    $$
+    d(i,j) := \begin{cases}
+        0 & \text{if } i = j\\
+        \delta & \text{otherwise}
+    \end{cases}
+    $$
 \end{definition}

@@ -269,6 +269,26 @@ The following results show that what extend splitting is a characterizing proper
     \source[proof from paper]
 \end{proof}
 
+\begin{example}{}{}
+In some sense the two previous propositions are the best we can get. For $\delta>0$ consider the clustering functor $\bar\Rf_\delta: \inj \to \C$ defined by
+$$
+\bar\Rf_\delta(X,d) := \Rf_{\frac{\delta|X|}{2}}(X,d).
+$$
+Moreover, $\bar\Rf_\delta$ is splitting at $\delta$.
+
+\medskip
+To see that $\bar\Rf_\delta$ is indeed a clustering functor consider metric spaces $(X,d), (Y,d') \in \ob(\inj)$ and a morphism $f \in \mor_\inj((X,d), (Y,d'))$. By injectivity of $f$ we immediately get that $|X| \le |Y|$. And we have
+$$
+\bar\Rf_\delta(X,d) = \Rf_{\frac{\delta|X|}{2}}(X,d) \overset{(1)}\refines \Rf_{\frac{\delta|Y|}{2}}(X,d) \overset{(2)}\refines f_*\Rf_{\frac{\delta|Y|}{2}}(Y,d') = f_*\bar\Rf_\delta(Y,d').
+$$
+Where $(1)$ follows from the fact that $|X| \le |Y|$ and $(2)$ follows from the fact that $\Rf_\delta'$ is $\inj$ functorial for any $\delta' > 0$. Therefore, $\bar\Rf_\delta$ is an $\inj$ clustering functor.
+
+\medskip
+Using a similar argument to the one we used to show that $\Rf_\delta'$ is surjective we can also show that $\bar\Rf_\delta$ is surjective.
+
+\newresult[this is a new construction, check it]
+\end{example}
+
 \section[Vietoris-Rips Uniqueness]{Vietoris-Rips Uniqueness \newresult[]}
 
 As previously mentioned the Vietoris-Rips functor is surjective.
