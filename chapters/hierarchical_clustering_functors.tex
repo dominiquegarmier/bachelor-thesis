@@ -1,7 +1,20 @@
 \chapter{Hierarchical Clustering Functors}
 
-\begin{definition}{Surjective}{}
-    A hierarchical clustering functor $\Hf$ is said to be \emph{surjective} if for every possible output of a hierarchical clustering functor \ie\ $(X, \theta_X) \in \ob(\H)$ there exists a metric on $X$ such that $\Hf(X,d) = (X, \theta_X)$.
+\begin{defprop}{Vietoris-Rips functor}{hierarchical_vr}
+For $\M \in \{\gen,\inj,\iso\}$ we can define the Vietoris-Rips hierarchical clustering
+$$
+\Rf: \M \to \H
+$$
+where for $(X,d) \in \ob(\M)$ and $r \in \R_{\geq0}$ we have
+$$
+\Rf(X,d; r) := \Rf_r(X,d).
+$$
+Notice that since $\Rf_\delta \refines \Rf_{\delta'}$ for $\delta \leq \delta'$, this is indeed a hierarchical functor.
+\end{defprop}
+
+
+\begin{definition}{}{}
+    A hierarchical clustering functor $\Hf$ is said to be \emph{surjective} if for every possible output of a hierarchical clustering functor \ie\ $(X, \theta_X) \in \ob(\H)$ there exists a metric $d$ on $X$ such that $\Hf(X,d) = (X, \theta_X)$.
 \end{definition}
 
 Notice given some surjective hierarchical clustering functor $\Hf$ then any $t \in \R_{\geq0}$ induces a surjective classical clustering functor $\Cf_t(X,d) := \Hf(X, d; t)$.
@@ -10,35 +23,46 @@ Notice given some surjective hierarchical clustering functor $\Hf$ then any $t \
 \todo[I need to find out if this is equivalent]
 One could define an alternative notion of surjectivity by asking that the induced functor $\Cf_t$ is surjective for all $t \in \R_{\geq0}$.
 
-\begin{definition}{Scaling}{}
-A hierarchical clustering functor $\Hf: \H \to \H$ is \emph{scaling} if for all $(X,d) \in \ob(\M)$ we have
+A similar concept to scale invariance is given by the following.
+
+\begin{definition}{}{}
+A hierarchical clustering functor $\Hf: \M \to \H$ is called \emph{scaling} if for all $(X,d) \in \ob(\M)$ and $\lambda > 0$ we have
 $$
 \Hf(X, \lambda d) = \sigma_\lambda \Hf(X,d)
 $$
-\todo[define notation earlier]
-\end{definition}
-This is an alternative to scale invariance.
-
-
-\begin{definition}{Scaling Extension}{scale_invar_ext}
-Let $\Cf: \M \to \C$ a classical clustering functor then we can \emph{extend} it to an almost unique scale invariant hierarchical functor
-$$
-\Hf_\Cf: \M \to \H
-$$
 \end{definition}
 
+\begin{proposition}{}{}
+The Vietoris-Rips functor $\Rf: \M \to \H$ is surjective and scaling.
+\end{proposition}
 
-\begin{myremark}{Modified Kleinberg Conditions}{}
-    \cite[Comment~7.3.1]{Carlsson2010}
 
-    \todo[write this up]
 
-    \begin{itemize}
-        \item consistency becomes $\gen$ functoriality
-        \item richness becomes surjectivity
-        \item scale invariance becomes scaling
-    \end{itemize}
-\end{myremark}
+Extending the Vietoris-Rips functor to a hierarchical clustering functor can be done more generally for any regular classical clustering functor.
+\begin{definition}{}{scaling_ext}
+Let $\Cf: \M \to \C$ be a classical regular clustering functor. Then there exists a unique scaling hierarchical clustering functor $\Hf_\Cf: \M \to \H$ such that we have:
+$$
+\Hf_\Cf(X,d; 1) = \Cf(X,d) \quad \forall (X,d) \in \ob(\M)
+$$
+\end{definition}
+
+\section{Kleinberg's Conditions}
+
+\textsc{Carlsson} and \textsc{Memoli} mention that \textsc{Kleinberg}'s Conditions of impossibility \ref{thm:kleinberg} can be rephrased in the context of hierarchical clustering functors 
+\cite[Comment~7.3.1]{Carlsson2010}.
+
+\begin{definition}{Modified Kleinberg Conditions}{}
+    We say that a hierarchical clustering $\Hf: \M \to \H$ functor fulfills the \emph{modified Kleinberg conditions} if all the following holds:
+    \begin{enumerate}
+        \item $\Hf$ is $\gen$ functorial.
+        \item $\Hf$ is surjective
+        \item $\Hf$ is scaling
+    \end{enumerate}
+\end{definition}
+
+As we have seen and as remarked by \cite{Carlsson2010}\source[exact citation] $\Rf$ fulfills the modified Kleinberg conditions.
+
+Using the uniqueness result of theorem \ref{thm:uniqueness_of_surjective_regular_functors} we can now show that the modified Kleinberg conditions uniquely characterize the Vietoris-Rips functor.
 
 \begin{theorem}{Uniqueness of Kleinberg's Conditions}{kleinbergs_uniqueness_conditions}
     Let $\Hf: \gen \to \H$ be a hierarchical clustering functor fulfilling the modified Kleinberg conditions then
@@ -52,3 +76,5 @@ $$
 \end{theorem}
 
 \todo[it might be possible to show the above theorem even for $\inj$]
+
+
