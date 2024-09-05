@@ -55,9 +55,7 @@ An important aspect of clustering methods is that they remain invariant under ce
 The idea is that if a clustering algorithm is invariant under certain transformations (which we can think of as noise) it captures information of the remaining features (which are hopefully not noise).
 
 \begin{example}{}{}
-Consider a finite set $S \subset \R^2$ representing people at a gathering.\\
-
-When searching for a clustering algorithm to detect friendship groups, it would make sense to only consider algorithms with the following invariances:
+Consider a finite set $S \subset \R^2$ representing people at a gathering. When searching for a clustering algorithm to detect friendship groups, it would make sense to only consider algorithms with the following invariances:
 \begin{itemize}
     \item Translation Invariance
     \item Rotation Invariance
@@ -67,13 +65,12 @@ The intuition being that such attributes are merely artifacts of the data collec
 \end{example}
 
 \subsection{Kleinberg's Impossibility Theorem}
-It is apparent that as we required more and more invariants from a clustering algorithm it becomes harder and harder to construct one.
+It is apparent that as we required more invariants from a clustering algorithm it becomes harder to construct one.
 There exists an important result in this regard.
-\textsc{Kleinberg} showed that for certain seemingly reasonable requirements there exist no clustering algorithms satisfying them \cite{Kleinberg2002}.
+\textsc{Kleinberg} showed that for certain seemingly reasonable properties there exist no clustering algorithms satisfying them \cite{Kleinberg2002}.
+In the context of this theorem we define a clustering algorithm to be a procedure that assigns a finite metric space $(X,d)$ to a partition of $X$\footnote{In chapter \ref{chapter__clustering_functor} we will formalize the definition of a clustering algorithm.}.
 
-In the context of this theorem we define a clustering algorithm as a procedure that maps a finite metric space $(X,d)$ to a partition of $X$.\footnote{in chapter \ref{chapter__clustering_functor} we will formalize the definition of a clustering algorithm.}
-
-\textsc{Kleinberg} goes on to present a set of seemingly reasonable properties a clustering algorithm can have.
+Here are the properties \textsc{Kleinberg} considered:
 
 \begin{definition}{Scale Invariance}{}
 We say that a clustering algorithm $\Cf$ is \emph{scale invariant} if for every $\lambda > 0$ we have
