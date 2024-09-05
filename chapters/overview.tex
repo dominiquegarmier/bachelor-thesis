@@ -73,11 +73,11 @@ In the context of this theorem we define a clustering algorithm to be a procedur
 Here are the properties \textsc{Kleinberg} considered:
 
 \begin{definition}{Scale Invariance}{}
-We say that a clustering algorithm $\Cf$ is \emph{scale invariant} if for every $\lambda > 0$ we have
+We say that a clustering algorithm $\Cf$ is \emph{scale invariant} if for every finite metric space $(X,d)$ and $\lambda > 0$ we have
 $$
 \Cf(X,d) = \Cf(X, \lambda \cdot d).
 $$
-\Ie\ Re-scaling the metric does not affect the clustering algorithm.
+\Ie\ re-scaling the metric does not affect the clustering algorithm.
 \end{definition}
 
 \begin{definition}{Richness}{richness}
@@ -85,28 +85,20 @@ A clustering algorithm $\Cf$ is \emph{rich} if for every set $X$ and every parti
 \end{definition}
 
 \begin{definition}{Consistency}{}
-Let $\Cf$ be a clustering algorithm, $(X,d)$ a finite metric space and
-$$
-P = \Cf(X,d).
-$$
-We say that $\Cf$ is consistent if for any metric $d'$ on $X$ such that
+Let $\Cf$ be a clustering algorithm we say that it is \emph{consistent} if for every finite metric space $(X,d)$ and every metric $d'$ on $X$ such that
 \begin{itemize}
-    \item $d'(x,y) \leq d(x,y)$ if $x\sim_P y$
-    \item $d'(x,y) \geq d(x,y)$ if $x \not\sim_P y$.
+    \item $d'(x,y) \leq d(x,y)$ if $x,y$ are in the same part of $\Cf(X,d)$
+    \item $d'(x,y) \geq d(x,y)$ if $x,y$ are in different parts of $\Cf(X,d)$
 \end{itemize}
-We have $\Cf(X,d) = \Cf(X,d')$. Note that $\sim_P$ is the equivalence relation induced by the partition $P$.
+we have $\Cf(X,d') = \Cf(X,d)$.
 \end{definition}
 
-
-However, in combination it is impossible to construct a clustering algorithm that satisfies them all.
-
+Kleinberg show that in combination these properties are impossible to satisfy.
 
 \begin{theorem}{Kleinberg \cite[Theorem~2.1]{Kleinberg2002}}{kleinberg}
 There exists no clustering algorithm that is scale invariant, rich and consistent at the same time.
 \end{theorem}
 
-Furthermore, if we drop any of the requirements we can find clustering algorithms satisfying the remaining properties.
+Furthermore, if we drop any of the requirements we can find clustering algorithms satisfying the remaining properties. As an example the $k$-means algorithm \ref{def:kmeans_clustering} is clearly not rich since we restrict ourselves to partitions with $k$ parts. It is however scale invariant.
 
-The $k$-means algorithm \ref{def:kmeans_clustering} is clearly not rich since we restrict ourselves to partitions with $k$ parts. It is however scale invariant.
-
-\source[is kmeans consistent? dont want to prove this, probably pointless]
+\source[is kmeans consistent? dont want to prove this, probably very hard]
