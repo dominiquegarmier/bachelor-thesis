@@ -1,4 +1,19 @@
-\chapter{Introduction}
-Hello World
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
 
-\todo[what should i talk about here?]
+The goal of this thesis is to review the formalization of clustering algorithms developed by \textsc{Carlsson} and \textsc{Memoli} \cite{Carlsson2010}. Ultimately we will prove new uniqueness results characterizing the Vietoris-Rips functor.
+
+The chapters are structured as follows:
+\begin{description}
+    \item[\Cref{chapter__preliminaries}.] This chapter is a refresher of some basic concepts and definitions. The reader is advised to refer back to this chapter if they are unfamiliar with certain notations.
+
+    \item[\Cref{chapter__dataclustering}.] We discuss traditional methods of data clustering and present the impossibility result by \textsc{Kleinberg} \cite{Kleinberg2002}.
+
+    \item[\Cref{chapter__category_theory}.] In this chapter, we cover the necessary concepts from category theory and contextualize them with examples. This chapter will be familiar to anyone with a background in algebraic topology.
+
+    \item[\Cref{chapter__clustering_functor}.] Here we define the notion of \emph{hierarchical} and \emph{classical clustering functor} by closely following the notation presented by \textsc{Carlsson} and \textsc{Memoli} \cite{Carlsson2010}.
+
+    \item[\Cref{chapter__classical}.] We define and introduce properties of classical clustering functors. This is also the first time that we encounter the Vietoris-Rips functor. As observed by \cite{Carlsson2010} this functor has some particular properties and characterizations. It is also in this chapter where we show that the Vietoris-Rips is the unique \emph{regular} and \emph{surjective} $\gen$ classical clustering functor.
+
+    \item[\Cref{chapter__hierarchical}.] By relating our findings from the previous chapter to the \emph{modified} \textsc{Kleinberg} \emph{conditions} presented by \cite{Carlsson2010} we are finally able to show that the Vietoris-Rips functor is the only hierarchical clustering functor satisfying these conditions.
+\end{description}

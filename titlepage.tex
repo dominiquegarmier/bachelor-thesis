@@ -23,7 +23,24 @@
 \today
 
 \vfill
-            
+
+\begin{tikzpicture}
+    \draw[mygreen!50!black, thick, opacity=0.9, fill=mygreen, fill opacity=0.25] (2.3, 4.8) -- (3.2, 4.0) -- (1.7, 3.4) -- cycle;
+    \draw[mygreen!50!black, thick, opacity=0.9, fill=mygreen, fill opacity=0.25] (3.9, 1.3) -- (2.1, 1.1) -- (3.4, 0.3) -- cycle;
+    \draw[mygreen!50!black, thick, opacity=0.9] (0.7, 1.3) -- (2.1, 1.1);
+
+    \draw[dashed,fill=myblue,fill opacity=0.15](2.3, 4.8) node[circle,fill=black,inner sep=1pt,fill opacity=1]{} circle (1);
+    \draw[dashed,fill=myblue,fill opacity=0.15](3.2, 4.0) node[circle,fill=black,inner sep=1pt,fill opacity=1]{} circle (1);
+    \draw[dashed,fill=myblue,fill opacity=0.15](1.7, 3.4) node[circle,fill=black,inner sep=1pt,fill opacity=1]{} circle (1);
+
+    \draw[dashed,fill=myblue,fill opacity=0.15](0.7, 1.3) node[circle,fill=black,inner sep=1pt,fill opacity=1]{} circle (1);
+    \draw[dashed,fill=myblue,fill opacity=0.15](3.9, 1.3) node[circle,fill=black,inner sep=1pt,fill opacity=1]{} circle (1);
+    \draw[dashed,fill=myblue,fill opacity=0.15](2.1, 1.1) node[circle,fill=black,inner sep=1pt,fill opacity=1]{} circle (1);
+    \draw[dashed,fill=myblue,fill opacity=0.15](3.4, 0.3) node[circle,fill=black,inner sep=1pt,fill opacity=1]{} circle (1);
+\end{tikzpicture}
+
+\vfill
+
 \vspace{0.8cm}
      
 Supervisor: \textsc{Dr. Sara Kali\v snik Hintz}\\

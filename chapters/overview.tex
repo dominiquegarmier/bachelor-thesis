@@ -1,7 +1,8 @@
 \chapter{Data Clustering}
+\label{chapter__dataclustering}
 
 \section{Overview of Clustering Algorithms}
-We would like to present a few clustering methods to contrast against the methods we will present in the latter half of this report. These are commonly used methods in computer and data science.
+We would like to present a few clustering methods to contrast against the methods we will present in the latter half of this report. These are commonly studied in machine learning and data science.
 
 \subsection{$k$-means}
 A common method of clustering is to find a $k$-partition of the points according to some criterion.
@@ -10,21 +11,19 @@ One such example is the \emph{$k$-means} clustering objective \cite[Section~3.1]
 Let $x_1, \dots, x_n \in \R^d$ be a set of points.
 
 \begin{definition}{$k$-means Clustering}{kmeans_clustering}
-For $k \in \N$ the $k$-means clustering objective refers to finding a partition $C_1, \dots, C_k$ of $\{x_1, \dots, x_n\}$ such that
+For $k \in \N$ the \emph{$k$-means clustering objective} refers to finding a partition $C_1, \dots, C_k$ of $\{x_1, \dots, x_n\}$ such that
 \begin{equation*}
 \label{eq:kmean_optimization}
     \sum_{i = 1}^k \sum_{x \in C_i} \|x - \mu_i\|^2
 \end{equation*}
-is minimal, where $\mu_k := \frac{1}{|C_k|}\sum_{x \in C_k} x$ is the center of $C_k$.
+is minimal, where $\mu_k := \frac{1}{|C_k|}\sum_{x \in C_k} x$ is the \emph{center} of $C_k$.
 \end{definition}
-To find such a partition we would have to check all possible partitions of $x_1, \dots, x_n$. This is computationally unfeasible.
-
-In practice, we use approximate methods such as Lloyd's algorithm \cite[Section~3.1.2]{Scitovski2021}.
-We also simply call this the $k$-means algorithm.
+To find such a partition we would have to check all possible partitions of $x_1, \dots, x_n$. This is computationally unfeasible. In practice, we use approximate methods such as \textsc{Lloyd}'s algorithm \cite[Section~3.1.2]{Scitovski2021}.
+Sometimes simply referred to as \emph{the $k$-means algorithm}.
 
 \subsection{Linkage-Clustering}
 \label{section__linkage_clustering}
-Another way of clustering data points is based on graph theory and the idea of consecutively connecting more points \cite[Section~4.2.2]{Everitt2011}.
+Another way of clustering data points is based on graph theory and the idea of consecutively connecting points \cite[Section~4.2.2]{Everitt2011}.
 As an output of this method we obtain a
 dendogram\footnote{See section \ref{section__partitions} for an in depth definition of dendograms.}.
 
@@ -53,8 +52,7 @@ If we use $d_\mathrm{min}$ we call it \emph{single-linkage clustering}, when usi
 \section{Preserving Structure}
 \label{seciton__preserving_structure}
 An important aspect of clustering methods is that they remain invariant under certain transformations.
-
-The idea is that if a clustering algorithm is invariant under certain transformations it captures information of other features.
+The idea is that if a clustering algorithm is invariant under certain transformations (which we can think of as noise) it captures information of the remaining features (which are hopefully not noise).
 
 \begin{example}{}{}
 Consider a finite set $S \subset \R^2$ representing people at a gathering.\\
