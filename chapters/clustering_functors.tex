@@ -9,7 +9,7 @@ This construction closely follows the one by \textsc{Carlsson} and \textsc{M\'em
 \section{Finite Metric Spaces}
 \label{section__finite_metric_spaces}
 
-\begin{definition}{Finite Metric Spaces}{}
+\begin{definition}{Finite Metric Spaces \cite[Sec.~3.2]{Carlsson2010}}{}
 We define three categories $\iso, \inj$ and $\gen$ all sharing the same objects:
 
 \begin{equation*}
@@ -31,18 +31,15 @@ By construction, we have the inclusions
     \label{eq:inclusions_of_finite_metric_space_categories}
     \iso \subset \inj \subset \gen.
 \end{equation}
-Furthermore, this inclusion yields functors $\iso \to \inj \to \gen$.
 
-\begin{myremark}{}{}
-$\iso$ is the category with the fewest morphisms. Indeed, between most objects there are no morphisms.
-All morphisms are within the same isometry class and have an inverse.\par
-\medskip
-$\gen$ has the most morphisms. In particular for any metric spaces $A,B \in \ob(\gen)$ we have the morphism
+Furthermore, this inclusion yields functors $\iso \to \inj \to \gen$ \cite[Def.~1.2.18]{Leinster2014-dc}.
+As such, $\iso$ is the category with the fewest morphisms. Indeed, between most objects there are no morphisms.
+All morphisms are between spaces of the same isometry class and have an inverse.
+On the other hand, $\gen$ has the most morphisms. In particular for any metric spaces $A,B \in \ob(\gen)$ we have the morphism
 $$
 \mathrm{const}_b: A \to B, \ a \mapsto b
 $$
 for some $b \in B$.
-\end{myremark}
 
 \section{Partitions and Dendograms}
 \label{section__partitions}
@@ -53,7 +50,7 @@ Let $X$ be a finite set. A partition $P$ of $X$ is the set of equivalence classe
 \medskip Furthermore:
 \begin{itemize}
     \item We interchangeably use $P$ - the partition and $\sim_P$ - the corresponding equivalence relation.
-    \item A single equivalence class $X_\alpha \in P$ will be called a \emph{block} of $P$.
+    \item A single equivalence class $X_\alpha \in P$ will be called a \emph{block} or \emph{part} of $P$ \todo[i dont ever use this notation].
 \end{itemize}
 \end{definition}
 
@@ -88,23 +85,24 @@ We say that $P \in \P(X)$ is:
 \end{definition}
 
 Naturally if $Q$ is discrete and $P$ is trivial then $Q \refines R \refines P$ for all $R \in \P(X)$.
+Like in the chapter \ref{chapter__dataclustering} we also want to consider hierarchical clustering.
+For this we introduce the notion of a \emph{dendogram}.
 
-Like in the section $\ref{section__finite_metric_spaces}$ we also want to consider hierarchical clustering.
-For this we introduce the notion of a dendogram.
-
-\begin{definition}{Dendogram}{dendogram}
+\begin{definition}{Dendogram \cite[Definition~2.2]{Carlsson2010}}{dendogram}
 A map $\theta: \R_{\leq0} \to \mathfrak{P}(X)$ with
 \begin{itemize}
     \item $\forall r,s \in \R_{\leq0}: r \leq s \implies  \theta(r) \refines \theta(s)$
-    \item $\exists r \in \R_{\leq0}$ such that $\theta(r)$ is trivial
+    \item $\exists r,s \in \R_{\leq0}$ such that $\theta(r)$ is trivial and $\theta(s)$ is discrete\footnote{In particular we get that $\theta(0)$ is always discrete.\todo[]}
     \item $\forall r \in \R_{\leq0} \,\exists \varepsilon > 0$ such that $\theta$ is constant on $[r, r + \varepsilon)$
 \end{itemize}
-is called a \emph{dendogram}. Sometimes we will refer to the $r$ as being the \emph{scale}.
+is called a \emph{dendogram} of $X$. Sometimes $r$ is referred to as the \emph{scale}.
 \end{definition}
 
-This will be familiar to anyone who has seen \emph{persistent homology} where such properties are referred to as \emph{persistence} \cite{Carlsson2014}. 
+This will be familiar to anyone who has seen \emph{persistent homology} where such properties are referred to as \emph{persistence} \cite[Chapter~3]{Carlsson2014}. 
 
 \begin{myremark}{}{left_regularity_of_dendograms}
+\todo[unify all these remarks about regularity]
+
 Since all our metric spaces are finite we could decide to drop the last requirement in the definition of a dendogram. Dendograms would still have discrete scale \ie\ constant on intervals.
 However, it would not be clear what value the dendogram would have at the endpoints of the intervals.
 This point will be particularly necessary for some uniqueness theorems we present later.
@@ -112,7 +110,7 @@ This point will be particularly necessary for some uniqueness theorems we presen
 
 We can finally define the categories which will be the \emph{outputs} of clustering functors.
 
-\begin{definition}{}{output_classical_clustering_functors}
+\begin{definition}{\cite[Definition~3.2]{Carlsson2010}}{output_classical_clustering_functors}
 Consider the category $\C$ of outputs of \emph{classical clustering functors}. It is defined by
 \begin{equation*}
     \ob(\C) := \{(X, P): X \text{ a finite set and } P \in \P(X)\}
@@ -124,7 +122,7 @@ and for all $(X,P), (Y,Q) \in \ob(\C)$ we have the morphisms
 As before, the composition is given by composition of maps and the identity is the identity map.
 \end{definition}
 
-\begin{definition}{}{output_hierarchical_clustering_functors}
+\begin{definition}{\cite[Definition~3.3]{Carlsson2010}}{output_hierarchical_clustering_functors}
 Similar to before we define the category $\H$ of \emph{outputs of hierarchical clustering functors}, given by
 \begin{equation*}
     \ob(\H) := \{(X, \theta_X): X \text{ a finite set and } \theta_X: \R_{\geq0} \to \P(X) \ \text{a dendogram}\}
@@ -153,7 +151,7 @@ By checking the condition on morphisms in \ref{def:output_hierarchical_clusterin
 \end{definition}
 
 \section{Clustering Functors}
-\begin{definition}{Clustering Functor}{}
+\begin{definition}{Clustering Functor \cite[Sec.~4.1]{Carlsson2010}}{}
 Let $\M \in \{\iso, \inj, \gen\}$ and $\A \in \{\C, \H\}$. An $\M$-functorial \emph{clustering functor} (or $\M$ clustering functor) is a functor from $\M$ to $\A$
 $$\Cf : \M \longrightarrow \A$$
 such that $\Cf$ factorizes the forgetful functors (see \ref{not:factorizing_forgetful_functor}) \par
@@ -165,7 +163,7 @@ For a hierarchical clustering functor $\Cf$ we will use the simplified notation:
 $$
 \Cf(X,d;r) := (X,\theta_X(r)).
 $$
-More over for any $r \in \R_{\geq0}$ a hierarchical clustering functor $\Cf$ induces a classical clustering functor $\Cf(\ \cdot \ ;r)$.
+Moreover, for any $r \in \R_{\geq0}$ a hierarchical clustering functor $\Cf$ induces a classical clustering functor $\Cf(\ \cdot \ ;r)$.
 
 \begin{myremark}{}{induced_functor_by_inclusion}
 Recall the inclusions \eqref{eq:inclusions_of_finite_metric_space_categories} and their induced functors.

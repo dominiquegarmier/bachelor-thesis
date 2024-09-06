@@ -9,7 +9,7 @@ Categories create a framework for this type of mathematical structure.
 \begin{definition}{Category \cite[Section~1.2]{Roman2017}}{}
 A category $\C$ consists of
 \begin{enumerate}
-    \item \textbf{Objects}: $\ob(\C)$, which is a class\footnote{A class is a collection of mathematical objects.}. \Ie\ it need not be a proper set.
+    \item \textbf{Objects}: $\ob(\C)$, which is a class\footnote{A class is a collection of mathematical objects.}. \Ie\ it need not be a proper set \cite[p.~1]{Roman2017}.
     
     \item \textbf{Morphisms}: For every $A, B \in \ob(\C)$ we have a set $\mor_\C(A,B)$. An element $f \in \mor_\C(A,B)$ is called a morphism from $A$ to $B$, and we often write 
     $$
@@ -30,7 +30,7 @@ A category $\C$ consists of
 \end{definition}
 
 One reason why the objects $\ob(\C)$ of a category are not generally set is that sets require the axiom of regularity. 
-Disallowing such things as \emph{the set of all sets}. Particularly classes can be much larger than sets \source[cite this, russel].
+Disallowing such things as \emph{the set of all sets}. Particularly classes can be much larger than sets \cite[p.~1]{Roman2017}.
 
 Nonetheless, we will often define the class of objects using the following notation:
 $$
@@ -46,11 +46,10 @@ On the other hand it is common to study categories where certain objects have no
 
 \subsection{Examples}
 
-Interestingly we can encode many mathematical structures as categories even some, where it is not immediately obvious that they form a category.
-
+Interestingly we can encode many mathematical structures as categories even some, where it is not immediately obvious that they form a category \cite[Chap.~1~Ex.~1-7]{Roman2017}, \cite[Sec.~1.1]{Leinster2014-dc}.
 The most familiar way of thinking about a category is to see morphisms as maps and the composition as the composition of maps. There are many example of such categories.
 
-\begin{example}{Category of Sets \source[?]}{}
+\begin{example}{Category of Sets}{}
 Consider the category $\mathrm{Set}$ consisting of
 \begin{itemize}
     \item $\ob(\mathrm{Set}) := \{X: \text{$X$ is a set}\}$
@@ -61,7 +60,7 @@ In this case composition is simply the composition of maps and the identity is g
 
 Instead of taking arbitrary sets and maps between them, we can also study categories where the objects have additional structure and the morphisms preserve that structure.
 
-\begin{example}{Topological Spaces \source[?]}{}
+\begin{example}{Topological Spaces}{}
 Similar to the previous category we can define $\mathrm{Top}$ with
 \begin{itemize}
     \item $\ob(\mathrm{Top}) := \{(X,\tau) : \text{$X$ a set and $\tau$ a topology}\}$
@@ -170,7 +169,7 @@ Simply apply the definition of a functor.
 
 Here we have a few functors from different areas of mathematics, namely linear algebra and algebraic topology.
 
-\begin{example}{The Adjoint Functor \source[?]}{}
+\begin{example}{The Adjoint Functor \cite[Ex.~1.2.12]{Leinster2014-dc}}{}
 Consider the category $\mathrm{Vec}_\mathbb{K}$. Then we can define the contravariant functor
 $$
 ^* : \mathrm{Vec}_\mathbb{K} \to \mathrm{Vec}_\mathbb{K}
@@ -179,7 +178,7 @@ which maps a vector space $V$ to its (algebraic) dual $V^*$ and maps a linear ma
 \end{example}
 
 From algebraic topology there are also examples of functors.
-\begin{example}{Fundamental Group Functor \cite[Chapter~1]{Hatcher2001}}{}
+\begin{example}{Fundamental Group Functor \cite[Ex.~1.2.5]{Leinster2014-dc}}{}
 The map that assigns a based topological $(X,x_0)$ space to its fundamental group $\pi_1(X,x_0)$ and assigns continuous functions $f: (X,x_0) \to (Y,y_0)$ to the group homomorphism 
 $$
 \pi_1(X,x_0) \ni [\alpha] \mapsto [f \circ \alpha] \in \pi_1(Y,y_0)
@@ -224,9 +223,7 @@ and since group homomorphisms map the neutral element to the neutral element we 
 The \emph{forgetful functor} will later be used in the definition of clustering functors.
 
 \begin{definition}{\cite[Chapter~1~Example~10]{Roman2017}}{}
-Let $\C$ be a category whose objects are sets (potentially with some additional structure) and whose morphisms are certain maps between these sets.
-
-Then we can define the forgetful functor
+Let $\C$ be a category whose objects are sets (potentially with some additional structure) and whose morphisms are certain maps between these sets\footnote{In this case we say that $\C$ is a \emph{concrete} category \cite[p.~11]{Roman2017}.}. Then we can define the forgetful functor
 $$
 \alpha_\C: \C \to \C_\mathrm{set}
 $$
