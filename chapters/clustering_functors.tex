@@ -69,13 +69,17 @@ We call $f^*(P)$ the \emph{pullback partition of $P$ w.r.t. $f$}.
 Additionally, we can define a partial order on $\P(X)$.
 
 \begin{definition}{}{}
-Let $P, Q \in \mathfrak{P}(X)$ then we write $P \refines Q$ if
+Let $P, Q \in \mathfrak{P}(X)$ then we write $P \refines Q$ and say that $P$ \emph{refines} $Q$ if
 \begin{equation*}
     \forall x,y \in X: x \sim_P y \implies x \sim_Q y.
 \end{equation*}
-This defines a partial order on $\P(X)$
+This defines a partial order on $\P(X)$.
 \end{definition}
-
+If $f: X \to Y$ is a map, $P \in \P(X)$ and $Q \in \P(Y)$ then we write $P \refines_f Q$ if $P \refines f_*(Q)$. In that case we say that $P$ \emph{refines} $Q$ \emph{via} $f$. A useful fact to remember is that if $\mathrm{id}: X \to X$ is the identity then
+\begin{equation}
+    \label{eq:refinement_via_identity}
+    P \refines_{\mathrm{id}} Q \iff P \refines Q.
+\end{equation}
 \begin{definition}{}{}
 We say that $P \in \P(X)$ is:
 \begin{enumerate}
@@ -88,7 +92,7 @@ Naturally if $Q$ is discrete and $P$ is trivial then $Q \refines R \refines P$ f
 Like in the chapter \ref{chapter__dataclustering} we also want to consider hierarchical clustering.
 For this we introduce the notion of a \emph{dendogram}.
 
-\begin{definition}{Dendogram \cite[Definition~2.2]{Carlsson2010}}{dendogram}
+\begin{definition}{Dendogram \cite[Def.~2.2]{Carlsson2010}}{dendogram}
 A map $\theta: \R_{\leq0} \to \mathfrak{P}(X)$ with
 \begin{itemize}
     \item $\forall r,s \in \R_{\leq0}: r \leq s \implies  \theta(r) \refines \theta(s)$
@@ -98,7 +102,7 @@ A map $\theta: \R_{\leq0} \to \mathfrak{P}(X)$ with
 is called a \emph{dendogram} of $X$. Sometimes $r$ is referred to as the \emph{scale}.
 \end{definition}
 
-This will be familiar to anyone who has seen \emph{persistent homology} where such properties are referred to as \emph{persistence} \cite[Chapter~3]{Carlsson2014}. 
+This will be familiar to anyone who has seen \emph{persistent homology} where such properties are referred to as \emph{persistence} \cite[Chap.~3]{Carlsson2014}. 
 
 \begin{myremark}{}{left_regularity_of_dendograms}
 \todo[unify all these remarks about regularity]
@@ -110,19 +114,19 @@ This point will be particularly necessary for some uniqueness theorems we presen
 
 We can finally define the categories which will be the \emph{outputs} of clustering functors.
 
-\begin{definition}{\cite[Definition~3.2]{Carlsson2010}}{output_classical_clustering_functors}
+\begin{definition}{\cite[Def.~3.2]{Carlsson2010}}{output_classical_clustering_functors}
 Consider the category $\C$ of outputs of \emph{classical clustering functors}. It is defined by
 \begin{equation*}
     \ob(\C) := \{(X, P): X \text{ a finite set and } P \in \P(X)\}
 \end{equation*}
 and for all $(X,P), (Y,Q) \in \ob(\C)$ we have the morphisms
 \begin{equation*}
-    \mor_\C((X,P), (Y,Q)) := \{f: X \to Y: P \refines f_*(Q)\}.
+    \mor_\C((X,P), (Y,Q)) := \{f: X \to Y: P \refines_f Q\}.
 \end{equation*}
-As before, the composition is given by composition of maps and the identity is the identity map.
+In short, we write $(X,P) \refines_f (Y,Q)$ for such a morphism. As before, the composition is given by composition of maps and the identity is the identity map.
 \end{definition}
 
-\begin{definition}{\cite[Definition~3.3]{Carlsson2010}}{output_hierarchical_clustering_functors}
+\begin{definition}{\cite[Def.~3.3]{Carlsson2010}}{output_hierarchical_clustering_functors}
 Similar to before we define the category $\H$ of \emph{outputs of hierarchical clustering functors}, given by
 \begin{equation*}
     \ob(\H) := \{(X, \theta_X): X \text{ a finite set and } \theta_X: \R_{\geq0} \to \P(X) \ \text{a dendogram}\}
@@ -130,12 +134,12 @@ Similar to before we define the category $\H$ of \emph{outputs of hierarchical c
 and for all $(X, \theta_X), (Y, \theta_Y) \in \ob(\H)$ we have the morphisms
 \begin{equation*}
     \mor_\H((X, \theta_X), (Y,\theta_Y)) :=
-    \left\{f: X \to Y: \forall r \in \R_{\geq0}: \theta_X(r) \refines f_*(\theta_Y(r)) \right\}
+    \left\{f: X \to Y: \forall r \in \R_{\geq0}: \theta_X(r) \refines_f \theta_Y(r)) \right\}.
 \end{equation*}
-the composition and identity are defined as before.
+Again we write $(X, \theta_X) \refines_f (Y, \theta_Y)$ for such a morphism and the composition and identity are defined as before.
 \end{definition}
 
-Another way of thinking about morphisms in $\H$ is that given $(X,P), (Y,Q) \in \ob(\C)$, $f \in \mor_\H((X,P), (Y,Q))$ is simply a map $f: X \to Y$ such that
+Another way of thinking about morphisms in $\C$ (or $\H$) is that given $(X,P), (Y,Q) \in \ob(\C)$ a morphism $f \in \mor_\C((X,P), (Y,Q))$ is simply a map $f: X \to Y$ such that
 $$
 \forall x,y \in X: x \sim_P y \implies f(x) \sim_Q f(y).
 $$
@@ -152,18 +156,27 @@ By checking the condition on morphisms in \ref{def:output_hierarchical_clusterin
 
 \section{Clustering Functors}
 \begin{definition}{Clustering Functor \cite[Sec.~4.1]{Carlsson2010}}{}
-Let $\M \in \{\iso, \inj, \gen\}$ and $\A \in \{\C, \H\}$. An $\M$-functorial \emph{clustering functor} (or $\M$ clustering functor) is a functor from $\M$ to $\A$
+Let $\M \in \{\iso, \inj, \gen\}$ and $\A \in \{\C, \H\}$. An $\M$-\emph{functorial clustering functor} (or $\M$ \emph{clustering functor}) is a functor from $\M$ to $\A$
 $$\Cf : \M \longrightarrow \A$$
 such that $\Cf$ factorizes the forgetful functors (see \ref{not:factorizing_forgetful_functor}) \par
 
 \medskip If $\A = \C$ we say that $\Cf$ is \emph{classical} and otherwise if $\A = \H$ we say it is \emph{hierarchical}.
 \end{definition}
 
-For a hierarchical clustering functor $\Cf$ we will use the simplified notation:
+We can express the functoriality of a clustering functor $\Cf$ by the following commutative diagram:
+
+\begin{equation*}
+    \begin{tikzcd}
+    {(X,d)} \arrow[r, "f"] \arrow[d, "\Cf", Rightarrow] & {(Y,d)} \arrow[d, "\Cf", Rightarrow] \\
+    {\Cf(X,d)} \arrow[r, "\refines_f"]                  & {\Cf(X,d)}                          
+    \end{tikzcd}
+\end{equation*}
+
+For a hierarchical clustering functor $\Hf$ we will use the simplified notation:
 $$
-\Cf(X,d;r) := (X,\theta_X(r)).
+\Hf(X,d;r) := (X,\theta_X(r)).
 $$
-Moreover, for any $r \in \R_{\geq0}$ a hierarchical clustering functor $\Cf$ induces a classical clustering functor $\Cf(\ \cdot \ ;r)$.
+Moreover, for any $r \in \R_{\geq0}$ a hierarchical clustering functor $\Hf$ induces a classical clustering functor $\Hf(\ \cdot \ ;r)$.
 
 \begin{myremark}{}{induced_functor_by_inclusion}
 Recall the inclusions \eqref{eq:inclusions_of_finite_metric_space_categories} and their induced functors.
@@ -177,10 +190,10 @@ With this in mind it makes sense to think of the categories $\iso, \inj, \gen$ a
 We can extend the partial order $\refines$ on $\P(X)$ to a partial order on clustering functors.
 In particular if $\Cf, \mathfrak{D}: \M \to \C$ are classical clustering functors we write $\Cf \refines \mathfrak{D}$ if
 \begin{equation*}
-    \forall X \in \ob(\M): \Cf(X) \refines \mathfrak{D}(X).
+    \forall (X,d) \in \ob(\M): \Cf(X,d) \refines \mathfrak{D}(X,d).
 \end{equation*}
 And in case of hierarchical clustering functors $\Cf, \mathfrak{D}: \M \to \H$ we write $\Cf \refines \mathfrak{D}$ if
 \begin{equation*}
-    \forall X \in \ob(\M) \, \forall r \in \R_{\geq0}: \Cf(X,r) \refines \mathfrak{D}(X,r).
+    \forall (X,d) \in \ob(\M) \, \forall r \in \R_{\geq0}: \Cf(X,d;r) \refines \mathfrak{D}(X,d;r).
 \end{equation*}
 \end{myremark}

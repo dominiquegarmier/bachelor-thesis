@@ -6,7 +6,7 @@ We would like to present a few clustering methods to contrast against the method
 
 \subsection{$k$-means}
 A common method of clustering is to find a $k$-partition of the points according to some criterion.
-One such example is the \emph{$k$-means} clustering objective \cite[Section~3.1]{Scitovski2021}.
+One such example is the \emph{$k$-means} clustering objective \cite[Sec.~3.1]{Scitovski2021}.
 
 Let $x_1, \dots, x_n \in \R^d$ be a set of points.
 
@@ -18,12 +18,12 @@ For $k \in \N$ the \emph{$k$-means clustering objective} refers to finding a par
 \end{equation*}
 is minimal, where $\mu_k := \frac{1}{|C_k|}\sum_{x \in C_k} x$ is the \emph{center} of $C_k$.
 \end{definition}
-To find such a partition we would have to check all possible partitions of $x_1, \dots, x_n$. This is computationally unfeasible. In practice, we use approximate methods such as \textsc{Lloyd}'s algorithm \cite[Section~3.1.2]{Scitovski2021}.
+To find such a partition we would have to check all possible partitions of $x_1, \dots, x_n$. This is computationally unfeasible. In practice, we use approximate methods such as \textsc{Lloyd}'s algorithm \cite[Sec.~3.1.2]{Scitovski2021}.
 Sometimes simply referred to as \emph{the $k$-means algorithm}.
 
 \subsection{Linkage-Clustering}
 \label{section__linkage_clustering}
-Another way of clustering data points is based on graph theory and the idea of consecutively connecting points \cite[Section~4.2.2]{Everitt2011}.
+Another way of clustering data points is based on graph theory and the idea of consecutively connecting points \cite[Sec.~4.2.2]{Everitt2011}.
 As an output of this method we obtain a
 dendogram\footnote{See section \ref{section__partitions} for an in depth definition of dendograms.}.
 
@@ -95,7 +95,7 @@ we have $\Cf(X,d') = \Cf(X,d)$.
 
 Kleinberg show that in combination these properties are impossible to satisfy.
 
-\begin{theorem}{Kleinberg \cite[Theorem~2.1]{Kleinberg2002}}{kleinberg}
+\begin{theorem}{Kleinberg \cite[Thm.~2.1]{Kleinberg2002}}{kleinberg}
 There exists no clustering algorithm that is scale invariant, rich and consistent at the same time.
 \end{theorem}
 

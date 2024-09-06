@@ -6,7 +6,7 @@ In mathematics, it is common to study maps between objects.
 Continuous functions between topological spaces, linear maps between vector spaces \etc\
 Categories create a framework for this type of mathematical structure.
 
-\begin{definition}{Category \cite[Section~1.2]{Roman2017}}{}
+\begin{definition}{Category \cite[Sec.~1.2]{Roman2017}}{}
 A category $\C$ consists of
 \begin{enumerate}
     \item \textbf{Objects}: $\ob(\C)$, which is a class\footnote{A class is a collection of mathematical objects.}. \Ie\ it need not be a proper set \cite[p.~1]{Roman2017}.
@@ -110,7 +110,7 @@ In the previous two examples it might not be intuitive why these compositions fo
 \section{Functors}
 We would now like to study maps between categories. It is not yet clear what such a map is supposed to look like and what properties it must have.
 
-\begin{definition}{Functor \cite[Section~1.3]{Roman2017}}{}
+\begin{definition}{Functor \cite[Sec.~1.3]{Roman2017}}{}
 We differentiate between \emph{covariant} and \emph{contravariant} \emph{functors}. 
 We make sure to consider the corresponding parts of the definition denoted by the bullet points $\bullet$.\\
 
@@ -152,7 +152,7 @@ The additional requirements \eqref{eq:functor_functoriality_identity} and \eqref
 
 Similar to functions we can also compose functors. We will use this to construct particular functors later on.
 
-\begin{defprop}{\cite[Section~1.3.1]{Roman2017}}{composition_of_functors}
+\begin{defprop}{\cite[Sec.~1.3.1]{Roman2017}}{composition_of_functors}
 Let $\A, \B, \C$ be three categories and
 $$
 \Ff: \A \to \B, \quad \mathfrak{G}: \B \to \C
@@ -189,7 +189,7 @@ $$
 $$
 \end{example}
 
-\begin{example}{Homology Functor \cite[Chapter~2.3]{Hatcher2001}}{}
+\begin{example}{Homology Functor \cite[Chap.~2.3]{Hatcher2001}}{}
 The map that assigns a topological space $X$ to its singular homology chain complex $H_\bullet(X)$ and assigns continuous functions $f: X \to Y$ to the chain map $f_*: H_\bullet(X) \to H_\bullet(Y)$ is a functor from the category of topological spaces to the category of chain complexes of abelian groups.
 \end{example}
 
@@ -222,7 +222,7 @@ and since group homomorphisms map the neutral element to the neutral element we 
 \subsection{Forgetful Functor}
 The \emph{forgetful functor} will later be used in the definition of clustering functors.
 
-\begin{definition}{\cite[Chapter~1~Example~10]{Roman2017}}{}
+\begin{definition}{\cite[Chap.~1~Ex.~10]{Roman2017}}{}
 Let $\C$ be a category whose objects are sets (potentially with some additional structure) and whose morphisms are certain maps between these sets\footnote{In this case we say that $\C$ is a \emph{concrete} category \cite[p.~11]{Roman2017}.}. Then we can define the forgetful functor
 $$
 \alpha_\C: \C \to \C_\mathrm{set}

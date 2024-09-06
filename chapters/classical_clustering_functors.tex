@@ -18,12 +18,12 @@ One could use a proper inequality in \eqref{eq:vietoris_rips_equivalence_relatio
 \begin{proof}
 It is sufficient to show that $\Rf_\delta$ is $\gen$ factorial by remark \ref{rem:induced_functor_by_inclusion} functoriality over $\iso$ and $\inj$ will follow.
 
-Let $X,Y \in \ob(\gen)$ and $(X,P_X) := \Rf_\delta(X)$ as well as $(Y,P_Y) := \Rf_\delta(Y)$.
+Let $X,Y \in \ob(\gen)$ and $(X,P) := \Rf_\delta(X)$ as well as $(Y,Q) := \Rf_\delta(Y)$.
 Take any $f \in \mor_\gen(X,Y)$, recall that $f$ is distance non-increasing.
 We have to show that 
-$$P_X \refines f_*(P_Y).$$
+$$P \refines_f Q.$$
 Indeed, let $x,y \in X$ such that $d(x,y) \leq \delta$.
-Then we have $d(f(x), f(y)) \leq d(x,y) \leq \delta$ and therefore $f(x) \sim_{P_Y} f(y)$.
+Then we have $d(f(x), f(y)) \leq d(x,y) \leq \delta$ and therefore $f(x) \sim_{Q} f(y)$.
 By taking the transitive closure we get the statement.
 \end{proof}
 
@@ -70,7 +70,7 @@ Additionally, $\Cf$ is said to be representable if there exists some $\Omega$ su
 
 This definition is valid for any $\Omega$, but we will see that imposing certain conditions on $\Omega$ will yield interesting properties of $\Cf^\Omega$.
 
-\begin{myremark}{}{}
+\begin{myremark}{\cite[Rem.~6.3]{Carlsson2010}}{}
 Notice that for $(X,d) \in \Omega$ we have $\Cf^\Omega(X,d) = (X, \{X\})$.
 \end{myremark}
 
@@ -88,7 +88,7 @@ Let $(X,d) \in \ob(\M)$ and $(X,P) = \Cf^\Omega(X,d)$ and $(X,Q) = \Cf(X,d)$. We
 
 Let $x,y \in X$ such that the generating condition of $P$ holds. \Ie\ there exists $\omega \in \Omega$ and $\phi \in \mor_\M(\omega, (X,d))$ such that $\{x,y\} \subset \image(\phi)$.
 
-But then since $\Cf(\omega)$ is trivial by assumption and by functoriality $\Cf(\omega) \refines f_*(\Cf(X,d))$ we get that $x \sim_Q y$. Taking the transitive closure gives the statement.
+But then since $\Cf(\omega)$ is trivial by assumption and by functoriality $\Cf(\omega) \refines_f \Cf(X,d)$ we get that $x \sim_Q y$. Taking the transitive closure gives the statement.
 
 
 \newresult[check this]
@@ -189,9 +189,8 @@ The following property of surjective clustering functors hints that surjectivity
             f: (X, d_0) &\longrightarrow (X, \lambda \cdot d)\\
             x &\longmapsto x
         \end{align*}
-        is distance non-increasing (and injective) \ie\ $f \in \mor_\M((X,d_0), (X,\lambda \cdot d))$. Moreover, since $f$ is the identity on the set $X$ we have $f_*(P) = P$ for any partition $P$ of $X$.
-
-        By functoriality of $\Cf$ we now have that $\Cf(X,d_0) \refines f_*(\Cf(X,\lambda \cdot d)) = \Cf(X,\lambda \cdot d)$. Therefore, $\Cf(X,\lambda \cdot d)$ must be trivial.
+        is distance non-increasing (and injective) \ie\ $f \in \mor_\M((X,d_0), (X,\lambda \cdot d))$.
+        By functoriality of $\Cf$ it follows that $\Cf(X,d_0) \refines_f \Cf(X,\lambda \cdot d)$. But, since $f$ is the identity on the set $X$ we have $\Cf(X,d_0) \refines \Cf(X,\lambda \cdot d)$ by \eqref{eq:refinement_via_identity}. Therefore, $\Cf(X,\lambda \cdot d)$ must be trivial.
 
         \item Repeat an analogous argument using
         $$
@@ -202,7 +201,7 @@ The following property of surjective clustering functors hints that surjectivity
             f: (X, \lambda \cdot d) &\longrightarrow (X, d_1)\\
             x &\longmapsto x.
         \end{align*}
-        We conclude by showing $\Cf(X,\lambda \cdot d) \refines f_*(\Cf(X,d_1)) = \Cf(X,d_1)$. 
+        We conclude since we have $\Cf(X,\lambda \cdot d) \refines \Cf(X,d_1)$ for the same reason as above. 
         
         \newresult[check this]
     \end{enumerate}
@@ -272,7 +271,7 @@ $\bar\Rf_\delta$ is splitting at $\delta$.
 \medskip
 To see that $\bar\Rf_\delta$ is indeed a clustering functor consider metric spaces $(X,d), (Y,d') \in \ob(\inj)$ and a morphism $f \in \mor_\inj((X,d), (Y,d'))$. By injectivity of $f$ we immediately get that $|X| \le |Y|$. And we have
 $$
-\bar\Rf_\delta(X,d) = \Rf_{\frac{\delta|X|}{2}}(X,d) \overset{(1)}\refines \Rf_{\frac{\delta|Y|}{2}}(X,d) \overset{(2)}\refines f_*\Rf_{\frac{\delta|Y|}{2}}(Y,d') = f_*\bar\Rf_\delta(Y,d').
+\bar\Rf_\delta(X,d) = \Rf_{\frac{\delta|X|}{2}}(X,d) \overset{(1)}\refines \Rf_{\frac{\delta|Y|}{2}}(X,d) \overset{(2)}\refines_f \Rf_{\frac{\delta|Y|}{2}}(Y,d') = \bar\Rf_\delta(Y,d').
 $$
 Where $(1)$ follows from the fact that $|X| \le |Y|$ and $(2)$ follows from the fact that $\Rf_\delta'$ is $\inj$ functorial for any $\delta' > 0$. Therefore, $\bar\Rf_\delta$ is an $\inj$ clustering functor.
 
@@ -333,16 +332,20 @@ Assuming regularity and building on lemma \ref{lem:surjective_implies_eventually
 \begin{proof}[Proof of Lemma]
     By lemma \ref{lem:surjective_implies_eventually_discrete} we know that there exists $\lambda_0, \lambda_1 > 0$ such that for all $\lambda \le \lambda_0$ we have $\Cf(X, \lambda \cdot d)$ is trivial and for all $\lambda' \ge \lambda_1$ we have $\Cf(X, \lambda' \cdot d)$ is discrete.
 
-    Let now $\lambda \ge \lambda'$ by functoriality and considering the distance non-increasing function
+    Let now $\lambda \ge \lambda'$ by functoriality and considering the identity
     \begin{align*}
         f: (X, \lambda \cdot d) &\longrightarrow (X, \lambda' \cdot d)\\
         x &\longmapsto x
     \end{align*}
-    we have that $\Cf(X, \lambda \cdot d) \refines f_*(\Cf(X, \lambda' \cdot d)) = \Cf(X, \lambda' \cdot d)$. $\star$
+    is distance non-increasing, we have that
+    \begin{equation}
+    \label{eq:lemma_5_19_1}
+    \Cf(X, \lambda \cdot d) \refines_f \Cf(X, \lambda' \cdot d) \implies \Cf(X, \lambda \cdot d) \refines \Cf(X, \lambda' \cdot d).
+    \end{equation}
 
     If we now use $(X,d) = \Delta_2(1)$ we have that the map $\lambda \mapsto \Cf(\Delta_2(\lambda))$ is piecewise constant and can take at most two values.
 
-    Thus, by $\star$ there must exist some $\delta_0 > 0$ such that for $\delta < \delta_0 < \delta'$ we have that $\Cf(\Delta_2(\delta))$ is trivial and $\Cf(\Delta_2(\delta'))$ is discrete.
+    Thus, by \eqref{eq:lemma_5_19_1} there must exist some $\delta_0 > 0$ such that for $\delta < \delta_0 < \delta'$ we have that $\Cf(\Delta_2(\delta))$ is trivial and $\Cf(\Delta_2(\delta'))$ is discrete.
     As for the value at $\delta_0$ we recall the previous remark \ref{rem:left_regularity_classical_clusteirng_functors} and conclude that $\Cf(\Delta_2(\delta_0))$ is trivial.
     \newresult[check this]
 \end{proof}
@@ -381,9 +384,9 @@ We now get two interesting distinct behavior of scale invariant clustering funct
     $$
     \Delta_2(\delta) \overset{f}\longrightarrow X \overset{g}\longrightarrow \Delta_2(\delta')
     $$
-    such that $\image(f) = \{x, x'\}$. By functoriality we get
+    such that $f(1) = x, f(2) = x', g(x) = 1$ and $g(x') = 2$. By functoriality we get
     $$
-    \Cf(\Delta_2(\delta)) \refines f_*\Cf(X,d) \refines \Cf(\Delta_2(\delta')).
+    \Cf(\Delta_2(\delta)) \refines_f \Cf(X,d) \refines_g \Cf(\Delta_2(\delta')).
     $$
     And since $x \neq x'$ was arbitrary in $X$ we get that if
     \begin{itemize}
