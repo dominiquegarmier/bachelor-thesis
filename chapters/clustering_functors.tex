@@ -50,7 +50,7 @@ Let $X$ be a finite set. A partition $P$ of $X$ is the set of equivalence classe
 \medskip Furthermore:
 \begin{itemize}
     \item We interchangeably use $P$ - the partition and $\sim_P$ - the corresponding equivalence relation.
-    \item A single equivalence class $X_\alpha \in P$ will be called a \emph{block} or \emph{part} of $P$ \todo[i dont ever use this notation].
+    \item A single equivalence class $X_\alpha \in P$ will be called a \emph{block} or \emph{part} of $P$.
 \end{itemize}
 \end{definition}
 
@@ -69,13 +69,13 @@ We call $f^*(P)$ the \emph{pullback partition of $P$ w.r.t. $f$}.
 Additionally, we can define a partial order on $\P(X)$.
 
 \begin{definition}{}{}
-Let $P, Q \in \mathfrak{P}(X)$ then we write $P \refines Q$ and say that $P$ \emph{refines} $Q$ if
+Let $P, Q \in \mathfrak{P}(X)$. Then we write $P \refines Q$ and say that $P$ \emph{refines} $Q$ if
 \begin{equation*}
     \forall x,y \in X: x \sim_P y \implies x \sim_Q y.
 \end{equation*}
 This defines a partial order on $\P(X)$.
 \end{definition}
-If $f: X \to Y$ is a map, $P \in \P(X)$ and $Q \in \P(Y)$ then we write $P \refines_f Q$ if $P \refines f_*(Q)$. In that case we say that $P$ \emph{refines} $Q$ \emph{via} $f$. A useful fact to remember is that if $\mathrm{id}: X \to X$ is the identity then
+If $f: X \to Y$ is a map, $P \in \P(X)$ and $Q \in \P(Y)$ then we write $P \refines_f Q$ if $P \refines f^*(Q)$. In that case we say that $P$ \emph{refines} $Q$ \emph{via} $f$. A useful fact to remember is that if $\mathrm{id}: X \to X$ is the identity then
 \begin{equation}
     \label{eq:refinement_via_identity}
     P \refines_{\mathrm{id}} Q \iff P \refines Q.
@@ -89,14 +89,14 @@ We say that $P \in \P(X)$ is:
 \end{definition}
 
 Naturally if $Q$ is discrete and $P$ is trivial then $Q \refines R \refines P$ for all $R \in \P(X)$.
-Like in the chapter \ref{chapter__dataclustering} we also want to consider hierarchical clustering.
+Like in chapter \ref{chapter__dataclustering} we also want to consider hierarchical clustering.
 For this we introduce the notion of a \emph{dendogram}.
 
 \begin{definition}{Dendogram \cite[Def.~2.2]{Carlsson2010}}{dendogram}
 A map $\theta: \R_{\leq0} \to \mathfrak{P}(X)$ with
 \begin{itemize}
     \item $\forall r,s \in \R_{\leq0}: r \leq s \implies  \theta(r) \refines \theta(s)$
-    \item $\exists r,s \in \R_{\leq0}$ such that $\theta(r)$ is trivial and $\theta(s)$ is discrete\footnote{In particular we get that $\theta(0)$ is always discrete.\todo[]}
+    \item $\exists r,s \in \R_{\leq0}$ such that $\theta(r)$ is trivial and $\theta(s)$ is discrete\footnote{In particular we get that $\theta(0)$ is always discrete.}
     \item $\forall r \in \R_{\leq0} \,\exists \varepsilon > 0$ such that $\theta$ is constant on $[r, r + \varepsilon)$
 \end{itemize}
 is called a \emph{dendogram} of $X$. Sometimes $r$ is referred to as the \emph{scale}.
@@ -145,22 +145,20 @@ $$
 $$
 
 \begin{definition}{}{shift_functor}
-\todo[check if this is correct; take reciprocal?]
-
-We define the \emph{shift} functor $\sigma_\lambda: \H \to \H$ for some $\lambda > 0$. Given $(X, \theta_X) \in \ob(\H)$ we have
+We define the \emph{shift} functor $\sigma_\lambda: \H \to \H$ for some $\lambda > 0$. Given $(X, \theta_X) \in \ob(\H)$ we set
 $$
 \sigma_\lambda(X, \theta_X(r)) := (X, \theta_X(r \cdot \lambda)) \quad \forall r \in \R_{\geq0}.
 $$
 By checking the condition on morphisms in \ref{def:output_hierarchical_clustering_functors} we see that this induces a functor.
+
+\todo[check if this is correct; take reciprocal?]
 \end{definition}
 
 \section{Clustering Functors}
 \begin{definition}{Clustering Functor \cite[Sec.~4.1]{Carlsson2010}}{}
 Let $\M \in \{\iso, \inj, \gen\}$ and $\A \in \{\C, \H\}$. An $\M$-\emph{functorial clustering functor} (or $\M$ \emph{clustering functor}) is a functor from $\M$ to $\A$
 $$\Cf : \M \longrightarrow \A$$
-such that $\Cf$ factorizes the forgetful functors (see \ref{not:factorizing_forgetful_functor}) \par
-
-\medskip If $\A = \C$ we say that $\Cf$ is \emph{classical} and otherwise if $\A = \H$ we say it is \emph{hierarchical}.
+such that $\Cf$ factorizes the forgetful functors (see \ref{not:factorizing_forgetful_functor}). If $\A = \C$ we say that $\Cf$ is \emph{classical} and otherwise if $\A = \H$ we say it is \emph{hierarchical}.
 \end{definition}
 
 We can express the functoriality of a clustering functor $\Cf$ by the following commutative diagram:
@@ -168,7 +166,7 @@ We can express the functoriality of a clustering functor $\Cf$ by the following 
 \begin{equation*}
     \begin{tikzcd}
     {(X,d)} \arrow[r, "f"] \arrow[d, "\Cf", Rightarrow] & {(Y,d)} \arrow[d, "\Cf", Rightarrow] \\
-    {\Cf(X,d)} \arrow[r, "\refines_f"]                  & {\Cf(X,d)}                          
+    {\Cf(X,d)} \arrow[r, "\refines_f"]                  & {\Cf(X,d)}
     \end{tikzcd}
 \end{equation*}
 

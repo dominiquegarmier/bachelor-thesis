@@ -16,7 +16,7 @@ For $k \in \N$ the \emph{$k$-means clustering objective} refers to finding a par
 \label{eq:kmean_optimization}
     \sum_{i = 1}^k \sum_{x \in C_i} \|x - \mu_i\|^2
 \end{equation*}
-is minimal, where $\mu_k := \frac{1}{|C_k|}\sum_{x \in C_k} x$ is the \emph{center} of $C_k$.
+is minimal, where $\mu_k := \frac{1}{|C_k|}\sum_{x \in C_k} x$\footnote{In case $C_k = \emptyset$ we set $\mu_k = 0 \in \R^d$.} is the \emph{center} of $C_k$.
 \end{definition}
 To find such a partition we would have to check all possible partitions of $x_1, \dots, x_n$. This is computationally unfeasible. In practice, we use approximate methods such as \textsc{Lloyd}'s algorithm \cite[Sec.~3.1.2]{Scitovski2021}.
 Sometimes simply referred to as \emph{the $k$-means algorithm}.
@@ -29,7 +29,7 @@ dendogram\footnote{See section \ref{section__partitions} for an in depth definit
 
 Let $x_1, \dots, x_n \in \R^d$ be a set of distinct data points.
 \begin{definition}{Linkage-Clustering }{linkage_clustering}
-Let $d$ be a distance function between clusters. We start with the partition $B^{(0)}_j := \{x_j\}$ for $j = 1, \dots, n$.
+Let $d$ be a \emph{distance function}\footnote{In this case, a \emph{distance function} is just a function taking values in $\R_{\geq0}$.} between clusters. We start with the partition $B^{(0)}_j := \{x_j\}$ for $j = 1, \dots, n$.
 Given a partition
 $$
 B^{(k)}_1, \dots, B^{(k)}_{n - k} \quad \text{of} \quad x_1, \dots, x_n
@@ -85,7 +85,7 @@ A clustering algorithm $\Cf$ is \emph{rich} if for every set $X$ and every parti
 \end{definition}
 
 \begin{definition}{Consistency}{}
-Let $\Cf$ be a clustering algorithm we say that it is \emph{consistent} if for every finite metric space $(X,d)$ and every metric $d'$ on $X$ such that
+Let $\Cf$ be a clustering algorithm. We say that it is \emph{consistent} if for every finite metric space $(X,d)$ and every metric $d'$ on $X$ such that
 \begin{itemize}
     \item $d'(x,y) \leq d(x,y)$ if $x,y$ are in the same part of $\Cf(X,d)$
     \item $d'(x,y) \geq d(x,y)$ if $x,y$ are in different parts of $\Cf(X,d)$
@@ -99,6 +99,6 @@ Kleinberg show that in combination these properties are impossible to satisfy.
 There exists no clustering algorithm that is scale invariant, rich and consistent at the same time.
 \end{theorem}
 
-Furthermore, if we drop any of the requirements we can find clustering algorithms satisfying the remaining properties. As an example the $k$-means algorithm \ref{def:kmeans_clustering} is clearly not rich since we restrict ourselves to partitions with $k$ parts. It is however scale invariant.
+Furthermore, if we drop any of the requirements we can find clustering algorithms satisfying the remaining two properties. As an example the $k$-means algorithm \ref{def:kmeans_clustering} is clearly not rich since we restrict ourselves to partitions with $k$ parts. It is however scale invariant.
 
 \source[is kmeans consistent? dont want to prove this, probably very hard]
