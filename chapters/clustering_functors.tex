@@ -3,14 +3,14 @@
 
 In this chapter we introduce the notion of a \emph{clustering functor}.
 We will use the language of categories and build upon the discussion in section \ref{seciton__preserving_structure}, where we thought of clustering algorithms as preserving certain structures.
-Ultimately a clustering functor will be a functor, with certain properties, from a category of finite metric spaces to a category of partitions.
+Ultimately, a clustering functor will be a functor, with certain properties, from a category of finite metric spaces to a category of partitions.
 This construction closely follows the one by \textsc{Carlsson} and \textsc{M\'emoli} \cite{Carlsson2010}.
 
 \section{Finite Metric Spaces}
 \label{section__finite_metric_spaces}
 
 \begin{definition}{Finite Metric Spaces \cite[Sec.~3.2]{Carlsson2010}}{}
-We define three categories $\iso, \inj$ and $\gen$ all sharing the same objects:
+We define three categories $\iso, \inj$ and $\gen$, all sharing the same objects:
 
 \begin{equation*}
 \ob(\M) := \{(X,d_X): \text{$X$ a finite non-empty set and $d_X$ a metric}\}
@@ -22,10 +22,10 @@ The three categories are distinguished by their morphisms. For $A, B \in \ob(\M)
     \item $\mor_\inj(A,B)$ the distance non-increasing injective functions $f: A \to B$.
     \item $\mor_\iso(A,B)$ the isometries $f: A \to B$.
 \end{itemize}
-The composition of morphisms is given by the composition of functions and the identity morphism is the identity function.
+The composition of morphisms is given by the composition of functions, and the identity morphism is the identity function.
 \end{definition}
 
-Depending on what kind of structures we want to preserve we can choose one of the three categories.
+Depending on what kind of structures we want to preserve, we can choose one of the three categories.
 By construction, we have the inclusions
 \begin{equation}
     \label{eq:inclusions_of_finite_metric_space_categories}
@@ -35,7 +35,7 @@ By construction, we have the inclusions
 Furthermore, this inclusion yields functors $\iso \to \inj \to \gen$ \cite[Def.~1.2.18]{Leinster2014-dc}.
 As such, $\iso$ is the category with the fewest morphisms. Indeed, between most objects there are no morphisms.
 All morphisms are between spaces of the same isometry class and have an inverse.
-On the other hand, $\gen$ has the most morphisms. In particular for any metric spaces $A,B \in \ob(\gen)$ we have the morphism
+In contrast, $\gen$ has the most morphisms. In particular, for any metric spaces $A,B \in \ob(\gen)$ we have the morphism
 $$
 \mathrm{const}_b: A \to B, \ a \mapsto b
 $$
@@ -49,7 +49,7 @@ Let $X$ be a finite set. A partition $P$ of $X$ is the set of equivalence classe
 
 \medskip Furthermore:
 \begin{itemize}
-    \item We interchangeably use $P$ - the partition and $\sim_P$ - the corresponding equivalence relation.
+    \item We interchangeably use $P$ (the partition) and $\sim_P$ (the corresponding equivalence relation).
     \item A single equivalence class $X_\alpha \in P$ will be called a \emph{block} or \emph{part} of $P$.
 \end{itemize}
 \end{definition}
@@ -93,11 +93,11 @@ Like in chapter \ref{chapter__dataclustering} we also want to consider hierarchi
 For this we introduce the notion of a \emph{dendogram}.
 
 \begin{definition}{Dendogram \cite[Def.~2.2]{Carlsson2010}}{dendogram}
-A map $\theta: \R_{\leq0} \to \mathfrak{P}(X)$ with
+A map $\theta: \R_{\geq0} \to \mathfrak{P}(X)$ with
 \begin{itemize}
-    \item $\forall r,s \in \R_{\leq0}: r \leq s \implies  \theta(r) \refines \theta(s)$
-    \item $\exists r,s \in \R_{\leq0}$ such that $\theta(r)$ is trivial and $\theta(s)$ is discrete\footnote{In particular we get that $\theta(0)$ is always discrete.}
-    \item $\forall r \in \R_{\leq0} \,\exists \varepsilon > 0$ such that $\theta$ is constant on $[r, r + \varepsilon)$
+    \item $\forall r,s \in \R_{\geq0}: r \leq s \implies  \theta(r) \refines \theta(s)$
+    \item $\exists r,s \in \R_{\geq0}$ such that $\theta(r)$ is trivial and $\theta(s)$ is discrete\footnote{In particular we get that $\theta(0)$ is always discrete.}
+    \item $\forall r \in \R_{\geq0} \,\exists \varepsilon > 0$ such that $\theta$ is constant on $[r, r + \varepsilon)$
 \end{itemize}
 is called a \emph{dendogram} of $X$. Sometimes $r$ is referred to as the \emph{scale}.
 \end{definition}
@@ -115,7 +115,7 @@ This point will be particularly necessary for some uniqueness theorems we presen
 We can finally define the categories which will be the \emph{outputs} of clustering functors.
 
 \begin{definition}{\cite[Def.~3.2]{Carlsson2010}}{output_classical_clustering_functors}
-Consider the category $\C$ of outputs of \emph{classical clustering functors}. It is defined by
+The category $\C$ of outputs of \emph{classical clustering functors} is defined by
 \begin{equation*}
     \ob(\C) := \{(X, P): X \text{ a finite set and } P \in \P(X)\}
 \end{equation*}
@@ -127,7 +127,7 @@ In short, we write $(X,P) \refines_f (Y,Q)$ for such a morphism. As before, the 
 \end{definition}
 
 \begin{definition}{\cite[Def.~3.3]{Carlsson2010}}{output_hierarchical_clustering_functors}
-Similar to before we define the category $\H$ of \emph{outputs of hierarchical clustering functors}, given by
+Similarly, we define the category $\H$ of \emph{outputs of hierarchical clustering functors}, given by
 \begin{equation*}
     \ob(\H) := \{(X, \theta_X): X \text{ a finite set and } \theta_X: \R_{\geq0} \to \P(X) \ \text{a dendogram}\}
 \end{equation*}
@@ -136,7 +136,7 @@ and for all $(X, \theta_X), (Y, \theta_Y) \in \ob(\H)$ we have the morphisms
     \mor_\H((X, \theta_X), (Y,\theta_Y)) :=
     \left\{f: X \to Y: \forall r \in \R_{\geq0}: \theta_X(r) \refines_f \theta_Y(r)) \right\}.
 \end{equation*}
-Again we write $(X, \theta_X) \refines_f (Y, \theta_Y)$ for such a morphism and the composition and identity are defined as before.
+Again, we write $(X, \theta_X) \refines_f (Y, \theta_Y)$ for such a morphism, and the composition and identity are defined as before.
 \end{definition}
 
 Another way of thinking about morphisms in $\C$ (or $\H$) is that given $(X,P), (Y,Q) \in \ob(\C)$ a morphism $f \in \mor_\C((X,P), (Y,Q))$ is simply a map $f: X \to Y$ such that
@@ -149,7 +149,7 @@ We define the \emph{shift} functor $\sigma_\lambda: \H \to \H$ for some $\lambda
 $$
 \sigma_\lambda(X, \theta_X(r)) := (X, \theta_X(r \cdot \lambda)) \quad \forall r \in \R_{\geq0}.
 $$
-By checking the condition on morphisms in \ref{def:output_hierarchical_clustering_functors} we see that this induces a functor.
+By checking the condition on morphisms in definition \ref{def:output_hierarchical_clustering_functors} we see that this induces a functor.
 
 \todo[check if this is correct; take reciprocal?]
 \end{definition}
@@ -181,7 +181,7 @@ Recall the inclusions \eqref{eq:inclusions_of_finite_metric_space_categories} an
 Given a clustering functor on a larger category, say $\Cf: \gen \to \C$, this immediately induces clustering functors on the smaller categories by pre-composition with the inclusion functors $\iso \to \inj \to \gen$. We will use the same symbol for the induced functors.
 \end{myremark}
 
-With this in mind it makes sense to think of the categories $\iso, \inj, \gen$ as being different levels of \emph{structure} a clustering functor can \emph{preserve} where $\iso$ is the least restrictive and $\gen$ the most restrictive.
+With this in mind, it makes sense to think of the categories $\iso, \inj, \gen$ as being different levels of \emph{structure} a clustering functor can \emph{preserve} where $\iso$ is the least restrictive and $\gen$ the most restrictive.
 
 
 \begin{myremark}{}{}

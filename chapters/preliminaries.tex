@@ -4,7 +4,7 @@
 This chapter serves as a concise place to find definitions which will be used throughout.
 \section{Equivalence Relations}
 
-\begin{definition}{}{}
+\begin{definition}{}{relation}
     Let $X$ be a set, a \emph{relation} on $X$ is a subset $R \subseteq X \times X$. And we write $x \sim_R y$ if $(x,y) \in R$.
     A relation with the following properties is called an \emph{equivalence relation}:
     \begin{enumerate}
@@ -18,10 +18,10 @@ This chapter serves as a concise place to find definitions which will be used th
 When describing an equivalence relation it is often easier to describe a minimal set of conditions the equivalence relation must satisfy. More formally, we talk about taking the \emph{transitive closure} of a relation.
 
 \begin{definition}{}{}
-    Given a relation $R$ on a set $X$ the \emph{transitive closure} of $R$ is the minimal (with respect to $\subseteq$) $R^+ \subset X \times X$ such that $R \subset R^+$ and $R^+$ is transitive.
+    Given a relation $R$ on a set $X$ the \emph{transitive closure} of $R$ is the minimal (with respect to $\subseteq$) $R^+ \subseteq X \times X$ such that $R \subseteq R^+$ and $R^+$ is transitive.
 \end{definition}
 
-In particular, if $R$ is reflexive and symmetric then $R^+$ is an equivalence relation.
+In particular, if $R$ is reflexive and symmetric\footnote{\Ie\ a relation satisfying $(1)$ and $(2)$ in definition \ref{def:relation}} then $R^+$ is an equivalence relation.
 We will use this fact and simply define a symmetric and reflexive relation then taking its transitive closure.
 More precisely, we have that $x \sim_{R^+} y$ if there exists a sequence $x = x_0, x_1, \dots, x_n = y$ such that $x_i \sim_R x_{i+1}$ for all $i = 0, \dots, n-1$ \cite[p.~337]{Lidl1997-kc}.
 

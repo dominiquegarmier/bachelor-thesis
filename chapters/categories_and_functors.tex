@@ -3,7 +3,7 @@
 \section{Categories}
 
 In mathematics, it is common to study maps between objects.
-Continuous functions between topological spaces, linear maps between vector spaces \etc\
+\Eg: continuous functions between topological spaces, linear maps between vector spaces, \etc\
 Categories create a framework for this type of mathematical structure.
 
 \begin{definition}{Category \cite[Sec.~1.2]{Roman2017}}{}
@@ -22,14 +22,14 @@ A category $\C$ consists of
     f \circ (g \circ h) = (f \circ g) \circ h.
     $$
 
-    \item \textbf{Identity}: For each object $A,B \in \ob(\C)$ there exists a morphism $e_A \in \mor_C(A,A)$ such that for $f \in \mor_C(A,B)$ and $g \in \mor_C(B,A)$ we have
+    \item \textbf{Identity}: For all objects $A,B \in \ob(\C)$ there exists a morphism $e_A \in \mor_C(A,A)$ such that for $f \in \mor_C(A,B)$ and $g \in \mor_C(B,A)$ we have
     $$
     f \circ e_A = f \quad \text{and} \quad e_A \circ g = g.
     $$
 \end{enumerate}
 \end{definition}
 
-One reason why the objects $\ob(\C)$ of a category are not generally set is that sets require the axiom of regularity, 
+One reason why the objects $\ob(\C)$ of a category are not generally a set is that sets require the axiom of regularity, 
 disallowing such things as \emph{the set of all sets}. Particularly classes can be much larger than sets \cite[p.~1]{Roman2017}.
 
 Nonetheless, we will often define the class of objects using the following notation:
@@ -39,14 +39,15 @@ $$
 where it is understood that this is not a proper set.
 
 
-In the definition of a category we never required any morphisms other than the identity morphism to exist.
+On the one hand in the definition of a category we never required any morphisms other than the identity morphism to exist.
 This means that we could construct a category with arbitrary objects and only the identity morphism for each object. 
 Such a category would however not be very interesting to study.
 On the other hand it is common to study categories where certain objects have no morphisms between them.
 
 \subsection{Examples}
 
-Interestingly we can encode many mathematical structures as categories even some, where it is not immediately obvious that they form a category \cite[Chap.~1~Ex.~1-7]{Roman2017}, \cite[Sec.~1.1]{Leinster2014-dc}.
+Interestingly, we can encode many mathematical structures as categories, even some where it is not immediately obvious that they form a category \cite[Chap.~1~Ex.~1-7]{Roman2017}, \cite[Sec.~1.1]{Leinster2014-dc}.
+
 The most familiar way of thinking about a category is to see morphisms as maps and the composition as the composition of maps. There are many example of such categories.
 
 \begin{example}{Category of Sets}{}
@@ -108,13 +109,14 @@ and the composition is given by $g \circ h = gh$ and identity by $e \in G$.
 In the previous two examples it might not be intuitive why these compositions form a category. It is however a good exercise to verify that they do.
 
 \section{Functors}
-We would now like to study maps between categories. It is not yet clear what such a map is supposed to look like and what properties it must have.
+We would now like to study maps between categories. 
+It is not obvious what such a map is supposed to look like and what properties it must have.
 
 \begin{definition}{Functor \cite[Sec.~1.3]{Roman2017}}{}
-We differentiate between \emph{covariant} and \emph{contravariant} \emph{functors}. 
-We make sure to consider the corresponding parts of the definition denoted by the bullet points $\bullet$.\\
+We differentiate between \emph{covariant} and \emph{contravariant} \emph{functors}.
+We make sure to differentiate the corresponding parts of the definition denoted by the bullet points $\bullet$.\\
 
-Let $\A, \B$ be two categories. A \emph{functor} which we denote by $\Ff: \A \to \B$ is the following collection of maps, all denoted with the same symbol:
+Let $\A, \B$ be two categories. A \emph{functor}, which we denote by $\Ff: \A \to \B$, is the following collection of maps, all denoted with the same symbol:
 \begin{enumerate}
     \item A map between the objects of the two categories:
     $$
@@ -131,7 +133,7 @@ A functor must also satisfy
 \label{eq:functor_functoriality_identity}
 \Ff(e_X) = e_{\Ff(X)},
 \end{equation}
-where $e_X$ denotes the identity morphism. And for every $f \in \mor_\A(X,Y)$ and $g \in \mor_\A(Y,Z)$
+where $e_X$ denotes the identity morphism on an object $X$. And for every $f \in \mor_\A(X,Y)$ and $g \in \mor_\A(Y,Z)$
 \begin{itemize}
     \item \emph{In the case of a covariant functor}
     \begin{equation}
@@ -158,8 +160,10 @@ $$
 \Ff: \A \to \B, \quad \mathfrak{G}: \B \to \C
 $$
 two co- or contra- variant functors. Then $\mathfrak{G}$ and $\Ff$ can be composed in the obvious sense denoted by
-$$\mathfrak{G} \Ff: \A \to \C$$
-which is still a functor. Particularly $\mathfrak{G} \Ff$ is covariant if and only if both $\mathfrak{G}$ and $\Ff$ have the same type. Moreover, the composition of functors is associative.
+$$
+\mathfrak{G} \Ff: \A \to \C,
+$$
+which is still a functor. Particularly, $\mathfrak{G} \Ff$ is covariant if and only if both $\mathfrak{G}$ and $\Ff$ have the same type\footnote{\Ie\ covariant or contravariant.}. Moreover, the composition of functors is associative.
 \end{defprop}
 
 \subsection{Examples of Functors}
@@ -175,28 +179,28 @@ which maps a vector space $V$ to its (algebraic) dual $V^*$ and maps a linear ma
 \end{example}
 
 \begin{example}{Fundamental Group Functor \cite[Ex.~1.2.5]{Leinster2014-dc}}{}
-The map that assigns a based topological space $(X,x_0)$ to its fundamental group $\pi_1(X,x_0)$ and assigns continuous functions $f: (X,x_0) \to (Y,y_0)$ to the group homomorphism 
+The map that assigns to a based topological space $(X,x_0)$ its fundamental group $\pi_1(X,x_0)$ and maps continuous functions $f: (X,x_0) \to (Y,y_0)$ to the group homomorphism 
 $$
 \pi_1(X,x_0) \ni [\alpha] \mapsto [f \circ \alpha] \in \pi_1(Y,y_0)
 $$
 is a functor
 $$
-\pi: \mathrm{Top}_\bullet \to \mathrm{Grp}.
+\pi_1: \mathrm{Top}_\bullet \to \mathrm{Grp}.
 $$
 \end{example}
 
 \begin{example}{Homology Functor \cite[Chap.~2.3]{Hatcher2001}}{}
-The map that assigns a topological space $X$ to its singular homology chain complex $H_\bullet(X)$ and assigns continuous functions $f: X \to Y$ to the chain map $f_*: H_\bullet(X) \to H_\bullet(Y)$ is a functor from the category of topological spaces to the category of chain complexes of abelian groups.
+The map that assigns to a topological space $X$ its singular homology chain complex $H_\bullet(X)$ and assigns to continuous functions $f: X \to Y$ to the chain map $f_*: H_\bullet(X) \to H_\bullet(Y)$ is a functor from the category of topological spaces to the category of chain complexes of abelian groups.
 \end{example}
 
-Building on the definition of the category $\mathcal{G}$ \ref{exa:group-category}, we can now translate the familiar concept of a group homomorphism into a functor between categories.
+Building on the category $\mathcal{G}$ from example \ref{exa:group-category}, we can now translate the familiar concept of a group homomorphism into a functor between categories.
 
 \begin{example}{Group Homomorphism as a Functor}{}
-Let $G_1, G_2$ be groups, $\phi: G_1 \to G_2$ be a group homomorphism and $\mathcal{G}_1,\mathcal{G}_2$ the corresponding categories from \ref{exa:group-category}. The goal is to construct a corresponding functor 
+Let $G_1, G_2$ be groups, $\phi: G_1 \to G_2$ be a group homomorphism and $\mathcal{G}_1,\mathcal{G}_2$ the corresponding categories from example \ref{exa:group-category}. The goal is to construct a corresponding functor 
 $$
-\Ff_\phi: \mathcal{G}_1 \to \mathcal{G}_1
+\Ff_\phi: \mathcal{G}_1 \to \mathcal{G}_1.
 $$
-Since both $\mathcal{G}_1$ and $\mathcal{G}_2$ contain a single object $\epsilon$ it is clear that $\Ff_\phi(\epsilon) = \epsilon$. We still need to define the $\Ff$ on the morphisms, for which we simply set
+Since both $\mathcal{G}_1$ and $\mathcal{G}_2$ contain a single object $\epsilon$ it is clear that $\Ff_\phi(\epsilon) = \epsilon$. We still need to define $\Ff_\phi$ on the morphisms, for which we simply set
 $$
 \Ff_\phi(g) = \phi(g) \in \mor_{\mathcal{G}_2}(\epsilon, \epsilon) = G_2
 $$
@@ -209,7 +213,7 @@ for every $g \in \mor_{\mathcal{G}_1}(\epsilon, \epsilon) = G_1$. \par
 &= \phi(g) \circ \phi(h) = \Ff_\phi(g) \circ \Ff_\phi(h)
 \end{split}
 \end{equation*}
-for all $g,h \in \mor_{\mathcal{G}_1}(\epsilon, \epsilon) = G_1$ and since group homomorphisms map the neutral element to the neutral element we get
+for all $g,h \in \mor_{\mathcal{G}_1}(\epsilon, \epsilon) = G_1$, and since group homomorphisms map the neutral element to the neutral element we get
 \begin{equation*}
 \Ff_\phi(e_{G_1}) = \phi(e_{G_1}) = e_{G_2}.
 \end{equation*}
@@ -223,7 +227,7 @@ Let $\C$ be a category whose objects are sets (potentially with some additional 
 $$
 \alpha_\C: \C \to \mathrm{SET}
 $$
-where $\alpha_\C$ maps objects to their underlying set. And morphisms get mapped to their underlying functions. In this sense the forgetful functor \emph{forgets} the additional structure of the category.
+where $\alpha_\C$ maps objects to their underlying set and morphisms get mapped to their underlying functions. In this sense, the forgetful functor \emph{forgets} the additional structure of the category.
 \end{definition}
 
 In particular, we will use the following notation related to the forgetful functor.
@@ -236,7 +240,7 @@ Let $\A, \B$ be categories with forgetful functors $\alpha_\A, \alpha_\B$ respec
         & \mathrm{SET} &
       \end{tikzcd}
 \end{equation*}
-commutes. This means that $\Ff$ preserves the underlying map of morphisms.
+commutes. This means that $\Ff$ preserves the underlying set of an object and the underlying map of a morphism.
 \end{notation}
 
 \medskip We now have all the required tools to define clustering functors in the next chapters.

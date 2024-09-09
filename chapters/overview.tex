@@ -2,7 +2,7 @@
 \label{chapter__dataclustering}
 
 \section{Overview of Clustering Algorithms}
-We would like to present a few clustering methods to contrast against the methods we will present in the latter half of this report. These are commonly studied in machine learning and data science.
+We would like to present a few clustering methods to contrast against the methods we will present in the latter half of this thesis. These are commonly studied in machine learning and data science.
 
 \subsection{$k$-means}
 A common method of clustering is to find a $k$-partition of the points according to some criterion.
@@ -16,43 +16,43 @@ For $k \in \N$ the \emph{$k$-means clustering objective} refers to finding a par
 \label{eq:kmean_optimization}
     \sum_{i = 1}^k \sum_{x \in C_i} \|x - \mu_i\|^2
 \end{equation*}
-is minimal, where $\mu_k := \frac{1}{|C_k|}\sum_{x \in C_k} x$\footnote{In case $C_k = \emptyset$ we set $\mu_k = 0 \in \R^d$.} is the \emph{center} of $C_k$.
+is minimal, where $\mu_k := \frac{1}{|C_k|}\sum_{x \in C_k} x$ is the \emph{center} of $C_k$\footnote{In case $C_k = \emptyset$ we set $\mu_k = 0 \in \R^d$.}.
 \end{definition}
 To find such a partition we would have to check all possible partitions of $x_1, \dots, x_n$. This is computationally unfeasible. In practice, we use approximate methods such as \textsc{Lloyd}'s algorithm \cite[Sec.~3.1.2]{Scitovski2021}.
-Sometimes simply referred to as \emph{the $k$-means algorithm}.
+Sometimes it is simply referred to as \emph{the $k$-means algorithm}.
 
 \subsection{Linkage-Clustering}
 \label{section__linkage_clustering}
 Another way of clustering data points is based on graph theory and the idea of consecutively connecting points \cite[Sec.~4.2.2]{Everitt2011}.
 As an output of this method we obtain a
-dendogram\footnote{See section \ref{section__partitions} for an in depth definition of dendograms.}.
+dendogram\footnote{See section \ref{section__partitions} for an in-depth definition of dendograms.}.
 
-Let $x_1, \dots, x_n \in \R^d$ be a set of distinct data points.
+Let $x_1, \dots, x_n \in \R^d$ be a set of distinct data points and $d$ a metric on $\R^d$.
 \begin{definition}{Linkage-Clustering }{linkage_clustering}
-Let $d$ be a \emph{distance function}\footnote{In this case, a \emph{distance function} is just a function taking values in $\R_{\geq0}$.} between clusters. We start with the partition $B^{(0)}_j := \{x_j\}$ for $j = 1, \dots, n$.
+Let $\mathfrak{d}$ be a \emph{distance function}\footnote{In this case, a \emph{distance function} is just a function taking values in $\R_{\geq0}$.} between clusters. We start with the partition $B^{(0)}_j := \{x_j\}$ for $j = 1, \dots, n$.
 Given a partition
 $$
 B^{(k)}_1, \dots, B^{(k)}_{n - k} \quad \text{of} \quad x_1, \dots, x_n
 $$
 we successively merge the clusters $i$ and $j$ such that
 $$
-d(B^{(k)}_i,B^{(k)}_j)
+\mathfrak{d}(B^{(k)}_i,B^{(k)}_j)
 $$
 is minimal.
 \end{definition}
 
-There are multiple distance functions that we could use in the previous definition.
+There are multiple distance functions that we could use in the previous definition, \eg :
 \begin{align*}
-d_\mathrm{min} (B_i, B_j) &:= \min\{d(x,y): x \in B_i, y \in B_j\}\\
-d_\mathrm{max} (B_i, B_j) &:= \max\{d(x,y): x \in B_i, y \in B_j\}\\
-d_\mathrm{avg}(B_i,B_j) &:= \frac{1}{|B_i||B_j|} \sum_{x \in B_i, y \in B_j} d(x,y)\\
+\mathfrak{d}_\mathrm{min} (B_i, B_j) &:= \min\{d(x,y): x \in B_i, y \in B_j\}\\
+\mathfrak{d}_\mathrm{max} (B_i, B_j) &:= \max\{d(x,y): x \in B_i, y \in B_j\}\\
+\mathfrak{d}_\mathrm{avg}(B_i,B_j) &:= \frac{1}{|B_i||B_j|} \sum_{x \in B_i, y \in B_j} d(x,y)\\
 \end{align*}
-If we use $d_\mathrm{min}$ we call it \emph{single-linkage clustering}, when using $d_\mathrm{max}$ we call it \emph{complete-linkage clustering} and \emph{average-linkage clustering} if we use $d_\mathrm{avg}$.
+If we use $\mathfrak{d}_\mathrm{min}$ we call it \emph{single-linkage clustering}, when using $\mathfrak{d}_\mathrm{max}$ we call it \emph{complete-linkage clustering} and \emph{average-linkage clustering} if we use $\mathfrak{d}_\mathrm{avg}$.
 
 \section{Preserving Structure}
 \label{seciton__preserving_structure}
 An important aspect of clustering methods is that they remain invariant under certain transformations.
-The idea is that if a clustering algorithm is invariant under certain transformations (which we can think of as noise) it captures information of the remaining features (which are hopefully not noise).
+The idea is that if a clustering algorithm is invariant under certain transformations (which we can think of as noise) it captures information of the remaining features (which hopefully are not noise).
 
 \begin{example}{}{}
 Consider a finite set $S \subset \R^2$ representing people at a gathering. When searching for a clustering algorithm to detect friendship groups, it would make sense to only consider algorithms with the following invariances:
@@ -65,10 +65,10 @@ The intuition being that such attributes are merely artifacts of the data collec
 \end{example}
 
 \subsection{Kleinberg's Impossibility Theorem}
-It is apparent that as we required more invariants from a clustering algorithm it becomes harder to construct one.
+It is apparent that as we require more invariants from a clustering algorithm it becomes harder to construct one.
 There exists an important result in this regard.
 \textsc{Kleinberg} showed that for certain seemingly reasonable properties there exist no clustering algorithms satisfying them \cite{Kleinberg2002}.
-In the context of this theorem we define a clustering algorithm to be a procedure that assigns a finite metric space $(X,d)$ to a partition of $X$\footnote{In chapter \ref{chapter__clustering_functor} we will formalize the definition of a clustering algorithm.}.
+In the context of this theorem we define a clustering algorithm to be a procedure that assigns to a finite metric space $(X,d)$ a partition of $X$\footnote{In chapter \ref{chapter__clustering_functor} we will formalize the definition of a clustering algorithm.}.
 
 Here are the properties \textsc{Kleinberg} considered:
 
@@ -93,7 +93,7 @@ Let $\Cf$ be a clustering algorithm. We say that it is \emph{consistent} if for 
 we have $\Cf(X,d') = \Cf(X,d)$.
 \end{definition}
 
-Kleinberg show that in combination these properties are impossible to satisfy.
+Kleinberg showed that in combination these properties are impossible to satisfy.
 
 \begin{theorem}{Kleinberg \cite[Thm.~2.1]{Kleinberg2002}}{kleinberg}
 There exists no clustering algorithm that is scale invariant, rich and consistent at the same time.
