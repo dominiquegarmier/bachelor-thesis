@@ -314,23 +314,26 @@ Assuming regularity and building on lemma \ref{lem:surjective_implies_eventually
 \end{lemma}
 
 \begin{proof}[Proof of Lemma]
-    By lemma \ref{lem:surjective_implies_eventually_discrete} we know that there exists $\lambda_0, \lambda_1 > 0$ such that for all $\lambda \le \lambda_0$ we have that $\Cf(X, \lambda \cdot d)$ is trivial, and for all $\lambda' \ge \lambda_1 \ \Cf(X, \lambda' \cdot d)$ is discrete.
-
-    Let now $\lambda \ge \lambda'$, we consider the identity
+    Let $\lambda \ge \lambda'$, we consider the identity
     \begin{align*}
         \mathrm{id}: (X, \lambda \cdot d) &\longrightarrow (X, \lambda' \cdot d),\\
         x &\longmapsto x,
     \end{align*}
-    which is distance non-increasing, so by functoriality and by \eqref{eq:refinement_via_identity} we have
+    which is distance non-increasing, so by functoriality and by refinement via the identity \eqref{eq:refinement_via_identity} we have
     \begin{equation}
     \label{eq:lemma_5_19_1}
     \Cf(X, \lambda \cdot d) \refines_\mathrm{id} \Cf(X, \lambda' \cdot d) \implies \Cf(X, \lambda \cdot d) \refines \Cf(X, \lambda' \cdot d)
     \end{equation}
-    for all $\lambda \le \lambda_0$ and $\lambda' \ge \lambda_1$. \todo[explain why this holds perhaps?]
+    for all $\lambda \ge \lambda'$.
 
-    If we now use $(X,d) = \Delta_2(1)$ we have that the map $\lambda \mapsto \Cf(\Delta_2(\lambda))$ is piecewise constant and can take at most two values (either discrete or trivial).
+    Consider how $(X,d) = \Delta_2(\lambda)$ it is clear that
+    \begin{align*}
+        \R_{\geq0} &\longrightarrow \P(X), \\
+        \lambda &\longmapsto \Cf(\Delta_2(\lambda))
+    \end{align*}
+    is piecewise constant and can take at most two values (either discrete or trivial) but by lemma \ref{lem:surjective_implies_eventually_discrete} this function takes exactly two values and by \eqref{eq:lemma_5_19_1} this function is also monotonically decreasing (with respect to $\le$ on $\R_{\geq0}$ and $\refines$ on $\P(X)$).
+    So we can find some $\delta_0 > 0$ such that $\Cf(\Delta_2(\delta))$ is trivial and $\Cf(\Delta_2(\delta'))$ is discrete for all $\delta < \delta_0 < \delta'$.
 
-    Thus, by \eqref{eq:lemma_5_19_1} there must exist some $\delta_0 > 0$ such that for $\delta < \delta_0 < \delta'$ we have that $\Cf(\Delta_2(\delta))$ is trivial and $\Cf(\Delta_2(\delta'))$ is discrete.
     As for the value at $\delta_0$ we recall the previous remark \ref{rem:left_regularity_classical_clusteirng_functors} and conclude that $\Cf(\Delta_2(\delta_0))$ is trivial.
     \newresult[check this]
 \end{proof}
