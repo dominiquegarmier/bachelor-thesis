@@ -14,3 +14,8 @@
 main.pdf
 
 .vscode
+
+__pycache__/
+.venv
+
+.DS_Store
