@@ -1,9 +1,61 @@
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
-The goal of this thesis is to review the formalization of clustering algorithms developed by \textsc{Carlsson} and \textsc{Memoli} \cite{Carlsson2010}. Ultimately, we will prove new uniqueness results characterizing the Vietoris-Rips functor.
+A central problem in machine learning and data science is the task of clustering data. \Ie\ finding patterns in data and grouping data points into clusters.
+Underlying most clustering techniques is the notion of a distance between data points. In that case we think of \emph{data} as a finite metric space.
 
-The chapters are structured as follows:
+We think of a clustering algorithm as a map that maps a finite metric space to either a partition or a dendogram of the underlying set.
+
+\begin{figure*}[h]
+\centering
+\begin{subfigure}[t]{0.45\textwidth}
+    \centering
+    \begin{tikzpicture}[sloped]
+        \node[circle,fill=black,inner sep=1pt] at (0, 2.3) {};
+        \node[circle,fill=black,inner sep=1pt] at (0.5, 1.6) {};
+        \node[circle,fill=black,inner sep=1pt] at (1.1, 2.1) {};
+
+        \node[circle,fill=black,inner sep=1pt] at (2.1, 1.2) {};
+        \node[circle,fill=black,inner sep=1pt] at (2.3, 1.9) {};
+
+        \node[circle,fill=black,inner sep=1pt] at (0.8, 0.3) {};
+        \node[circle,fill=black,inner sep=1pt] at (1.6, 0.2) {};
+        
+        \draw[dashed,fill=myblue,fill opacity=0.15,rotate=40] (1.7,1.2) ellipse (1.1 and 0.8);
+        \draw[dashed,fill=mygreen,fill opacity=0.15,rotate=-12] (1.8, 1.9) ellipse (0.4 and 0.8);
+        \draw[dashed,fill=myred,fill opacity=0.15,rotate=-5] (1.2,0.3) ellipse (0.9 and 0.5);
+
+    \end{tikzpicture}
+    \caption{A partition of seven points.}
+\end{subfigure}
+\begin{subfigure}[t]{0.45\textwidth}
+    \centering
+    \begin{tikzpicture}[sloped]
+        \node (a) at (-0.5,0) {a};
+        \node (b) at (0.5,0) {b};
+        \node (c) at (2,0) {c};
+        
+        \draw  (a) |- (0,1);
+        \draw  (b) |- (0,1);
+        \draw  (c) |- (1,2);
+        \draw  (0,1) |- (1,2);
+        \draw[dashed]  (1,2) -- (1,2.5);
+        \draw[->] (-1,0) -- node[above]{scale} (-1,3);
+    \end{tikzpicture}
+    \caption{A dendogram of three points.}
+\end{subfigure}
+\end{figure*}
+
+Clustering algorithms that produce a partition are sometimes called \emph{classical} and those that produce a dendogram are called \emph{hierarchical}.
+For classical clustering algorithms there exists an important impossibility result by \textsc{Kleinberg} \cite{Kleinberg2002}, which says that for a certain set of properties there exists no clustering algorithm satisfying them.
+Hierarchical clustering algorithms allow for more complex structures to be captured. We will show that this additional capacity can be used in some sense to interpret \textsc{Kleinberg}'s impossibility result as a uniqueness result.
+
+For the majority of this thesis we review the formalization of clustering algorithms described by \textsc{Carlsson} and \textsc{Memoli} \cite{Carlsson2010}. They used the language of category theory to succinctly describe properties of clustering algorithms. In particular clustering algorithms are seen as special functors mapping from appropriate categories of finite metric spaces to partitions or dendograms respectively. For this reason we refer to such clustering algorithms as \emph{classical} or \emph{hierarchical clustering functors}.
+
+We will discuss properties such as \emph{surjectivity}, \emph{splitting} and \emph{representability} of clustering functors and how they related to each other. A central object of study will be the Vietoris-Rips clustering functor which will have all these properties. Moreover, by interpreting \textsc{Kleinberg}'s conditions in the setting of hierarchical clustering functors as done in \cite[Sec.~7.3.1]{Carlsson2010}, we will see that the Vietoris-Rips functor is the only hierarchical clustering functor satisfying these conditions.
+
+\section*{Overview of the Thesis}
+\todo[this could be moved into the appendix?]
 \begin{description}
     \item[\Cref{chapter__preliminaries}.] This chapter is a refresher of some basic concepts and definitions. The reader is advised to refer back to this chapter if they are unfamiliar with certain notations.
 
@@ -17,3 +69,4 @@ The chapters are structured as follows:
 
     \item[\Cref{chapter__hierarchical}.] By relating our findings from the previous chapter to the \emph{modified} \textsc{Kleinberg} \emph{conditions} presented by \cite[Sec.~7.3.1]{Carlsson2010} we are finally able to show that the Vietoris-Rips functor is the only hierarchical clustering functor satisfying these conditions.
 \end{description}
+

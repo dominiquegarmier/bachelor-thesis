@@ -1,8 +1,8 @@
 \chapter{Data Clustering}
 \label{chapter__dataclustering}
 
-\section{Overview of Clustering Algorithms}
-We would like to present a few clustering methods to contrast against the methods we will present in the latter half of this thesis. These are commonly studied in machine learning and data science.
+\section{Examples of Clustering Algorithms}
+In this section we present a few clustering methods. These are commonly studied in machine learning and data science.
 
 \subsection{$k$-means}
 A common method of clustering is to find a $k$-partition of the points according to some criterion.
@@ -21,7 +21,176 @@ is minimal, where $\mu_k := \frac{1}{|C_k|}\sum_{x \in C_k} x$ is the \emph{cent
 To find such a partition we would have to check all possible partitions of $x_1, \dots, x_n$. This is computationally unfeasible. In practice, we use approximate methods such as \textsc{Lloyd}'s algorithm \cite[Sec.~3.1.2]{Scitovski2021}.
 Sometimes it is simply referred to as \emph{the $k$-means algorithm}.
 
-\subsection{Linkage-Clustering}
+\begin{definition}{Lloyd's Algorithm}{lloyds_algorithm}
+Given $\{x_1, \dots, x_n\} \subset \R^d$ and some \emph{centers} $z_1, \dots, z_k \in \R^d$
+Lloyd's algorithm consists of iteratively applying the following two steps:
+
+\begin{enumerate}
+    \item \textbf{Assignment Step:} Assign each point $x_i$ to the cluster $C_j$ such that
+    $$
+    j = \argmin_{1 \leq l \leq k} \|x_i - z_l\|^2.
+    $$
+
+    \item \textbf{Update Step:} Update the centers $z_1, \dots, z_k$ by setting
+    $$
+    z_j = \frac{1}{|C_j|}\sum_{x \in C_j} x. \quad \forall \quad j \in \{1, \dots, k\},
+    $$
+    where $z_j = 0$ if $C_j = \emptyset$. 
+\end{enumerate}
+\end{definition}
+
+One can show that Lloyd's algorithm converges after finitely many steps \cite[Thm.~3.14]{Scitovski2021}.
+We will see that the choice of starting centers $z_1, \dots, z_k$ can have a significant impact on the outcome of the algorithm.
+
+Consider the set $\{(0,0), (0,1), (2,0), (2,1)\} \subset \R^2$ and $k = 2$. And two possible choices of starting centers:
+
+\begin{enumerate}
+    \item $z_1 = (0, 1/2)$ and $z_2 = (2, 1/2)$
+    \item $z_1' = (1, 0)$ and $z_2' = (1, 1)$
+\end{enumerate}
+
+In both cases the algorithm will converge after just one iteration. But depending on the choice of starting centers we will get the clusters:
+
+%\begin{enumerate}
+%    \item $C_1 = \{(0,0), (0,1)\}$ and $C_2 = \{(2,0), (2,1)\}$
+%    \item $C_1' = \{(0,0), (2,0)\}$ and $C_2' = \{(0,1), (2,1)\}$
+%\end{enumerate}
+
+\begin{figure*}[h]
+    \centering
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \node[circle,fill=black,inner sep=1pt] at (0,0) {};
+            \node[circle,fill=black,inner sep=1pt] at (0,1.5) {};
+            \node[circle,fill=black,inner sep=1pt] at (3,0) {};
+            \node[circle,fill=black,inner sep=1pt] at (3,1.5) {};
+        
+            \node[circle,fill=mygreen,inner sep=1pt, label={[mygreen]:\small$z_1$}] at (0,0.75) {};
+            \node[circle,fill=mygreen,inner sep=1pt, label={[mygreen]:\small$z_2$}] at (3,0.75) {};
+        
+            \draw[ellipse,dashed,fill=mygreen,fill opacity=0.15] (0,0.75) ellipse (0.75 and 1.5);
+            \draw[ellipse,dashed,fill=mygreen,fill opacity=0.15] (3,0.75) ellipse (0.75 and 1.5);
+        \end{tikzpicture}
+        \caption{$k$-means for starting centers $(1)$}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \node[circle,fill=black,inner sep=1pt] at (0,0) {};
+            \node[circle,fill=black,inner sep=1pt] at (0,1.5) {};
+            \node[circle,fill=black,inner sep=1pt] at (3,0) {};
+            \node[circle,fill=black,inner sep=1pt] at (3,1.5) {};
+        
+            \node[circle,fill=mygreen,inner sep=1pt, label={[mygreen]:\small$z_1'$}] at (1.5,0) {};
+            \node[circle,fill=mygreen,inner sep=1pt, label={[mygreen]:\small$z_2'$}] at (1.5,1.5) {};
+        
+            \draw[ellipse,dashed,fill=mygreen,fill opacity=0.15] (1.5,0) ellipse (2 and 0.65);
+            \draw[ellipse,dashed,fill=mygreen,fill opacity=0.15] (1.5,1.5) ellipse (2 and 0.65);
+        \end{tikzpicture}
+        \caption{$k$-means for starting centers $(2)$}
+    \end{subfigure}
+    \end{figure*}
+
+In fact the first solution is the one minimizing the $k$-means objective. So we see that the choice of initial centers is important for the outcome of the algorithm. For this reason in practice one might run the algorithm multiple times with different initial centers drawn from some distribution and then choose the best solution.
+
+Another limitation of the $k$-means algorithm is that it's clusters are always convex. Consider the following data points:
+
+\begin{figure*}[h]
+\centering
+\begin{tikzpicture}
+    \node[circle,fill=black,inner sep=1pt] at (-0.9354845716011222,0.18307230598328011) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.6022008350379893,-0.6766148069040249) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.3017889121309615,0.9234945018605241) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.019411136915025815,-0.9862951896852925) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.36131993785507066,0.9963581867912067) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.14470003727553468,1.120210968587679) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.7663851273464197,-0.7466764302028278) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.0380273324870792,0.02600780638985682) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.9464627602159024,-0.16312872270457907) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.7761214650860365,0.6307461051809052) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.35928536131031447,0.9817261487346943) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.5855377254683302,-0.8413648746591265) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.2453148868666183,-0.9862603614203487) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.8590525813071663,0.3901077018200054) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.6331169714802366,0.7983622409387744) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.5612613133274023,-0.7975886993585758) {};
+    \node[circle,fill=black,inner sep=1pt] at (-1.0246780949425023,0.13661552668255433) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.9782670390950393,0.03875127118781442) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.9761985117469395,-0.45407303518431535) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.7501781243824085,0.712015247968187) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.5346611005078516,-0.8244024543035658) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.9583258912267579,-0.4606477947804053) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.9334816841267801,-0.3887521175411807) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.9785140034096549,0.43903895064494036) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.9220324062809353,0.4607474744919918) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.11562684869025051,0.9444499378355918) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.7663704940623383,0.43078869034209677) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.06360786751754671,0.9625319725751043) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.08695914679729586,-1.0585228333810661) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.43009004423010244,-0.8827297131058025) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.4580234677924982,0.8797485550287845) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.0592149922873082,0.03720003376975784) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.3151958158394811,-0.9764807384359325) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.298350871210182,0.926264322551874) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.8748579037872729,-0.338947952025739) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.9563960209017687,0.11936291042927845) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.31365738290313544,-0.9419266352445692) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.7557771227766666,-0.631668187904059) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.8588989767798331,-0.5430031508924956) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.11428344362643193,-1.0928866127345573) {};
+    
+    \node[circle,fill=black,inner sep=1pt] at (-2.090228176866588,-0.04395200363050898) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.8437350487271869,-0.5617048741469651) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.213745177018688,1.5681217094224609) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.7410805661052833,-1.8802848429587702) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.3710690126420777,-1.451896013407692) {};
+    \node[circle,fill=black,inner sep=1pt] at (-1.0103699000784692,-1.788807093960964) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.0986088775058716,-1.61508467920331) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.3136188226855026,1.5612553268272897) {};
+    \node[circle,fill=black,inner sep=1pt] at (-1.6601222671038511,-1.0882955946665627) {};
+    \node[circle,fill=black,inner sep=1pt] at (-1.3706631529180484,-1.4895243487571679) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.8888679245916467,0.47626434164528453) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.16782244253699274,2.017066439529926) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.4462270462050553,-1.8472579735124541) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.8616747603687585,0.48579789271151824) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.8724307173203704,1.7309810054125812) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.7782624218053604,-1.03023494114103) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.3058680617545648,-1.4721841823380888) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.4803647211314361,1.8513642535919885) {};
+    \node[circle,fill=black,inner sep=1pt] at (-1.5695515440570138,1.2267287579126325) {};
+    \node[circle,fill=black,inner sep=1pt] at (-1.6586894106145114,1.1359455002253784) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.9483285908914918,0.22330607480215314) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.664536996156272,1.8750873217624404) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.9486444425806224,-0.45107934374096875) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.7969267453689968,-0.9358812984752826) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.1969834403314346,-1.585307684244185) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.7850365451753425,-0.8709364670831505) {};
+    \node[circle,fill=black,inner sep=1pt] at (-1.1890471913752927,-1.681470540413483) {};
+    \node[circle,fill=black,inner sep=1pt] at (2.023122046663118,-0.20047738251314806) {};
+    \node[circle,fill=black,inner sep=1pt] at (-1.7089782958468558,1.0303937498640208) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.47445072684746986,-1.9594693969735066) {};
+    \node[circle,fill=black,inner sep=1pt] at (-0.7588415765284735,-1.8601437096454498) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.5681769459204502,1.9246086105652889) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.09392814967485126,1.942359980923491) {};
+    \node[circle,fill=black,inner sep=1pt] at (0.5248821089182913,-1.9036990179408924) {};
+    \node[circle,fill=black,inner sep=1pt] at (-1.1160067637235926,-1.6070906272841012) {};
+    \node[circle,fill=black,inner sep=1pt] at (-1.2417878670362128,1.55206585511447) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.7341455410828923,0.8389095052472327) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.5555307004581103,-1.215553341044432) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.9855244816492204,-0.330153873496246) {};
+    \node[circle,fill=black,inner sep=1pt] at (1.9237318130255814,-0.32276724187652484) {};
+
+    \draw[circle, dashed, color=myred](0,0) circle (1);
+    \draw[circle, dashed, color=myblue](0,0) circle (2);
+\end{tikzpicture}
+\caption{Points generated by adding noise to two circles.}
+\end{figure*}
+
+In this case the $k$-means algorithm will fail to detect the two circles as they are not convex.
+
+
+\subsection{Linkage Clustering}
 \label{section__linkage_clustering}
 Another way of clustering data points is based on graph theory and the idea of consecutively connecting points \cite[Sec.~4.2.2]{Everitt2011}.
 As an output of this method we obtain a
