@@ -9,11 +9,13 @@ This construction closely follows the one by \textsc{Carlsson} and \textsc{M\'em
 \section{Finite Metric Spaces}
 \label{section__finite_metric_spaces}
 
+
+
 \begin{definition}{Finite Metric Spaces \cite[Sec.~3.2]{Carlsson2010}}{}
 We define three categories $\iso, \inj$ and $\gen$, all sharing the same objects:
 
 \begin{equation*}
-\ob(\M) := \{(X,d_X): \text{$X$ a finite non-empty set and $d_X$ a metric}\}
+\ob(\M) := \{(X,d): \text{$X$ a finite non-empty set and $d$ a metric on $X$}\}
 \end{equation*}
 
 The three categories are distinguished by their morphisms. For $A, B \in \ob(\M)$ we set:
@@ -43,6 +45,21 @@ for some $b \in B$.
 
 \section{Partitions and Dendograms}
 \label{section__partitions}
+
+\begin{definition}{\todo[I think i should leave this out]}{relation}
+    Let $X$ be a set, a \emph{relation} on $X$ is a subset $R \subseteq X \times X$. And we write $x R y$ if $(x,y) \in R$.
+    A relation with all the following properties is called an \emph{equivalence relation}:
+    \begin{enumerate}
+        \item \emph{Reflexivity}: $\forall x \in X: x R x$.
+        \item \emph{Symmetry}: $\forall x,y \in X: x R y \implies y R x$.
+        \item \emph{Transitivity}: $\forall x,y,z \in X: x R y \text{ and } y R z \implies x R z$.
+    \end{enumerate}
+    In this case we will often use a symbol like $\sim$ instead of a letter like $R$ to denote the relation. The \emph{equivalence classes} of an equivalence relation is the set of sets
+    $$
+    X/_{\sim} := \{[x]_\sim: x \in X\},
+    $$
+    where $[x]_\sim := \{y \in X: x \sim y\}$.
+\end{definition}
 
 \begin{definition}{Partitions of Finite Sets}{}
 Let $X$ be a finite set. A partition $P$ of $X$ is the set of equivalence classes $X/_{\sim_P}$ for some equivalence relation $\sim_P$ on $X$. The set of all such partitions is denoted by $\P(X)$.\par
@@ -80,6 +97,20 @@ If $f: X \to Y$ is a map, $P \in \P(X)$ and $Q \in \P(Y)$ then we write $P \refi
     \label{eq:refinement_via_identity}
     P \refines_{\mathrm{id}} Q \iff P \refines Q.
 \end{equation}
+
+When describing a partition it is often easier to describe a minimal set of conditions the partition relation must satisfy. More formally, we talk about taking the \emph{transitive closure} of these conditions. More formally we have:
+
+\begin{definition}{}{}
+    Given a relation $\sim$ on a set $X$ its \emph{transitive closure} is the transitive relation $\sim^+$ such that for $x,y \in X$ we have
+    $$
+    x \sim^+ y
+    $$
+    if there exists a sequence $x = x_0, x_1, \dots, x_n = y$ such that $x_i \sim_R x_{i+1}$ for all $i = 0, \dots, n-1$.
+\end{definition}
+
+In particular, if $\sim$ is reflexive and symmetric then $\sim^+$ is an equivalence relation.
+Later we will regularly use this fact by defining relations as transitive closures of reflexive and symmetric relations.
+
 \begin{definition}{}{}
 We say that $P \in \P(X)$ is:
 \begin{enumerate}
