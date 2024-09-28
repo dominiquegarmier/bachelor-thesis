@@ -1,7 +1,13 @@
 \chapter{Categories and Functors}
 \label{chapter__category_theory}
 
-\todo[I think it would only be confusing to write something here?]
+\begin{quote}
+\textit{``Category theory starts with the observation that many properties of mathematical systems can be unified and simplified by a presentation with diagrams of arrows''} \hfill Saunders Mac Lane, 1978, \cite[p.~1]{MacLane1978} \hspace*{5mm}
+\end{quote}
+
+\todo[probably remove the above citation? and just put (Saunders Mac Lane, 1978)]
+
+Category theory is branch of mathematics developed to unify common methods and structures used in different areas of mathematics. As such we do not expect to see profound results in this chapter. Rather we will introduce notation that make it easier to reason about structures that we will define in later chapters.
 
 \section{Categories}
 
@@ -83,6 +89,16 @@ Let $\mathbb{K}$ be a field. Another structure that one might want to study is t
 \end{itemize}
 then this is again a category for same reasons as in the previous example.
 \end{example}
+
+\begin{example}{Groups}{}
+We can also consider the category $\mathrm{GRP}$ where
+\begin{enumerate}
+    \item $\ob(\mathrm{GRP}) := \{G : \text{$G$ is a group}\}$,
+    \item $\mor_{\mathrm{GRP}}(G,H) := \{f: G \to H : \text{$f$ is a group homomorphism}\}$.
+\end{enumerate}
+This is again a category for similar reasons as in the previous examples. Instead of considering the category of all groups we could restrict the objects to be abelian groups.
+\end{example}
+
 These examples are perhaps the first categories one encounters in mathematics. 
 
 We can also consider categories whose morphisms are not maps. In this case it is important to be clear what the composition $\circ$ should be.
@@ -102,6 +118,7 @@ Notice how this category encodes the full information of the total ordering $\ge
 \end{example}
 
 \begin{example}{Group as a Category}{group-category}
+Not to be confused with the category of groups $\mathrm{GRP}$, we can also consider a group as a category itself.
 Let $G$ be a group. Then we can define a corresponding category $\mathcal{G}$ where
 \begin{itemize}
     \item $\ob(\mathcal{G}) := \{\epsilon\}$ is a single element
@@ -188,7 +205,7 @@ $$
 $$
 is a functor
 $$
-\pi_1: \mathrm{TOP}_\bullet \to \mathrm{GRP}.\footnote{Here $\mathrm{GRP}$ is the category of groups. Where objects are groups and morphisms are group homomorphisms. \todo[introduce in an example?]}
+\pi_1: \mathrm{TOP}_\bullet \to \mathrm{GRP}.
 $$
 \end{example}
 
