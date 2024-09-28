@@ -27,6 +27,49 @@ Then we have $d(f(x), f(y)) \leq d(x,y) \leq \delta$ and therefore $f(x) \sim_{Q
 By taking the transitive closure we get the statement.
 \end{proof}
 
+Consider the seven points $\{a,b,c,d,e,f,g\} \subset \R^2$ show in the figure \ref{fig:vietoris_rips_example}. Then $\Rf_\delta$ creates the clusters $\{a,b,c\}$ and $\{d,e,f,g\}$, shown in red and blue. For clarity, we chose to draw the circles with radius $\delta / 2$, \ie\ two points are in the same cluster if circles around them with radius $\delta / 2$ intersect.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[sloped]
+    \draw[dashed,fill=mygreen,fill opacity=0.1](2.3, 4.8) node[circle,fill=black,inner sep=1pt,fill opacity=1]{} circle (1);
+    \draw[dashed,fill=mygreen,fill opacity=0.1](3.2, 4.0) node[circle,fill=black,inner sep=1pt,fill opacity=1]{} circle (1);
+    \draw[dashed,fill=mygreen,fill opacity=0.1](1.7, 3.4) node[circle,fill=black,inner sep=1pt,fill opacity=1]{} circle (1);
+
+    \draw[dashed,fill=mygreen,fill opacity=0.1](0.7, 1.3) node[circle,fill=black,inner sep=1pt,fill opacity=1]{} circle (1);
+    \draw[dashed,fill=mygreen,fill opacity=0.1](3.9, 1.3) node[circle,fill=black,inner sep=1pt,fill opacity=1]{} circle (1);
+    \draw[dashed,fill=mygreen,fill opacity=0.1](2.1, 1.1) node[circle,fill=black,inner sep=1pt,fill opacity=1]{} circle (1);
+    \draw[dashed,fill=mygreen,fill opacity=0.1](3.4, 0.3) node[circle,fill=black,inner sep=1pt,fill opacity=1]{} circle (1);
+
+    \draw[<->, >=stealth, color=mypurple, thick, opacity=0.6] (2.3, 4.8) -- (2.3 - 0.985, 4.8 + 0.174) node[midway, above]{\tiny{$\delta / 2$}};
+    %\draw[<->, >=stealth, color=mypurple, thick, opacity=0.4] (3.2, 4.0) -- (3.2 + 0.866, 4.0 - 0.5) node[midway, above]{\tiny{$\delta$}};
+    %\draw[<->, >=stealth, color=mypurple, thick, opacity=0.4] (1.7, 3.4) -- (1.7 - 0.174, 3.4 - 0.985) node[midway, above]{\tiny{$\delta$}};
+
+    %\draw[<->, >=stealth, color=mypurple, thick, opacity=0.4] (0.7, 1.3) -- (0.7 - 0.5, 1.3 + 0.866) node[midway, above]{\tiny{$\delta$}};
+    %\draw[<->, >=stealth, color=mypurple, thick, opacity=0.4] (3.9, 1.3) -- (3.9 + 0.866, 1.3 + 0.5) node[midway, above]{\tiny{$\delta$}};
+    %\draw[<->, >=stealth, color=mypurple, thick, opacity=0.4] (2.1, 1.1) -- (2.1 - 0, 1.1 - 1) node[midway, above]{\tiny{$\delta$}};
+    %\draw[<->, >=stealth, color=mypurple, thick, opacity=0.4] (3.4, 0.3) -- (3.4 + 0.866, 0.3 - 0.5) node[midway, above]{\tiny{$\delta$}};
+
+    \draw[myred!50!black, thick, opacity=0.9, fill=myred, fill opacity=0.25] (2.3, 4.8) -- (3.2, 4.0) -- (1.7, 3.4) -- cycle;
+    \draw[myblue!50!black, thick, opacity=0.9, fill=myblue, fill opacity=0.25] (3.9, 1.3) -- (2.1, 1.1) -- (3.4, 0.3) -- cycle;
+    \draw[myblue!50!black, thick, opacity=0.9] (0.7, 1.3) -- (2.1, 1.1);
+
+    \node[above] at (2.3, 4.8) {$a$};
+    \node[above] at (3.2, 4.0) {$b$};
+    \node[left] at (1.7, 3.4) {$c$};
+
+    \node[left] at (0.7, 1.3) {$d$};
+    \node[right] at (3.9, 1.3) {$e$};
+    \node[above] at (2.1, 1.1) {$f$};
+    \node[below] at (3.4, 0.3) {$g$};
+\end{tikzpicture}
+\caption{Clusters (red and blue) produced by the Vietoris-Rips functor $\Rf_\delta$ for on the points $\{a,b,c,d,e,f,g\}$.}
+\label{fig:vietoris_rips_example}
+\end{figure}
+
+
+
+
 \begin{myremark}{$\iso$ Clustering Functors \cite[Thm.~6.1]{Carlsson2010}}{}
 Let $\mathcal{I}$ denote a collection of representatives of isometry classes of finite metric spaces.
 For each $X \in \mathcal{I}$ consider the isometry group $\mathrm{Iso}(X)$. \par

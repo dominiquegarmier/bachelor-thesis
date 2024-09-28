@@ -125,28 +125,92 @@ For this we introduce the notion of a \emph{dendogram}.
 
 \begin{definition}{Dendogram \cite[Def.~2.2]{Carlsson2010}}{dendogram}
 A map $\theta: \R_{\geq0} \to \mathfrak{P}(X)$ with
-\begin{itemize}
+\begin{enumerate}
     \item $\forall r,s \in \R_{\geq0}: r \leq s \implies  \theta(r) \refines \theta(s)$
     \item $\exists r,s \in \R_{\geq0}$ such that $\theta(r)$ is trivial and $\theta(s)$ is discrete\footnote{In particular we get that $\theta(0)$ is always discrete.}
     \item $\forall r \in \R_{\geq0} \,\exists \varepsilon > 0$ such that $\theta$ is constant on $[r, r + \varepsilon)$
-\end{itemize}
+\end{enumerate}
 is called a \emph{dendogram} of $X$. Sometimes $r$ is referred to as the \emph{scale}.
 \end{definition}
 
-This will be familiar to anyone who has seen \emph{persistent homology} where such properties are referred to as \emph{persistence} \cite[Chap.~3]{Carlsson2014}. 
+This will be familiar to anyone who has seen \emph{persistent homology} where such properties are referred to as \emph{persistence} \cite[Chap.~3]{Carlsson2014}. As an example of a dendogram consider figure \ref{fig:dendogram_example}.
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+    \node (a) at (0,-0.25) {a};
+    \node (b) at (1,-0.25) {b};
+    \node (c) at (2,-0.25) {c};
+    \node (d) at (3,-0.25) {d};
+    
+    \draw  (a) |- (0.5,0.5);
+    \draw  (b) |- (0.5,0.5);
+
+    \draw  (0.5,0.5) |- (1,1.25);
+    \draw  (c) |- (1,1.25);
+
+
+    \draw  (1,1.25) |- (1.5,2);
+    \draw (d) |- (1.5,2);
+
+    \draw[dashed]  (1.5,2) -- (1.5,2.5);
+    \draw[->, >=stealth] (-0.5,-0.25) -- (-0.5,2.5);
+
+    \draw[dashed] (-0.25, 0.6) -- (3.25, 0.6);
+    \draw[color=myred, opacity=0.5, line width=1mm] (-0.2, 0.6) -- (1.2, 0.6);
+    \draw[color=myblue, opacity=0.5, line width=1mm] (1.8, 0.6) -- (2.2, 0.6);
+    \draw[color=mygreen, opacity=0.5, line width=1mm] (2.8, 0.6) -- (3.2, 0.6);
+
+    \draw[dashed] (-0.25, 1.9) -- (3.25, 1.9);
+    \draw[color=mypurple, opacity=0.5, line width=1mm] (-0.2, 1.9) -- (2.2, 1.9);
+    \draw[color=mygreen, opacity=0.5, line width=1mm] (2.8, 1.9) -- (3.2, 1.9);
+
+    \draw[] (-0.55, 0.6) -- node[left]{$1$} (-0.45, 0.6);
+    \draw[] (-0.55, 1.9) -- node[left]{$2$} (-0.45, 1.9);
+
+    \draw[|->, >=to] (3.35, 0.6) -- (4.25, 0.6);
+    \draw[|->, >=to] (3.35, 1.9) -- node[above]{$\theta$} (4.25, 1.9);
+
+    \node[circle,fill=black,inner sep=1pt] (z) at (5, 0.6) {};
+    \node[circle,fill=black,inner sep=1pt] (z) at (6, 0.6) {};
+    \node[circle,fill=black,inner sep=1pt] (z) at (7, 0.6) {};
+    \node[circle,fill=black,inner sep=1pt] (z) at (8, 0.6) {};
+
+    \draw[ellipse, dashed, fill=myred, fill opacity=0.15] (5.5, 0.6) ellipse (0.75 and 0.25);
+    \draw[ellipse, dashed, fill=myblue, fill opacity=0.15] (7, 0.6) ellipse (0.25 and 0.25);
+    \draw[ellipse, dashed, fill=mygreen, fill opacity=0.15] (8, 0.6) ellipse (0.25 and 0.25);
+
+    \node[circle,fill=black,inner sep=1pt] (z) at (5, 1.9) {};
+    \node[circle,fill=black,inner sep=1pt] (z) at (6, 1.9) {};
+    \node[circle,fill=black,inner sep=1pt] (z) at (7, 1.9) {};
+    \node[circle,fill=black,inner sep=1pt] (z) at (8, 1.9) {};
+
+    \draw[ellipse, dashed, fill=mypurple, fill opacity=0.15] (6, 1.9) ellipse (1.25 and 0.25);
+    \draw[ellipse, dashed, fill=mygreen, fill opacity=0.15] (8, 1.9) ellipse (0.25 and 0.25);
+
+    \node (a) at (5,-0.25) {a};
+    \node (b) at (6,-0.25) {b};
+    \node (c) at (7,-0.25) {c};
+    \node (d) at (8,-0.25) {d};
+
+        \node[rotate=90] at (6.5, 1.25) {$\preceq$};
+\end{tikzpicture}
+\caption{A dendogram $\theta: \R_{\geq0} \to \P(X)$ with the four points $X = \{a,b,c,d\}$.}
+\label{fig:dendogram_example}
+\end{figure}
+
+Notice how in this case the monotonicity condition is satisfied \eg\ $\theta(1) \refines \theta(2)$ as shown on the righthand side. The second condition of a dendogram is also met as it becomes trivial at the top and discrete at the bottom. Finally, the third condition tells us what value the dendogram takes whenever a ``merge happens''. As for the relevance of the last condition, consider the following remark.
 
 \begin{myremark}{}{left_regularity_of_dendograms}
 \todo[unify all these remarks about regularity]
-
-Since all our metric spaces are finite we could decide to drop the last requirement in the definition of a dendogram. Dendograms would still have discrete scale \ie\ constant on intervals.
-However, it would not be clear what value the dendogram would have at the endpoints of the intervals.
-This point will be particularly necessary for some uniqueness theorems we present later.
+Concerning the third condition of dendograms, since all our metric spaces are finite, we could decide to omit it in the definition of a dendogram. Dendograms would still have discrete scale \ie\ the dendogram would still be constant on intervals.
+However, it would not be clear what value the dendogram would take at the endpoints of these intervals\footnote{There are other ways we could decide to fix this issue. \Eg\ we could consider equivalence relations of dendograms.}.
+This technicallity will become important for some uniqueness theorems we present later.
 \end{myremark}
 
-We can finally define the categories which will be the \emph{outputs} of clustering functors.
+We can finally define the categories which will be the ``outputs'' of clustering functors.
 
 \begin{definition}{\cite[Def.~3.2]{Carlsson2010}}{output_classical_clustering_functors}
-The category $\C$ of outputs of \emph{classical clustering functors} is defined by
+The category $\C$ of \emph{outputs of classical clustering functors} is defined by
 \begin{equation*}
     \ob(\C) := \{(X, P): X \text{ a finite set and } P \in \P(X)\}
 \end{equation*}
