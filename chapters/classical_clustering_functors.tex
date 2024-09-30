@@ -23,11 +23,11 @@ Take any $f \in \mor_\gen(X,Y)$, recall that $f$ is distance non-increasing.
 We have to show that 
 $$P \refines_f Q.$$
 Indeed, let $x,y \in X$ such that $d(x,y) \leq \delta$.
-Then we have $d(f(x), f(y)) \leq d(x,y) \leq \delta$ and therefore $f(x) \sim_{Q} f(y)$.
+Then, we have $d(f(x), f(y)) \leq d(x,y) \leq \delta$ and therefore $f(x) \sim_{Q} f(y)$.
 By taking the transitive closure we get the statement.
 \end{proof}
 
-Consider the seven points $\{a,b,c,d,e,f,g\} \subset \R^2$ show in the figure \ref{fig:vietoris_rips_example}. Then $\Rf_\delta$ creates the clusters $\{a,b,c\}$ and $\{d,e,f,g\}$, shown in red and blue. For clarity, we chose to draw the circles with radius $\delta / 2$, \ie\ two points are in the same cluster if circles around them with radius $\delta / 2$ intersect.
+Consider the seven points $\{a,b,c,d,e,f,g\} \subset \R^2$ show in the figure \ref{fig:vietoris_rips_example}. Then, $\Rf_\delta$ creates the clusters $\{a,b,c\}$ and $\{d,e,f,g\}$, shown in red and blue. For clarity, we chose to draw the circles with radius $\delta / 2$, \ie\ two points are in the same cluster if circles around them with radius $\delta / 2$ intersect.
 
 \begin{figure}[h]
 \centering
@@ -112,7 +112,7 @@ Additionally, $\Cf$ is said to be \emph{representable} if there exists some $\Om
 
 Let us define a simple metric space that will come in handy on several occasions.
 \begin{definition}{}{}
-    Let $k \in \N$ and $\delta > 0$. Then we define the \emph{$k$-simplex} with size $\delta$ as the metric space $\Delta_k(\delta) := (X,d)$ where $X = \{1, \dots, k\}$ and the metric is given by
+    Let $k \in \N$ and $\delta > 0$. Then, we define the \emph{$k$-simplex} with size $\delta$ as the metric space $\Delta_k(\delta) := (X,d)$ where $X = \{1, \dots, k\}$ and the metric is given by
     $$
     d(i,j) := \begin{cases}
         0 & \text{if } i = j\\
@@ -144,7 +144,7 @@ Let $(X,d) \in \ob(\M)$ and $(X,P) = \Cf^\Omega(X,d)$ and $(X,Q) = \Cf(X,d)$. We
 
 Let $x,y \in X$ such that the generating condition of $P$ holds. \Ie\ there exists $\omega \in \Omega$ and $\phi \in \mor_\M(\omega, (X,d))$ such that $\{x,y\} \subset \image(\phi)$.
 
-But then since $\Cf(\omega)$ is trivial by assumption and by functoriality $\Cf(\omega) \refines_\phi \Cf(X,d)$ we get that $x \sim_Q y$. Taking the transitive closure gives the statement.
+But then since $\Cf(\omega)$ is trivial by assumption and by functoriality $\Cf(\omega) \refines_\phi \Cf(X,d)$, we get that $x \sim_Q y$. Taking the transitive closure gives the statement.
 
 
 \newresult[check this]
@@ -167,7 +167,7 @@ $$
 $$
 We will show that $\Cf = \Cf^\Omega$. By proposition \ref{prop:characterization_of_representable} and since $\Cf$ is by definition trivial for all $(X,d) \in \Omega$ we have that $\Cf^\Omega \refines \Cf$. So it remains to show $\Cf \refines \Cf^\Omega$. To this end let $(X,d) \in \ob(\M)$ and $(X,P) = \Cf(X,d)$ and $(X,Q) = \Cf^\Omega(X,d)$.
 
-Assume that $x,y \in X$ are such that $x \sim_P y$. But then there exists by definition $\omega \subset X$ and $\omega \in \Omega$ such that $\{x,y\} \subset \omega$. Consider the inclusion $\iota: \omega \hookrightarrow X$ which is a morphism in $\mor_\inj(\omega, (X,d))$ thus by definition of $\Cf^\Omega$ we have $x \sim_Q y$.
+Assume that $x,y \in X$ are such that $x \sim_P y$. But then by definition, there exists $\omega \subset X$ and $\omega \in \Omega$ such that $\{x,y\} \subset \omega$. Consider the inclusion $\iota: \omega \hookrightarrow X$ which is a morphism in $\mor_\inj(\omega, (X,d))$. Thus by definition of $\Cf^\Omega$, we have $x \sim_Q y$.
 
 \todo[this is a new proof (kinda), check it]
 \end{proof}
