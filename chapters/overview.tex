@@ -304,7 +304,7 @@ Consider a finite set $S \subset \R^2$ representing people at a gathering. When 
     \item Rotation Invariance
     \item Scale Invariance
 \end{itemize}
-\Ie\ for any $v \in \R^2$, $R \in \mathrm{SO}_2(\R)$ and $\lambda > 0$ we would like our clustering algorithm to produce the same partition on the data $v + S$, $R \circ S$ and $\lambda \cdot S$. Here the intuition should be that such attributes are merely artifacts of the data collection process, in particular the choice of coordinate system.
+\Ie\ for any $v \in \R^2$, $R \in \mathrm{SO}_2(\R)$ and $\lambda > 0$ we would like our clustering algorithm to produce the same partition on the data $v + S$, $R \circ S$ and $\lambda \cdot S$\footnote{These operations are understood to be elementwise and $\circ$ denotes the natural action of $\mathrm{SO}_2(\R)$ on $\R^2$}. Here the intuition should be that such attributes are merely artifacts of the data collection process, in particular the choice of coordinate system.
 \end{example}
 
 \subsection{Kleinberg's Impossibility Theorem}
