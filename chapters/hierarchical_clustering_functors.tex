@@ -19,17 +19,14 @@ Similar to classical clustering functors we also want to define some properties 
     A hierarchical clustering functor $\Hf$ is said to be \emph{surjective} if for every possible output of a hierarchical clustering functor \ie\ $(X, \theta_X) \in \ob(\H)$ there exists a metric $d$ on $X$ such that $\Hf(X,d) = (X, \theta_X)$.
 \end{definition}
 
-Notice given some surjective hierarchical clustering functor $\Hf$ then any $t \in \R_{\geq0}$ induces a surjective classical clustering functor $\Cf_t(X,d) := \Hf(X, d; t)$.
+Notice, given some surjective hierarchical clustering functor $\Hf$ then any $t \in \R_{\geq0}$ induces a surjective classical clustering functor $\Cf_t(X,d) := \Hf(X, d; t)$.
 
-% \todo[I need to find out if this is equivalent]
-% One could define an alternative notion of surjectivity by asking that the induced functor $\Cf_t$ is surjective for all $t \in \R_{\geq0}$.
- 
 A similar concept to scale invariance is given by the following.
 
 \begin{definition}{}{}
 A hierarchical clustering functor $\Hf: \M \to \H$ is called \emph{scaling} if for all $(X,d) \in \ob(\M)$ and $\lambda > 0$ we have
 $$
-\Hf(X, \lambda d) = \sigma_\lambda \Hf(X,d)
+\Hf(X, \lambda d) = \sigma_\lambda \Hf(X,d).
 $$
 \end{definition}
 Recall the definition of the shift functor $\sigma_\lambda$ \ref{def:shift_functor}.
@@ -64,7 +61,7 @@ $$
 \Hf_\Cf(X,d; 1) = \Cf(X,d)
 $$
 for all $(X,d) \in \ob(\M)$.
-Moreover, any hierarchical clustering functor is of this form.
+Moreover, any scaling hierarchical clustering functor is of this form.
 \end{proposition}
 
 \begin{proof}
@@ -75,11 +72,9 @@ $$
 for all $(X,d) \in \ob(\M)$ and $r \in \R_{\geq0}$.
 This indeed defines a hierarchical clustering functor since for $r \geq r'$ the identity map $\id: (X, r \cdot d) \to (X, r' \cdot d)$ is distance non-increasing and thus by functoriality of $\Cf$ we have $\Hf_\Cf(X,d;r) = \Cf(X, r d) \refines \Cf(X, r' d) = \Hf_\Cf(X,d;r')$. And because $\Cf$ is regular $\Hf$ meets all the requirements of a dendrogram. Note that $\Hf_\Cf$ is scaling and has the desired property.
 
-\todo[spanning for property 2, and regularity for property 3]
+\todo[might want to elaborate on the last two sentences]
 
-
-
-On the other hand given any hierarchical clustering functor $\Hf: \M \to \H$ we can take $\Cf(X,d) := \Hf(X,d; 1)$ which is a regular classical clustering functor such that $\Hf = \Hf_\Cf$.
+On the other hand, given any scaling hierarchical clustering functor $\Hf: \M \to \H$ we can take $\Cf(X,d) := \Hf(X,d; 1)$ which is a regular classical clustering functor such that $\Hf = \Hf_\Cf$.
 \end{proof}
 
 \section{Kleinberg's Conditions}
@@ -103,6 +98,7 @@ Using the uniqueness result of theorem \ref{thm:uniqueness_of_surjective_regular
     $$
     \Hf = \sigma_\delta \Rf
     $$
+    for some $\delta > 0$.
     \newresult[check this]
 \end{theorem}
 
