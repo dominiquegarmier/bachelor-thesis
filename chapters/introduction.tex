@@ -3,7 +3,7 @@
 
 A central problem in machine learning and data science is the task of clustering data. \Ie, finding patterns in data and grouping data points into clusters.
 Underlying most clustering techniques is the notion of a distance between data points. Motivated by this we think of \emph{data} as a finite metric space, \ie\ a finite set equipped with a metric.
-And a clustering algorithm will be a map assigning to a finite metric space either a \emph{partition} or a \emph{dendogram} of the underlying set.
+And a clustering algorithm will be a map assigning to a finite metric space either a \emph{partition} or a \emph{dendrogram} of the underlying set.
 
 \begin{figure}[h]
 \centering
@@ -51,18 +51,18 @@ And a clustering algorithm will be a map assigning to a finite metric space eith
         \draw[dashed]  (2,2) -- (2,2.5);
         \draw[->, >=stealth] (-0.5,0) -- node[above]{\small{scale}} (-0.5,3);
     \end{tikzpicture}
-    \caption{A dendogram of five points.}
+    \caption{A dendrogram of five points.}
 \end{subfigure}
 \end{figure}
 
-A dendogram is a (rooted) tree where the leaves are the data points. Dendograms are strictly more general than partitions, as at every \emph{scale} a dendogram describes a partition of the data points.
-Depending on the clustering algorithm a dendogram will have to satisfy additional properties.
+A dendrogram is a (rooted) tree where the leaves are the data points. Dendrograms are strictly more general than partitions, as at every \emph{scale} a dendrogram describes a partition of the data points.
+Depending on the clustering algorithm a dendrogram will have to satisfy additional properties.
 
-Clustering algorithms that produce a partition are sometimes called \emph{classical} and those that produce a dendogram are called \emph{hierarchical}.
+Clustering algorithms that produce a partition are sometimes called \emph{classical} and those that produce a dendrogram are called \emph{hierarchical}.
 For classical clustering algorithms there exists an important impossibility result by \textsc{Kleinberg} \cite{Kleinberg2002}, which says that for a certain set of properties there exists no clustering algorithm satisfying them.
 Hierarchical clustering algorithms allow for more complex structures to be captured. We will show that this additional capacity can be used in some sense to interpret \textsc{Kleinberg}'s impossibility result as a uniqueness result. This idea was previously discussed by \textsc{Carlsson} and \textsc{M\'emoli} \cite{JMLR:v11:carlsson10a}, \cite{Carlsson2010}. The result we present here are slightly more general.
 
-To get to this result we will use the formalization of clustering algorithms described in \cite{Carlsson2010}. They used the language of category theory to succinctly describe properties of clustering algorithms. In particular clustering algorithms are seen as special functors mapping from appropriate categories of finite metric spaces to partitions or dendograms respectively. For this reason we refer to such clustering algorithms as \emph{classical} or \emph{hierarchical clustering functors}. We do not require the reader to be familiar with category theory and will introduce and give examples for all the necessary concepts.
+To get to this result we will use the formalization of clustering algorithms described in \cite{Carlsson2010}. They used the language of category theory to succinctly describe properties of clustering algorithms. In particular clustering algorithms are seen as special functors mapping from appropriate categories of finite metric spaces to partitions or dendrograms respectively. For this reason we refer to such clustering algorithms as \emph{classical} or \emph{hierarchical clustering functors}. We do not require the reader to be familiar with category theory and will introduce and give examples for all the necessary concepts.
 
 We will discuss properties such as \emph{surjectivity}, \emph{splitting} and \emph{representability} of clustering functors and how they related to each other. A central object of study will be the Vietoris-Rips clustering functor which will have all these properties. Moreover, by interpreting \textsc{Kleinberg}'s conditions in the setting of hierarchical clustering functors as done in \cite[Sec.~7.3.1]{Carlsson2010}, we will see that the Vietoris-Rips functor is the only hierarchical clustering functor satisfying these conditions.
 

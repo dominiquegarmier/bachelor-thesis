@@ -208,7 +208,7 @@ In this case the $k$-means algorithm will fail to split the two circles as the c
 \label{section__linkage_clustering}
 Another way of clustering data points is based on graph theory and the idea of consecutively connecting points \cite[Sec.~4.2.2]{Everitt2011}.
 
-A dendogram is in this context a (rooted) binary tree where the leaves are the data points. We will later define a more general notion of a dendogram in section \ref{section__partitions}.
+A dendrogram is in this context a (rooted) binary tree where the leaves are the data points. We will later define a more general notion of a dendrogram in section \ref{section__partitions}.
 
 
 
@@ -234,7 +234,7 @@ There are multiple distance functions that we could use in the previous definiti
 \end{align*}
 If we use $\mathfrak{d}_\mathrm{min}$ we call it \emph{single-linkage clustering}, when using $\mathfrak{d}_\mathrm{max}$ we call it \emph{complete-linkage clustering} and \emph{average-linkage clustering} if we use $\mathfrak{d}_\mathrm{avg}$.
 
-As an example, consider the data points in figure \ref{fig:sl_clustering} and their corresponding dendogram obtained from single-linkage clustering.
+As an example, consider the data points in figure \ref{fig:sl_clustering} and their corresponding dendrogram obtained from single-linkage clustering.
 
 \begin{figure}[h]
 \centering
@@ -288,7 +288,7 @@ As an example, consider the data points in figure \ref{fig:sl_clustering} and th
 \label{fig:sl_clustering}
 \end{figure}
 
-A downside of this definition of linkage clustering is that the output will always be a binary tree. In particular, if we have three equidistant points it is unclear which should be merged first. We can fix this by introducing a \emph{tie-breaking} rule or relaxing the definition of a dendogram to allow merging more than two clusters at a time. We will see more about this once 
+A downside of this definition of linkage clustering is that the output will always be a binary tree. In particular, if we have three equidistant points it is unclear which should be merged first. We can fix this by introducing a \emph{tie-breaking} rule or relaxing the definition of a dendrogram to allow merging more than two clusters at a time. We will see more about this once 
 we define \emph{hierarchical clustering functors} in chapter \ref{chapter__clustering_functor}.
 
 Some other problems with linkage clustering are that in the case of single-linkage clustering it has a lack of sensitivity for density, and it has a tendency to produce long chains as clusters. Complete-linkage and average-linkage clustering have nice properties in regard to density, but it was show that they are not stable under small perturbations of the data \cite[Sec.~3.6]{JMLR:v11:carlsson10a}, \cite{Lance1967-ci}.

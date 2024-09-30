@@ -13,7 +13,7 @@ In particular, we will later see that it exhibits certain unique properties.
     \todo[check regularity; this is the single source of truth]
 \end{defprop}
 
-One could use a proper inequality in \eqref{eq:vietoris_rips_equivalence_relation}. The entire theory we are about to present would still hold, provided we tweak certain definitions accordingly, in particular definition \ref{def:dendogram}.
+One could use a proper inequality in \eqref{eq:vietoris_rips_equivalence_relation}. The entire theory we are about to present would still hold, provided we tweak certain definitions accordingly, in particular definition \ref{def:dendrogram}.
 
 \begin{proof}
 It is sufficient to show that $\Rf_\delta$ is $\gen$-functorial. By remark \ref{rem:induced_functor_by_inclusion} functoriality over $\iso$ and $\inj$ will follow.
@@ -358,9 +358,9 @@ In chapter \ref{chapter__hierarchical} we will discuss the implications this has
     \newresult[new def, make sure this makes sense]
 \end{definition}
 
-Notice that $\Rf_\delta$ is regular. The reason we ask for $\lambda \in (0,1)$ and not $\lambda \in (1, \infty)$ is that this corresponds to the regularity condition \ref{rem:left_regularity_of_dendograms} for dendograms.\par
+Notice that $\Rf_\delta$ is regular. The reason we ask for $\lambda \in (0,1)$ and not $\lambda \in (1, \infty)$ is that this corresponds to the regularity condition \ref{rem:regularity_of_dendrograms} for dendrograms.\par
 
-\begin{myremark}{}{left_regularity_classical_clusteirng_functors}
+\begin{myremark}{}{regularity_classical_clustering_functors}
     \medskip It might seem overly restrictive to ask for regularity.
     However, if we take some $(X, d) \in \ob(\M)$ and consider the function 
     $$
@@ -411,7 +411,7 @@ Assuming regularity and building on lemma \ref{lem:surjective_implies_eventually
     is piecewise constant and can take at most two values (either discrete or trivial) but by lemma \ref{lem:surjective_implies_eventually_discrete} this function takes exactly two values and by \eqref{eq:lemma_5_19_1} this function is also monotonically decreasing (with respect to $\le$ on $\R_{\geq0}$ and $\refines$ on $\P(X)$).
     So we can find some $\delta_0 > 0$ such that $\Cf(\Delta_2(\delta))$ is trivial and $\Cf(\Delta_2(\delta'))$ is discrete for all $\delta < \delta_0 < \delta'$.
 
-    As for the value at $\delta_0$ we recall the previous remark \ref{rem:left_regularity_classical_clusteirng_functors} and conclude that $\Cf(\Delta_2(\delta_0))$ is trivial.
+    As for the value at $\delta_0$ we recall the previous remark \ref{rem:regularity_classical_clustering_functors} and conclude that $\Cf(\Delta_2(\delta_0))$ is trivial.
     \newresult[check this]
 \end{proof}
 

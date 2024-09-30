@@ -43,7 +43,7 @@ $$
 $$
 for some $b \in B$.
 
-\section{Partitions and Dendograms}
+\section{Partitions and Dendrograms}
 \label{section__partitions}
 
 \begin{definition}{\todo[I think i should leave this out]}{relation}
@@ -121,19 +121,19 @@ We say that $P \in \P(X)$ is:
 
 Naturally if $Q$ is discrete and $P$ is trivial then $Q \refines R \refines P$ for all $R \in \P(X)$.
 Like in chapter \ref{chapter__dataclustering} we also want to consider hierarchical clustering.
-For this we introduce the notion of a \emph{dendogram}.
+For this we introduce the notion of a \emph{dendrogram}.
 
-\begin{definition}{Dendogram \cite[Def.~2.2]{Carlsson2010}}{dendogram}
+\begin{definition}{Dendrogram \cite[Def.~2.2]{Carlsson2010}}{dendrogram}
 A map $\theta: \R_{\geq0} \to \mathfrak{P}(X)$ with
 \begin{enumerate}
     \item $\forall r,s \in \R_{\geq0}: r \leq s \implies  \theta(r) \refines \theta(s)$
     \item $\exists r,s \in \R_{\geq0}$ such that $\theta(r)$ is trivial and $\theta(s)$ is discrete\footnote{In particular we get that $\theta(0)$ is always discrete.}
     \item $\forall r \in \R_{\geq0} \,\exists \varepsilon > 0$ such that $\theta$ is constant on $[r, r + \varepsilon)$
 \end{enumerate}
-is called a \emph{dendogram} of $X$. Sometimes $r$ is referred to as the \emph{scale}.
+is called a \emph{dendrogram} of $X$. Sometimes $r$ is referred to as the \emph{scale}.
 \end{definition}
 
-This will be familiar to anyone who has seen \emph{persistent homology} where such properties are referred to as \emph{persistence} \cite[Chap.~3]{Carlsson2014}. As an example of a dendogram consider figure \ref{fig:dendogram_example}.
+This will be familiar to anyone who has seen \emph{persistent homology} where such properties are referred to as \emph{persistence} \cite[Chap.~3]{Carlsson2014}. As an example of a dendrogram consider figure \ref{fig:dendrogram_example}.
 \begin{figure}[h]
 \centering
 \begin{tikzpicture}
@@ -194,16 +194,16 @@ This will be familiar to anyone who has seen \emph{persistent homology} where su
 
         \node[rotate=90] at (6.5, 1.25) {$\preceq$};
 \end{tikzpicture}
-\caption{A dendogram $\theta: \R_{\geq0} \to \P(X)$ with the four points $X = \{a,b,c,d\}$.}
-\label{fig:dendogram_example}
+\caption{A dendrogram $\theta: \R_{\geq0} \to \P(X)$ with the four points $X = \{a,b,c,d\}$.}
+\label{fig:dendrogram_example}
 \end{figure}
 
-Notice how in this case the monotonicity condition is satisfied \eg\ $\theta(1) \refines \theta(2)$ as shown on the righthand side. The second condition of a dendogram is also met as it becomes trivial at the top and discrete at the bottom. Finally, the third condition tells us what value the dendogram takes whenever a ``merge happens''. As for the relevance of the last condition, consider the following remark.
+Notice how in this case the monotonicity condition is satisfied \eg\ $\theta(1) \refines \theta(2)$ as shown on the righthand side. The second condition of a dendrogram is also met as it becomes trivial at the top and discrete at the bottom. Finally, the third condition tells us what value the dendrogram takes whenever a ``merge happens''. As for the relevance of the last condition, consider the following remark.
 
-\begin{myremark}{}{left_regularity_of_dendograms}
+\begin{myremark}{}{regularity_of_dendrograms}
 \todo[unify all these remarks about regularity]
-Concerning the third condition of dendograms, since all our metric spaces are finite, we could decide to omit it in the definition of a dendogram. Dendograms would still have discrete scale \ie\ the dendogram would still be constant on intervals.
-However, it would not be clear what value the dendogram would take at the endpoints of these intervals\footnote{There are other ways we could decide to fix this issue. \Eg\ we could consider equivalence relations of dendograms.}.
+Concerning the third condition of dendrograms, since all our metric spaces are finite, we could decide to omit it in the definition of a dendrogram. Dendrograms would still have discrete scale \ie\ the dendrogram would still be constant on intervals.
+However, it would not be clear what value the dendrogram would take at the endpoints of these intervals\footnote{There are other ways we could decide to fix this issue. \Eg\ we could consider equivalence relations of dendrograms.}.
 This technicallity will become important for some uniqueness theorems we present later.
 \end{myremark}
 
@@ -224,7 +224,7 @@ In short, we write $(X,P) \refines_f (Y,Q)$ for such a morphism. As before, the 
 \begin{definition}{\cite[Def.~3.3]{Carlsson2010}}{output_hierarchical_clustering_functors}
 Similarly, we define the category $\H$ of \emph{outputs of hierarchical clustering functors}, given by
 \begin{equation*}
-    \ob(\H) := \{(X, \theta_X): X \text{ a finite set and } \theta_X: \R_{\geq0} \to \P(X) \ \text{a dendogram}\}
+    \ob(\H) := \{(X, \theta_X): X \text{ a finite set and } \theta_X: \R_{\geq0} \to \P(X) \ \text{a dendrogram}\}
 \end{equation*}
 and for all $(X, \theta_X), (Y, \theta_Y) \in \ob(\H)$ we have the morphisms
 \begin{equation*}
