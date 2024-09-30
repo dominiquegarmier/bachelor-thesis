@@ -60,8 +60,8 @@ The most familiar way of thinking about a category is to see morphisms as maps a
 \begin{example}{Category of Sets}{}
 Consider the category $\mathrm{SET}$ consisting of
 \begin{itemize}
-    \item $\ob(\mathrm{SET}) := \{X: \text{$X$ is a set}\}$
-    \item $\mor_{\mathrm{SET}}(X,Y) := \{f: X \to Y: \text{$f$ is a map}\}$
+    \item $\ob(\mathrm{SET}) := \{X: \text{$X$ is a set}\},$
+    \item $\mor_{\mathrm{SET}}(X,Y) := \{f: X \to Y: \text{$f$ is a map}\}.$
 \end{itemize}
 In this case composition is simply the composition of maps and the identity is given by the identity map $\id_A: x \in A \mapsto x \in A$.
 \end{example}
@@ -71,7 +71,7 @@ Instead of taking arbitrary sets and maps between them, we can also study catego
 \begin{example}{Topological Spaces}{}
 Similar to the previous category we can define $\mathrm{TOP}$ with
 \begin{itemize}
-    \item $\ob(\mathrm{TOP}) := \{(X,\tau) : \text{$X$ is a set with a topology $\tau$}\}$
+    \item $\ob(\mathrm{TOP}) := \{(X,\tau) : \text{$X$ is a set with a topology $\tau$}\},$
     \item $\mor_{\mathrm{TOP}}(X,Y) := \{f: X \to Y: \text{$f$ is continuous}\}$
 \end{itemize}
 and the usual composition of maps and identity function. The reason this is in fact a category is that the composition of continuous maps is still continuous.
@@ -82,8 +82,8 @@ Similarly, we can define the category of \emph{based topological} spaces $\mathr
 \begin{example}{Vector Spaces}{}
 Let $\mathbb{K}$ be a field. Another structure that one might want to study is that of $\mathrm{VEC}_\mathbb{K}$ where
 \begin{itemize}
-    \item $\ob(\mathrm{VEC}_\mathbb{K}) := \{V : \text{$V$ is a vector space over $\mathbb{K}$}\}$
-    \item $\mor_{\mathrm{VEC}_\mathbb{K}}(V,W) := \{f: V \to W : \text{$f$ is a $\mathbb{K}$-linear map}\}$
+    \item $\ob(\mathrm{VEC}_\mathbb{K}) := \{V : \text{$V$ is a vector space over $\mathbb{K}$}\},$
+    \item $\mor_{\mathrm{VEC}_\mathbb{K}}(V,W) := \{f: V \to W : \text{$f$ is a $\mathbb{K}$-linear map}\},$
 \end{itemize}
 then this is again a category for same reasons as in the previous example.
 \end{example}
@@ -94,7 +94,7 @@ We can also consider the category $\mathrm{GRP}$ where
     \item $\ob(\mathrm{GRP}) := \{G : \text{$G$ is a group}\}$,
     \item $\mor_{\mathrm{GRP}}(G,H) := \{f: G \to H : \text{$f$ is a group homomorphism}\}$.
 \end{enumerate}
-This is again a category for similar reasons as in the previous examples. Instead of considering the category of all groups we could restrict the objects to be abelian groups.
+Instead of considering the category of all groups we could restrict the objects to be abelian groups.
 \end{example}
 
 These examples are perhaps the first categories one encounters in mathematics. 
@@ -189,7 +189,7 @@ Here we have a few functors from different areas of mathematics, namely linear a
 \begin{example}{The Adjoint Functor \cite[Ex.~1.2.12]{Leinster2014-dc}}{}
 Consider the category $\mathrm{VEC}_\mathbb{K}$. Then we can define the contravariant functor
 $$
-^* : \mathrm{VEC}_\mathbb{K} \to \mathrm{VEC}_\mathbb{K}
+^* : \mathrm{VEC}_\mathbb{K} \to \mathrm{VEC}_\mathbb{K},
 $$
 which maps a vector space $V$ to its (algebraic) dual $V^*$ and maps a linear map $f: V \to W$ to its adjoint map $f^*: W^* \to V^*$. In particular, this functor is contravariant since it \emph{flips the direction} of the morphisms.
 \end{example}
