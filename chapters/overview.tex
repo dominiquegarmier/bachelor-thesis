@@ -6,8 +6,6 @@ We will contextualize these algorithms with a few example computations and will 
 
 Then we talk about how clustering algorithms can be seen as remaining invariant under certain transformations of its input. We give some intuition why this might be a desirable property for a clustering algorithm. This will lead to \textsc{Kleinberg}'s impossibility result \cite{Kleinberg2002}.
 
-\source[CM10a as a source for bad things that can happen]
-
 \section{Examples of Clustering Algorithms}
 Let us consider a few examples of clustering algorithms.
 
@@ -15,18 +13,15 @@ Let us consider a few examples of clustering algorithms.
 A common method of clustering is to find a $k$-partition of the points according to some criterion.
 One such example is the \emph{$k$-means} clustering objective \cite[Sec.~3.1]{Scitovski2021}.
 
-Let $x_1, \dots, x_n \in \R^d$ be a set of points.
-
 \begin{definition}{$k$-means Clustering}{kmeans_clustering}
-For $k \in \N$ the \emph{$k$-means clustering objective} refers to finding a partition $C_1, \dots, C_k$ of $\{x_1, \dots, x_n\}$ such that
+Let $\{x_1, \dots, x_n\} \subset \R^d$. For $k \in \N$ the \emph{$k$-means clustering objective} refers to finding a partition $C_1, \dots, C_k$ of $\{x_1, \dots, x_n\}$ such that
 \begin{equation*}
 \label{eq:kmean_optimization}
     \sum_{i = 1}^k \sum_{x \in C_i} \|x - \mu_i\|^2
 \end{equation*}
 is minimal, where $\mu_k := \frac{1}{|C_k|}\sum_{x \in C_k} x$ is the \emph{center} of $C_k$\footnote{In case $C_k = \emptyset$ we set $\mu_k = 0 \in \R^d$.}.
 \end{definition}
-To find such a partition we would have to check all possible partitions of $x_1, \dots, x_n$. This is computationally unfeasible. In practice, we use approximate methods such as \textsc{Lloyd}'s algorithm \cite[Sec.~3.1.2]{Scitovski2021}.
-Sometimes it is simply referred to as \emph{the $k$-means algorithm}.
+To find such a partition we would have to check all possible partitions of $x_1, \dots, x_n$. This is computationally unfeasible. In practice, we use approximate methods such as \textsc{Lloyd}'s algorithm, which is sometimes simply referred to as \emph{the $k$-means algorithm} \cite[Sec.~3.1.2]{Scitovski2021}.
 
 \begin{definition}{Lloyd's Algorithm}{lloyds_algorithm}
 Given $\{x_1, \dots, x_n\} \subset \R^d$ and some \emph{centers} $z_1, \dots, z_k \in \R^d$
@@ -101,7 +96,9 @@ In both cases the algorithm will converge after just one iteration. But dependin
 \label{fig:kmeans_example}
 \end{figure}
 
-In fact the first solution is the one minimizing the $k$-means objective. So we see that the choice of initial centers is important for the outcome of the algorithm. For this reason in practice one might run the algorithm multiple times with different initial centers drawn from some distribution and then choose the best solution. \source[]
+In fact the first solution is the one minimizing the $k$-means objective. So we see that the choice of initial centers is important for the outcome of the algorithm. For this reason in practice one might run the algorithm multiple times with different initial centers drawn from some distribution and then choose the best solution.
+
+\source[source for k++ maybe?]
 
 Another limitation of the $k$-means algorithm is that it's clusters are always convex. Consider the following data points in figure \ref{fig:kemans_circles} for $k = 2$.
 
@@ -214,8 +211,10 @@ A dendrogram is in this context a (rooted) binary tree where the leaves are the 
 
 Let $x_1, \dots, x_n \in \R^d$ be a set of distinct data points and $d$ a metric on $\R^d$.
 \begin{definition}{Linkage Clustering }{linkage_clustering}
-Let $\mathfrak{d}$ be a \emph{distance function}\footnote{In this case, a \emph{distance function} is just a function taking values in $\R_{\geq0}$.} between clusters. We start with the partition $B^{(0)}_j := \{x_j\}$ for $j = 1, \dots, n$.
-Given a partition
+Let $\mathfrak{d}$ be a \emph{distance function}\footnote{In this case, a \emph{distance function} is just a function taking values in $\R_{\geq0}$.} between clusters. We start with the partition
+$$
+B^{(0)}_j := \{x_j\}$$
+for $j = 1, \dots, n$. Given a partition
 $$
 B^{(k)}_1, \dots, B^{(k)}_{n - k} \quad \text{of} \quad x_1, \dots, x_n
 $$
@@ -343,4 +342,4 @@ Kleinberg showed that in combination these properties are impossible to satisfy.
 There exists no clustering algorithm that is scale invariant, rich and consistent at the same time.
 \end{theorem}
 
-Furthermore, if we drop any of the requirements we can find clustering algorithms satisfying the remaining two properties. As an example the $k$-means algorithm \ref{def:kmeans_clustering} is clearly not rich since we restrict ourselves to partitions with $k$ parts. It is however scale invariant.
+Furthermore, if we drop any of the requirements we can find clustering algorithms satisfying the remaining two properties. As an example the $k$-means algorithm \ref{def:kmeans_clustering} is clearly not rich since we restrict ourselves to partitions with $k$ parts. It is, however, scale invariant.

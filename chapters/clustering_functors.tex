@@ -54,9 +54,9 @@ for some $b \in B$.
         \item \emph{Symmetry}: $\forall x,y \in X: x R y \implies y R x$.
         \item \emph{Transitivity}: $\forall x,y,z \in X: x R y \text{ and } y R z \implies x R z$.
     \end{enumerate}
-    In this case we will often use a symbol like $\sim$ instead of a letter like $R$ to denote the relation. The \emph{equivalence classes} of an equivalence relation is the set of sets
+    In this case we will often use a symbol like $\sim$ instead of a letter like $R$ to denote the relation. The \emph{equivalence classes} of an equivalence relation $\sim$ on $X$ is the set of sets
     $$
-    X/_{\sim} := \{[x]_\sim: x \in X\},
+    X/_{\sim} := \{[x]_\sim: x \in X\}
     $$
     where $[x]_\sim := \{y \in X: x \sim y\}$.
 \end{definition}
@@ -105,11 +105,11 @@ When describing a partition it is often easier to describe a minimal set of cond
     $$
     x \sim^+ y
     $$
-    if there exists a sequence $x = x_0, x_1, \dots, x_n = y$ such that $x_i \sim_R x_{i+1}$ for all $i = 0, \dots, n-1$.
+    if there exists a sequence $x = x_0, x_1, \dots, x_n = y$ such that $x_i \sim_R x_{i+1}$ for all $i = 0, \dots, n-1$ \cite[p.337]{Lidl1997-kc}.
 \end{definition}
 
 In particular, if $\sim$ is reflexive and symmetric then $\sim^+$ is an equivalence relation.
-Later we will regularly use this fact by defining relations as transitive closures of reflexive and symmetric relations.
+Later we will regularly use this fact by defining equivalence relations as transitive closures of reflexive and symmetric relations.
 
 \begin{definition}{}{}
 We say that $P \in \P(X)$ is:
@@ -244,7 +244,7 @@ We define the \emph{shift} functor $\sigma_\lambda: \H \to \H$ for some $\lambda
 $$
 \sigma_\lambda(X, \theta_X(r)) := (X, \theta_X(r \cdot \lambda)) \quad \forall r \in \R_{\geq0}.
 $$
-By checking the condition on morphisms in definition \ref{def:output_hierarchical_clustering_functors} we see that this induces a functor.
+By checking the condition on morphisms in definition \ref{def:output_hierarchical_clustering_functors}, we see that this induces a functor.
 
 \todo[check if this is correct; take reciprocal?]
 \end{definition}

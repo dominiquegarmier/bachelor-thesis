@@ -1,19 +1,22 @@
 \chapter{Hierarchical Clustering Functors}
 \label{chapter__hierarchical}
+In this chapter we first introduce the hierarchical version of the Vieotirs-Rips functor.
+We will talk about a crucial link between certain hierarchical clustering functors and regular classical clustering functors. With this, we can then tackle the modified \textsc{Kleinberg} conditions \cite[Sec.~7.3.1]{Carlsson2010} and show that they give uniqueness.
+
 
 \begin{definition}{Vietoris-Rips Functor \cite[Ex.~7.1]{Carlsson2010}}{hierarchical_vr}
 For $\M \in \{\gen,\inj,\iso\}$ we can define the Vietoris-Rips hierarchical clustering functor by
 $$
 \Rf: \M \to \H
 $$
-where for $(X,d) \in \ob(\M)$ and $r \in \R_{\geq0}$ we set
+where for $(X,d) \in \ob(\M)$ and $\delta \in \R_{\geq0}$ we set
 $$
-\Rf(X,d; r) := \Rf_r(X,d).
+\Rf(X,d; \delta) := \Rf_\delta(X,d).
 $$
 \end{definition}
 Notice that since $\Rf_\delta \refines \Rf_{\delta'}$ for $\delta \leq \delta'$, this is indeed a hierarchical functor.
 
-Similar to classical clustering functors we also want to define some properties for hierarchical clustering functors. Moreover, from now on we will again assume that $\M \in \{\gen, \inj\}$.
+Similar to classical clustering functors, we also want to define some properties for hierarchical clustering functors. Moreover, from now on we will again assume that $\M \in \{\gen, \inj\}$.
 
 \begin{definition}{}{}
     A hierarchical clustering functor $\Hf$ is said to be \emph{surjective} if for every possible output of a hierarchical clustering functor \ie\ $(X, \theta_X) \in \ob(\H)$ there exists a metric $d$ on $X$ such that $\Hf(X,d) = (X, \theta_X)$.
@@ -24,7 +27,7 @@ Notice, given some surjective hierarchical clustering functor $\Hf$ then any $t 
 A similar concept to scale invariance is given by the following.
 
 \begin{definition}{}{}
-A hierarchical clustering functor $\Hf: \M \to \H$ is called \emph{scaling} if for all $(X,d) \in \ob(\M)$ and $\lambda > 0$ we have
+A hierarchical clustering functor $\Hf: \M \to \H$ is called \emph{scaling} if for all ${(X,d) \in \ob(\M)}$ and $\lambda > 0$ we have
 $$
 \Hf(X, \lambda d) = \sigma_\lambda \Hf(X,d).
 $$
@@ -91,7 +94,7 @@ On the other hand, given any scaling hierarchical clustering functor $\Hf: \M \t
 \end{definition}
 
 We have seen in the above statements that $\Rf$ fulfills the modified \textsc{Kleinberg} conditions.
-Using the uniqueness result of theorem \ref{thm:uniqueness_of_surjective_regular_functors} we can now show that the modified \textsc{Kleinberg} conditions uniquely characterize the Vietoris-Rips functor.
+Using the uniqueness result of theorem \ref{thm:uniqueness_of_surjective_regular_functors}, we can now show that the modified \textsc{Kleinberg} conditions uniquely characterize the Vietoris-Rips functor.
 
 \begin{theorem}{Uniqueness of Kleinberg's Conditions}{kleinbergs_uniqueness_conditions}
     Let $\Hf: \M \to \H$ be a hierarchical clustering functor that fulfills the modified \textsc{Kleinberg} conditions. Then we have
@@ -105,7 +108,7 @@ Using the uniqueness result of theorem \ref{thm:uniqueness_of_surjective_regular
 \begin{proof}
 Let $\Hf: \M \to \H$ be a hierarchical clustering functor fulfilling the modified \textsc{Kleinberg} conditions. \Ie\ In particular, we have $\M = \gen$.
 
-By proposition \ref{prop:scaling_extension_correspondence} there exists a regular classical clustering functor $\Cf: \gen \to \C$ such that $\Hf = \Hf_\Cf$.
+By proposition \ref{prop:scaling_extension_correspondence}, there exists a regular classical clustering functor $\Cf: \gen \to \C$ such that $\Hf = \Hf_\Cf$.
 
-Since $\Hf$ is surjective we have that $\Cf$ is also surjective. So by theorem \ref{thm:uniqueness_of_surjective_regular_functors} we have that $\Cf = \Rf_\delta$ for some $\delta > 0$. Unraveling the definitions we get that $\Hf = \Hf_\Cf = \sigma_\delta \Rf$.
+Since $\Hf$ is surjective we have that $\Cf$ is also surjective. So by theorem \ref{thm:uniqueness_of_surjective_regular_functors}, we have that $\Cf = \Rf_\delta$ for some $\delta > 0$. Unraveling the definitions we get that $\Hf = \Hf_\Cf = \sigma_\delta \Rf$.
 \end{proof}

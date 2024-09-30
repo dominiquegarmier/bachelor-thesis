@@ -5,7 +5,7 @@
 \textit{``Category theory starts with the observation that many properties of mathematical systems can be unified and simplified by a presentation with diagrams of arrows''} \hfill \textsc{Saunders Mac Lane}, 1978 \cite[p.~1]{MacLane1978}. \hspace*{5mm}
 \end{quote}
 
-Category theory is branch of mathematics developed to unify common methods and structures used in different areas of mathematics. As such we do not expect to see profound results in this chapter. Rather we will introduce notation that make it easier to reason about structures that we will define in later chapters.
+Category theory is branch of mathematics developed to unify common methods and structures used in different areas of mathematics. As such we do not expect to see profound results in this chapter. Rather we will introduce notation that make it easier to reason about concepts that we will define in later chapters.
 
 \section{Categories}
 
@@ -29,7 +29,7 @@ A category $\C$ consists of
     f \circ (g \circ h) = (f \circ g) \circ h.
     $$
 
-    \item \textbf{Identity}: For all objects $A,B \in \ob(\C)$ there exists a morphism $e_A \in \mor_C(A,A)$ such that for $f \in \mor_C(A,B)$ and $g \in \mor_C(B,A)$ we have
+    \item \textbf{Identity}: For all objects $A,B \in \ob(\C)$ there exists a morphism ${e_A \in \mor_C(A,A)}$ such that for $f \in \mor_C(A,B)$ and $g \in \mor_C(B,A)$ we have
     $$
     f \circ e_A = f \quad \text{and} \quad e_A \circ g = g.
     $$
@@ -110,9 +110,7 @@ Consider the category $\mathrm{ORD}_\R$ with
         \hfil \emptyset & \text{else}
     \end{cases}$
 \end{itemize}
-and the composition $(a,b) \circ (b,c) := (a,c)$ if $a \ge b \ge c$ and identity $(a,a)$.
-
-Notice how this category encodes the full information of the total ordering $\ge$ on $\R$. Particularly, the composition $\circ$ encodes transitivity and the identity encodes reflexivity.
+and the composition $(a,b) \circ (b,c) := (a,c)$ if $a \ge b \ge c$ and identity $(a,a)$. Notice how this category encodes the full information of the total ordering $\ge$ on $\R$. Particularly, the composition $\circ$ encodes transitivity and the identity encodes reflexivity.
 \end{example}
 
 \begin{example}{Group as a Category}{group-category}
@@ -124,7 +122,7 @@ Let $G$ be a group. Then we can define a corresponding category $\mathcal{G}$ wh
 \end{itemize}
 and the composition is given by $g \circ h = gh$ and identity by $e \in G$.
 \end{example}
-In the previous two examples it might not be intuitive why these compositions form a category. It is however a good exercise to verify that they do.
+In the previous two examples it might not be intuitive why these compositions form a category. It is, however, a good exercise to verify that they do.
 
 \section{Functors}
 We would now like to study maps between categories. 
@@ -151,7 +149,7 @@ A functor must also satisfy
 \label{eq:functor_functoriality_identity}
 \Ff(e_X) = e_{\Ff(X)},
 \end{equation}
-where $e_X$ denotes the identity morphism on an object $X$. And for every $f \in \mor_\A(X,Y)$ and $g \in \mor_\A(Y,Z)$
+where $e_X$ denotes the identity morphism on an object $X$. And for every ${f \in \mor_\A(X,Y)}$ and $g \in \mor_\A(Y,Z)$
 \begin{itemize}
     \item \emph{In the case of a covariant functor}
     \begin{equation}
@@ -208,7 +206,7 @@ $$
 \end{example}
 
 \begin{example}{Homology Functor \cite[Chap.~2.3]{Hatcher2001}}{}
-The map that assigns to a topological space $X$ its singular homology chain complex $H_\bullet(X)$ and assigns to continuous functions $f: X \to Y$ to the chain map $f_*: H_\bullet(X) \to H_\bullet(Y)$ is a functor from the category of topological spaces to the category of chain complexes of abelian groups.
+The map that assigns to a topological space $X$ its singular homology chain complex $H_\bullet(X)$ and assigns to continuous functions $f: X \to Y$ to the chain map ${f_*: H_\bullet(X) \to H_\bullet(Y)}$ is a functor from the category of topological spaces to the category of chain complexes of abelian groups.
 \end{example}
 
 Building on the category $\mathcal{G}$ from example \ref{exa:group-category}, we can now translate the familiar concept of a group homomorphism into a functor between categories.
