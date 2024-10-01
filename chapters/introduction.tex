@@ -73,7 +73,7 @@ To get to this result we will use the formalization of clustering algorithms des
 First we will work with classical clustering functors. Where two central properites of clustering functors are considered.
 \begin{itemize}
     \item \emph{Surjectivity}, which means that for any partition or dendrogram of a set of $n$ points we can find a metric on these $n$ points such that our clustering functor produces this partition or dendrogram.
-    \item \emph{Splitting}, which refers to a particular behaviour of clustering functors on metric spaces with two points. Namely, two points are ``split'' into two clusters if and only if they are $\delta$-far apart for some $\delta > 0$.
+    \item \emph{Splitting}, which refers to a particular behaviour of clustering functors on metric spaces with two points. Namely, two points are ``merged'' into a single cluster if and only if they are $\delta$-close for some $\delta > 0$.
 \end{itemize}
 It was previously shown that the latter is a characterizing property of the so-called \emph{Vietoris-Rips} clustering functor \cite{JMLR:v11:carlsson10a}, \cite{Carlsson2010}.
 In this thesis we will show that under certain technical assumptions surjectivity implies splitting. In some sense this means that a global property of a clustering functor (surjectivity) implies a local property (splitting). Importantly, surjectivity was one of the conditions in \textsc{Kleinberg}'s impossibility result.
