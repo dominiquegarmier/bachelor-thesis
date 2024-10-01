@@ -75,25 +75,26 @@ First we will work with classical clustering functors. Where two central properi
     \item \emph{Surjectivity}, which means that for any partition or dendrogram of a set of $n$ points we can find a metric on these $n$ points such that our clustering functor produces this partition or dendrogram.
     \item \emph{Splitting}, which refers to a particular behaviour of clustering functors on metric spaces with two points. Namely, two points are ``merged'' into a single cluster if and only if they are $\delta$-close for some $\delta > 0$.
 \end{itemize}
-It was previously shown that the latter is a characterizing property of the so-called \emph{Vietoris-Rips} clustering functor \cite{JMLR:v11:carlsson10a}, \cite{Carlsson2010}.
+
+The latter is a characterizing property of the so-called \emph{Vietoris-Rips} clustering functor, \cite[Thm.~6.4]{Carlsson2010}.
 In this thesis we will show that under certain technical assumptions surjectivity implies splitting. In some sense this means that a global property of a clustering functor (surjectivity) implies a local property (splitting). Importantly, surjectivity was one of the conditions in \textsc{Kleinberg}'s impossibility result.
 
-In the last chapter we will consider a modified version of \textsc{Kleinberg}'s conditions presented in \cite[Sec.~7.3.1]{Carlsson2010}. These conditions concern hierarchical clustering functors, more precisely \emph{scaling} hierarchical clustering functors. We show that scaling hierarchical clustering functors are esstentially the same as classical clustering functors. Utilizing this trick and the tools described earlier, we can show that the modified \textsc{Kleinberg} conditions give rise to a unique (up to some transformation) hierarchical clustering functor.
+At the end we will consider a modified version of \textsc{Kleinberg}'s conditions presented in \cite[Sec.~7.3.1]{Carlsson2010}. These conditions concern hierarchical clustering functors, more precisely \emph{scaling} hierarchical clustering functors. We show that scaling hierarchical clustering functors are esstentially the same as classical clustering functors\footnote{\Ie, we show that there is a one-to-one correspondence between scaling hierarchical clustering functor and what we call \emph{regular} classical clustering functors.}. Utilizing this trick and the tools described earlier, we can show that the modified \textsc{Kleinberg} conditions give rise to a unique (up to some transformation) hierarchical clustering functor.
 
-\section*{Overview of the Thesis}
-\todo[this could be moved into the appendix?]
-\begin{description}
-    %\item[\Cref{chapter__preliminaries}.] This chapter is a refresher of some basic concepts and definitions. The reader is advised to refer back to this chapter if they are unfamiliar with certain notations.
+% \section*{Overview of the Thesis}
+% \todo[this could be moved into the appendix?]
+% \begin{description}
+%     %\item[\Cref{chapter__preliminaries}.] This chapter is a refresher of some basic concepts and definitions. The reader is advised to refer back to this chapter if they are unfamiliar with certain notations.
 
-    \item[\Cref{chapter__dataclustering}.] We discuss traditional methods of data clustering and explain the impossibility result by \textsc{Kleinberg} \cite{Kleinberg2002}.
+%     \item[\Cref{chapter__dataclustering}.] We discuss traditional methods of data clustering and explain the impossibility result by \textsc{Kleinberg} \cite{Kleinberg2002}.
 
-    \item[\Cref{chapter__category_theory}.] In this chapter, we cover the necessary concepts from category theory and contextualize them with examples. For this chapter we follow \cite{Roman2017} and \cite{Leinster2014-dc}.
+%     \item[\Cref{chapter__category_theory}.] In this chapter, we cover the necessary concepts from category theory and contextualize them with examples. For this chapter we follow \cite{Roman2017} and \cite{Leinster2014-dc}.
 
-    \item[\Cref{chapter__clustering_functor}.] Here we define the notion of \emph{classical} and \emph{hierarchical clustering functors} by closely following the notation presented by \textsc{Carlsson} and \textsc{M\'emoli} \cite{Carlsson2010}.
+%     \item[\Cref{chapter__clustering_functor}.] Here we define the notion of \emph{classical} and \emph{hierarchical clustering functors} by closely following the notation presented by \textsc{Carlsson} and \textsc{M\'emoli} \cite{Carlsson2010}.
 
-    \item[\Cref{chapter__classical}.] We define and introduce properties of classical clustering functors. This is also the first time that we encounter the Vietoris-Rips clustering functor. As observed by \cite{JMLR:v11:carlsson10a}, \cite{Carlsson2010} this functor has some interesting properties and characterizations.
-    % It is also in this chapter where we show that the Vietoris-Rips is the unique \emph{regular} and \emph{surjective} $\gen$ classical clustering functor.
+%     \item[\Cref{chapter__classical}.] We define and introduce properties of classical clustering functors. This is also the first time that we encounter the Vietoris-Rips clustering functor. As observed by \cite{JMLR:v11:carlsson10a}, \cite{Carlsson2010} this functor has some interesting properties and characterizations.
+%     % It is also in this chapter where we show that the Vietoris-Rips is the unique \emph{regular} and \emph{surjective} $\gen$ classical clustering functor.
 
-    \item[\Cref{chapter__hierarchical}.] By relating our findings from the previous chapter to the \emph{modified} \textsc{Kleinberg} \emph{conditions} presented by \cite[Sec.~7.3.1]{Carlsson2010}, we are finally able to show that the Vietoris-Rips functor is the only hierarchical clustering functor satisfying these conditions.
-\end{description}
+%     \item[\Cref{chapter__hierarchical}.] By relating our findings from the previous chapter to the \emph{modified} \textsc{Kleinberg} \emph{conditions} presented by \cite[Sec.~7.3.1]{Carlsson2010}, we are finally able to show that the Vietoris-Rips functor is the only hierarchical clustering functor satisfying these conditions.
+% \end{description}
 
