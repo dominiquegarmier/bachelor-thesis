@@ -1,8 +1,8 @@
 \chapter{Data Clustering}
 \label{chapter__dataclustering}
 
-We first give a few examples of clustering algorithms, which are commonly studied in machine learning and data science. In particular, we discuss classical and hierarchical clustering algorithms. For this we will base ourselves on the books \cite{Everitt2011} and \cite{Scitovski2021}.
-We will contextualize these algorithms with a few example computations and will see how they can fall short in certain cases.
+We first give a few examples of clustering algorithms, which are commonly studied in machine learning and data science. In particular, we discuss classical and hierarchical clustering algorithms and contextualize them with a few example computations and will see how they can fall short in certain cases.
+For this, we base ourselves on the books \cite{Everitt2011} and \cite{Scitovski2021}.
 
 Then we talk about how clustering algorithms can be seen as remaining invariant under certain transformations of its input. We give some intuition why this might be a desirable property for a clustering algorithm. This will lead to \textsc{Kleinberg}'s impossibility result \cite{Kleinberg2002}.
 
@@ -205,33 +205,29 @@ In this case the $k$-means algorithm will fail to split the two circles as the c
 \label{section__linkage_clustering}
 Another way of clustering data points is based on graph theory and the idea of consecutively connecting points \cite[Sec.~4.2.2]{Everitt2011}.
 
-A dendrogram is in this context a (rooted) binary tree where the leaves are the data points. We will later define a more general notion of a dendrogram in section \ref{section__partitions}.
+In this context a \emph{dendrogram} is a (rooted) binary tree where the leaves are the data points. We will later define a more general notion of a dendrogram in section \ref{section__partitions}.
 
-
-
-Let $x_1, \dots, x_n \in \R^d$ be a set of distinct data points and $d$ a metric on $\R^d$.
 \begin{definition}{Linkage Clustering }{linkage_clustering}
-Let $\mathfrak{d}$ be a \emph{distance function}\footnote{In this case, a \emph{distance function} is just a function taking values in $\R_{\geq0}$.} between clusters. We start with the partition
+Let $\{x_1, \dots, x_n\} \subset \R^n$ and $\mathfrak{d}$ be a \emph{distance function}\footnote{In this case, a \emph{distance function} between clusters is a function $\mathscr{P}(X) \times \mathscr{P}(X) \to \R_{\geq0}$.} between clusters. We start with the partition
 $$
 B^{(0)}_j := \{x_j\}$$
-for $j = 1, \dots, n$. Given a partition
+for $j \in \{1, \dots, n\}$. Given a partition
 $$
 B^{(k)}_1, \dots, B^{(k)}_{n - k} \quad \text{of} \quad x_1, \dots, x_n
 $$
-we successively merge the clusters $i$ and $j$ such that
+we successively merge the clusters $j$ and $\ell$ such that
 $$
-\mathfrak{d}(B^{(k)}_i,B^{(k)}_j)
+\mathfrak{d}(B^{(k)}_j,B^{(k)}_\ell)
 $$
-is minimal.
+is minimal for $j,\ell \in \{1, \dots, n - k\}$.
 \end{definition}
+Depending on the distance function $\mathfrak{d}$ we use we call \emph{linkage clustering} differently, \eg:
 
-There are multiple distance functions that we could use in the previous definition, \eg :
-\begin{align*}
-\mathfrak{d}_\mathrm{min} (B_i, B_j) &:= \min\{d(x,y): x \in B_i, y \in B_j\}\\
-\mathfrak{d}_\mathrm{max} (B_i, B_j) &:= \max\{d(x,y): x \in B_i, y \in B_j\}\\
-\mathfrak{d}_\mathrm{avg}(B_i,B_j) &:= \frac{1}{|B_i||B_j|} \sum_{x \in B_i, y \in B_j} d(x,y)\\
-\end{align*}
-If we use $\mathfrak{d}_\mathrm{min}$ we call it \emph{single-linkage clustering}, when using $\mathfrak{d}_\mathrm{max}$ we call it \emph{complete-linkage clustering} and \emph{average-linkage clustering} if we use $\mathfrak{d}_\mathrm{avg}$.
+\begin{itemize}
+    \item \emph{single-linkage clustering}: $\mathfrak{d}_\mathrm{min} (B_i, B_j) := \min\{d(x,y): x \in B_i, y \in B_j\}$,
+    \item \emph{complete-linkage clustering}: $\mathfrak{d}_\mathrm{max} (B_i, B_j) := \max\{d(x,y): x \in B_i, y \in B_j\}$,
+    \item \emph{average-linkage clustering}: $\mathfrak{d}_\mathrm{avg}(B_i,B_j) := \frac{1}{|B_i||B_j|} \sum_{x \in B_i, y \in B_j} d(x,y)$.
+\end{itemize}
 
 As an example, consider the data points in figure \ref{fig:sl_clustering} and their corresponding dendrogram obtained from single-linkage clustering.
 
