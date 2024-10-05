@@ -9,15 +9,14 @@ This construction closely follows the one by \textsc{Carlsson} and \textsc{M\'em
 \section{Finite Metric Spaces}
 \label{section__finite_metric_spaces}
 
-
+First we need to define the category of ``inputs'' of clustering algorithms. As we have seen before that it is natural to think of \emph{data} as a finite metric space. This motivates to following definition.
 
 \begin{definition}{Finite Metric Spaces \cite[Sec.~3.2]{Carlsson2010}}{}
 We define three categories $\iso, \inj$ and $\gen$, all sharing the same objects:
-
 \begin{equation*}
 \ob(\M) := \{(X,d): \text{$X$ a finite non-empty set and $d$ a metric on $X$}\}
 \end{equation*}
-
+for $\M \in \{\iso, \inj, \gen\}$/
 The three categories are distinguished by their morphisms. For $A, B \in \ob(\M)$ we set:
 \begin{itemize}
     \item $\mor_\gen(A,B)$ the distance non-increasing functions $f: A \to B$.
@@ -27,13 +26,12 @@ The three categories are distinguished by their morphisms. For $A, B \in \ob(\M)
 The composition of morphisms is given by the composition of functions, and the identity morphism is the identity function.
 \end{definition}
 
-Depending on what kind of structures we want to preserve, we can choose one of the three categories.
+Depending on what kinda and the amount of ``structure'' we would like our clustering algorithms to ``preserve'', we can choose one of the three categories.
 By construction, we have the inclusions
 \begin{equation}
     \label{eq:inclusions_of_finite_metric_space_categories}
     \iso \subset \inj \subset \gen.
 \end{equation}
-
 Furthermore, this inclusion yields functors $\iso \to \inj \to \gen$ \cite[Def.~1.2.18]{Leinster2014-dc}.
 As such, $\iso$ is the category with the fewest morphisms. Indeed, between most objects there are no morphisms.
 All morphisms are between spaces of the same isometry class and have an inverse.
@@ -45,6 +43,10 @@ for some $b \in B$.
 
 \section{Partitions and Dendrograms}
 \label{section__partitions}
+
+The next step will be to define a suitable category for the ``outputs'' of clustering algorithms. Here we will define two options, one based on partitions (for classical algorithms), the other using dendrograms (for hierarchical algorithms).
+
+However, we first need to introduce a bit of machinery for this.
 
 \begin{definition}{\todo[I think i should leave this out]}{relation}
     Let $X$ be a set, a \emph{relation} on $X$ is a subset $R \subseteq X \times X$. And we write $x R y$ if $(x,y) \in R$.
@@ -119,7 +121,7 @@ We say that $P \in \P(X)$ is:
 \end{enumerate}
 \end{definition}
 
-Naturally if $Q$ is discrete and $P$ is trivial then $Q \refines R \refines P$ for all $R \in \P(X)$.
+Naturally, if $Q$ is discrete and $P$ is trivial then $Q \refines R \refines P$ for all $R \in \P(X)$.
 Like in chapter \ref{chapter__dataclustering} we also want to consider hierarchical clustering.
 For this we introduce the notion of a \emph{dendrogram}.
 
@@ -250,6 +252,9 @@ By checking the condition on morphisms in definition \ref{def:output_hierarchica
 \end{definition}
 
 \section{Clustering Functors}
+We now have all the tools to define a \emph{clustering functor}.
+
+
 \begin{definition}{Clustering Functor \cite[Sec.~4.1]{Carlsson2010}}{}
 Let $\M \in \{\iso, \inj, \gen\}$ and $\A \in \{\C, \H\}$. An $\M$-\emph{functorial clustering functor} (or $\M$ \emph{clustering functor}) is a functor from $\M$ to $\A$
 $$\Cf : \M \longrightarrow \A$$
@@ -276,7 +281,7 @@ Recall the inclusions \eqref{eq:inclusions_of_finite_metric_space_categories} an
 Given a clustering functor on a larger category, say $\Cf: \gen \to \C$, this immediately induces clustering functors on the smaller categories by pre-composition with the inclusion functors $\iso \to \inj \to \gen$. We will use the same symbol for the induced functors.
 \end{myremark}
 
-With this in mind, it makes sense to think of the categories $\iso, \inj, \gen$ as being different levels of \emph{structure} a clustering functor can \emph{preserve} where $\iso$ is the least restrictive and $\gen$ the most restrictive.
+With this in mind, it makes sense to think of the categories $\iso, \inj, \gen$ as being different levels of ``structure'' a clustering functor can ``preserve'' where $\iso$ is the least restrictive and $\gen$ the most restrictive.
 
 
 \begin{myremark}{}{}

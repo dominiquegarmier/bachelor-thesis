@@ -88,6 +88,8 @@ From now on, unless otherwise mentioned, we use $\M \in \{\inj, \gen\}$.
 
 \section{Excessive and Representable Clustering Functors}
 
+We will quickly talk about a simple yet, as we will see, very general way of defining clustering functors.
+
 \begin{definition}{Excessive Clustering Functors \cite[Def.~6.2]{Carlsson2010}}{}
 A clustering functor $\Cf: \M \to \C$ is called \emph{excessive} if for every $(X,d) \in \ob(\M)$ and $(X,P) = \Cf(X,d)$ we have that for every block $X_\alpha \in P$:
 $$
@@ -173,6 +175,8 @@ Assume that $x,y \in X$ are such that $x \sim_P y$. But then by definition, ther
 \end{proof}
 
 \section{Surjective Clustering Functors}
+
+One of the conditions in \textsc{Kleinberg}'s impossibility theorm (theorem \ref{thm:kleinberg}) was richness (definition \ref{def:richness}). Here we extend this notion to clustering functors.
 
 \begin{definition}{Surjective Clustering Functors}{}
     A classical clustering functor $\Cf: \M \to \C$ is called \emph{surjective} if for every finite set $X$ and every $P \in \P(X)$ there exists a metric $d$ on $X$ such that
@@ -315,7 +319,7 @@ We can now formulate two results that show to what extent splitting is a charact
     \delta_0 := \min\{d(x,y): x,y \in X \text{ and } x \not\sim_R y\}
     $$
     Let now $x,y \in X$ such that $x \not\sim_R y$.
-    Then we can find a map $f \in \mor_\gen((X,d), \Delta_2(\delta_0))$ such that $f(x) \neq f(y)$\footnote{One particular way to construct such an $f$ would be to send every $x' \sim_R x$ to one point in $\Delta_2(\delta_0)$ and every $x' \not\sim_R x$ to the other point. By the way, we defined $\delta_0$ this map is in fact distance non-increasing.}.
+    Then we can find a map $f \in \mor_\gen((X,d), \Delta_2(\delta_0))$ such that $f(x) \neq f(y)$\footnote{One particular way to construct such an $f$ would be to send every $x' \sim_R x$ to one point in $\Delta_2(\delta_0)$ and every $x' \not\sim_R x$ to the other point. By the way we defined $\delta_0$, this map is in fact distance non-increasing.}.
 
     Since $\delta_0 > \delta$ and $\Cf$ is splitting we get $f(x) \not\sim f(y)$ so by functoriality we have $x \not\sim_P y$.
 \end{proof}
@@ -422,17 +426,16 @@ Assuming regularity and building on lemma \ref{lem:surjective_implies_eventually
 \end{proof}
 
 \section{Scale Invariant Clustering Functors}
-
-We will quickly talk about scale invariance inspired by \textsc{Kleinberg}'s conditions from theorem \ref{thm:kleinberg}, discussed in \cite[Sec.~6.6]{Carlsson2010}, and see where this fails.
+Let us quickly talk about scale invariance inspired by \textsc{Kleinberg}'s conditions from theorem \ref{thm:kleinberg}, discussed in \cite[Sec.~6.6]{Carlsson2010}.
 
 \begin{definition}{Scale Invariance}{scale_invariance}
     A clustering functor $\Cf: \M \to \C$ is called \emph{scale invariant} if for all $\lambda > 0$ and $(X,d) \in \ob(\M)$ we have:
     \begin{equation*}
-        \Cf((X,d)) = \Cf(X,\lambda \cdot d)).
+        \Cf(X,d) = \Cf(X,\lambda \cdot d).
     \end{equation*}
 \end{definition}
 
-We now get two interesting distinct behavior of scale invariant clustering functors. First we consider the case of $\gen$.
+We now get two interesting distinct behaviors of scale invariant clustering functors. First we consider the case of $\gen$.
 
 \begin{proposition}{\cite[Thm.~6.5]{Carlsson2010}}{}
     Let $\Cf: \gen \to \C$ be a scale invariant clustering functor then either
@@ -443,7 +446,7 @@ We now get two interesting distinct behavior of scale invariant clustering funct
 \end{proposition}
 
 \begin{proof}
-    By scale invariance we either have that $\Cf(\Delta_2(\delta))$ is trivial or discrete for all $\delta > 0$.
+    By scale invariance,e we either have that $\Cf(\Delta_2(\delta))$ is trivial or discrete for all $\delta > 0$.
 
     Let $|X| \ge 2$ otherwise the statement is clear. Then for any $x \neq x'$ in $X$ we can find $\delta, \delta' > 0$ and morphisms in $\gen$
     $$
@@ -460,7 +463,7 @@ We now get two interesting distinct behavior of scale invariant clustering funct
     \end{itemize}
 \end{proof}
 
-In case of $\inj$ we have a more interesting behavior.
+In the case of $\inj$ we have a more interesting behavior.
 
 \begin{proposition}{\cite[Thm.~6.6]{Carlsson2010}}{}
     Let $\Cf: \inj \to \C$ be a scale invariant functor then there exists a $k \in \N \sqcup \{0, \infty\}$ such that for all $(X,d) \in \ob(\inj)$:
@@ -492,4 +495,4 @@ In case of $\inj$ we have a more interesting behavior.
     By scale invariance, this does not depend on $\delta$. We can now repeat the same argument as in the previous proposition to get the statement\footnote{By using $n = |X|$, we can find morphisms $f,g$ in $\inj$.}.
 \end{proof}
 
-Following this we immediately see that scale invariant clustering functors can not be surjective.
+Following this, we immediately see that scale invariant clustering functors can not be surjective.
