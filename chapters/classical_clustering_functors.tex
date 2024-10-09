@@ -1,6 +1,6 @@
 \chapter{Classification of Classical Clustering Functors}
 \label{chapter__classical}
-In this chapter, any clustering functor is of the classical type.
+In this chapter all clustering functor are of the classical type.
 Here we study different properties of classical clustering functors and how they relate to each other.
 An important (classical) clustering functor that has many of these properties is the Vietoris-Rips functor. For this chapter we also closely follow \cite{Carlsson2010}.
 
@@ -24,12 +24,13 @@ We have to show that
 $$P \refines_f Q.$$
 Indeed, let $x,y \in X$ such that $d(x,y) \leq \delta$.
 Then, we have $d(f(x), f(y)) \leq d(x,y) \leq \delta$ and therefore $f(x) \sim_{Q} f(y)$.
-By taking the transitive closure we get the statement.
+By taking the transitive closure the statement follows.
 \end{proof}
 
-Consider the seven points $\{a,b,c,d,e,f,g\} \subset \R^2$ show in the Figure \ref{fig:vietoris_rips_example}. Then, $\Rf_\delta$ creates the clusters $\{a,b,c\}$ and $\{d,e,f,g\}$, shown in red and blue. For clarity, we chose to draw the circles with radius $\delta / 2$, \ie\ two points are in the same cluster if circles around them with radius $\delta / 2$ intersect.
-
-\begin{figure}[h]
+\begin{example}{}{}
+Consider the seven points $\{a,b,c,d,e,f,g\} \subset \R^2$ shown in the Figure \ref{fig:vietoris_rips_example}. Then, $\Rf_\delta$ creates the clusters $\{a,b,c\}$ and $\{d,e,f,g\}$, drawn in red and blue.
+\begin{center}
+\begin{minipage}{\textwidth}
 \centering
 \begin{tikzpicture}[sloped]
     \draw[dashed,fill=mygreen,fill opacity=0.1](2.3, 4.8) node[circle,fill=black,inner sep=1pt,fill opacity=1]{} circle (1);
@@ -63,12 +64,12 @@ Consider the seven points $\{a,b,c,d,e,f,g\} \subset \R^2$ show in the Figure \r
     \node[above] at (2.1, 1.1) {$f$};
     \node[below] at (3.4, 0.3) {$g$};
 \end{tikzpicture}
-\caption{Clusters (red and blue) produced by the Vietoris-Rips functor $\Rf_\delta$ for on the points $\{a,b,c,d,e,f,g\} \subset \R^2$.}
+\captionof{figure}{Clusters (red and blue) produced by the Vietoris-Rips functor $\Rf_\delta$ for on the points $\{a,b,c,d,e,f,g\} \subset \R^2$.}
 \label{fig:vietoris_rips_example}
-\end{figure}
-
-
-
+\end{minipage}
+\end{center}
+For clarity, we draw the circles with radius $\delta / 2$, \ie\ two points are in the same cluster if circles around them with radius $\delta / 2$ intersect.
+\end{example}
 
 \begin{myremark}{$\iso$ Clustering Functors \cite[Thm.~6.1]{Carlsson2010}}{}
 Let $\mathcal{I}$ denote a collection of representatives of isometry classes of finite metric spaces.
@@ -88,10 +89,10 @@ From now on, unless otherwise mentioned, we use $\M \in \{\inj, \gen\}$.
 
 \section{Excessive and Representable Clustering Functors}
 
-We will quickly talk about a simple yet, as we will see, very general way of defining clustering functors.
+We will quickly talk about a simple yet, as we will see, very general way of constructing clustering functors.
 
 \begin{definition}{Excessive Clustering Functors \cite[Def.~6.2]{Carlsson2010}}{}
-A clustering functor $\Cf\colon \M \to \C$ is called \emph{excessive} if for every $(X,d) \in \ob(\M)$ and $(X,P) = \Cf(X,d)$ we have that for every block $X_\alpha \in P$:
+Let $\M \in \{\inj, \gen\}$. A clustering functor $\Cf\colon \M \to \C$ is called \emph{excessive} if for every $(X,d) \in \ob(\M)$ and $(X,P) = \Cf(X,d)$ we have that for every block $X_\alpha \in P$:
 $$
 \Cf(X_\alpha, d|_{X_\alpha \times X_\alpha}) = (X_\alpha, \{X_\alpha\})
 $$
@@ -100,7 +101,7 @@ $$
 Let $\Omega$ be a family of finite non-empty metric spaces. Such $\Omega$'s can be used to construct clustering functors. We think of $\Omega$ as being a collection of \emph{patterns} and our clustering algorithm as detecting these \emph{patterns}.
 
 \begin{definition}{Representable Clustering Functors \cite[Sec.~6.2]{Carlsson2010}}{construction_of_representable_clustering_functors}
-We define the clustering functor \emph{represented by $\Omega$} as
+Let $\M \in \{\inj, \gen\}$. We define the clustering functor \emph{represented by $\Omega$} as
 $$
 \Cf^\Omega\colon \M \to \C
 $$
@@ -123,10 +124,12 @@ Let us define a simple metric space that will come in handy on several occasions
     $$
 \end{definition}
 
-This gives us an alternative definition of $\Rf_\delta$. \Ie:
+\begin{example}{}{}
+With this notation we get a new way of defining the Vietoris-Rips functor, \ie,
 $$
 \Rf_\delta = \Cf^{\{\Delta_2(\delta)\}}.
 $$
+\end{example}
 The fact that $\Rf_\delta$ is representable is not a coincidence as we will see in the remainder of this section.
 \begin{myremark}{\cite[Rem.~6.3]{Carlsson2010}}{}
 Notice that for $(X,d) \in \Omega$ we have $\Cf^\Omega(X,d) = (X, \{X\})$.
@@ -135,19 +138,18 @@ Notice that for $(X,d) \in \Omega$ we have $\Cf^\Omega(X,d) = (X, \{X\})$.
 This leads to an alternative characterization of $\Cf^\Omega$.
 
 \begin{proposition}{}{characterization_of_representable}
-For any clustering functor $\Cf$ such that $\Cf(X,d)$ is trivial for all $(X,d) \in \Omega$ we have
+Let $\M \in \{\inj, \gen\}$. For any $\M$-clustering functor $\Cf$ such that $\Cf(X,d)$ is trivial for all $(X,d) \in \Omega$ we have
 $$
-\Cf^\Omega \refines \Cf
+\Cf^\Omega \refines \Cf.
 $$
 \end{proposition}
 
 \begin{proof}
 Let $(X,d) \in \ob(\M)$ and $(X,P) = \Cf^\Omega(X,d)$ and $(X,Q) = \Cf(X,d)$. We want to show that $P \refines Q$.
 
-Let $x,y \in X$ such that the generating condition of $P$ holds. \Ie\ there exists $\omega \in \Omega$ and $\phi \in \mor_\M(\omega, (X,d))$ such that $\{x,y\} \subset \image(\phi)$.
+Let $x,y \in X$ such that the generating condition of $P$ holds, \ie, there exists $\omega \in \Omega$ and $\phi \in \mor_\M(\omega, (X,d))$ such that $\{x,y\} \subset \image(\phi)$.
 
-But then since $\Cf(\omega)$ is trivial by assumption and by functoriality $\Cf(\omega) \refines_\phi \Cf(X,d)$, we get that $x \sim_Q y$. Taking the transitive closure gives the statement.
-
+Since $\Cf(\omega)$ is trivial by assumption and by functoriality of $\Cf(\omega) \refines_\phi \Cf(X,d)$, we get that $x \sim_Q y$. Taking the transitive closure gives the statement.
 
 \newresult[check this]
 \end{proof}
@@ -201,6 +203,18 @@ Let $X$ be a finite set and $P$ a partition of $X$. Define the metric $d$ on $X$
 \end{equation*}
 It is straightforward to check that this is indeed a metric and that $\Rf_\delta(X,d) = (X,P)$.
 \end{proof}
+
+\begin{example}{}{}
+Let $\delta > 0$ consider $X := \{a,b,c\}$. We would like to check that the Vietoris-Rips functor is indeed able to reach any partition of $X$. Up to permuting $X$ there are three possible partitions of $X$:
+\begin{itemize}
+    \item $P_1 = \{\{a\}, \{b\}, \{c\}\}$,
+    \item $P_2 = \{\{a,b,c\}\}$,
+    \item $P_3 = \{\{a,b\}, \{c\}\}$.
+\end{itemize}
+First, let us consider $P_1$. For this we can define the metric $d_1$ on $X$ such that $d_1(i,j) = \delta$ for all $i \neq j$. Then, $\Rf_\delta(X,d_1) = (X,P_1)$.
+For $P_2$ we can do something similar and use the metric $d_2$ such that $d_2(i,j) = 2\delta$ for all $i \neq j$, and we get $\Rf_\delta(X,d_2) = (X,P_2)$.
+Finally, for $P_3$ we can use the metric $d_3$ such that $d_3(a,b) = \delta$ and $d_3(a,c) = d_3(b,c) = 2\delta$. This gives us $\Rf_\delta(X,d_3) = (X,P_3)$.
+\end{example}
 
 The following property of surjective clustering functors hints that surjectivity and the Vietoris-Rips functor are closely related.
 
@@ -325,8 +339,7 @@ We can now formulate two results that show to what extent splitting is a charact
 \end{proof}
 
 \begin{example}{}{}
-In some sense, the two previous propositions are the best we can get. \todo[elaborate on this?]
-
+In some sense, the two previous propositions are the best we can get.
 For $\delta>0$ consider the clustering functor $\bar\Rf_\delta\colon \inj \to \C$ defined by
 $$
 \bar\Rf_\delta(X,d) := \Rf_{\frac{\delta|X|}{2}}(X,d).
