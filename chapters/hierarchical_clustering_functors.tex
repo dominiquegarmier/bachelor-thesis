@@ -7,7 +7,7 @@ We will talk about a crucial link between certain hierarchical clustering functo
 \begin{definition}{Vietoris-Rips Functor \cite[Ex.~7.1]{Carlsson2010}}{hierarchical_vr}
 For $\M \in \{\gen,\inj,\iso\}$ we can define the Vietoris-Rips hierarchical clustering functor by
 $$
-\Rf: \M \to \H
+\Rf\colon \M \to \H
 $$
 where for $(X,d) \in \ob(\M)$ and $\delta \in \R_{\geq0}$ we set
 $$
@@ -24,18 +24,31 @@ Similar to classical clustering functors, we also want to define some properties
 
 Notice that given some surjective hierarchical clustering functor $\Hf$, any $t \in \R_{\geq0}$ induces a surjective classical clustering functor $\Cf_t(X,d) := \Hf(X, d; t)$.
 
-A similar concept to scale invariance is given by the following.
+To discuss a similar notion to scale invariance we need to introduce the following functor.
+
+\begin{definition}{}{shift_functor}
+We define the \emph{shift} functor $\sigma_\lambda\colon \H \to \H$ for some $\lambda > 0$. Given $(X, \theta) \in \ob(\H)$ we set
+$$
+\sigma_\lambda(X, \theta(r)) := (X, \theta(r \cdot \lambda^{-1})) \quad \forall r \in \R_{\geq0}.
+$$
+By checking the condition on morphisms in Definition \ref{def:output_hierarchical_clustering_functors}, we see that this induces a functor.
+\end{definition}
+
+Instead of scale invariance we can ask that this shift functor behaves nicely with scaling of the metric.
 
 \begin{definition}{}{}
-A hierarchical clustering functor $\Hf: \M \to \H$ for $\M \in \{\iso,\inj,\gen\}$ is called \emph{scaling} if for all ${(X,d) \in \ob(\M)}$ and $\lambda > 0$ we have
+A hierarchical clustering functor $\Hf\colon \M \to \H$ for $\M \in \{\iso,\inj,\gen\}$ is called \emph{scaling} if for all ${(X,d) \in \ob(\M)}$ and $\lambda > 0$ we have
 $$
-\Hf(X, \lambda d) = \sigma_\lambda \Hf(X,d).
+\Hf(X, \lambda \cdot d) = \sigma_\lambda \Hf(X,d)
+$$
+In other words for all $r \in \R_{\geq0}$ we have
+$$
+\Hf(X, \lambda \cdot d; r) = \Hf(X,d; r \lambda^{-1}).
 $$
 \end{definition}
-Recall the definition of the shift functor $\sigma_\lambda$ \ref{def:shift_functor}.
 
 \begin{proposition}{\cite[Sec.~7.3.1]{Carlsson2010}}{}
-The Vietoris-Rips functor $\Rf: \M \to \H$ is surjective and scaling.
+The Vietoris-Rips functor $\Rf\colon \M \to \H$ is surjective and scaling.
 \end{proposition}
 
 \begin{proof}
@@ -59,7 +72,7 @@ Let $\M \in \{\gen,\inj\}$. Then there exists a one to one correspondence betwee
 scaling hierarchical clustering functors and spanning\footnote{Recall definitions \ref{def:regular} and \ref{def:spanning}.} classical clustering functors.
 
 \medskip
-More precisely given a regular spanning classical clustering functor $\Cf: \M \to \C$ there exists a unique scaling hierarchical clustering functor $\Hf_\Cf: \M \to \H$ such that we have
+More precisely given a regular spanning classical clustering functor $\Cf\colon \M \to \C$ there exists a unique scaling hierarchical clustering functor $\Hf_\Cf\colon \M \to \H$ such that we have
 $$
 \Hf_\Cf(X,d; 1) = \Cf(X,d)
 $$
@@ -68,17 +81,17 @@ Moreover, any scaling hierarchical clustering functor is of this form.
 \end{proposition}
 
 \begin{proof}
-Given a regular classical clustering functor $\Cf: \M \to \C$ we can define
+Given a regular classical clustering functor $\Cf\colon \M \to \C$ we can define
 $$
-\Hf_\Cf(X,d; r) := \Cf(X, r \cdot d)
+\Hf_\Cf(X,d; r) := \Cf(X, r^{-1} \cdot d)
 $$
 for all $(X,d) \in \ob(\M)$ and $r \in \R_{\geq0}$.
 
-To show that this is indeed a hierarchical clustering functor it remains to show that $\Hf_\Cf(X,d;r)$ is a dendrogram (recall definition \ref{def:dendrogram}).
+To show that this is indeed a hierarchical clustering functor it remains to show that $\Hf_\Cf(X,d;r)$ is a dendrogram (recall Definition \ref{def:dendrogram}).
 \begin{enumerate}
-    \item Since for $r \geq r'$ the identity map $\id: (X, r \cdot d) \to (X, r' \cdot d)$ is distance non-increasing and thus by functoriality of $\Cf$, we have
+    \item Since for $r \leq r'$ the identity map $\id: (X, r^{-1} \cdot d) \to (X, r'^{-1} \cdot d)$ is distance non-increasing and thus by functoriality of $\Cf$, we have
     $$
-    \Hf_\Cf(X,d;r) = \Cf(X, r d) \refines \Cf(X, r' d) = \Hf_\Cf(X,d;r').
+    \Hf_\Cf(X,d;r) = \Cf(X, r^{-1} \cdot d) \refines \Cf(X, r'^ \cdot d) = \Hf_\Cf(X,d;r').
     $$
     
     \item Since by assumption $\Cf$ is spanning we can find $r,s \in \R_{\geq0}$ such that
@@ -87,11 +100,15 @@ To show that this is indeed a hierarchical clustering functor it remains to show
     $$
     are trivial and discrete respectively.
 
-    \item For this we use the regularity of $\Cf$ and recall remark \ref{rem:regularity_classical_clustering_functors}.
-
+    \item For this we use the regularity of $\Cf$ and recall Remark \ref{rem:regularity_classical_clustering_functors}.
 \end{enumerate}
 
-On the other hand, given any scaling hierarchical clustering functor $\Hf: \M \to \H$ we can take $\Cf(X,d) := \Hf(X,d; 1)$ which is a regular classical clustering functor such that $\Hf = \Hf_\Cf$.
+It is clear that $\Hf_\Cf$ is scaling since for $\lambda,r > 0$ and $(X,d) \in \ob(\M)$ we have
+$$
+\sigma_\lambda \Hf_\Cf(X,d;r) = \Hf_\Cf(X,d;r \lambda^{-1}) = \Cf(X, r^{-1} \lambda \cdot d) = \Hf_\Cf(X, \lambda \cdot d; r).
+$$ 
+
+On the other hand, given any scaling hierarchical clustering functor $\Hf\colon \M \to \H$ we can take $\Cf(X,d) := \Hf(X,d; 1)$ which is a regular classical clustering functor such that $\Hf = \Hf_\Cf$.
 \end{proof}
 
 One application of this correspondence we have already ecountered is that we could have equivalently defined 
@@ -102,7 +119,7 @@ $$\Rf := \Hf_{\Rf_1}.$$
 \textsc{Carlsson} and \textsc{M\'emoli} mention that \textsc{Kleinberg}'s Conditions of impossibility \ref{thm:kleinberg} can be rephrased in the context of hierarchical clustering functors \cite[Sec.~7.3.1]{Carlsson2010}.
 
 \begin{definition}{Modified Kleinberg Conditions \cite[Sec.~7.3.1]{Carlsson2010}}{}
-    We say that a hierarchical clustering $\Hf: \M \to \H$ functor fulfills the \emph{modified Kleinberg conditions} if all the following holds:
+    We say that a hierarchical clustering $\Hf\colon \M \to \H$ functor fulfills the \emph{modified Kleinberg conditions} if all the following holds:
     \begin{enumerate}
         \item $\Hf$ is $\gen$ functorial (\ie\ $\M = \gen$),
         \item $\Hf$ is surjective,
@@ -111,10 +128,10 @@ $$\Rf := \Hf_{\Rf_1}.$$
 \end{definition}
 
 We have seen in the above statements that $\Rf$ fulfills the modified \textsc{Kleinberg} conditions.
-Using the uniqueness result of theorem \ref{thm:uniqueness_of_surjective_regular_functors}, we can now show that the modified \textsc{Kleinberg} conditions uniquely characterize the Vietoris-Rips functor.
+Using the uniqueness result of Theorem \ref{thm:uniqueness_of_surjective_regular_functors}, we can now show that the modified \textsc{Kleinberg} conditions uniquely characterize the Vietoris-Rips functor.
 
 \begin{theorem}{Uniqueness of Kleinberg's Conditions}{kleinbergs_uniqueness_conditions}
-    Let $\Hf: \M \to \H$ be a hierarchical clustering functor that fulfills the modified \textsc{Kleinberg} conditions. Then we have
+    Let $\Hf\colon \M \to \H$ be a hierarchical clustering functor that fulfills the modified \textsc{Kleinberg} conditions. Then we have
     $$
     \Hf = \sigma_\delta \Rf
     $$
@@ -123,12 +140,12 @@ Using the uniqueness result of theorem \ref{thm:uniqueness_of_surjective_regular
 \end{theorem}
 
 \begin{proof}
-Let $\Hf: \M \to \H$ be a hierarchical clustering functor fulfilling the modified \textsc{Kleinberg} conditions. \Ie\ In particular, we have $\M = \gen$.
+Let $\Hf\colon \M \to \H$ be a hierarchical clustering functor fulfilling the modified \textsc{Kleinberg} conditions. \Ie\ In particular, we have $\M = \gen$.
 
-By proposition \ref{prop:scaling_extension_correspondence}, there exists a regular spanning classical clustering functor $\Cf: \gen \to \C$ such that $\Hf = \Hf_\Cf$.
+By proposition \ref{prop:scaling_extension_correspondence}, there exists a regular spanning classical clustering functor $\Cf\colon \gen \to \C$ such that $\Hf = \Hf_\Cf$.
 
-Since $\Hf$ is surjective we have that $\Cf$ is also surjective. So by theorem \ref{thm:uniqueness_of_surjective_regular_functors}, we have that $\Cf = \Rf_\delta$ for some $\delta > 0$. Unraveling the definitions we get that
+Since $\Hf$ is surjective we have that $\Cf$ is also surjective. So by Theorem \ref{thm:uniqueness_of_surjective_regular_functors}, we have that $\Cf = \Rf_{\lambda}$ for some $\lambda > 0$. Using $\delta := 1/\lambda$ and applying all the definitions we get that
 $$
-\Hf = \Hf_{\Rf_\delta} = \sigma_\delta \Hf_{\Rf_1} = \sigma_\delta \Rf.
+\Hf = \Hf_{\Rf_\lambda} = \sigma_\delta \Hf_{\Rf_1} = \sigma_\delta \Rf.
 $$
 \end{proof}

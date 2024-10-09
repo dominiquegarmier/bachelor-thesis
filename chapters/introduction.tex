@@ -1,9 +1,8 @@
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
-A central problem in machine learning and data science is the task of clustering data. \Ie, finding patterns and ``grouping'' data points.
-Underlying most clustering techniques is the notion of a distance between data points. Motivated by this, we think of \emph{data} as a finite metric space, \ie\ a finite set equipped with a metric.
-And a clustering algorithm will be a map assigning to a finite metric space either a \emph{partition} (figure \ref{fig:intro_partition}) or a \emph{dendrogram} (figure \ref{fig:intro_dendrogram}) of the underlying set.
+A central problem in machine learning and data science is the task of clustering data, \ie, finding patterns and ``grouping'' data points.
+Underlying most clustering techniques is the notion of a distance between data points. Motivated by this, we think of \emph{data} as a finite metric space, \ie\ a finite set equipped with a metric and of a clustering algorithm as a map assigning to a finite metric space either a \emph{partition} (Figure \ref{fig:intro_partition}) or a \emph{dendrogram} (Figure \ref{fig:intro_dendrogram}) of the underlying set.
 
 \begin{figure}[h]
 \centering
@@ -60,26 +59,32 @@ And a clustering algorithm will be a map assigning to a finite metric space eith
 \end{figure}
 
 A dendrogram is a (rooted) tree, where the leaves are the data points. Dendrograms are strictly more general than partitions, as at every \emph{scale} a dendrogram describes a partition of the data points.
-Depending on the clustering algorithm a dendrogram will have to satisfy additional properties.
+Depending on the clustering algorithm a dendrogram have to satisfy additional properties.
 Clustering algorithms that produce a partition are sometimes called \emph{classical} and those that produce a dendrogram are called \emph{hierarchical}.
 
 
-For classical clustering algorithms there exists an important impossibility result by \textsc{Kleinberg} \cite{Kleinberg2002}, which states that there exists no clusteirng algorithm satisfying a certain set of properties.
+Hierarchical clustering algorithms allow for more complex structures to be captured compared to partitions. We show that this additional capacity can be used in some sense to interpret \textsc{Kleinberg}'s impossibility result as a uniqueness result. This idea was previously discussed by \textsc{Carlsson} and \textsc{M\'emoli} \cite{JMLR:v11:carlsson10a}, \cite{Carlsson2010}. The result we present is slightly more general.
 
-Hierarchical clustering algorithms allow for more complex structures to be captured. We will show that this additional capacity can be used in some sense to interpret \textsc{Kleinberg}'s impossibility result as a uniqueness result. This idea was previously discussed by \textsc{Carlsson} and \textsc{M\'emoli} \cite{JMLR:v11:carlsson10a}, \cite{Carlsson2010}. The result we will present is slightly more general.
+To get to this result we use a formalization of clustering algorithms described in \cite{Carlsson2010}. We use the language of category theory to succinctly describe properties of clustering algorithms. In particular, clustering algorithms are seen as special functors mapping from appropriate categories of finite metric spaces to partitions or dendrograms. For this reason, we refer to such clustering algorithms as \emph{classical} respectively \emph{hierarchical clustering functors}. We do not require the reader to be familiar with category theory, and we introduce and give examples of all the necessary concepts.
 
-To get to this result we will use a formalization of clustering algorithms described in \cite{Carlsson2010}. They used the language of category theory to succinctly describe properties of clustering algorithms. In particular, clustering algorithms are seen as special functors mapping from appropriate categories of finite metric spaces to partitions or dendrograms. For this reason, we refer to such clustering algorithms as \emph{classical} respectively \emph{hierarchical clustering functors}. We do not require the reader to be familiar with category theory and will introduce and give examples for all the necessary concepts.
-
-First we will work with classical clustering functors, where two central properites of clustering functors are considered.
+First we work with classical clustering functors, where two central properites of clustering functors are considered.
 \begin{itemize}
     \item \emph{Surjectivity}, which means that for any partition of a set of $n$ points we can find a metric on these $n$ points such that our clustering functor produces this partition.
     \item \emph{Splitting}, which refers to a particular behaviour of clustering functors on metric spaces with two points. Namely, two points are ``merged'' into a single cluster if and only if they are $\delta$-close for some $\delta > 0$.
 \end{itemize}
 
 The latter is a characterizing property of the so-called \emph{Vietoris-Rips} clustering functor, \cite[Thm.~6.4]{Carlsson2010}.
-In this thesis we will show that under certain technical assumptions surjectivity implies splitting. In some sense this means that a global property of a clustering functor (surjectivity) implies a local property (splitting). Importantly, surjectivity was one of the conditions in \textsc{Kleinberg}'s impossibility result.
+In this thesis we show that under certain technical assumptions surjectivity implies splitting. In some sense this means that a global property of a clustering functor (surjectivity) implies a local property (splitting).
 
-At the end we will consider a modified version of \textsc{Kleinberg}'s conditions presented in \cite[Sec.~7.3.1]{Carlsson2010}. These conditions concern hierarchical clustering functors, more precisely \emph{scaling} hierarchical clustering functors. We show that scaling hierarchical clustering functors are esstentially the same as classical clustering functors\footnote{\Ie, we show that there is a one-to-one correspondence between scaling hierarchical clustering functor and what we call \emph{regular} classical clustering functors.}. Utilizing this trick and the tools described earlier, we can show that the modified \textsc{Kleinberg} conditions give rise to a unique (up to some transformation) hierarchical clustering functor.
+For classical clustering algorithms there exists an important impossibility theorem by \textsc{Kleinberg} which states that there exists no clusteirng algorithm satisfying a certain set of properties \cite{Kleinberg2002}. The theorem states that no clustering algorithm can have the following three properties at the same time:
+
+\begin{itemize}
+    \item \emph{Richness} is the term used by \textsc{Kleinberg} to describe surjectivity.
+    \item  \emph{Consistency} is the property that decreasing the distance between points inside a cluster does not change the clustering.
+    \item \emph{Scale invariance} refers to the fact that we can rescale the metric and the clustering remains the same.
+\end{itemize}
+
+At the end we consider a modified version of the above conditions presented in \cite[Sec.~7.3.1]{Carlsson2010} that concern hierarchical clustering functors, more precisely, \emph{scaling} hierarchical clustering functors. We show that scaling hierarchical clustering functors are esstentially the same as classical clustering functors\footnote{We show that there is a one-to-one correspondence between scaling hierarchical clustering functors and what we call \emph{regular} classical clustering functors.}. Utilizing this trick and the tools described earlier, we can show that the modified \textsc{Kleinberg} conditions give rise to a unique (up to some transformation) hierarchical clustering functor.
 
 % \section*{Overview of the Thesis}
 % \todo[this could be moved into the appendix?]

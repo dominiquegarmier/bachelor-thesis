@@ -2,8 +2,7 @@
 \label{chapter__clustering_functor}
 
 In this chapter we introduce the notion of a \emph{clustering functor}.
-We will use the language of category theory and build upon the discussion in section \ref{seciton__preserving_structure}, where we thought of clustering algorithms as preserving certain structures.
-Ultimately, a clustering functor will be a functor, with certain properties, from a category of finite metric spaces to a category of partitions.
+Ultimately, a clustering functor will be a functor, with certain properties, from a category of finite metric spaces to a category of partitions. Functoriality gives us a nice way of talking about certain invraiances described in Section \ref{seciton__preserving_structure}.
 This construction closely follows the one by \textsc{Carlsson} and \textsc{M\'emoli} \cite{Carlsson2010}.
 
 \section{Finite Metric Spaces}
@@ -19,9 +18,9 @@ We define three categories $\iso, \inj$ and $\gen$, all sharing the same objects
 for $\M \in \{\iso, \inj, \gen\}$/
 The three categories are distinguished by their morphisms. For $A, B \in \ob(\M)$ we set:
 \begin{itemize}
-    \item $\mor_\gen(A,B)$ the distance non-increasing functions $f: A \to B$.
-    \item $\mor_\inj(A,B)$ the distance non-increasing injective functions $f: A \to B$.
-    \item $\mor_\iso(A,B)$ the isometries $f: A \to B$.
+    \item $\mor_\gen(A,B)$ the distance non-increasing functions $f\colon A \to B$;
+    \item $\mor_\inj(A,B)$ the distance non-increasing injective functions $f\colon A \to B$;
+    \item $\mor_\iso(A,B)$ the isometries $f\colon A \to B$.
 \end{itemize}
 The composition of morphisms is given by the composition of functions, and the identity morphism is the identity function.
 \end{definition}
@@ -37,7 +36,7 @@ As such, $\iso$ is the category with the fewest morphisms. Indeed, between most 
 All morphisms are between spaces of the same isometry class and have an inverse.
 In contrast, $\gen$ has the most morphisms. In particular, for any metric spaces $A,B \in \ob(\gen)$ we have the morphism
 $$
-\mathrm{const}_b: A \to B, \ a \mapsto b
+\mathrm{const}_b\colon A \to B, \ a \mapsto b
 $$
 for some $b \in B$.
 
@@ -48,20 +47,20 @@ The next step will be to define a suitable category for the ``outputs'' of clust
 
 However, we first need to introduce a bit of machinery for this.
 
-\begin{definition}{\todo[I think i should leave this out]}{relation}
-    Let $X$ be a set, a \emph{relation} on $X$ is a subset $R \subseteq X \times X$. And we write $x R y$ if $(x,y) \in R$.
-    A relation with all the following properties is called an \emph{equivalence relation}:
-    \begin{enumerate}
-        \item \emph{Reflexivity}: $\forall x \in X: x R x$.
-        \item \emph{Symmetry}: $\forall x,y \in X: x R y \implies y R x$.
-        \item \emph{Transitivity}: $\forall x,y,z \in X: x R y \text{ and } y R z \implies x R z$.
-    \end{enumerate}
-    In this case we will often use a symbol like $\sim$ instead of a letter like $R$ to denote the relation. The \emph{equivalence classes} of an equivalence relation $\sim$ on $X$ is the set of sets
-    $$
-    X/_{\sim} := \{[x]_\sim: x \in X\}
-    $$
-    where $[x]_\sim := \{y \in X: x \sim y\}$.
-\end{definition}
+% \begin{definition}{\todo[I think i should leave this out]}{relation}
+%     Let $X$ be a set, a \emph{relation} on $X$ is a subset $R \subseteq X \times X$. And we write $x R y$ if $(x,y) \in R$.
+%     A relation with all the following properties is called an \emph{equivalence relation}:
+%     \begin{enumerate}
+%         \item \emph{Reflexivity}: $\forall x \in X: x R x$.
+%         \item \emph{Symmetry}: $\forall x,y \in X: x R y \implies y R x$.
+%         \item \emph{Transitivity}: $\forall x,y,z \in X: x R y \text{ and } y R z \implies x R z$.
+%     \end{enumerate}
+%     In this case we will often use a symbol like $\sim$ instead of a letter like $R$ to denote the relation. The \emph{equivalence classes} of an equivalence relation $\sim$ on $X$ is the set of sets
+%     $$
+%     X/_{\sim} := \{[x]_\sim: x \in X\}
+%     $$
+%     where $[x]_\sim := \{y \in X: x \sim y\}$.
+% \end{definition}
 
 \begin{definition}{Partitions of Finite Sets}{}
 Let $X$ be a finite set. A partition $P$ of $X$ is the set of equivalence classes $X/_{\sim_P}$ for some equivalence relation $\sim_P$ on $X$. The set of all such partitions is denoted by $\P(X)$.\par
@@ -78,12 +77,20 @@ It naturally makes sense to use partitions as outputs of clustering algorithms, 
 At this point we need some additional structure that will allow us to define categories based on partitions.
 
 \begin{definition}{}{}
-Let $f: X \to Y$ be a map. For some partition $P \in \P(Y)$ we define $f^*(P) \in \P(X)$ to be the partition such that
+Let $f\colon X \to Y$ be a map. For some partition $P \in \P(Y)$ we define $f^*(P) \in \P(X)$ to be the partition such that
 \begin{equation*}
     \forall x,y \in X: x \sim_{f^*(P)} y \iff f(x) \sim_P f(y).
 \end{equation*}
 We call $f^*(P)$ the \emph{pullback partition of $P$ w.r.t. $f$}.
 \end{definition}
+
+\begin{example}{}{}
+Consider $X = \{a,b,c\}$, $Y = \{a,b\}$ and $f\colon X \to Y$ such that
+$$
+f(a) = a \quad \text{and} \quad f(b) = f(c) = b.
+$$
+If we have a partition $P = \{\{a\}, \{b\}\}$ of $Y$. Then $f^*(P) = \{\{a\}, \{b,c\}\}$ is the pullback partition of $P$ w.r.t $f$. Notice how $f^*(P)$ consists of the preimages of the parts of $P$. 
+\end{example}
 
 Additionally, we can define a partial order on $\P(X)$.
 
@@ -94,7 +101,14 @@ Let $P, Q \in \mathfrak{P}(X)$. Then we write $P \refines Q$ and say that $P$ \e
 \end{equation*}
 This defines a partial order on $\P(X)$.
 \end{definition}
-If $f: X \to Y$ is a map, $P \in \P(X)$ and $Q \in \P(Y)$ then we write $P \refines_f Q$ if $P \refines f^*(Q)$. In that case we say that $P$ \emph{refines} $Q$ \emph{via} $f$. A useful fact to remember is that if $\mathrm{id}: X \to X$ is the identity then
+
+\begin{example}{}{}
+Consider $X = \{a,b,c\}$ together with partitions $P = \{\{a\}, \{b\}, \{c\}\}$ and $Q = \{\{a,b\}, \{c\}\}$. As the blocks in $P$ are always contained in some block of $Q$ we have $P \refines Q$.
+\end{example}
+
+
+
+If $f\colon X \to Y$ is a map, $P \in \P(X)$ and $Q \in \P(Y)$ then we write $P \refines_f Q$ if $P \refines f^*(Q)$. In that case we say that $P$ \emph{refines} $Q$ \emph{via} $f$. A useful fact to remember is that if $\mathrm{id}\colon X \to X$ is the identity then
 \begin{equation}
     \label{eq:refinement_via_identity}
     P \refines_{\mathrm{id}} Q \iff P \refines Q.
@@ -111,7 +125,11 @@ When describing a partition it is often easier to describe a minimal set of cond
 \end{definition}
 
 In particular, if $\sim$ is reflexive and symmetric then $\sim^+$ is an equivalence relation.
-Later we will regularly use this fact by defining equivalence relations as transitive closures of reflexive and symmetric relations.
+Later we will use this fact by defining equivalence relations as transitive closures of reflexive and symmetric relations.
+
+\begin{example}{}{}
+Let $G = (V,E)$ be a graph then $E$ is a binary symmetric relation on $V$. Two points $v,w \in V$ lie in the same connected component of $G$ if there exists a path, \ie, a sequence $v =v_0, v_1, \dots, v_n = w$ such that $(v_i, v_{i+1}) \in E$ for all $i = 0, \dots, n-1$. The resulting partition of $V$ into connected components corresponds to the transitive closure of $E$.
+\end{example}
 
 \begin{definition}{}{}
 We say that $P \in \P(X)$ is:
@@ -122,7 +140,8 @@ We say that $P \in \P(X)$ is:
 \end{definition}
 
 Naturally, if $Q$ is discrete and $P$ is trivial then $Q \refines R \refines P$ for all $R \in \P(X)$.
-Like in chapter \ref{chapter__dataclustering} we also want to consider hierarchical clustering.
+
+Like in Chapter \ref{chapter__dataclustering} we also want to consider hierarchical clustering.
 For this we introduce the notion of a \emph{dendrogram}.
 
 \begin{definition}{Dendrogram \cite[Def.~2.2]{Carlsson2010}}{dendrogram}
@@ -135,9 +154,22 @@ A map $\theta: \R_{\geq0} \to \mathfrak{P}(X)$ with
 is called a \emph{dendrogram} of $X$. Sometimes $r$ is referred to as the \emph{scale}.
 \end{definition}
 
-This will be familiar to anyone who has seen \emph{persistent homology} where such properties are referred to as \emph{persistence} \cite[Chap.~3]{Carlsson2014}. As an example of a dendrogram consider figure \ref{fig:dendrogram_example}.
-\begin{figure}[h]
-\centering
+This will be familiar to anyone who has seen \emph{persistent homology} where such properties are referred to as \emph{persistence} \cite[Chap.~3]{Carlsson2014}.
+
+As for the relevance of the last condition, consider the following remark.
+
+\begin{myremark}{}{regularity_of_dendrograms}
+Since the metric spaces are finite, we could decide to omit the third condition in the definition of a dendrogram.
+Dendrograms would still have discrete scale \ie\ the dendrogram would still be constant on intervals.
+However, it would not be clear what value the dendrogram would take at the endpoints of these intervals.
+This technicallity will become important for some uniqueness theorems we present later.
+\end{myremark}
+
+\todo[unify all these remarks about regularity]
+
+\begin{example}{}{}
+As an example of a dendrogram consider Figure \ref{fig:dendrogram_example}.
+\begin{center}
 \begin{tikzpicture}
     \node (a) at (0,-0.25) {a};
     \node (b) at (1,-0.25) {b};
@@ -196,64 +228,57 @@ This will be familiar to anyone who has seen \emph{persistent homology} where su
 
         \node[rotate=90] at (6.5, 1.25) {$\preceq$};
 \end{tikzpicture}
+\captionsetup{type=figure}
 \caption{A dendrogram $\theta: \R_{\geq0} \to \P(X)$ with the four points $X = \{a,b,c,d\}$.}
 \label{fig:dendrogram_example}
-\end{figure}
+\end{center}
 
-Notice how in this case the monotonicity condition is satisfied \eg\ $\theta(1) \refines \theta(2)$ as shown on the righthand side. The second condition of a dendrogram is also met as it becomes trivial at the top and discrete at the bottom. Finally, the third condition tells us what value the dendrogram takes whenever a ``merge happens''. As for the relevance of the last condition, consider the following remark.
+Notice how in this case the monotonicity condition is satisfied \eg\ $\theta(1) \refines \theta(2)$ as shown on the righthand side. The second condition of a dendrogram is also met as it becomes trivial at the top and discrete at the bottom. Finally, the third condition tells us what value the dendrogram takes whenever a ``merge happens''.
+\end{example}
 
-\begin{myremark}{}{regularity_of_dendrograms}
-\todo[unify all these remarks about regularity]
-Concerning the third condition of dendrograms, since all our metric spaces are finite, we could decide to omit it in the definition of a dendrogram. Dendrograms would still have discrete scale \ie\ the dendrogram would still be constant on intervals.
-However, it would not be clear what value the dendrogram would take at the endpoints of these intervals\footnote{There are other ways we could decide to fix this issue. \Eg\ we could consider equivalence relations of dendrograms.}.
-This technicallity will become important for some uniqueness theorems we present later.
-\end{myremark}
+
+
+
+
+
+
 
 We can finally define the categories which will be the ``outputs'' of clustering functors.
 
-\begin{definition}{\cite[Def.~3.2]{Carlsson2010}}{output_classical_clustering_functors}
-The category $\C$ of \emph{outputs of classical clustering functors} is defined by
+\begin{definition}{Classical Clustering Outputs\cite[Def.~3.2]{Carlsson2010}}{output_classical_clustering_functors}
+The category $\C$ of \emph{classical clustering outputs} is defined by
 \begin{equation*}
     \ob(\C) := \{(X, P): X \text{ a finite set and } P \in \P(X)\}
 \end{equation*}
 and for all $(X,P), (Y,Q) \in \ob(\C)$ we have the morphisms
 \begin{equation*}
-    \mor_\C((X,P), (Y,Q)) := \{f: X \to Y: P \refines_f Q\}.
+    \mor_\C((X,P), (Y,Q)) := \{f\colon X \to Y: P \refines_f Q\}.
 \end{equation*}
 In short, we write $(X,P) \refines_f (Y,Q)$ for such a morphism. As before, the composition is given by composition of maps and the identity is the identity map.
 \end{definition}
 
-\begin{definition}{\cite[Def.~3.3]{Carlsson2010}}{output_hierarchical_clustering_functors}
-Similarly, we define the category $\H$ of \emph{outputs of hierarchical clustering functors}, given by
+\begin{definition}{Hierarchical Clustering Outputs\cite[Def.~3.3]{Carlsson2010}}{output_hierarchical_clustering_functors}
+Similarly, we define the category $\H$ of \emph{hierarchical clustering outputs}, given by
 \begin{equation*}
     \ob(\H) := \{(X, \theta_X): X \text{ a finite set and } \theta_X: \R_{\geq0} \to \P(X) \ \text{a dendrogram}\}
 \end{equation*}
 and for all $(X, \theta_X), (Y, \theta_Y) \in \ob(\H)$ we have the morphisms
 \begin{equation*}
     \mor_\H((X, \theta_X), (Y,\theta_Y)) :=
-    \left\{f: X \to Y: \forall r \in \R_{\geq0}: \theta_X(r) \refines_f \theta_Y(r)) \right\}.
+    \left\{f\colon X \to Y: \forall r \in \R_{\geq0}: \theta_X(r) \refines_f \theta_Y(r)) \right\}.
 \end{equation*}
 Again, we write $(X, \theta_X) \refines_f (Y, \theta_Y)$ for such a morphism, and the composition and identity are defined as before.
 \end{definition}
 
-Another way of thinking about morphisms in $\C$ (or $\H$) is that given $(X,P), (Y,Q) \in \ob(\C)$ a morphism $f \in \mor_\C((X,P), (Y,Q))$ is simply a map $f: X \to Y$ such that
+Another way of thinking about morphisms in $\C$ (or $\H$) is that given ${(X,P), (Y,Q) \in \ob(\C)}$ a morphism $f \in \mor_\C((X,P), (Y,Q))$ is simply a map $f\colon X \to Y$ such that
 $$
 \forall x,y \in X: x \sim_P y \implies f(x) \sim_Q f(y).
 $$
 
-\begin{definition}{}{shift_functor}
-We define the \emph{shift} functor $\sigma_\lambda: \H \to \H$ for some $\lambda > 0$. Given $(X, \theta_X) \in \ob(\H)$ we set
-$$
-\sigma_\lambda(X, \theta_X(r)) := (X, \theta_X(r \cdot \lambda)) \quad \forall r \in \R_{\geq0}.
-$$
-By checking the condition on morphisms in definition \ref{def:output_hierarchical_clustering_functors}, we see that this induces a functor.
-
-\todo[check if this is correct; take reciprocal?]
-\end{definition}
+\todo[Example: Revinement Via]
 
 \section{Clustering Functors}
 We now have all the tools to define a \emph{clustering functor}.
-
 
 \begin{definition}{Clustering Functor \cite[Sec.~4.1]{Carlsson2010}}{}
 Let $\M \in \{\iso, \inj, \gen\}$ and $\A \in \{\C, \H\}$. An $\M$-\emph{functorial clustering functor} (or $\M$ \emph{clustering functor}) is a functor from $\M$ to $\A$
@@ -261,7 +286,7 @@ $$\Cf : \M \longrightarrow \A$$
 such that $\Cf$ factorizes the forgetful functors (see \ref{not:factorizing_forgetful_functor}). If $\A = \C$ we say that $\Cf$ is \emph{classical} and otherwise if $\A = \H$ we say it is \emph{hierarchical}.
 \end{definition}
 
-We can express the functoriality of a clustering functor $\Cf$ by the following commutative diagram:
+We can express the functoriality of a clustering functor $\Cf$ by the following commutative diagram.
 
 \begin{equation*}
     \begin{tikzcd}
@@ -278,7 +303,7 @@ Moreover, for any $r \in \R_{\geq0}$ a hierarchical clustering functor $\Hf$ ind
 
 \begin{myremark}{}{induced_functor_by_inclusion}
 Recall the inclusions \eqref{eq:inclusions_of_finite_metric_space_categories} and their induced functors.
-Given a clustering functor on a larger category, say $\Cf: \gen \to \C$, this immediately induces clustering functors on the smaller categories by pre-composition with the inclusion functors $\iso \to \inj \to \gen$. We will use the same symbol for the induced functors.
+Given a clustering functor on a larger category, say $\Cf\colon \gen \to \C$, this immediately induces clustering functors on the smaller categories by pre-composition with the inclusion functors $\iso \to \inj \to \gen$. We will use the same symbol for the induced functors.
 \end{myremark}
 
 With this in mind, it makes sense to think of the categories $\iso, \inj, \gen$ as being different levels of ``structure'' a clustering functor can ``preserve'' where $\iso$ is the least restrictive and $\gen$ the most restrictive.
@@ -286,11 +311,11 @@ With this in mind, it makes sense to think of the categories $\iso, \inj, \gen$ 
 
 \begin{myremark}{}{}
 We can extend the partial order $\refines$ on $\P(X)$ to a partial order on clustering functors.
-In particular, if $\Cf, \mathfrak{D}: \M \to \C$ are classical clustering functors we write $\Cf \refines \mathfrak{D}$ if
+In particular, if $\Cf, \mathfrak{D}\colon \M \to \C$ are classical clustering functors we write $\Cf \refines \mathfrak{D}$ if
 \begin{equation*}
     \forall (X,d) \in \ob(\M): \Cf(X,d) \refines \mathfrak{D}(X,d).
 \end{equation*}
-And in case of hierarchical clustering functors $\Cf, \mathfrak{D}: \M \to \H$ we write $\Cf \refines \mathfrak{D}$ if
+And in case of hierarchical clustering functors $\Cf, \mathfrak{D}\colon \M \to \H$ we write $\Cf \refines \mathfrak{D}$ if
 \begin{equation*}
     \forall (X,d) \in \ob(\M) \, \forall r \in \R_{\geq0}: \Cf(X,d;r) \refines \mathfrak{D}(X,d;r).
 \end{equation*}
