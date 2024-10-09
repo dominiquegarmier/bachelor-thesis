@@ -84,12 +84,16 @@ Let $f\colon X \to Y$ be a map. For some partition $P \in \P(Y)$ we define $f^*(
 We call $f^*(P)$ the \emph{pullback partition of $P$ w.r.t. $f$}.
 \end{definition}
 
-\begin{example}{}{}
-Consider $X = \{a,b,c\}$, $Y = \{a,b\}$ and $f\colon X \to Y$ such that
+\begin{example}{}{pullback}
+Consider $X := \{a,b,c\}$, $Y := \{a,b\}$ and $f\colon X \to Y$ such that
 $$
 f(a) = a \quad \text{and} \quad f(b) = f(c) = b.
 $$
-If we have a partition $P = \{\{a\}, \{b\}\}$ of $Y$. Then $f^*(P) = \{\{a\}, \{b,c\}\}$ is the pullback partition of $P$ w.r.t $f$. Notice how $f^*(P)$ consists of the preimages of the parts of $P$. 
+If we have a partition
+$$
+Q := \{\{a\}, \{b\}\}
+$$
+of $Y$. Then $f^*(Q) = \{\{a\}, \{b,c\}\}$ is the pullback partition of $Q$ w.r.t $f$. Notice how $f^*(Q)$ consists of the preimages of the parts of $Q$. 
 \end{example}
 
 Additionally, we can define a partial order on $\P(X)$.
@@ -99,33 +103,47 @@ Let $P, Q \in \mathfrak{P}(X)$. Then we write $P \refines Q$ and say that $P$ \e
 \begin{equation*}
     \forall x,y \in X: x \sim_P y \implies x \sim_Q y.
 \end{equation*}
-This defines a partial order on $\P(X)$.
+This defines a partial order on $\P(X)$. Moreover, if $f \colon X \to Y$ is a map and $Q \in \P(Y)$ then we write $P \refines_f Q$ if $P \refines f^*(Q)$ and say that $P$ \emph{refines} $Q$ \emph{via} $f$.
 \end{definition}
 
 \begin{example}{}{}
-Consider $X = \{a,b,c\}$ together with partitions $P = \{\{a\}, \{b\}, \{c\}\}$ and $Q = \{\{a,b\}, \{c\}\}$. As the blocks in $P$ are always contained in some block of $Q$ we have $P \refines Q$.
+Consider $X := \{a,b,c\}$ together with partitions
+$$
+P := \{\{a\}, \{b\}, \{c\}\} \quad \text{and} \quad Q := \{\{a,b\}, \{c\}\}.
+$$
+As the blocks in $P$ are always contained in some block of $Q$ we have $P \refines Q$.
 \end{example}
 
+\begin{example}{}{refinement_via}
+Consider $X := \{a,b,c\}$ and $Y := \{a,b\}$ and $f\colon X \to Y$ as in Example \ref{exa:pullback}. If we have the partition 
+$$
+Q := \{\{a\}, \{b\}\}
+$$
+of $Y$ then we have already seen that $f^*(Q) = \{\{a\}, \{b,c\}\}$. Thus, for the partition
+$$
+P := \{\{a\}, \{b\}, \{c\}\}
+$$
+of $X$ we have $P \refines_f Q$.
+\end{example}
 
-
-If $f\colon X \to Y$ is a map, $P \in \P(X)$ and $Q \in \P(Y)$ then we write $P \refines_f Q$ if $P \refines f^*(Q)$. In that case we say that $P$ \emph{refines} $Q$ \emph{via} $f$. A useful fact to remember is that if $\mathrm{id}\colon X \to X$ is the identity then
+A useful fact to remember is that if $\mathrm{id}\colon X \to X$ is the identity then
 \begin{equation}
     \label{eq:refinement_via_identity}
     P \refines_{\mathrm{id}} Q \iff P \refines Q.
 \end{equation}
 
-When describing a partition it is often easier to describe a minimal set of conditions the partition relation must satisfy. More formally, we talk about taking the \emph{transitive closure} of these conditions. More formally we have:
+When describing a partition it is often easier to describe a minimal set of conditions the partition relation must satisfy. More formally, we talk about taking the \emph{transitive closure} of a relation.
 
 \begin{definition}{}{}
     Given a relation $\sim$ on a set $X$ its \emph{transitive closure} is the transitive relation $\sim^+$ such that for $x,y \in X$ we have
     $$
     x \sim^+ y
     $$
-    if there exists a sequence $x = x_0, x_1, \dots, x_n = y$ such that $x_i \sim_R x_{i+1}$ for all $i = 0, \dots, n-1$ \cite[p.337]{Lidl1997-kc}.
+    if there exists a sequence $x = x_0, x_1, \dots, x_n = y$ with $x_i \sim_R x_{i+1}$ for all $i = 0, \dots, n-1$ \cite[p.337]{Lidl1997-kc}.
 \end{definition}
 
 In particular, if $\sim$ is reflexive and symmetric then $\sim^+$ is an equivalence relation.
-Later we will use this fact by defining equivalence relations as transitive closures of reflexive and symmetric relations.
+Later we will use this fact to define equivalence relations as transitive closures of reflexive and symmetric relations.
 
 \begin{example}{}{}
 Let $G = (V,E)$ be a graph then $E$ is a binary symmetric relation on $V$. Two points $v,w \in V$ lie in the same connected component of $G$ if there exists a path, \ie, a sequence $v =v_0, v_1, \dots, v_n = w$ such that $(v_i, v_{i+1}) \in E$ for all $i = 0, \dots, n-1$. The resulting partition of $V$ into connected components corresponds to the transitive closure of $E$.
@@ -159,13 +177,11 @@ This will be familiar to anyone who has seen \emph{persistent homology} where su
 As for the relevance of the last condition, consider the following remark.
 
 \begin{myremark}{}{regularity_of_dendrograms}
-Since the metric spaces are finite, we could decide to omit the third condition in the definition of a dendrogram.
+Since the metric spaces we are interested in are finite, we could decide to omit the third condition in the definition of a dendrogram.
 Dendrograms would still have discrete scale \ie\ the dendrogram would still be constant on intervals.
 However, it would not be clear what value the dendrogram would take at the endpoints of these intervals.
 This technicallity will become important for some uniqueness theorems we present later.
 \end{myremark}
-
-\todo[unify all these remarks about regularity]
 
 \begin{example}{}{}
 As an example of a dendrogram consider Figure \ref{fig:dendrogram_example}.
@@ -274,8 +290,6 @@ Another way of thinking about morphisms in $\C$ (or $\H$) is that given ${(X,P),
 $$
 \forall x,y \in X: x \sim_P y \implies f(x) \sim_Q f(y).
 $$
-
-\todo[Example: Revinement Via]
 
 \section{Clustering Functors}
 We now have all the tools to define a \emph{clustering functor}.
