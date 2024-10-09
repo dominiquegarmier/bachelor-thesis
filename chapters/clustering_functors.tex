@@ -186,6 +186,7 @@ This technicallity will become important for some uniqueness theorems we present
 \begin{example}{}{}
 As an example of a dendrogram consider Figure \ref{fig:dendrogram_example}.
 \begin{center}
+\begin{minipage}{\linewidth}
 \begin{tikzpicture}
     \node (a) at (0,-0.25) {a};
     \node (b) at (1,-0.25) {b};
@@ -244,20 +245,13 @@ As an example of a dendrogram consider Figure \ref{fig:dendrogram_example}.
 
         \node[rotate=90] at (6.5, 1.25) {$\preceq$};
 \end{tikzpicture}
-\captionsetup{type=figure}
-\caption{A dendrogram $\theta: \R_{\geq0} \to \P(X)$ with the four points $X = \{a,b,c,d\}$.}
+\captionof{figure}{A dendrogram $\theta: \R_{\geq0} \to \P(X)$ with the four points $X = \{a,b,c,d\}$.}
 \label{fig:dendrogram_example}
+\end{minipage}
 \end{center}
 
 Notice how in this case the monotonicity condition is satisfied \eg\ $\theta(1) \refines \theta(2)$ as shown on the righthand side. The second condition of a dendrogram is also met as it becomes trivial at the top and discrete at the bottom. Finally, the third condition tells us what value the dendrogram takes whenever a ``merge happens''.
 \end{example}
-
-
-
-
-
-
-
 
 We can finally define the categories which will be the ``outputs'' of clustering functors.
 

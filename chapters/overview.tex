@@ -298,13 +298,10 @@ Depending on the distance function $\mathfrak{d}$ we use we call \emph{linkage c
     \item \emph{average-linkage clustering} uf $\mathfrak{d}_\mathrm{avg}(B_i,B_j) := \frac{1}{|B_i||B_j|} \sum_{x \in B_i, y \in B_j} d(x,y)$.
 \end{itemize}
 
-\todo[example env]
-
+\begin{example}{}{}
 As an example, consider the data points in Figure \ref{fig:sl_clustering} and their corresponding dendrogram obtained from single-linkage clustering. Here we first merge the points $v,w$ and $z,y$ as they are the closest. Next we adde the point $x$ to the clustering already containing $v,w$ as $x$ is closer to $v,w$ than to $y,z$. Finally, we merge the remaining two clusters $\{v,w,x\}$ and $\{y,z\}$ to obtain a dendrogram. Notice how this order is fully described on the righthand side.
-
-\begin{figure}[h]
-\centering
-\begin{subfigure}[t]{0.45\textwidth}
+\begin{center}
+\begin{minipage}[t]{0.45\textwidth}
     \centering
     \begin{tikzpicture}[sloped]
         \node[circle,fill=black,inner sep=1pt, label={below:\small$v$}] (v) at (0, 0) {};
@@ -323,9 +320,9 @@ As an example, consider the data points in Figure \ref{fig:sl_clustering} and th
 
         \draw[<->, dashed, color=mypurple, >=stealth] (z) -- (y) node[midway, above] {\tiny{$d(y,z) = 1$}};
     \end{tikzpicture}
-    \caption*{Data points $\{v,w,x,y,z\} \subset \R^2$.}
-\end{subfigure}
-\begin{subfigure}[t]{0.45\textwidth}
+\end{minipage}
+\hfill %
+\begin{minipage}[t]{0.45\textwidth}
     \centering
     \begin{tikzpicture}[sloped]
         \node (v) at (0,0) {v};
@@ -348,11 +345,11 @@ As an example, consider the data points in Figure \ref{fig:sl_clustering} and th
 
         \draw[dashed]  (2,2) -- (2,2.5);
     \end{tikzpicture}
-    \caption*{Linkage clustering with $\mathfrak{d}_\mathrm{min}$.}
-\end{subfigure}
-\caption{Example of single-linkage clustering.}
+\end{minipage}
+\captionof{figure}{Example of single-linkage clustering with the data points $\{v,w,x,y,z\} \subset \R^2$ on the left and the output dendrogram on the right.}
 \label{fig:sl_clustering}
-\end{figure}
+\end{center}
+\end{example}
 
 A downside of this definition of linkage clustering is that the output will always be a binary tree. In particular, if we have three equidistant points it is unclear which should be merged first. We can fix this by introducing a \emph{tie-breaking} rule or relaxing the definition of a dendrogram to allow merging more than two clusters at a time. We will see more about this once 
 we define \emph{hierarchical clustering functors} in Chapter \ref{chapter__clustering_functor}.
