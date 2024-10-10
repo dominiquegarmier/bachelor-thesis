@@ -286,7 +286,7 @@ $$
 
 \section{Splitting}
 
-As observed by \cite[Thm.~6.4]{Carlsson2010} a characterizing property of the Vietoris-Rips functor is its behavior on the space $\Delta_2(\lambda)$. In particular, we have that $\Rf_\delta(\Delta_2(\lambda))$ is trivial if $\lambda \le \delta$ and discrete otherwise.
+As observed by \cite[Thm.~6.4]{Carlsson2010}, a characterizing property of the Vietoris-Rips functor is its behavior on the space $\Delta_2(\lambda)$. In particular, we have that $\Rf_\delta(\Delta_2(\lambda))$ is trivial if $\lambda \le \delta$ and discrete otherwise.
 This motivates the following definition.
 
 \begin{definition}{}{}
@@ -310,14 +310,14 @@ We can now formulate two results that show to what extent splitting is a charact
 \begin{proposition}{}{splitting_vietoris_gen}
     Let $\Cf\colon \gen \to \C$ be a clustering functor then $\Cf$ is splitting at $\delta > 0$ if and only if 
     $$
-    \Cf = \Rf_\delta
+    \Cf = \Rf_\delta.
     $$
 \end{proposition}
 
 \begin{proof}[Proof of Proposition \ref{prop:splitting_vietoris_inj}]
     Let $(X,d) \in \ob(\inj)$ with $(X,P) = \Cf(X,d)$ and $x \neq y$ in $X$ with $d(x,y) \leq \delta$.
     Then there is a map $f \in \mor_\inj(\Delta_2(\delta), (X,d))$ with $\{x,y\} = \image(f)$.
-    Since $\Cf(\Delta_2(\delta))$ is trivial we have by functoriality that $x \sim_P y$
+    Since $\Cf(\Delta_2(\delta))$ is trivial we have by functoriality that $x \sim_P y$.
 
     Taking the transitive closure we get that $\Rf_\delta(X,d) \refines P$ and the statement follows by generality of $(X,d)$.
 \end{proof}
@@ -359,7 +359,7 @@ Using a similar argument to the one we used to show that $\Rf_{\delta'}$ is surj
 \newresult[this is a new construction, check it]
 \end{example}
 
-\section[Vietoris-Rips Uniqueness]{Vietoris-Rips Uniqueness \newresult[]}
+\section{Uniqueness of the Vietoris-Rips Functor}
 
 As previously mentioned, the Vietoris-Rips functor is surjective.
 In this section we present the new result that under certain technical assumptions the Vietoris-Rips is the unique surjective $\gen$ clustering functor.
@@ -371,20 +371,21 @@ In Chapter \ref{chapter__hierarchical} we will discuss the implications this has
     $$
     \Cf(X,d) = \Cf(X, \lambda \cdot d).
     $$
-    
-    \newresult[new def, make sure this makes sense]
 \end{definition}
 
-Notice that $\Rf_\delta$ is regular. The reason we ask for $\lambda \in (0,1)$ and not $\lambda \in (1, \infty)$ is that this corresponds to the regularity condition \ref{rem:regularity_of_dendrograms} for dendrograms.\par
+Notice that $\Rf_\delta$ is regular. 
+The reason we ask for $\lambda \in (0,1)$ and not $\lambda \in (1, \infty)$ is that this corresponds to the regularity condition \ref{rem:regularity_of_dendrograms} for dendrograms.\par
 
 \begin{myremark}{}{regularity_classical_clustering_functors}
-    \medskip It might seem overly restrictive to ask for regularity.
-    However, if we take some $(X, d) \in \ob(\M)$ and consider the function 
-    $$
-    \lambda \mapsto \Cf(X, \lambda \cdot d),
-    $$
-    which will be piecewise constant and takes only finitely many values.
-    Regularity ensures that this function is constant on $(a, b]$ for some $a < b$.
+It might seem overly restrictive to ask for regularity.
+However, if we take some $(X, d) \in \ob(\M)$ and consider the function 
+$$
+\lambda \mapsto \Cf(X, \lambda \cdot d),
+$$
+which will be piecewise constant and takes only finitely many values.
+Regularity ensures that this function is constant on intervalls of the form $(a, b]$ for some $a < b$.
+
+This ensures compatibility with the regularity condition for dendrograms from Definition \ref{def:dendrogram}.
 \end{myremark}
 
 Assuming regularity and building on Lemma \ref{lem:surjective_implies_eventually_discrete}, we can now finally show that the Vietoris-Rips functor is the only surjective regular $\gen$ clustering functor.
@@ -396,15 +397,10 @@ Assuming regularity and building on Lemma \ref{lem:surjective_implies_eventually
         \item $\Cf$ is surjective and regular,
         \item $\Cf = \Rf_{\delta}$ for some $\delta > 0$.
     \end{itemize}
-    \newresult[make sure this makes sense]
 \end{theorem}
 
 \begin{lemma}{}{surjective_implies_splitting}
     Let $\Cf\colon \M \to \C$ be a surjective regular clustering functor. Then $\Cf$ is splitting at some $\delta > 0$.
-
-    \newresult[make sure this makes sense]
-
-    \todo[maybe remark that regularity is necessary]
 \end{lemma}
 
 \begin{proof}[Proof of Lemma]
@@ -420,7 +416,7 @@ Assuming regularity and building on Lemma \ref{lem:surjective_implies_eventually
     \end{equation}
     for all $\lambda \ge \lambda'$.
 
-    Consider how $(X,d) = \Delta_2(\lambda)$ it is clear that
+    Consider now $(X,d) := \Delta_2(\lambda)$, it is clear that
     \begin{align*}
         \R_{\geq0} &\longrightarrow \P(X), \\
         \lambda &\longmapsto \Cf(\Delta_2(\lambda))
@@ -428,8 +424,7 @@ Assuming regularity and building on Lemma \ref{lem:surjective_implies_eventually
     is piecewise constant and can take at most two values (either discrete or trivial) but by Lemma \ref{lem:surjective_implies_eventually_discrete} this function takes exactly two values and by \eqref{eq:lemma_5_19_1} this function is also monotonically decreasing (with respect to $\le$ on $\R_{\geq0}$ and $\refines$ on $\P(X)$).
     So we can find some $\delta_0 > 0$ such that $\Cf(\Delta_2(\delta))$ is trivial and $\Cf(\Delta_2(\delta'))$ is discrete for all $\delta < \delta_0 < \delta'$.
 
-    As for the value at $\delta_0$ we recall the previous Remark \ref{rem:regularity_classical_clustering_functors} and conclude that $\Cf(\Delta_2(\delta_0))$ is trivial.
-    \newresult[check this]
+    As for the value at $\delta_0$ we recall the previous Remark \ref{rem:regularity_classical_clustering_functors} and conclude that $\Cf(\Delta_2(\delta_0))$ is trivial. Therefore, $\Cf$ is splitting at $\delta_0$.
 \end{proof}
 
 \begin{proof}[Proof of Theorem]
@@ -442,7 +437,7 @@ Assuming regularity and building on Lemma \ref{lem:surjective_implies_eventually
 Let us quickly talk about scale invariance inspired by \textsc{Kleinberg}'s conditions from Theorem \ref{thm:kleinberg}, discussed in \cite[Sec.~6.6]{Carlsson2010}.
 
 \begin{definition}{Scale Invariance}{scale_invariance}
-    A clustering functor $\Cf\colon \M \to \C$ is called \emph{scale invariant} if for all $\lambda > 0$ and $(X,d) \in \ob(\M)$ we have:
+    A clustering functor $\Cf\colon \M \to \C$ is called \emph{scale invariant} if for all $\lambda > 0$ and $(X,d) \in \ob(\M)$ we have
     \begin{equation*}
         \Cf(X,d) = \Cf(X,\lambda \cdot d).
     \end{equation*}
@@ -451,7 +446,7 @@ Let us quickly talk about scale invariance inspired by \textsc{Kleinberg}'s cond
 We now get two interesting distinct behaviors of scale invariant clustering functors. First we consider the case of $\gen$.
 
 \begin{proposition}{\cite[Thm.~6.5]{Carlsson2010}}{}
-    Let $\Cf\colon \gen \to \C$ be a scale invariant clustering functor then either
+    Let $\Cf\colon \gen \to \C$ be a scale invariant clustering functor then one of the following holds:
     \begin{enumerate}
         \item $\Cf(X,d)$ is trivial for all $(X,d) \in \ob(\gen)$
         \item $\Cf(X,d)$ is discrete for all $(X,d) \in \ob(\gen)$
@@ -459,9 +454,8 @@ We now get two interesting distinct behaviors of scale invariant clustering func
 \end{proposition}
 
 \begin{proof}
-    By scale invariance,e we either have that $\Cf(\Delta_2(\delta))$ is trivial or discrete for all $\delta > 0$.
-
-    Let $|X| \ge 2$ otherwise the statement is clear. Then for any $x \neq x'$ in $X$ we can find $\delta, \delta' > 0$ and morphisms in $\gen$
+    Let $|X| \ge 2$ otherwise the statement is clear.
+    Then for any $x \neq x'$ in $X$ we can find $\delta, \delta' > 0$ and morphisms in $\gen$
     $$
     \Delta_2(\delta) \overset{f}\longrightarrow X \overset{g}\longrightarrow \Delta_2(\delta')
     $$
@@ -469,15 +463,14 @@ We now get two interesting distinct behaviors of scale invariant clustering func
     $$
     \Cf(\Delta_2(\delta)) \refines_f \Cf(X,d) \refines_g \Cf(\Delta_2(\delta')).
     $$
-    And since $x \neq x'$ was arbitrary in $X$ we get that if
+    Recall that by scale invariance we either have that $\Cf(\Delta_2(\delta))$ is trivial or discrete for all $\delta > 0$.
+    So since $x \neq x'$ was arbitrary in $X$, we get that if
     \begin{itemize}
         \item $\Cf(\Delta_2(\delta))$ is trivial then $\Cf(X)$ is trivial.
         \item $\Cf(\Delta_2(\delta))$ is discrete then $\Cf(X)$ is discrete.
     \end{itemize}
 \end{proof}
-
 In the case of $\inj$ we have a more interesting behavior.
-
 \begin{proposition}{\cite[Thm.~6.6]{Carlsson2010}}{}
     Let $\Cf\colon \inj \to \C$ be a scale invariant functor then there exists a $k \in \N \sqcup \{0, \infty\}$ such that for all $(X,d) \in \ob(\inj)$:
 
@@ -505,7 +498,7 @@ In the case of $\inj$ we have a more interesting behavior.
         \item $\forall n > k: \Cf(\Delta_n(\delta))$ is trivial.
         \item $\forall n \le k: \Cf(\Delta_n(\delta))$ is discrete.
     \end{itemize}
-    By scale invariance, this does not depend on $\delta$. We can now repeat the same argument as in the previous proposition to get the statement\footnote{By using $n = |X|$, we can find morphisms $f,g$ in $\inj$.}.
+    By scale invariance, this does not depend on $\delta$. We can now repeat the same argument as in the previous proposition to get the statement\footnote{By using $n = |X|$, we can find morphisms $\Delta_n(\delta) \to X \to \Delta_n(\delta')$ in $\inj$.}.
 \end{proof}
 
 Following this, we immediately see that scale invariant clustering functors can not be surjective.
