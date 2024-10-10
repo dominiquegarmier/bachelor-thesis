@@ -1,8 +1,7 @@
 \chapter{Hierarchical Clustering Functors}
 \label{chapter__hierarchical}
 In this chapter we first introduce the hierarchical version of the Vieotirs-Rips functor.
-We will talk about a crucial link between certain hierarchical clustering functors and regular classical clustering functors. With this, we can then tackle the modified \textsc{Kleinberg} conditions presented in \cite[Sec.~7.3.1]{Carlsson2010} and show that they give uniqueness.
-
+Next we talk about a crucial link between certain hierarchical clustering functors and regular classical clustering functors. With this, we can then tackle the modified \textsc{Kleinberg} conditions presented in \cite[Sec.~7.3.1]{Carlsson2010} and show that the Vietoris-Rips is the unique hierarchical clustering functor satisfying them.
 
 \begin{definition}{Vietoris-Rips Functor \cite[Ex.~7.1]{Carlsson2010}}{hierarchical_vr}
 For $\M \in \{\gen,\inj,\iso\}$ we can define the Vietoris-Rips hierarchical clustering functor by
@@ -16,10 +15,10 @@ $$
 \end{definition}
 Notice that since $\Rf_\delta \refines \Rf_{\delta'}$ for $\delta \leq \delta'$, this is indeed a hierarchical functor.
 
-Similar to classical clustering functors, we also want to define some properties for hierarchical clustering functors. Moreover, from now on we will again assume that $\M \in \{\gen, \inj\}$ unless otherwise stated.
+Similar to classical clustering functors, we also want to define some properties for hierarchical clustering functors. Moreover, from now on we will again be working with $\M \in \{\gen, \inj\}$ unless otherwise stated.
 
 \begin{definition}{}{}
-    A hierarchical clustering functor $\Hf$ is said to be \emph{surjective} if for every possible output of a hierarchical clustering functor, \ie, $(X, \theta_X) \in \ob(\H)$ there exists a metric $d$ on $X$ such that $\Hf(X,d) = (X, \theta_X)$.
+    A hierarchical clustering functor $\Hf$ is said to be \emph{surjective} if for every $(X, \theta_X) \in \ob(\H)$ there exists a metric $d$ on $X$ such that $\Hf(X,d) = (X, \theta_X)$.
 \end{definition}
 
 \begin{myremark}{}{hierarchical_to_classical_surjective}
@@ -32,11 +31,12 @@ $$
 
 To discuss a similar notion to scale invariance we need to introduce the following functor.
 
-\begin{definition}{}{shift_functor}
-We define the \emph{shift} functor $\sigma_\lambda\colon \H \to \H$ for some $\lambda > 0$. Given $(X, \theta) \in \ob(\H)$ we set
+\begin{definition}{\cite[Ex.~4.3]{Carlsson2010}}{shift_functor}
+We define the \emph{shift} functor $s_\lambda\colon \H \to \H$ for some $\lambda > 0$. Given $(X, \theta) \in \ob(\H)$ we set
 $$
-\sigma_\lambda(X, \theta(r)) := (X, \theta(r \cdot \lambda^{-1})) \quad \forall r \in \R_{\geq0}.
+s_\lambda(X, \theta) := (X, \theta^\lambda)
 $$
+where $\theta^\lambda(r) := \theta(\frac{r}{\lambda})$ for all $r \in \R_{\geq0}$.
 By checking the condition on morphisms in Definition \ref{def:output_hierarchical_clustering_functors}, we see that this induces a functor.
 \end{definition}
 
@@ -45,7 +45,7 @@ Instead of scale invariance we can ask that this shift functor behaves nicely wi
 \begin{definition}{}{}
 Let $\M \in \{\iso,\inj,\gen\}$. A hierarchical clustering functor $\Hf\colon \M \to \H$ for  is called \emph{scaling} if for all ${(X,d) \in \ob(\M)}$ and $\lambda > 0$ we have
 $$
-\Hf(X, \lambda \cdot d) = \sigma_\lambda \Hf(X,d).
+\Hf(X, \lambda \cdot d) = s_\lambda \Hf(X,d).
 $$
 \end{definition}
 
@@ -123,9 +123,9 @@ Using this notation, we get
 $$
 \Rf = \Hf_{\Rf_1}.
 $$
-Moreover, for $\lambda > 0$ and the shift functor $\sigma_\lambda$ we get that
+Moreover, for $\lambda > 0$ and the shift functor $s_\lambda$ we get that
 $$
-\sigma_\lambda \Rf = \sigma_\lambda \Hf_{\Rf_1} = \Hf_{\Rf_{1/\lambda}}.
+s_\lambda \Rf = s_\lambda \Hf_{\Rf_1} = \Hf_{\Rf_{1/\lambda}}.
 $$
 \end{example}
 
@@ -148,7 +148,7 @@ Using the uniqueness result of Theorem \ref{thm:uniqueness_of_surjective_regular
 \begin{theorem}{Uniqueness of Kleinberg's Conditions}{kleinbergs_uniqueness_conditions}
     Let $\Hf\colon \M \to \H$ be a hierarchical clustering functor that fulfills the modified \textsc{Kleinberg} conditions. Then we have
     $$
-    \Hf = \sigma_\delta \Rf
+    \Hf = s_\delta \Rf
     $$
     for some $\delta > 0$.
 \end{theorem}
@@ -163,6 +163,6 @@ Applying Theorem \ref{thm:uniqueness_of_surjective_regular_functors}, we see tha
 
 Recall Example \ref{exa:shift_of_vietoris_rips}. Using $\delta := 1/\lambda$, we can then see that
 $$
-\Hf = \Hf_{\Rf_\lambda} = \sigma_\delta \Hf_{\Rf_1} = \sigma_\delta \Rf.
+\Hf = \Hf_{\Rf_\lambda} = s_\delta \Hf_{\Rf_1} = s_\delta \Rf.
 $$
 \end{proof}
