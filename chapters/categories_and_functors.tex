@@ -152,14 +152,19 @@ where $e_X$ denotes the identity morphism on an object $X$. And for every ${f \i
 \end{equation}
 \end{definition}
 
-The additional requirements \eqref{eq:functor_functoriality_identity} and \eqref{eq:functor_functoriality} are sometimes referred to as \emph{functoriality}. Other than covariant functors we can also consider \emph{contravariant} functors, where the direction of morphisms are flipped, \ie, instead of \eqref{eq:functor_morphism_map} we have
+The additional requirements \eqref{eq:functor_functoriality_identity} and \eqref{eq:functor_functoriality} are sometimes referred to as \emph{functoriality}.
+
+\begin{myremark}{Contravariant Functors}{contravariant_functors}
+Other than covariant functors we can also consider \emph{contravariant} functors, where the direction of morphisms are flipped, \ie, instead of \eqref{eq:functor_morphism_map} we have
 $$
 \Ff\colon \mor_\A(X,Y) \to \mor_\B(\Ff(Y), \Ff(X))
 $$
-and the composition is also flipped
+and the composition \eqref{eq:functor_functoriality} is also flipped
 $$
 \Ff(g \circ f) = \Ff(f) \circ \Ff(g).
 $$
+\end{myremark}
+
 
 Similar to functions we can also compose functors.
 
