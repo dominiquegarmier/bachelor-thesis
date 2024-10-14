@@ -1,6 +1,5 @@
-
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/85d6d9a5-b2ae-4dcf-b484-d67a3d42a162" />
+  <img src="https://github.com/user-attachments/assets/3be36b85-5d99-4d18-956f-64c9c83aa1b7" />
 </p>
 
 # Classification of Clustering Functors and Uniqueness
