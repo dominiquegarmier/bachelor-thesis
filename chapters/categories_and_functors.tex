@@ -16,7 +16,7 @@ Categories create a framework for this type of mathematical structure.
 \begin{definition}{Category \cite[Sec.~1.2]{Roman2017}}{}
 A category $\C$ consists of
 \begin{enumerate}
-    \item \textbf{Objects}: $\ob(\C)$, which is a class\footnote{A class is a collection of mathematical objects.}, \ie, it need not be a proper set \cite[p.~1]{Roman2017}.
+    \item \textbf{Objects}: A class\footnote{A class is a collection of mathematical objects.} $\ob(\C)$.
     
     \item \textbf{Morphisms}: For every $A, B \in \ob(\C)$ we have a set $\mor_\C(A,B)$. An element $f \in \mor_\C(A,B)$ is called a morphism from $A$ to $B$, and we often write 
     $$
@@ -37,7 +37,7 @@ A category $\C$ consists of
 \end{definition}
 
 One reason why the objects $\ob(\C)$ of a category is not generally a set, is that sets require the axiom of regularity, 
-disallowing such notions as \emph{the set of all sets}. In particular, classes can be much larger than sets \cite[p.~1]{Roman2017}.
+disallowing such notions as ``the set of all sets''. In particular, classes can be much larger than sets \cite[p.~1]{Roman2017}.
 
 Nonetheless, we will often define the class of objects using the following notation:
 $$
@@ -67,23 +67,24 @@ In this case composition is simply the composition of maps and the identity is g
 Instead of taking arbitrary sets and maps between them, we can also study categories where the objects have additional structure and the morphisms preserve that structure.
 
 \begin{example}{Topological Spaces}{}
-Similar to the previous category we can define $\mathrm{TOP}$ with
+We can define the category of topological spaces $\mathrm{TOP}$ with
 \begin{itemize}
     \item $\ob(\mathrm{TOP}) := \{(X,\tau) : \text{$X$ is a set with a topology $\tau$}\},$
     \item $\mor_{\mathrm{TOP}}(X,Y) := \{f\colon X \to Y: \text{$f$ is continuous}\}$
 \end{itemize}
 and the usual composition of maps and identity function. The reason this is in fact a category is that the composition of continuous maps is continuous.
+\medskip
 
 Similarly, we can define the category of \emph{based topological} spaces $\mathrm{TOP}_\bullet$. In this case objects are tuples $(X,x_0)$ with $x_0 \in X$ and morphisms are called \emph{based maps} which are continuous maps $f\colon (X,x_0) \to (Y,y_0)$ such that $f(x_0) = y_0$.
 \end{example}
 
 \begin{example}{Vector Spaces}{}
-Another very common category is the category of vector spaces of a field $\mathbb{K}$ denoted $\mathrm{VEC}_\mathbb{K}$ where
+Another very common category is the category of vector spaces over a field $\mathbb{K}$ denoted by $\mathrm{VEC}_\mathbb{K}$ where
 \begin{itemize}
     \item $\ob(\mathrm{VEC}_\mathbb{K}) := \{V : \text{$V$ is a vector space over $\mathbb{K}$}\},$
-    \item $\mor_{\mathrm{VEC}_\mathbb{K}}(V,W) := \{f\colon V \to W : \text{$f$ is a $\mathbb{K}$-linear map}\},$
+    \item $\mor_{\mathrm{VEC}_\mathbb{K}}(V,W) := \{f\colon V \to W : \text{$f$ is a $\mathbb{K}$-linear map}\}.$
 \end{itemize}
-then this is again a category for same reasons as in the previous example.
+This is again a category for similar reasons as in the previous example.
 \end{example}
 
 \begin{example}{Groups}{}
@@ -102,7 +103,7 @@ We can also consider categories whose morphisms are not maps. In this case it is
 \begin{example}{Category of Ordering}{}
 Consider the category $\mathrm{ORD}_\R$ with
 \begin{itemize}
-    \item $\ob(\mathrm{ORD}_\R) := \R$
+    \item $\ob(\mathrm{ORD}_\R) := \R,$
     \item $\mor_{\mathrm{ORD}_\R}(a,b) := \begin{cases}
         \{(a,b)\} & \text{if $a \ge b$} \\
         \hfil \emptyset & \text{else}
@@ -116,7 +117,7 @@ Notice how this category encodes the full information of the total ordering $\ge
 Not to be confused with the category of groups $\mathrm{GRP}$, we can also consider a group as a category itself.
 Let $G$ be a group. Then we can define a corresponding category $\mathcal{G}$ where
 \begin{itemize}
-    \item $\ob(\mathcal{G}) := \{\epsilon\}$ is a single element
+    \item $\ob(\mathcal{G}) := \{\epsilon\}$ contains a single element,
     \item $\mor_{\mathcal{G}}(\epsilon,\epsilon) := G$
 \end{itemize}
 and the composition is given by $g \circ h = gh$ and identity by $e \in G$.
@@ -148,18 +149,18 @@ A functor must also satisfy
 where $e_X$ denotes the identity morphism on an object $X$. And for every ${f \in \mor_\A(X,Y)}$ and $g \in \mor_\A(Y,Z)$
 \begin{equation}
 \label{eq:functor_functoriality}
-\Ff(g \circ f) = \Ff(g) \circ \Ff(f)
+\Ff(g \circ f) = \Ff(g) \circ \Ff(f).
 \end{equation}
 \end{definition}
 
 The additional requirements \eqref{eq:functor_functoriality_identity} and \eqref{eq:functor_functoriality} are sometimes referred to as \emph{functoriality}.
 
 \begin{myremark}{Contravariant Functors}{contravariant_functors}
-Other than covariant functors we can also consider \emph{contravariant} functors, where the direction of morphisms are flipped, \ie, instead of \eqref{eq:functor_morphism_map} we have
+Other than covariant functors we can also consider \emph{contravariant} functors, where the direction of morphisms are ``flipped'', \ie, instead of \eqref{eq:functor_morphism_map} we have
 $$
 \Ff\colon \mor_\A(X,Y) \to \mor_\B(\Ff(Y), \Ff(X))
 $$
-and the composition \eqref{eq:functor_functoriality} is also flipped
+and the composition \eqref{eq:functor_functoriality} is also flipped:
 $$
 \Ff(g \circ f) = \Ff(f) \circ \Ff(g).
 $$
@@ -195,7 +196,7 @@ Consider the category $\mathrm{VEC}_\mathbb{K}$. Then we can define the contrava
 $$
 ^* \colon \mathrm{VEC}_\mathbb{K} \to \mathrm{VEC}_\mathbb{K},
 $$
-which maps a vector space $V$ to its (algebraic) dual $V^*$ and maps a linear map $f\colon V \to W$ to its adjoint map $f^*\colon W^* \to V^*$. In particular, this functor is contravariant since it \emph{flips the direction} of the morphisms.
+which maps a vector space $V$ to its (algebraic) dual $V^*$ and maps a linear map $f\colon V \to W$ to its adjoint map $f^*\colon W^* \to V^*$. In particular, this functor is contravariant since it ``flips the direction'' of the morphisms.
 \end{example}
 
 \begin{example}{Fundamental Group Functor \cite[Ex.~1.2.5]{Leinster2014-dc}}{}

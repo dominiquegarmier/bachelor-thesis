@@ -3,7 +3,7 @@
 
 Data clustering refers to the procedure of assigning to a set of data points some kind of ``grouping''. 
 This is often used as a first step in machine learing piplines as a way to reduce data complexity.
-In the simplest case this ``grouping'' is \emph{partition} of the original datapoints, this is also called \emph{classical clusteirng} (see Figure \ref{fig:dc_partition}). Alternatively we could assing a so-called \emph{dendrogram}
+In the simplest case this ``grouping'' is \emph{partition} of the original datapoints, this is also called \emph{classical clustering} (see Figure \ref{fig:dc_partition}). Alternatively we could assing a so-called \emph{dendrogram}
 to the datapoints, which is refered to as \emph{hierarchical clustering}.  In this context a dendrogram is a (rooted) binary tree where the leaves are the data points (see Figure \ref{fig:dc_dendrogram}). 
 In Section \ref{section__partitions} we define a more general notion of a dendrogram.
 
@@ -62,7 +62,7 @@ In Section \ref{section__partitions} we define a more general notion of a dendro
 \end{subfigure}
 \end{figure}
 
-We discuss two examples of commonly studied clusteirng algorithms. Namely, one classical and one hierarchical clustering algorithm. By contextualizing these algorithms with computations we demonstrate how they can fall short in certain cases.
+We discuss two examples of commonly studied clustering algorithms. Namely, one classical and one hierarchical clustering algorithm. By contextualizing these algorithms with computations we demonstrate how they can fall short in certain cases.
 This part is based on the books \cite{Everitt2011} and \cite{Scitovski2021}.
 
 Then we talk about how clustering algorithms can be seen as remaining invariant under certain transformations of its input.
@@ -79,11 +79,11 @@ One such example is the \emph{$k$-means} clustering objective \cite[Sec.~3.1]{Sc
 Let $\{x_1, \dots, x_n\} \subset \R^d$. For $k \in \N$ \emph{$k$-means clustering} refers to finding a partition $C_1, \dots, C_k$ of $\{x_1, \dots, x_n\}$ such that
 \begin{equation*}
 \label{eq:kmean_optimization}
-    \sum_{i = 1}^k \sum_{x \in C_i} \|x - \mu_i\|^2
+    \sum_{i = 1}^k \sum_{x \in C_i} \|x - \mu_i\|^2_2
 \end{equation*}
 is minimal, where $\mu_k := \frac{1}{|C_k|}\sum_{x \in C_k} x$ is the \emph{center} of $C_k$\footnote{In case $C_k = \emptyset$ we set $\mu_k = 0 \in \R^d$.}.
 \end{definition}
-To find such a partition we would have to check all possible partitions of $x_1, \dots, x_n$. This is computationally unfeasible. In practice, we use approximate methods such as \textsc{Lloyd}'s algorithm, which is sometimes simply referred to as \emph{the $k$-means algorithm} \cite[Sec.~3.1.2]{Scitovski2021}.
+To find such a partition we would have to check all possible partitions of $x_1, \dots, x_n$. This is computationally infeasible. In practice, we use approximate methods such as \textsc{Lloyd}'s algorithm, which is sometimes simply referred to as \emph{the $k$-means algorithm} \cite[Sec.~3.1.2]{Scitovski2021}.
 
 \begin{definition}{Lloyd's Algorithm}{lloyds_algorithm}
 Given $\{x_1, \dots, x_n\} \subset \R^d$ and some \emph{centers} $z_1, \dots, z_k \in \R^d$
@@ -92,7 +92,7 @@ Lloyd's algorithm consists of iteratively applying the following two steps:
 \begin{enumerate}
     \item \textbf{Assignment Step:} Assign each point $x_i$ to the cluster $C_j$ such that
     $$
-    j = \argmin_{1 \leq l \leq k} \|x_i - z_l\|^2.
+    j = \argmin_{1 \leq l \leq k} \|x_i - z_l\|^2_2.
     $$
 
     \item \textbf{Update Step:} Update the centers $z_1, \dots, z_k$ by setting
@@ -114,7 +114,8 @@ Consider the set $\{(0,0), (0,1), (2,0), (2,1)\} \subset \R^2$, $k = 2$ and two 
     \item $z_1' = (1, 0)$ and $z_2' = (1, 1)$
 \end{enumerate}
 
-Consider the first case. In the first assignment step we assign $(0,0)$ and $(0,1)$ to the first cluster $C_1$ and similarly $(2,0)$ and $(2,1)$ to the second cluster $C_2$. In the update step we update the centers and get $z_1 := \frac{1}{2}\left[(0,0) + (0,1)\right] = (0,1/2)$. Similarly, we get $z_2 := (2,1/2)$. Notice that these are the same centers as we started with. Therefore, the algorithm converges after just one iteration.
+Consider the first case. In the first assignment step we assign $(0,0)$ and $(0,1)$ to the first cluster $C_1$ and similarly $(2,0)$ and $(2,1)$ to the second cluster $C_2$. In the update step we update the centers and get $z_1 = \frac{1}{2}\left[(0,0) + (0,1)\right] = (0,1/2)$. Similarly, we get $z_2 = (2,1/2)$. Notice that these are the same centers as we started with. Therefore, the algorithm converges after just one iteration.
+\medskip
 
 Repeating the same computations for the second case we notice that the algorithm will also converge after just one step to the original centers. This will result in the red and blue clusters as seen in Figure \ref{fig:kmeans_example}.
 
@@ -266,7 +267,7 @@ Another potential downside of the $k$-means algorithm is that its clusters are a
     \draw[->, color=myred, >=stealth, line width=1] (-1.9 + 0.41, 2.4 - 0.44) -- (-1.9 + 0.41 + 0.22, 2.4 - 0.44 + 0.205);
     \draw[->, color=myred, >=stealth, line width=1] (2.2 - 0.41, -2 + 0.44) -- (2.2 - 0.41 + 0.22, -2 + 0.44 + 0.205);
 \end{tikzpicture}
-\captionof{figure}{Points generated by adding noise to two circles and result of running the $k$-means algorithm for $k = 2$.}
+\captionof{figure}{Points generated by adding noise to two circles and the result of running the $k$-means algorithm for $k = 2$.}
 \label{fig:kemans_circles}
 \end{minipage}
 \end{center}
@@ -306,7 +307,7 @@ Depending on the distance function $\mathfrak{d}$ we use we call \emph{linkage c
 \end{itemize}
 
 \begin{example}{}{}
-As an example, consider the data points in Figure \ref{fig:sl_clustering} and their corresponding dendrogram obtained from single-linkage clustering. Here we first merge the points $v,w$ and $z,y$ as they are the closest. Next we adde the point $x$ to the clustering already containing $v,w$ as $x$ is closer to $v,w$ than to $y,z$. Finally, we merge the remaining two clusters $\{v,w,x\}$ and $\{y,z\}$ to obtain a dendrogram. Notice how this order is fully described on the righthand side.
+As an example, consider the data points in Figure \ref{fig:sl_clustering} and their corresponding dendrogram obtained from single-linkage clustering. Here we first merge the points $v,w$ and $z,y$ as they are the closest. Next we add the point $x$ to the cluster $\{v,w\}$ as $x$ is closer to $\{v,w\}$ than $\{y,z\}$. Finally, we merge the remaining two clusters $\{v,w,x\}$ and $\{y,z\}$ to obtain a dendrogram. Notice how this order is fully described on the righthand side.
 \begin{center}
 \begin{minipage}[t]{0.45\textwidth}
     \centering
@@ -353,7 +354,7 @@ As an example, consider the data points in Figure \ref{fig:sl_clustering} and th
         \draw[dashed]  (2,2) -- (2,2.5);
     \end{tikzpicture}
 \end{minipage}
-\captionof{figure}{Example of single-linkage clustering with the data points $\{v,w,x,y,z\} \subset \R^2$ on the left and the output dendrogram on the right.}
+\captionof{figure}{Example of single-linkage clustering with the data points $\{v,w,x,y,z\} \subset \R^2$ on the left and the resulting dendrogram on the right.}
 \label{fig:sl_clustering}
 \end{center}
 \end{example}
@@ -367,7 +368,7 @@ Some other problems with linkage clustering are that in the case of single-linka
 \label{seciton__preserving_structure}
 
 A desireable property of a clustering algorithm might be that it remains invariant under certain transformations to the data.
-The reason this is desirable is that we can model noise in the data a some transformation of an underlying ``ground truth''.
+The reason this is desirable is that we can model noise in the data as some transformation of the underlying ``ground truth''.
 If our algorithm was invariant under these transformations we could hope to recover the ground truth. As we are going to see, it is often not realistic to expect that such an algorithm even exists. But this still motivates the description of clustering algorithms in terms of their invariances.
 
 \begin{example}{}{}
@@ -420,4 +421,4 @@ Kleinberg showed that in combination these properties are impossible to satisfy.
 There exists no clustering algorithm that is scale invariant, rich and consistent at the same time.
 \end{theorem}
 
-Furthermore, if we drop any of the requirements we can find clustering algorithms satisfying the remaining two properties. As an example, the $k$-means algorithm \ref{def:kmeans_clustering} is clearly not rich since we restrict ourselves to partitions with $k$ or fewer\footnote{Depending on the implementation it is possible that $k$-means produces partitions with less than $k$ parts.} parts. It is, however, scale invariant.
+Furthermore, if we drop any of the requirements we can find clustering algorithms satisfying the remaining two properties. As an example, $k$-means clustering from Definition \ref{def:kmeans_clustering} is clearly not rich since we restrict ourselves to partitions with $k$ or fewer\footnote{Depending on the implementation it is possible that $k$-means produces partitions with less than $k$ parts.} parts. It is, however, scale invariant.

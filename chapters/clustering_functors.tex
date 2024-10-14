@@ -8,7 +8,7 @@ This construction closely follows the one by \textsc{Carlsson} and \textsc{M\'em
 \section{Finite Metric Spaces}
 \label{section__finite_metric_spaces}
 
-First we need to define the category of ``inputs'' of clustering algorithms. As we have seen before that it is natural to think of \emph{data} as a finite metric space. This motivates to following definition.
+First we need to define the category of ``inputs'' of clustering algorithms. As we have seen before that it is natural to think of \emph{data} as a finite metric space. This motivates the following definition.
 
 \begin{definition}{Finite Metric Spaces \cite[Sec.~3.2]{Carlsson2010}}{}
 We define three categories $\iso, \inj$ and $\gen$, all sharing the same objects:
@@ -313,7 +313,7 @@ $$
 Moreover, for any $r \in \R_{\geq0}$ a hierarchical clustering functor $\Hf$ induces a classical clustering functor $\Hf(\ \cdot \ ;r)$.
 
 \begin{example}{\cite[Ex.~6.1]{Carlsson2010}}{}
-Given $(X,d) \in \gen$ we define
+Given $(X,d) \in \ob(\gen)$ we define
 $$
 \delta_{(X,d)} := \begin{cases}
     \hfil 1 & \text{if $|X| = 1$} \\
@@ -328,14 +328,14 @@ Let $P_{(X,d)} \in \P(X)$ denote the corresponding partition of $X$.
 The resulting map $\Cf: \gen \to \C$ such that $\Cf(X,d) := (X, P_{(X,d)})$ is a classical clustering functor.
 
 \medskip
-Let us check functoriality for $f \in \mor_\gen((X,d),(Y,d'))$. Since $f$ is distance non-increasing we immediately have that $\delta_{(X,d)} \geq \delta_{(Y,d')}$. Take $x,y \in X$ with
+Let us check functoriality for $f \in \mor_\gen((X,d),(Y,d'))$. Since $f$ is distance non-increasing we immediately have that $\delta_{(X,d)} \leq \delta_{(Y,d')}$. Take $x,y \in X$ with
 \begin{equation}
     d(x,y) \leq \delta_{(X,d)}.
     \label{eq:distance_condition_example}
 \end{equation}
 Again, since $f$ is distance non-increasing, we get that
 $$
-d'(f(x),f(y)) \leq d(f(x),f(y)) \leq \delta_{(X,d)} \leq \delta_{(Y,d')}
+d'(f(x),f(y)) \leq d(x,y) \leq \delta_{(X,d)} \leq \delta_{(Y,d')}
 $$
 and therefore $f(x) \sim_{(Y,d')} f(y)$. By taking the transitive closure over the condition in \eqref{eq:distance_condition_example}, we get that $P_{(X,d)} \refines_f P_{(Y,d')}$.
 This shows that $\Cf$ is indeed a clustering functor.
@@ -343,18 +343,18 @@ This shows that $\Cf$ is indeed a clustering functor.
 
 \begin{example}{}{}
 Let $\M \in \{\iso, \inj, \gen\}$
-Consider a classical clustering functor $\Cf: \M \to \C$ and $\delta > 0$.
+Consider a classical clustering functor $\Cf: \M \to \C$ and $R > 0$.
 Then, for a metric space ${(X,d) \in \ob(\M)}$ let $\theta_X: \R_{\geq0} \to \P(X)$ be the dendrogram given by
 $$
 \theta_X(r) :=
 \begin{cases}
     \text{discrete partition of $X$}& \text{if $r = 0$} \\
-    \hfil \text{trivial partition of $X$}& \text{if $r \geq \delta$} \\
+    \hfil \text{trivial partition of $X$}& \text{if $r \geq R$} \\
     \hfil \Cf(X,d) & \text{else}
 \end{cases}
 $$
 for all $r \in \R_{\geq0}$. 
-This defines a hierarchical clustering functor $\Hf: \M \to \H$ by defining
+This defines a hierarchical clustering functor $\Hf: \M \to \H$ by setting
 $$
 \Hf(X,d) := (X,\theta_X)
 $$

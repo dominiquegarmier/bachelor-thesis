@@ -59,13 +59,13 @@ Underlying most clustering techniques is the notion of a distance between data p
 \end{figure}
 
 A dendrogram is a (rooted) tree, where the leaves are the data points. Dendrograms are strictly more general than partitions, as at every \emph{scale} a dendrogram describes a partition of the data points.
-Depending on the clustering algorithm a dendrogram have to satisfy additional properties.
+Depending on the clustering algorithm a dendrogram has to satisfy additional properties.
 Clustering algorithms that produce a partition are sometimes called \emph{classical} and those that produce a dendrogram are called \emph{hierarchical}.
 
 
 Hierarchical clustering algorithms allow for more complex structures to be captured compared to partitions. We show that this additional capacity can be used in some sense to interpret \textsc{Kleinberg}'s impossibility result as a uniqueness result. This idea was previously discussed by \textsc{Carlsson} and \textsc{M\'emoli} \cite{JMLR:v11:carlsson10a}, \cite{Carlsson2010}. The result we present is slightly more general.
 
-To get to this result we use a formalization of clustering algorithms described in \cite{Carlsson2010}. We use the language of category theory to succinctly describe properties of clustering algorithms. In particular, clustering algorithms are seen as special functors mapping from appropriate categories of finite metric spaces to partitions or dendrograms. For this reason, we refer to such clustering algorithms as \emph{classical} respectively \emph{hierarchical clustering functors}. We do not require the reader to be familiar with category theory, and we introduce and give examples of all the necessary concepts.
+To get to this result we use a formalization of clustering algorithms described in \cite{Carlsson2010}. We use the language of category theory to succinctly describe properties of clustering algorithms. In particular, clustering algorithms are seen as special functors mapping from appropriate categories of finite metric spaces to partitions or dendrograms. For this reason, we refer to such clustering algorithms as \emph{classical} and \emph{hierarchical clustering functors} respectively. We do not require the reader to be familiar with category theory, and we introduce and give examples of all the necessary concepts.
 
 First we work with classical clustering functors, where two central properites of clustering functors are considered.
 \begin{itemize}
@@ -73,10 +73,10 @@ First we work with classical clustering functors, where two central properites o
     \item \emph{Splitting}, which refers to a particular behaviour of clustering functors on metric spaces with two points. Namely, two points are ``merged'' into a single cluster if and only if they are $\delta$-close for some $\delta > 0$.
 \end{itemize}
 
-The latter is a characterizing property of the so-called \emph{Vietoris-Rips} clustering functor, \cite[Thm.~6.4]{Carlsson2010}.
+The latter is a characterizing property of the so-called \emph{Vietoris-Rips} clustering functor \cite[Thm.~6.4]{Carlsson2010}.
 In this thesis we show that under certain technical assumptions surjectivity implies splitting. In some sense this means that a global property of a clustering functor (surjectivity) implies a local property (splitting).
 
-For classical clustering algorithms there exists an important impossibility theorem by \textsc{Kleinberg} which states that there exists no clusteirng algorithm satisfying a certain set of properties \cite{Kleinberg2002}. The theorem states that no clustering algorithm can have the following three properties at the same time:
+For classical clustering algorithms there exists an important impossibility theorem by \textsc{Kleinberg} \cite{Kleinberg2002} which states that there exists no clustering algorithm satisfying the following three properties at the same time:
 
 \begin{itemize}
     \item \emph{Richness} is the term used by \textsc{Kleinberg} to describe surjectivity.
