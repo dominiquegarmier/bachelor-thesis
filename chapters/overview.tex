@@ -67,6 +67,8 @@ This part is based on the books \cite{Everitt2011} and \cite{Scitovski2021}.
 Then we talk about how clustering algorithms can be seen as remaining invariant under certain transformations of its input.
 As an example, there might be a mechanism introducing noise into the data. If we model this noise as some transformation of the ``ground truth'' we can then try to construct a clustering algorithm that is invariant under this transformation. In other words the output of our clustering algorithm would not depend on the noise. This idea will naturally lead to \textsc{Kleinberg}'s impossibility result \cite{Kleinberg2002}.
 
+\Needspace{5.5cm}
+
 \section{Examples of Clustering Algorithms}
 Let us consider a few examples of clustering algorithms.
 
@@ -169,6 +171,8 @@ Repeating the same computations for the second case we notice that the algorithm
 
 In fact the first solution is the one minimizing the $k$-means objective. So we see that the choice of initial centers is important for the outcome of the algorithm. For this reason in practice one might run the algorithm multiple times with different initial centers drawn from some distribution and then choose the best solution.
 \end{example}
+
+\Needspace{6cm}
 
 \begin{example}{}{}
 Another potential downside of the $k$-means algorithm is that its clusters are always convex. Consider the following data points in Figure \ref{fig:kemans_circles} for $k = 2$.
