@@ -1,7 +1,7 @@
 \chapter{Hierarchical Clustering Functors}
 \label{chapter__hierarchical}
 In this chapter we first introduce the hierarchical version of the Vieotirs-Rips functor.
-Next we talk about a crucial link between certain hierarchical clustering functors and regular classical clustering functors. With this, we can then tackle the modified \textsc{Kleinberg} conditions presented in \cite[Sec.~7.3.1]{Carlsson2010} and show that the Vietoris-Rips is the unique hierarchical clustering functor satisfying them.
+Next we talk about a crucial link between \emph{scaling} hierarchical clustering functors and regular spanning classical clustering functors. With this, we can then tackle the modified \textsc{Kleinberg} conditions presented in \cite[Sec.~7.3.1]{Carlsson2010} and show that the Vietoris-Rips is the unique hierarchical clustering functor satisfying them.
 
 \begin{definition}{Vietoris-Rips Functor \cite[Ex.~7.1]{Carlsson2010}}{hierarchical_vr}
 For $\M \in \{\gen,\inj,\iso\}$ we can define the Vietoris-Rips hierarchical clustering functor by
@@ -18,7 +18,7 @@ Notice that since $\Rf_\delta \refines \Rf_{\delta'}$ for $\delta \leq \delta'$,
 Similar to classical clustering functors, we also want to define some properties for hierarchical clustering functors. Moreover, from now on we will again be working with $\M \in \{\gen, \inj\}$ unless otherwise stated.
 
 \begin{definition}{}{}
-    A hierarchical clustering functor $\Hf$ is said to be \emph{surjective} if for every $(X, \theta_X) \in \ob(\H)$ there exists a metric $d$ on $X$ such that $\Hf(X,d) = (X, \theta_X)$.
+    A hierarchical clustering functor $\Hf$ is said to be \emph{surjective} if for every ${(X, \theta) \in \ob(\H)}$ there exists a metric $d$ on $X$ such that $\Hf(X,d) = (X, \theta)$.
 \end{definition}
 
 \begin{myremark}{}{hierarchical_to_classical_surjective}
@@ -43,7 +43,7 @@ By checking the condition on morphisms in Definition \ref{def:output_hierarchica
 Instead of scale invariance we can ask that this shift functor behaves nicely with scaling of the metric.
 
 \begin{definition}{}{}
-Let $\M \in \{\iso,\inj,\gen\}$. A hierarchical clustering functor $\Hf\colon \M \to \H$ for  is called \emph{scaling} if for all ${(X,d) \in \ob(\M)}$ and $\lambda > 0$ we have
+Let $\M \in \{\iso,\inj,\gen\}$. A hierarchical clustering functor $\Hf\colon \M \to \H$ is called \emph{scaling} if for all ${(X,d) \in \ob(\M)}$ and $\lambda > 0$ we have
 $$
 \Hf(X, \lambda \cdot d) = s_\lambda \Hf(X,d).
 $$
@@ -72,11 +72,11 @@ It is easy to verify that $\Rf(X,d) = (X,\theta)$. Thus, $\Rf$ is surjective. Th
 
 
 
-Extending the Vietoris-Rips functor to a hierarchical clustering functor can be done more generally for any regular classical clustering functor.
+Extending the Vietoris-Rips functor to a hierarchical clustering functor can be done more generally for any regular spanning classical clustering functor.
 \begin{proposition}{}{scaling_extension_correspondence}
 
 Let $\M \in \{\gen,\inj\}$. Then there exists a one to one correspondence between
-scaling hierarchical clustering functors and spanning\footnote{Recall definitions \ref{def:regular} and \ref{def:spanning}.} classical clustering functors.
+scaling hierarchical clustering functors and regular spanning\footnote{Recall definitions \ref{def:regular} and \ref{def:spanning}.} classical clustering functors.
 
 \medskip
 More precisely given a regular spanning classical clustering functor $\Cf\colon \M \to \C$ there exists a unique scaling hierarchical clustering functor $\Hf_\Cf\colon \M \to \H$ such that we have
@@ -88,7 +88,7 @@ Moreover, any scaling hierarchical clustering functor is of this form.
 \end{proposition}
 
 \begin{proof}
-Given a regular classical clustering functor $\Cf\colon \M \to \C$ we can define
+Given a regular spanning classical clustering functor $\Cf\colon \M \to \C$ we can define
 $$
 \Hf_\Cf(X,d; r) := \Cf(X, r^{-1} \cdot d)
 $$
@@ -115,7 +115,7 @@ $$
 \Hf_\Cf(X, \lambda \cdot d; r) = \Cf(X, r^{-1} \lambda \cdot d) = \Hf_\Cf(X,d;r \lambda^{-1}).
 $$ 
 
-On the other hand, given any scaling hierarchical clustering functor $\Hf\colon \M \to \H$ we can take $\Cf(X,d) := \Hf(X,d; 1)$ which is a regular classical clustering functor such that $\Hf = \Hf_\Cf$.
+On the other hand, given any scaling hierarchical clustering functor $\Hf\colon \M \to \H$ we can take $\Cf(X,d) := \Hf(X,d; 1)$ which is a regular spanning classical clustering functor such that $\Hf = \Hf_\Cf$.
 \end{proof}
 
 \begin{example}{}{shift_of_vietoris_rips}
@@ -131,7 +131,7 @@ $$
 
 \section{Kleinberg's Conditions}
 
-\textsc{Carlsson} and \textsc{M\'emoli} mention that \textsc{Kleinberg}'s impossibility conditions can be interpreted in the context of hierarchical clustering functors \cite[Sec.~7.3.1]{Carlsson2010}.
+\textsc{Carlsson} and \textsc{M\'emoli} noticed that \textsc{Kleinberg}'s impossibility conditions can be interpreted in the context of hierarchical clustering functors \cite[Sec.~7.3.1]{Carlsson2010}.
 
 \begin{definition}{Modified Kleinberg Conditions \cite[Sec.~7.3.1]{Carlsson2010}}{}
     We say that a hierarchical clustering $\Hf\colon \M \to \H$ functor fulfills the \emph{modified Kleinberg conditions} if all the following holds:
