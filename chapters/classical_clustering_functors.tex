@@ -92,7 +92,7 @@ Let $\Xi_X \subseteq \mathfrak{P}(X)$ denote the set of fixed points of this gro
 \medskip A clustering functor $\Cf\colon \iso \to \C$ is uniquely determined by a choice of $P_X \in \Xi_X$ for each $X \in \mathcal{I}$.
 \end{myremark}
 
-In some sense, $\iso$ clustering functors can be thought of as any algorithm which ``does not consider any particular ordering'' of the data points.
+In some sense, $\iso$ clustering functors can be thought of as any algorithm that ``does not consider any particular ordering'' of the data points.
 This is the reason that algorithms like single linkage clustering \ref{section__linkage_clustering} are not even $\iso$-functorial.
 
 \section{Excessive and Representable Clustering Functors}
@@ -219,7 +219,7 @@ Let $\delta > 0$ consider $X := \{a,b,c\}$. We would like to check that the Viet
 \end{itemize}
 First, let us consider $P_1$. For this we can define the metric $d_1$ on $X$ such that $d_1(i,j) = \delta$ for all $i \neq j$. Then, $\Rf_\delta(X,d_1) = (X,P_1)$.
 For $P_2$ we can do something similar and use the metric $d_2$ such that $d_2(i,j) = 2\delta$ for all $i \neq j$, and we get $\Rf_\delta(X,d_2) = (X,P_2)$.
-Finally, for $P_3$ we can use the metric $d_3$ such that $d_3(a,b) = \delta$ and $d_3(a,c) = d_3(b,c) = 2\delta$. This gives us $\Rf_\delta(X,d_3) = (X,P_3)$.
+Finally, for $P_3$ we can use the metric $d_3$ with $d_3(a,b) = \delta$ and $d_3(a,c) = d_3(b,c) = 2\delta$. This gives us $\Rf_\delta(X,d_3) = (X,P_3)$.
 \end{example}
 
 The following property of surjective clustering functors hints that surjectivity and the Vietoris-Rips functor are closely related.
@@ -283,7 +283,7 @@ $$
             f: (X, \lambda \cdot d) &\longrightarrow (X, d_1),\\
             x &\longmapsto x.
         \end{align*}
-        We conclude since we have $\Cf(X,\lambda \cdot d) \refines \Cf(X,d_1)$ for the same reason as above.
+        This concludes the proof since we have $\Cf(X,\lambda \cdot d) \refines \Cf(X,d_1)$ for the same reason as above.
     \end{enumerate}
 \end{proof}
 

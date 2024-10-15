@@ -2,7 +2,7 @@
 \label{chapter__dataclustering}
 
 Data clustering refers to the procedure of assigning to a set of data points some kind of ``grouping''. 
-This is often used as a first step in machine learing pipelines as a way to reduce data complexity.
+This is often used as a first step in machine learning pipelines as a way to reduce data complexity.
 In the simplest case this ``grouping'' is \emph{partition} of the original datapoints, this is also called \emph{classical clustering} (see Figure \ref{fig:intro_partition} in the Introduction). Alternatively we could assign a so-called \emph{dendrogram}
 to the datapoints, which is referred to as \emph{hierarchical clustering}.  In this context a dendrogram is a (rooted) binary tree where the leaves are the data points (Figure \ref{fig:intro_dendrogram}). 
 In Section \ref{section__partitions} we define a more general notion of a dendrogram.
@@ -282,7 +282,7 @@ In this case the $k$-means algorithm will fail to split the two circles as the c
 
 \subsection{Linkage Clustering}
 \label{section__linkage_clustering}
-Let us now consider a clustering algorithm that will produce a dendrogram as an ouput. We will achieve this my consecutively merging clusters based on some distance criterion \cite[Sec.~4.2.2]{Everitt2011}.
+Let us now consider a clustering algorithm that will produce a dendrogram as an ouput. We will achieve this by consecutively merging clusters based on some distance criterion \cite[Sec.~4.2.2]{Everitt2011}.
 
 \begin{definition}{Linkage Clustering }{linkage_clustering}
 Let $X := \{x_1, \dots, x_n\} \subset \R^n$ and $\mathfrak{d}\colon\mathscr{P}(X) \times \mathscr{P}(X) \to \R_{\geq0}$ a \emph{distance function} between clusters. We start with the partition
@@ -370,7 +370,7 @@ Some other problems with linkage clustering are that in the case of single-linka
 \section{Invariance of Clustering Algorithms}
 \label{seciton__preserving_structure}
 
-A desireable property of a clustering algorithm might be that it remains invariant under certain transformations to the data.
+A desirable property of a clustering algorithm might be that it remains invariant under certain transformations to the data.
 The reason this is desirable is that we can model noise in the data as some transformation of the underlying ``ground truth''.
 If our algorithm was invariant under these transformations we could hope to recover the ground truth. As we are going to see, it is often not realistic to expect that such an algorithm even exists. But this still motivates the description of clustering algorithms in terms of their invariances.
 
