@@ -2,9 +2,9 @@
 \label{chapter__dataclustering}
 
 Data clustering refers to the procedure of assigning to a set of data points some kind of ``grouping''. 
-This is often used as a first step in machine learing piplines as a way to reduce data complexity.
-In the simplest case this ``grouping'' is \emph{partition} of the original datapoints, this is also called \emph{classical clustering} (see Figure \ref{fig:intro_partition} in the Introduction). Alternatively we could assing a so-called \emph{dendrogram}
-to the datapoints, which is refered to as \emph{hierarchical clustering}.  In this context a dendrogram is a (rooted) binary tree where the leaves are the data points (Figure \ref{fig:intro_dendrogram}). 
+This is often used as a first step in machine learing pipelines as a way to reduce data complexity.
+In the simplest case this ``grouping'' is \emph{partition} of the original datapoints, this is also called \emph{classical clustering} (see Figure \ref{fig:intro_partition} in the Introduction). Alternatively we could assign a so-called \emph{dendrogram}
+to the datapoints, which is referred to as \emph{hierarchical clustering}.  In this context a dendrogram is a (rooted) binary tree where the leaves are the data points (Figure \ref{fig:intro_dendrogram}). 
 In Section \ref{section__partitions} we define a more general notion of a dendrogram.
 
 % \begin{figure}[h]
@@ -306,7 +306,7 @@ Depending on the distance function $\mathfrak{d}$ we use we call \emph{linkage c
 \begin{itemize}
     \item \emph{single-linkage clustering} if $\mathfrak{d}_\mathrm{min} (B_i, B_j) := \min\{d(x,y): x \in B_i, y \in B_j\}$;
     \item \emph{complete-linkage clustering} if $\mathfrak{d}_\mathrm{max} (B_i, B_j) := \max\{d(x,y): x \in B_i, y \in B_j\}$;
-    \item \emph{average-linkage clustering} uf $\mathfrak{d}_\mathrm{avg}(B_i,B_j) := \frac{1}{|B_i||B_j|} \sum_{x \in B_i, y \in B_j} d(x,y)$.
+    \item \emph{average-linkage clustering} if $\mathfrak{d}_\mathrm{avg}(B_i,B_j) := \frac{1}{|B_i||B_j|} \sum_{x \in B_i, y \in B_j} d(x,y)$.
 \end{itemize}
 
 \begin{example}{}{}
