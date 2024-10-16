@@ -355,15 +355,19 @@ A very natural example of a clustering functor is the so-called \emph{Vietoris-R
     We have to show that 
     $$P \refines_f Q.$$
     Indeed, let $x,y \in X$ such that $d(x,y) \leq \delta$.
-    Then, we have $d'(f(x), f(y)) \leq d(x,y) \leq \delta$ and therefore $f(x) \sim_{Q} f(y)$.
+    Then, we have
+    $$
+    d'(f(x), f(y)) \leq d(x,y) \leq \delta
+    $$
+    and therefore $f(x) \sim_{Q} f(y)$.
     By taking the transitive closure we get that $P \refines_f Q$, and we are done.
 \end{example}
 
 \begin{myremark}{}{}
-One could use a proper inequality in \eqref{eq:vietoris_rips_equivalence_relation}. The entire theory we are about to present would still hold, provided we tweak certain definitions accordingly, in particular, Definition \ref{def:dendrogram}.
+One could use a proper inequality in \eqref{eq:vietoris_rips_equivalence_relation}. The entire theory we are going to present would still hold, provided we tweak certain definitions accordingly, in particular, Definition \ref{def:dendrogram}.
 \end{myremark}
 
-By varying the paramter $\delta$ we can obtain the hierarchical Vietoris-Rips clustering functor.
+By varying the parameter $\delta$ we can obtain the hierarchical Vietoris-Rips clustering functor.
 
 \begin{example}{Vietoris-Rips Functor \cite[Ex.~7.1]{Carlsson2010}}{hierarchical_vr}
 For $\M \in \{\gen,\inj,\iso\}$ we can define the \emph{hierarchical Vietoris-Rips clustering functor} by
