@@ -312,7 +312,7 @@ $$
 Moreover, for any $r \in \R_{\geq0}$ a hierarchical clustering functor $\Hf$ induces a classical clustering functor $\Hf(\ \cdot \ ;r)$.
 
 \begin{example}{\cite[Ex.~6.1]{Carlsson2010}}{}
-Given $(X,d) \in \ob(\gen)$ we define
+Given $(X,d) \in \ob(\inj)$ we define
 $$
 \delta_{(X,d)} := \begin{cases}
     \hfil 1 & \text{if $|X| = 1$} \\
@@ -324,10 +324,10 @@ $$
 \forall x,y \in X: d(x,y) \leq \delta_{(X,d)} \implies x \sim_{(X,d)} y.
 $$
 Let $P_{(X,d)} \in \P(X)$ denote the corresponding partition of $X$.
-The resulting map $\Cf: \gen \to \C$ such that $\Cf(X,d) := (X, P_{(X,d)})$ is a classical clustering functor.
+The resulting map $\Cf: \inj \to \C$ such that $\Cf(X,d) := (X, P_{(X,d)})$ is a classical clustering functor.
 
 \medskip
-Let us check functoriality for $f \in \mor_\gen((X,d),(Y,d'))$. Since $f$ is distance non-increasing we immediately have that $\delta_{(X,d)} \leq \delta_{(Y,d')}$. Take $x,y \in X$ with
+Let us check functoriality for $f \in \mor_\inj((X,d),(Y,d'))$. Since $f$ is distance non-increasing we immediately have that $\delta_{(X,d)} \leq \delta_{(Y,d')}$. Take $x,y \in X$ with
 \begin{equation}
     d(x,y) \leq \delta_{(X,d)}.
     \label{eq:distance_condition_example}
