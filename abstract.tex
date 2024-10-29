@@ -1,14 +1,17 @@
 \renewcommand{\abstractname}{Abstract}
 \begin{abstract}
-Clustering algorithms are widely used in machine learning and data science as a tool for dealing with ever-increasing amounts of data.
-An important theoretical result in the study of clustering algorithms is an impossibility theorem by Kleinberg \cite{Kleinberg2002}. It states that no clustering algorithm can be \emph{rich}, \emph{consistent} and \emph{scale invariant} at the same time. We will discuss these terms later.
+Clustering algorithms are widely used tools in machine learning and data science that organize data points into ``groups'' by recognizing patterns.
+They have proven useful for dealing with ever-increasing amounts of data.
 %
 We review a formalization and classification of clustering algorithms developed by \textsc{Carlsson} and \textsc{M\'emoli} \cite{Carlsson2010}. For such formal clustering algorithms we will use the term \emph{clustering functor}.
 %
+An important theoretical result in the study of clustering algorithms is an impossibility theorem by Kleinberg \cite{Kleinberg2002}. It states that no clustering algorithm can be \emph{rich}, \emph{consistent} and \emph{scale invariant} at the same time. We will discuss these terms later.
+%
 As identified by \textsc{Carlsson} and \textsc{M\'emoli}, the so-called \emph{Vietoris-Rips} clustering functor has some unique characterizing properties \cite[Thm.~18]{JMLR:v11:carlsson10a}, \cite[Thm.~7.1]{Carlsson2010}.
 %
-We slightly generalized this characterization.
-%
 The Vietoris-Rips clustering functor is based on the idea that for some threshold parameter $\delta > 0$ we assign two data points to the same cluster if, according to some metric, they are $\delta$-close to each other.
-It was previously shown that the Vietoris-Rips clustering functor satisfies a set of modified conditions from \textsc{Kleinberg}'s impossibility theorem \cite[Sec.~7.3.1]{Carlsson2010}. With our generalization we were able to show that the Vietoris-Rips clustering functor is the only clustering functor satisfying these conditions.
+%
+It was previously shown that the Vietoris-Rips clustering functor satisfies a set of modified conditions from \textsc{Kleinberg}'s impossibility theorem \cite[Sec.~7.3.1]{Carlsson2010}.
+%
+By showing that these modified conditions imply the characterizing properties of the Vietoris-Rips clustering functor discussed by \textsc{Carlsson} and \textsc{M\'emoli}, we were able to prove that the Vietoris-Rips clustering functor uniquely satisfies the modified conditions from \textsc{Kleinberg}'s impossibility theorem.
 \end{abstract}
