@@ -58,16 +58,23 @@ Underlying most clustering techniques is the notion of a distance between data p
 \end{subfigure}
 \end{figure}
 
-A dendrogram is a (rooted) tree, where the leaves are the data points. Dendrograms are strictly more general than partitions, as at every \emph{scale} a dendrogram describes a partition of the data points.
-Depending on the clustering algorithm a dendrogram has to satisfy additional properties.
+A dendrogram is a (rooted) tree with data points as leaves.
+The dendrogram represents the order in which data points are ``merged'' into clusters.
+%
+In Figure \ref{fig:intro_dendrogram}, we have a dendrogram over the points $\{a,b,c,d,e\}$.
+Here, we first merge $a$ and $b$, as well as $d$ and $e$ into respective pairs.
+Then, we add $c$ to the cluster containing $a$ and $b$.
+Finally, we merge all five points into a single cluster.
+%
+By stopping this merging process early, we obtain a partition of the data points.
+In this sense, dendrograms are more general than partitions. Depending on the clustering algorithm used, a dendrogram may need to satisfy additional properties.
 Clustering algorithms that produce a partition are sometimes called \emph{classical} and those that produce a dendrogram are called \emph{hierarchical}.
 
+In this thesis we use the language of category theory to succinctly describe properties of clustering algorithms. In particular, clustering algorithms are seen as special functors mapping from appropriate categories of finite metric spaces to partitions or dendrograms. For this reason, we refer to such clustering algorithms as \emph{classical} and \emph{hierarchical clustering functors} respectively \cite{Carlsson2010}. We do not require the reader to be familiar with category theory; we introduce and give examples of all the necessary concepts.
 
-Hierarchical clustering algorithms allow for more complex structures to be captured compared to partitions. We show that this additional capacity can be used in some sense to interpret \textsc{Kleinberg}'s impossibility result as a uniqueness result. This idea was previously discussed by \textsc{Carlsson} and \textsc{M\'emoli} \cite{JMLR:v11:carlsson10a}, \cite{Carlsson2010}. The result we present is slightly more general.
+\Needspace{2\baselineskip}
 
-To get to this result we use a formalization of clustering algorithms described in \cite{Carlsson2010}. We use the language of category theory to succinctly describe properties of clustering algorithms. In particular, clustering algorithms are seen as special functors mapping from appropriate categories of finite metric spaces to partitions or dendrograms. For this reason, we refer to such clustering algorithms as \emph{classical} and \emph{hierarchical clustering functors} respectively. We do not require the reader to be familiar with category theory, and we introduce and give examples of all the necessary concepts.
-
-First we work with classical clustering functors, where two central properites of clustering functors are considered.
+First we work with classical clustering functors, where two central properties of clustering functors are considered.
 \begin{itemize}
     \item \emph{Surjectivity}, which means that for any partition of a set of $n$ points we can find a metric on these $n$ points such that our clustering functor produces this partition.
     \item \emph{Splitting}, which refers to a particular behaviour of clustering functors on metric spaces with two points. Namely, two points are ``merged'' into a single cluster if and only if they are $\delta$-close for some $\delta > 0$.
