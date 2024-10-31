@@ -3,72 +3,195 @@
 
 Data clustering refers to the procedure of assigning to a set of data points some kind of ``grouping''. 
 This is often used as a first step in machine learning pipelines as a way to reduce data complexity.
-In the simplest case this ``grouping'' is \emph{partition} of the original data points, this is also called \emph{classical clustering} (see Figure \ref{fig:intro_partition} in the Introduction). Alternatively we could assign a so-called \emph{dendrogram}
-to the data points, which is referred to as \emph{hierarchical clustering}.  In this context a dendrogram is a (rooted) binary tree where the leaves are the data points (Figure \ref{fig:intro_dendrogram}). 
-In Section \ref{section__partitions} we define a more general notion of a dendrogram.
-% \begin{figure}[h]
-% \centering
-% \begin{subfigure}[t]{0.45\textwidth}
-%     \centering
-%     \begin{tikzpicture}[sloped]
-%         \node[circle,fill=black,inner sep=1pt] at (0, 2.3) {};
-%         \node[circle,fill=black,inner sep=1pt] at (0.5, 1.6) {};
-%         \node[circle,fill=black,inner sep=1pt] at (1.1, 2.1) {};
+In the simplest case this ``grouping'' is a \emph{partition} of the original data points. This is also called \emph{classical clustering} (see Figure \ref{fig:intro_partition}).
+Alternatively, we could assign a so-called \emph{dendrogram}
+to the data points, which is referred to as \emph{hierarchical clustering} (see Figure \ref{fig:intro_dendrogram}). The first part this chapter explains these concepts in more detail.
 
-%         \node[circle,fill=black,inner sep=1pt] at (2.1, 1.2) {};
-%         \node[circle,fill=black,inner sep=1pt] at (2.3, 1.9) {};
-
-%         \node[circle,fill=black,inner sep=1pt] at (0.8, 0.3) {};
-%         \node[circle,fill=black,inner sep=1pt] at (1.6, 0.2) {};
-        
-%         \draw[dashed,fill=myblue,fill opacity=0.15,rotate=40] (1.7,1.2) ellipse (1.1 and 0.8);
-%         \draw[dashed,fill=mygreen,fill opacity=0.15,rotate=-12] (1.8, 1.9) ellipse (0.4 and 0.8);
-%         \draw[dashed,fill=myred,fill opacity=0.15,rotate=-5] (1.2,0.3) ellipse (0.9 and 0.5);
-
-%     \end{tikzpicture}
-%     \phantomcaption
-%     \caption*{\figurename~\thefigure\thesubfigure: A partition of seven points.}
-%     \label{fig:dc_partition}
-% \end{subfigure}
-% \begin{subfigure}[t]{0.45\textwidth}
-%     \centering
-%     \begin{tikzpicture}[sloped]
-%         \node (a) at (0,0) {a};
-%         \node (b) at (1,0) {b};
-%         \node (c) at (2,0) {c};
-%         \node (d) at (3,0) {d};
-%         \node (e) at (4,0) {e};
-        
-%         \draw  (a) |- (0.5,1);
-%         \draw  (b) |- (0.5,1);
-
-%         \draw  (0.5,1) |- (1,1.5);
-%         \draw  (c) |- (1,1.5);
-    
-%         \draw (d) |- (3.5,1);
-%         \draw (e) |- (3.5,1);
-
-%         \draw (3.5,1) |- (3,2);
-%         \draw (1,1.5) |- (3,2);
-
-%         \draw[dashed]  (2,2) -- (2,2.5);
-%         \draw[->, >=stealth] (-0.5,0) -- node[above]{\small{scale}} (-0.5,3);
-%     \end{tikzpicture}
-%     \phantomcaption
-%     \caption*{\figurename~\thefigure\thesubfigure: A dendrogram of five points.}
-%     \label{fig:dc_dendrogram}
-% \end{subfigure}
-% \end{figure}
-
-We discuss two examples of commonly studied clustering algorithms. Namely, one classical and one hierarchical clustering algorithm. By contextualizing these algorithms with computations we demonstrate how they can fall short in certain cases.
+Next, we discuss two examples of commonly studied clustering algorithms. Namely, \emph{$k$-means clustering}, a classical clustering technique and \emph{linkage clustering}, a hierarchical clustering algorithm.
+%
+By contextualizing these algorithms with computations we demonstrate how they can fall short in certain cases.
 This part is based on the books \cite{Everitt2011} and \cite{Scitovski2021}.
 
-Then we talk about how clustering algorithms can be seen as remaining invariant under certain transformations of its input.
-As an example, there might be a mechanism introducing noise into the data. If we model this noise as some transformation of the ``ground truth'' we can then try to construct a clustering algorithm that is invariant under this transformation. In other words the output of our clustering algorithm would not depend on the noise. This idea will naturally lead to \textsc{Kleinberg}'s impossibility result \cite{Kleinberg2002}.
+Finally, we show how clustering algorithms can be seen as remaining invariant under certain transformations of their input.
+%
+One such transformation could be the introduction of noise into the data.
+If we model this noise as some transformation of the ``ground truth'' we can then try to construct a clustering algorithm that is invariant under this transformation. In other words, the output of our clustering algorithm would not depend on the noise. This idea naturally leads to \textsc{Kleinberg}'s impossibility result \cite{Kleinberg2002}.
 
-\Needspace{5.5cm}
+\Needspace{16\baselineskip}
+
+\section{Partitions, Dendrograms and Clustering Algorithms}
+\label{section__partitions}
+In this section, we make precise what we mean by a ``partition'' or a ``dendrogram'', which will enable us to formally define \emph{clustering algorithms}.
+
+\begin{definition}{Partitions of Finite Sets}{}
+Let $X$ be a finite set. A \emph{partition} $P$ of $X$ is the set of equivalence classes $X/_{\sim_P}$ for some equivalence relation $\sim_P$ on $X$. The set of all such partitions is denoted by $\P(X)$.\par
+
+\medskip Furthermore:
+\begin{itemize}
+    \item We interchangeably use $P$ (the partition) and $\sim_P$ (the corresponding equivalence relation).
+    \item A single equivalence class $X_\alpha \in P$ will be called a \emph{block} or \emph{part} of $P$.
+\end{itemize}
+\end{definition}
+
+It naturally makes sense to use partitions as outputs of (classical) clustering algorithms, where a block of a partition is to be interpreted as a \emph{cluster}.
+
+When describing a partition it is often easier to describe a minimal set of conditions the partition relation must satisfy. More formally, we talk about taking the \emph{transitive closure} of a relation.
+
+\begin{definition}{}{}
+    Given a relation $\sim$ on a set $X$ its \emph{transitive closure} is the transitive relation $\sim^+$ such that for $x,y \in X$ we have
+    $$
+    x \sim^+ y
+    $$
+    if there exists a sequence $x = x_0, x_1, \dots, x_n = y$ with $x_i \sim_R x_{i+1}$ for all $i = 0, \dots, n-1$ \cite[p.337]{Lidl1997-kc}.
+\end{definition}
+
+In particular, if $\sim$ is reflexive and symmetric then $\sim^+$ is an equivalence relation.
+Later we will use this fact to define equivalence relations as transitive closures of reflexive and symmetric relations.
+
+\begin{example}{}{}
+Let $G = (V,E)$ be a graph, then $E$ is a binary symmetric relation on $V$. Two points $v,w \in V$ lie in the same connected component of $G$ if there exists a path, \ie, a sequence $v =v_0, v_1, \dots, v_n = w$ such that $(v_i, v_{i+1}) \in E$ for all $i = 0, \dots, n-1$. The resulting partition of $V$ into connected components corresponds to the transitive closure of $E$.
+\end{example}
+
+To define a \emph{dendrogram} we need to give a precise meaning to what we previously informally described as the ``merging'' of clusters.
+
+\begin{definition}{Refinement}{}
+Let $P, Q \in \mathfrak{P}(X)$. Then we write $P \refines Q$ and say that $P$ \emph{refines} $Q$ if
+\begin{equation*}
+    \forall x,y \in X: x \sim_P y \implies x \sim_Q y.
+\end{equation*}
+This defines a partial order on $\P(X)$.
+\end{definition}
+
+\begin{example}{}{}
+Consider $X := \{a,b,c\}$ together with partitions
+$$
+P := \{\{a\}, \{b\}, \{c\}\} \quad \text{and} \quad Q := \{\{a,b\}, \{c\}\}.
+$$
+As the blocks in $P$ are always contained in some block of $Q$ we have $P \refines Q$.
+\end{example}
+This corresponds to the idea of ``merging'' in the sense that if we have $P,Q \in \P(X)$ such that $P \refines Q$ we can say that $Q$ can be optained from $P$ by ``merging'' blocks of $P$.
+
+There are two extreme kinds of partitions: one where all points belong to the same equivalence class, and another where each point forms its own equivalence class. For this we introduce the following notation.
+
+\begin{definition}{}{}
+We say that $P \in \P(X)$ is:
+\begin{enumerate}
+    \item \emph{discrete} if $x \sim_P y \iff x = y$.
+    \item \emph{trivial} if $x \sim_P y$ for all $x,y \in X$.
+\end{enumerate}
+\end{definition}
+
+Naturally, if $Q$ is discrete and $P$ is trivial then $Q \refines R \refines P$ for all $R \in \P(X)$.
+
+With this we now have everything to define a \emph{dendrogram}.
+
+\begin{definition}{Dendrogram \cite[Def.~2.2]{Carlsson2010}}{dendrogram}
+Let $X$ be a finite set. A map $\theta: \R_{\geq0} \to \mathfrak{P}(X)$ with
+\begin{enumerate}
+    \item $\forall r,s \in \R_{\geq0}: r \leq s \implies  \theta(r) \refines \theta(s)$,
+    \item $\exists r,s \in \R_{\geq0}$ such that $\theta(r)$ is trivial and $\theta(s)$ is discrete\footnote{In particular, we get that $\theta(0)$ is always discrete.},
+    \item $\forall r \in \R_{\geq0} \,\exists \varepsilon > 0$ such that $\theta$ is constant on $[r, r + \varepsilon)$,
+\end{enumerate}
+is called a \emph{dendrogram} of $X$. Sometimes $r$ is referred to as the \emph{scale}.
+\end{definition}
+
+This will be familiar to anyone who has seen \emph{persistent homology} where such properties are referred to as \emph{persistence} \cite[Chap.~3]{Carlsson2014}.
+
+As for the relevance of the last condition, consider the following remark.
+
+\begin{myremark}{}{regularity_of_dendrograms}
+Since $X$ is a finite set, we could decide to omit the third condition in the definition of a dendrogram.
+Dendrograms would still have discrete scale \ie\ the dendrogram would still be constant on intervals.
+However, it would not be clear what value the dendrogram would take at the endpoints of these intervals.
+This technicality will become important for some uniqueness theorems we present later.
+\end{myremark}
+
+\begin{example}{}{}
+As an example of a dendrogram consider Figure \ref{fig:dendrogram_example}.
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\begin{tikzpicture}
+    \node (a) at (0,-0.25) {a};
+    \node (b) at (1,-0.25) {b};
+    \node (c) at (2,-0.25) {c};
+    \node (d) at (3,-0.25) {d};
+    
+    \draw  (a) |- (0.5,0.5);
+    \draw  (b) |- (0.5,0.5);
+
+    \draw  (0.5,0.5) |- (1,1.25);
+    \draw  (c) |- (1,1.25);
+
+
+    \draw  (1,1.25) |- (1.5,2);
+    \draw (d) |- (1.5,2);
+
+    \draw[dashed]  (1.5,2) -- (1.5,2.5);
+    \draw[->, >=stealth] (-0.5,-0.25) -- (-0.5,2.5);
+
+    \draw[dashed] (-0.25, 0.6) -- (3.25, 0.6);
+    \draw[color=myred, opacity=0.5, line width=1mm] (-0.2, 0.6) -- (1.2, 0.6);
+    \draw[color=myblue, opacity=0.5, line width=1mm] (1.8, 0.6) -- (2.2, 0.6);
+    \draw[color=mygreen, opacity=0.5, line width=1mm] (2.8, 0.6) -- (3.2, 0.6);
+
+    \draw[dashed] (-0.25, 1.9) -- (3.25, 1.9);
+    \draw[color=mypurple, opacity=0.5, line width=1mm] (-0.2, 1.9) -- (2.2, 1.9);
+    \draw[color=mygreen, opacity=0.5, line width=1mm] (2.8, 1.9) -- (3.2, 1.9);
+
+    \draw[] (-0.55, 0.6) -- node[left]{$1$} (-0.45, 0.6);
+    \draw[] (-0.55, 1.9) -- node[left]{$2$} (-0.45, 1.9);
+
+    \draw[|->, >=to] (3.35, 0.6) -- (4.25, 0.6);
+    \draw[|->, >=to] (3.35, 1.9) -- node[above]{$\theta$} (4.25, 1.9);
+
+    \node[circle,fill=black,inner sep=1pt] (z) at (5, 0.6) {};
+    \node[circle,fill=black,inner sep=1pt] (z) at (6, 0.6) {};
+    \node[circle,fill=black,inner sep=1pt] (z) at (7, 0.6) {};
+    \node[circle,fill=black,inner sep=1pt] (z) at (8, 0.6) {};
+
+    \draw[ellipse, dashed, fill=myred, fill opacity=0.15] (5.5, 0.6) ellipse (0.75 and 0.25);
+    \draw[ellipse, dashed, fill=myblue, fill opacity=0.15] (7, 0.6) ellipse (0.25 and 0.25);
+    \draw[ellipse, dashed, fill=mygreen, fill opacity=0.15] (8, 0.6) ellipse (0.25 and 0.25);
+
+    \node[circle,fill=black,inner sep=1pt] (z) at (5, 1.9) {};
+    \node[circle,fill=black,inner sep=1pt] (z) at (6, 1.9) {};
+    \node[circle,fill=black,inner sep=1pt] (z) at (7, 1.9) {};
+    \node[circle,fill=black,inner sep=1pt] (z) at (8, 1.9) {};
+
+    \draw[ellipse, dashed, fill=mypurple, fill opacity=0.15] (6, 1.9) ellipse (1.25 and 0.25);
+    \draw[ellipse, dashed, fill=mygreen, fill opacity=0.15] (8, 1.9) ellipse (0.25 and 0.25);
+
+    \node (a) at (5,-0.25) {a};
+    \node (b) at (6,-0.25) {b};
+    \node (c) at (7,-0.25) {c};
+    \node (d) at (8,-0.25) {d};
+
+        \node[rotate=90] at (6.5, 1.25) {$\preceq$};
+\end{tikzpicture}
+\captionof{figure}{A dendrogram $\theta: \R_{\geq0} \to \P(X)$ with the four points $X = \{a,b,c,d\}$.}
+\label{fig:dendrogram_example}
+\end{minipage}
+\end{center}
+Notice how in this case the monotonicity condition is satisfied \eg\ $\theta(1) \refines \theta(2)$ as shown on the righthand side. The second condition of a dendrogram is also met as it becomes trivial at the top and discrete at the bottom. Finally, the third condition tells us what value the dendrogram takes whenever a ``merge happens''.
+\end{example}
+
+With this we can now state the definition of a \emph{clustering algorithm}.
+
+\begin{definition}{Clustering Algorithm}{}
+A \emph{clustering algorithm} $\Cf$ is a procedure that assigns to a finite metric space $(X,d)$ either a partition or dendrogram, which we denote by
+$$
+\Cf(X,d).
+$$
+In the case that $\Cf$ outputs partitions, we refer to it as a \emph{classical} clustering algorithm. If it outputs dendrograms, we refer to it as \emph{hierarchical}.
+\end{definition}
+
+In Chapter \ref{chapter__clustering_functor} we will revisit this definition, at which point we will call it a \emph{clustering functor}.
+
+\Needspace*{7\baselineskip}
 
 \section{Examples of Clustering Algorithms}
+
 Let us consider a few examples of clustering algorithms.
 
 \subsection[$k$-means]{$\boldsymbol{k}$-means}
@@ -97,7 +220,7 @@ Lloyd's algorithm consists of iteratively applying the following two steps:
 
     \item \textbf{Update Step:} Update the centers $z_1, \dots, z_k$ by setting
     $$
-    z_j = \frac{1}{|C_j|}\sum_{x \in C_j} x. \quad \forall \quad j \in \{1, \dots, k\},
+    z_j = \frac{1}{|C_j|}\sum_{x \in C_j} x \quad \forall j \in \{1, \dots, k\},
     $$
     where $z_j = 0$ if $C_j = \emptyset$. 
 \end{enumerate}
@@ -110,8 +233,8 @@ We will see that the choice of starting centers $z_1, \dots, z_k$ can have a sig
 Consider the set $\{(0,0), (0,1), (2,0), (2,1)\} \subset \R^2$, $k = 2$ and two possible choices of starting centers:
 
 \begin{enumerate}
-    \item $z_1 = (0, 1/2)$ and $z_2 = (2, 1/2)$
-    \item $z_1' = (1, 0)$ and $z_2' = (1, 1)$
+    \item $z_1 = (0, 1/2)$ and $z_2 = (2, 1/2);$
+    \item $z_1' = (1, 0)$ and $z_2' = (1, 1).$
 \end{enumerate}
 
 Consider the first case. In the first assignment step we assign $(0,0)$ and $(0,1)$ to the first cluster $C_1$ and similarly $(2,0)$ and $(2,1)$ to the second cluster $C_2$. In the update step we update the centers and get $z_1 = \frac{1}{2}\left[(0,0) + (0,1)\right] = (0,1/2)$. Similarly, we get $z_2 = (2,1/2)$. Notice that these are the same centers as we started with. Therefore, the algorithm converges after just one iteration.
@@ -171,10 +294,9 @@ Repeating the same computations for the second case we notice that the algorithm
 In fact the first solution is the one minimizing the $k$-means objective. So we see that the choice of initial centers is important for the outcome of the algorithm. For this reason in practice one might run the algorithm multiple times with different initial centers drawn from some distribution and then choose the best solution.
 \end{example}
 
-\Needspace{6cm}
-
+Another potential downside of the $k$-means algorithm is that its clusters are always convex.
 \begin{example}{}{}
-Another potential downside of the $k$-means algorithm is that its clusters are always convex. Consider the following data points in Figure \ref{fig:kemans_circles} for $k = 2$.
+Consider the following data points in Figure \ref{fig:kemans_circles} for $k = 2$.
 
 \begin{center}
 \begin{minipage}{\linewidth}
@@ -273,18 +395,15 @@ Another potential downside of the $k$-means algorithm is that its clusters are a
 \label{fig:kemans_circles}
 \end{minipage}
 \end{center}
-
-In this case the $k$-means algorithm will fail to split the two circles as the clusters will always be convex and therefore split the data along a line.
+In this case, the  $k$-means algorithm will be unable to separate the two circles because it produces convex clusters, causing it to divide the data along a straight line.
 \end{example}
-
-
 
 \subsection{Linkage Clustering}
 \label{section__linkage_clustering}
-Let us now consider a clustering algorithm that will produce a dendrogram as an output. We will achieve this by consecutively merging clusters based on some distance criterion \cite[Sec.~4.2.2]{Everitt2011}.
+Let us now consider a clustering algorithm that produces a dendrogram as an output. We achieve this by consecutively merging clusters based on some distance criterion \cite[Sec.~4.2.2]{Everitt2011}.
 
 \begin{definition}{Linkage Clustering }{linkage_clustering}
-Let $X := \{x_1, \dots, x_n\} \subset \R^n$ and $\mathfrak{d}\colon\mathscr{P}(X) \times \mathscr{P}(X) \to \R_{\geq0}$ a \emph{distance function} between clusters. We start with the partition
+Let $X := \{x_1, \dots, x_n\} \subset \R^n$ and $\mathfrak{d}\colon\mathscr{P}(X) \times \mathscr{P}(X) \to \R_{\geq0}$\footnote{$\mathscr{P}(X)$ denotes the power set of $X$.} a \emph{distance function} between clusters. We start with the partition
 $$
 B^{(0)}_j := \{x_j\}$$
 for $j \in \{1, \dots, n\}$. Given a partition
@@ -297,7 +416,11 @@ $$
 $$
 is minimal for $j,\ell \in \{1, \dots, n - k\}$.
 \end{definition}
-The reason this procedure produces a dendrogram is that every time we merge two clusters we can think of this as a new node in a binary tree (the dendrogram). So we started with $B^{(0)}_j = \{x_j\}$ as the leaves and ended with $X = B^{(n-1)}_1$ as the root.
+The reason this is infact a hierarchical clustering algorithm, is that we can now construct the dendrogram $\theta: \R_{\geq0} \to \P(X)$ given by
+$$
+\theta(t) := \{B_1^{(k)}, \dots, B_{n-k}^{(k)}\} \in \P(X)
+$$
+for all $t \in [k, k+1)$ and $k = 0, \dots, n-1$.
 
 
 Depending on the distance function $\mathfrak{d}$ we use we call \emph{linkage clustering}
@@ -361,43 +484,38 @@ As an example, consider the data points in Figure \ref{fig:sl_clustering} and th
 \end{center}
 \end{example}
 
-A downside of this definition of linkage clustering is that the output will always be a binary tree. In particular, if we have three equidistant points it is unclear which should be merged first. We can fix this by introducing a \emph{tie-breaking} rule or relaxing the definition of a dendrogram to allow merging more than two clusters at a time. We will see more about this once 
-we define \emph{hierarchical clustering functors} in Chapter \ref{chapter__clustering_functor}.
+A downside of this definition of linkage clustering is that the output will always be a binary tree. In particular, if we have three equidistant points it is unclear which should be merged first. We can fix this by introducing a ``tie-breaking'' rule or by merging more than two clusters at once. We will see more about this once we define \emph{hierarchical clustering functors} in Chapter \ref{chapter__clustering_functor}.
 
-Some other problems with linkage clustering are that in the case of single-linkage clustering it has a lack of sensitivity for density, and it has a tendency to produce long chains as clusters. Complete-linkage and average-linkage clustering have nice properties in regard to density, but it was show that they are not stable under small perturbations of the data \cite[Sec.~3.6]{JMLR:v11:carlsson10a}, \cite{Lance1967-ci}.
+Other problems of single-linkage clustering include its insensitivity to density and the tendency to produce long chains as clusters.
+Complete-linkage and average-linkage clustering have nice properties with regard to density, but it was show that they are not stable under small perturbations of the data \cite[Sec.~3.6]{JMLR:v11:carlsson10a}, \cite{Lance1967-ci}.
 
 \section{Invariance of Clustering Algorithms}
 \label{seciton__preserving_structure}
 
-A desirable property of a clustering algorithm might be that it remains invariant under certain transformations to the data.
+One desirable property of a clustering algorithm is that it remains invariant under certain transformations of the data.
 The reason this is desirable is that we can model noise in the data as some transformation of the underlying ``ground truth''.
-If our algorithm was invariant under these transformations we could hope to recover the ground truth. As we are going to see, it is often not realistic to expect that such an algorithm even exists. But this still motivates the description of clustering algorithms in terms of their invariances.
+If an algorithm is invariant under such transformations we can hope to recover the ground truth. As we are going to see, it is often not realistic to expect that such an algorithm even exists. But this still motivates the description of clustering algorithms in terms of their invariances.
 
 \begin{example}{}{}
-Consider a finite set $X \subset \R^2$ representing people at a gathering. When searching for a clustering algorithm to detect friendship groups, it would make sense to only consider algorithms with the following invariances:
+Consider a finite set $X$ representing guests at a gathering and a metric $d$ measuring the distance between individual guests.
+When searching for a (classical) clustering algorithm that finds friendship groups it would make sense to consider algorithms that have the following properties:
+
 \begin{itemize}
-    \item Translation Invariance;
-    \item Rotation Invariance;
-    \item Scale Invariance.
+    \item No matter what the firendship groups are, the guests could arrange themselfs appropriately such that our algorithm can detect them (\ie, guests in the same group move close together).
+    \item When guests that the algorithm believes belong to the same group move closer together, the algorithm will continue to classify them as part of the same group.
+    \item If we rescale the metric $d$, \ie, we change the unit with which we measure distance, the algorithm will not change its belief.
 \end{itemize}
-This means that for any $v \in \R^2$, $R \in \mathrm{SO}_2(\R)$ and $\lambda > 0$ we would like our clustering algorithm to produce the same partition on the data $v + X$, $R \circ X$ and $\lambda \cdot X$\footnote{These operations are understood to be elementwise and $\circ$ denotes the natural action of $\mathrm{SO}_2(\R)$ on $\R^2$.}. Here the intuition should be that such attributes are merely artifacts of the data collection process, in particular the choice of coordinate system.
 \end{example}
 
 \subsection{Kleinberg's Impossibility Theorem}
 It is apparent that as we require more invariants from a clustering algorithm it becomes harder to construct one.
 There exists an important result in this regard.
 \textsc{Kleinberg} showed that for certain seemingly reasonable properties there exist no clustering algorithms that satisfy them \cite{Kleinberg2002}.
-In the context of this theorem we define a clustering algorithm as follows\footnote{In Chapter \ref{chapter__clustering_functor} we will revisit the definition of a clustering algorithm, at which point we will call it a \emph{clustering functor}}:
-
-\begin{definition}{Clustering Algorithm}{}
-A \emph{clustering algorithm} $\Cf$ is a procedure that assigns to a finite metric space $(X,d)$ a partition of $X$ denoted by $\Cf(X,d)$.
-\end{definition}
-
 
 Here are the properties \textsc{Kleinberg} considered:
 
 \begin{definition}{Scale Invariance}{}
-We say that a clustering algorithm $\Cf$ is \emph{scale invariant} if for every finite metric space $(X,d)$ and $\lambda > 0$ we have
+We say that a clustering algorithm $\Cf$ is \emph{scale invariant} if for every finite metric space $(X,d)$ and $\lambda > 0$ wex have
 $$
 \Cf(X,d) = \Cf(X, \lambda \cdot d),
 $$
@@ -405,7 +523,7 @@ $$
 \end{definition}
 
 \begin{definition}{Richness}{richness}
-A clustering algorithm $\Cf$ is \emph{rich} if for every set $X$ and every partition $P$ of $X$ there exists a metric $d$ on $X$ such that $\Cf(X,d) = P$.
+A clustering algorithm $\Cf$ is \emph{rich} if for every finite set $X$ and every partition $P$ of $X$ there exists a metric $d$ on $X$ such that $\Cf(X,d) = P$.
 \end{definition}
 
 \begin{definition}{Consistency}{}

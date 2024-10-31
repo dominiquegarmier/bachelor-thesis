@@ -41,38 +41,12 @@ $$
 for some $b \in B$.
 
 \section{Partitions and Dendrograms}
-\label{section__partitions}
+\label{section__partitions_old}
 
-The next step will be to define a suitable category for the ``outputs'' of clustering algorithms. Here we will define two options, one based on partitions (for classical algorithms), the other using dendrograms (for hierarchical algorithms).
 
-However, we first need to introduce a bit of machinery for this.
 
-% \begin{definition}{\todo[I think i should leave this out]}{relation}
-%     Let $X$ be a set, a \emph{relation} on $X$ is a subset $R \subseteq X \times X$. And we write $x R y$ if $(x,y) \in R$.
-%     A relation with all the following properties is called an \emph{equivalence relation}:
-%     \begin{enumerate}
-%         \item \emph{Reflexivity}: $\forall x \in X: x R x$.
-%         \item \emph{Symmetry}: $\forall x,y \in X: x R y \implies y R x$.
-%         \item \emph{Transitivity}: $\forall x,y,z \in X: x R y \text{ and } y R z \implies x R z$.
-%     \end{enumerate}
-%     In this case we will often use a symbol like $\sim$ instead of a letter like $R$ to denote the relation. The \emph{equivalence classes} of an equivalence relation $\sim$ on $X$ is the set of sets
-%     $$
-%     X/_{\sim} := \{[x]_\sim: x \in X\}
-%     $$
-%     where $[x]_\sim := \{y \in X: x \sim y\}$.
-% \end{definition}
 
-\begin{definition}{Partitions of Finite Sets}{}
-Let $X$ be a finite set. A partition $P$ of $X$ is the set of equivalence classes $X/_{\sim_P}$ for some equivalence relation $\sim_P$ on $X$. The set of all such partitions is denoted by $\P(X)$.\par
 
-\medskip Furthermore:
-\begin{itemize}
-    \item We interchangeably use $P$ (the partition) and $\sim_P$ (the corresponding equivalence relation).
-    \item A single equivalence class $X_\alpha \in P$ will be called a \emph{block} or \emph{part} of $P$.
-\end{itemize}
-\end{definition}
-
-It naturally makes sense to use partitions as outputs of clustering algorithms, where a block of a partition is to be interpreted as a \emph{cluster}.
 
 At this point we need some additional structure that will allow us to define categories based on partitions.
 
@@ -96,23 +70,10 @@ $$
 of $Y$. Then $f^*(Q) = \{\{a\}, \{b,c\}\}$ is the pullback partition of $Q$ w.r.t $f$. Notice how $f^*(Q)$ consists of the preimages of the parts of $Q$. 
 \end{example}
 
-Additionally, we can define a partial order on $\P(X)$.
 
 \begin{definition}{}{}
-Let $P, Q \in \mathfrak{P}(X)$. Then we write $P \refines Q$ and say that $P$ \emph{refines} $Q$ if
-\begin{equation*}
-    \forall x,y \in X: x \sim_P y \implies x \sim_Q y.
-\end{equation*}
-This defines a partial order on $\P(X)$. Moreover, if $f \colon X \to Y$ is a map and $Q \in \P(Y)$ then we write $P \refines_f Q$ if $P \refines f^*(Q)$ and say that $P$ \emph{refines} $Q$ \emph{via} $f$.
+Moreover, if $f \colon X \to Y$ is a map and $Q \in \P(Y)$ then we write $P \refines_f Q$ if $P \refines f^*(Q)$ and say that $P$ \emph{refines} $Q$ \emph{via} $f$.
 \end{definition}
-
-\begin{example}{}{}
-Consider $X := \{a,b,c\}$ together with partitions
-$$
-P := \{\{a\}, \{b\}, \{c\}\} \quad \text{and} \quad Q := \{\{a,b\}, \{c\}\}.
-$$
-As the blocks in $P$ are always contained in some block of $Q$ we have $P \refines Q$.
-\end{example}
 
 \begin{example}{}{refinement_via}
 Consider $X := \{a,b,c\}$ and $Y := \{a,b\}$ and $f\colon X \to Y$ as in Example \ref{exa:pullback}. If we have the partition 
@@ -131,128 +92,6 @@ A useful fact to remember is that if $\mathrm{id}\colon X \to X$ is the identity
     \label{eq:refinement_via_identity}
     P \refines_{\mathrm{id}} Q \iff P \refines Q.
 \end{equation}
-
-When describing a partition it is often easier to describe a minimal set of conditions the partition relation must satisfy. More formally, we talk about taking the \emph{transitive closure} of a relation.
-
-\begin{definition}{}{}
-    Given a relation $\sim$ on a set $X$ its \emph{transitive closure} is the transitive relation $\sim^+$ such that for $x,y \in X$ we have
-    $$
-    x \sim^+ y
-    $$
-    if there exists a sequence $x = x_0, x_1, \dots, x_n = y$ with $x_i \sim_R x_{i+1}$ for all $i = 0, \dots, n-1$ \cite[p.337]{Lidl1997-kc}.
-\end{definition}
-
-In particular, if $\sim$ is reflexive and symmetric then $\sim^+$ is an equivalence relation.
-Later we will use this fact to define equivalence relations as transitive closures of reflexive and symmetric relations.
-
-\begin{example}{}{}
-Let $G = (V,E)$ be a graph then $E$ is a binary symmetric relation on $V$. Two points $v,w \in V$ lie in the same connected component of $G$ if there exists a path, \ie, a sequence $v =v_0, v_1, \dots, v_n = w$ such that $(v_i, v_{i+1}) \in E$ for all $i = 0, \dots, n-1$. The resulting partition of $V$ into connected components corresponds to the transitive closure of $E$.
-\end{example}
-
-\begin{definition}{}{}
-We say that $P \in \P(X)$ is:
-\begin{enumerate}
-    \item \emph{discrete} if $x \sim_P y \iff x = y$.
-    \item \emph{trivial} if $x \sim_P y$ for all $x,y \in X$.
-\end{enumerate}
-\end{definition}
-
-Naturally, if $Q$ is discrete and $P$ is trivial then $Q \refines R \refines P$ for all $R \in \P(X)$.
-
-Like in Chapter \ref{chapter__dataclustering} we also want to consider hierarchical clustering.
-For this we introduce the notion of a \emph{dendrogram}.
-
-\begin{definition}{Dendrogram \cite[Def.~2.2]{Carlsson2010}}{dendrogram}
-A map $\theta: \R_{\geq0} \to \mathfrak{P}(X)$ with
-\begin{enumerate}
-    \item $\forall r,s \in \R_{\geq0}: r \leq s \implies  \theta(r) \refines \theta(s)$,
-    \item $\exists r,s \in \R_{\geq0}$ such that $\theta(r)$ is trivial and $\theta(s)$ is discrete\footnote{In particular, we get that $\theta(0)$ is always discrete.},
-    \item $\forall r \in \R_{\geq0} \,\exists \varepsilon > 0$ such that $\theta$ is constant on $[r, r + \varepsilon)$,
-\end{enumerate}
-is called a \emph{dendrogram} of $X$. Sometimes $r$ is referred to as the \emph{scale}.
-\end{definition}
-
-This will be familiar to anyone who has seen \emph{persistent homology} where such properties are referred to as \emph{persistence} \cite[Chap.~3]{Carlsson2014}.
-
-As for the relevance of the last condition, consider the following remark.
-
-\begin{myremark}{}{regularity_of_dendrograms}
-Since the metric spaces we are interested in are finite, we could decide to omit the third condition in the definition of a dendrogram.
-Dendrograms would still have discrete scale \ie\ the dendrogram would still be constant on intervals.
-However, it would not be clear what value the dendrogram would take at the endpoints of these intervals.
-This technicality will become important for some uniqueness theorems we present later.
-\end{myremark}
-
-\begin{example}{}{}
-As an example of a dendrogram consider Figure \ref{fig:dendrogram_example}.
-\begin{center}
-\begin{minipage}{\linewidth}
-\centering
-\begin{tikzpicture}
-    \node (a) at (0,-0.25) {a};
-    \node (b) at (1,-0.25) {b};
-    \node (c) at (2,-0.25) {c};
-    \node (d) at (3,-0.25) {d};
-    
-    \draw  (a) |- (0.5,0.5);
-    \draw  (b) |- (0.5,0.5);
-
-    \draw  (0.5,0.5) |- (1,1.25);
-    \draw  (c) |- (1,1.25);
-
-
-    \draw  (1,1.25) |- (1.5,2);
-    \draw (d) |- (1.5,2);
-
-    \draw[dashed]  (1.5,2) -- (1.5,2.5);
-    \draw[->, >=stealth] (-0.5,-0.25) -- (-0.5,2.5);
-
-    \draw[dashed] (-0.25, 0.6) -- (3.25, 0.6);
-    \draw[color=myred, opacity=0.5, line width=1mm] (-0.2, 0.6) -- (1.2, 0.6);
-    \draw[color=myblue, opacity=0.5, line width=1mm] (1.8, 0.6) -- (2.2, 0.6);
-    \draw[color=mygreen, opacity=0.5, line width=1mm] (2.8, 0.6) -- (3.2, 0.6);
-
-    \draw[dashed] (-0.25, 1.9) -- (3.25, 1.9);
-    \draw[color=mypurple, opacity=0.5, line width=1mm] (-0.2, 1.9) -- (2.2, 1.9);
-    \draw[color=mygreen, opacity=0.5, line width=1mm] (2.8, 1.9) -- (3.2, 1.9);
-
-    \draw[] (-0.55, 0.6) -- node[left]{$1$} (-0.45, 0.6);
-    \draw[] (-0.55, 1.9) -- node[left]{$2$} (-0.45, 1.9);
-
-    \draw[|->, >=to] (3.35, 0.6) -- (4.25, 0.6);
-    \draw[|->, >=to] (3.35, 1.9) -- node[above]{$\theta$} (4.25, 1.9);
-
-    \node[circle,fill=black,inner sep=1pt] (z) at (5, 0.6) {};
-    \node[circle,fill=black,inner sep=1pt] (z) at (6, 0.6) {};
-    \node[circle,fill=black,inner sep=1pt] (z) at (7, 0.6) {};
-    \node[circle,fill=black,inner sep=1pt] (z) at (8, 0.6) {};
-
-    \draw[ellipse, dashed, fill=myred, fill opacity=0.15] (5.5, 0.6) ellipse (0.75 and 0.25);
-    \draw[ellipse, dashed, fill=myblue, fill opacity=0.15] (7, 0.6) ellipse (0.25 and 0.25);
-    \draw[ellipse, dashed, fill=mygreen, fill opacity=0.15] (8, 0.6) ellipse (0.25 and 0.25);
-
-    \node[circle,fill=black,inner sep=1pt] (z) at (5, 1.9) {};
-    \node[circle,fill=black,inner sep=1pt] (z) at (6, 1.9) {};
-    \node[circle,fill=black,inner sep=1pt] (z) at (7, 1.9) {};
-    \node[circle,fill=black,inner sep=1pt] (z) at (8, 1.9) {};
-
-    \draw[ellipse, dashed, fill=mypurple, fill opacity=0.15] (6, 1.9) ellipse (1.25 and 0.25);
-    \draw[ellipse, dashed, fill=mygreen, fill opacity=0.15] (8, 1.9) ellipse (0.25 and 0.25);
-
-    \node (a) at (5,-0.25) {a};
-    \node (b) at (6,-0.25) {b};
-    \node (c) at (7,-0.25) {c};
-    \node (d) at (8,-0.25) {d};
-
-        \node[rotate=90] at (6.5, 1.25) {$\preceq$};
-\end{tikzpicture}
-\captionof{figure}{A dendrogram $\theta: \R_{\geq0} \to \P(X)$ with the four points $X = \{a,b,c,d\}$.}
-\label{fig:dendrogram_example}
-\end{minipage}
-\end{center}
-
-Notice how in this case the monotonicity condition is satisfied \eg\ $\theta(1) \refines \theta(2)$ as shown on the righthand side. The second condition of a dendrogram is also met as it becomes trivial at the top and discrete at the bottom. Finally, the third condition tells us what value the dendrogram takes whenever a ``merge happens''.
-\end{example}
 
 We can finally define the categories which will be the ``outputs'' of clustering functors.
 
