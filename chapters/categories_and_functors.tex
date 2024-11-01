@@ -65,7 +65,7 @@ In this case composition is simply the composition of maps and the identity is g
 
 Instead of taking arbitrary sets and maps between them, we can also study categories where the objects have additional structure and the morphisms preserve that structure.
 
-\begin{example}{Topological Spaces}{}
+\begin{example}{Topological Spaces}{cat_top_spaces}
 We can define the category of topological spaces $\mathrm{TOP}$ with
 \begin{itemize}
     \item $\ob(\mathrm{TOP}) := \{(X,\tau) \mid \text{$X$ is a set with a topology $\tau$}\},$
@@ -254,6 +254,11 @@ $$
 $$
 where $\alpha_\C$ maps objects to their underlying set and morphisms get mapped to their underlying functions. In this sense, the forgetful functor \emph{forgets} the additional structure of the category.
 \end{definition}
+
+\begin{example}{}{}
+Consider the category of topological spaces $\mathrm{TOP}$ from Example \ref{exa:cat_top_spaces}. In this case objects $(X,\tau) \in \ob(\mathrm{TOP})$ are sets equipped with a topology and morphisms $f\colon (X,\tau) \to (Y,\sigma)$ are continuous maps.
+In this case the forgetful functor $\alpha_{\mathrm{TOP}}$ \emph{forgets} the topology $\tau$ and the fact that $f$ is continuous, \ie, it maps $(X,\tau)$ to $X$ and $f$ to $f$.
+\end{example}
 
 In particular, we will use the following notation related to the forgetful functor.
 
