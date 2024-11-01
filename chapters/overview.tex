@@ -496,23 +496,22 @@ One desirable property of a clustering algorithm is that it remains invariant un
 The reason this is desirable is that we can model noise in the data as some transformation of the underlying ``ground truth''.
 If an algorithm is invariant under such transformations we can hope to recover the ground truth. As we are going to see, it is often not realistic to expect that such an algorithm even exists. But this still motivates the description of clustering algorithms in terms of their invariances.
 
-\begin{example}{}{}
+\begin{example}{}{real_world_kleinberg}
 Consider a finite set $X$ representing guests at a gathering and a metric $d$ measuring the distance between individual guests.
 When searching for a (classical) clustering algorithm that finds friendship groups it would make sense to consider algorithms that have the following properties:
 
-\begin{itemize}
+\begin{enumerate}
+    \item If we rescale the metric $d$, \ie, we change the unit with which we measure distance, the algorithm will not change its belief.
     \item No matter what the firendship groups are, the guests could arrange themselfs appropriately such that our algorithm can detect them (\ie, guests in the same group move close together).
     \item When guests that the algorithm believes belong to the same group move closer together, the algorithm will continue to classify them as part of the same group.
-    \item If we rescale the metric $d$, \ie, we change the unit with which we measure distance, the algorithm will not change its belief.
-\end{itemize}
+\end{enumerate}
 \end{example}
 
 \subsection{Kleinberg's Impossibility Theorem}
 It is apparent that as we require more invariants from a clustering algorithm it becomes harder to construct one.
 There exists an important result in this regard.
-\textsc{Kleinberg} showed that for certain seemingly reasonable properties there exist no clustering algorithms that satisfy them \cite{Kleinberg2002}.
-
-Here are the properties \textsc{Kleinberg} considered:
+\textsc{Kleinberg} showed that a generalized version of the properties we considered in Example \ref{exa:real_world_kleinberg} are impossible to satisfy simultaneously \cite{Kleinberg2002}.
+To state \textsc{Kleinberg}'s theorem we first need to precisely define these properties.
 
 \begin{definition}{Scale Invariance}{}
 We say that a clustering algorithm $\Cf$ is \emph{scale invariant} if for every finite metric space $(X,d)$ and $\lambda > 0$ wex have
@@ -530,7 +529,7 @@ A clustering algorithm $\Cf$ is \emph{rich} if for every finite set $X$ and ever
 Let $\Cf$ be a clustering algorithm. We say that it is \emph{consistent} if for every finite metric space $(X,d)$ and every metric $d'$ on $X$ such that
 \begin{itemize}
     \item $d'(x,y) \leq d(x,y)$ if $x,y$ are in the same part of $\Cf(X,d)$;
-    \item $d'(x,y) \geq d(x,y)$ if $x,y$ are in different parts of $\Cf(X,d)$.
+    \item $d'(x,y) \geq d(x,y)$ if $x,y$ are in different parts of $\Cf(X,d)$;
 \end{itemize}
 we have $\Cf(X,d') = \Cf(X,d)$.
 \end{definition}
