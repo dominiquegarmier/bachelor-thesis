@@ -3,7 +3,7 @@
 In this chapter, we first establish a link between \emph{scaling} hierarchical clustering functors and regular spanning classical clustering functors.
 %
 With this, we can then tackle the modified \textsc{Kleinberg} conditions presented in \cite[Sec.~7.3.1]{Carlsson2010}.
-We prove that these conditions uniquely characterize the hierarchical Vietoris-Rips clustering functor $\Rf$ from Example \ref{exa:hierarchical_vr}. \textsc{Carlsson} and \textsc{M\'emoli} already proved a similar result where \textsc{Kleinberg}'s assumption of surjectivity was replaced by other conditions \cite[Thm.~18]{JMLR:v11:carlsson10a}.
+We prove that these conditions uniquely characterize the hierarchical Vietoris-Rips clustering functor $\Rf$ from Example \ref{exa:hierarchical_vr}. \textsc{Carlsson} and \textsc{M\'emoli} already proved a similar result where \textsc{Kleinberg}'s assumption of surjectivity was replaced by what we termed splitting \cite[Thm.~18]{JMLR:v11:carlsson10a}.
 
 % \begin{definition}{Vietoris-Rips Functor \cite[Ex.~7.1]{Carlsson2010}}{hierarchical_vr}
 % For $\M \in \{\gen,\inj,\iso\}$ we can define the Vietoris-Rips hierarchical clustering functor by
@@ -19,8 +19,8 @@ We prove that these conditions uniquely characterize the hierarchical Vietoris-R
 
 Similar to classical clustering functors, we also want to define some properties for hierarchical clustering functors.
 
-\begin{definition}{}{}
-    A hierarchical clustering functor $\Hf$ is said to be \emph{surjective} if for every ${(X, \theta) \in \ob(\H)}$ there exists a metric $d$ on $X$ such that $\Hf(X,d) = (X, \theta)$.
+\begin{definition}{Surjective}{}
+A hierarchical clustering functor $\Hf$ is said to be \emph{surjective} if for every ${(X, \theta) \in \ob(\H)}$ there exists a metric $d$ on $X$ such that $\Hf(X,d) = (X, \theta)$.
 \end{definition}
 
 \begin{myremark}{}{hierarchical_to_classical_surjective}
@@ -33,7 +33,7 @@ $$
 
 To discuss a similar notion as scale invariance we need to introduce the following functor.
 
-\begin{definition}{\cite[Ex.~4.3]{Carlsson2010}}{shift_functor}
+\begin{definition}{Shift Functor \cite[Ex.~4.3]{Carlsson2010}}{shift_functor}
 We define the \emph{shift} functor $s_\lambda\colon \H \to \H$ for some $\lambda > 0$. Given $(X, \theta) \in \ob(\H)$ we set
 $$
 s_\lambda(X, \theta) := (X, \theta^\lambda)
@@ -44,7 +44,7 @@ By checking the condition on morphisms in Definition \ref{def:output_hierarchica
 
 Instead of scale invariance we can ask that this shift functor behaves nicely with scaling of the metric.
 
-\begin{definition}{}{}
+\begin{definition}{Scaling}{}
 Let $\M \in \{\iso,\inj,\gen\}$. A hierarchical clustering functor $\Hf\colon \M \to \H$ is called \emph{scaling} if for all ${(X,d) \in \ob(\M)}$ and $\lambda > 0$ we have
 $$
 \Hf(X, \lambda \cdot d) = s_\lambda \Hf(X,d).
@@ -78,7 +78,7 @@ Extending the Vietoris-Rips functor to a hierarchical clustering functor can be 
 \begin{proposition}{}{scaling_extension_correspondence}
 
 Let $\M \in \{\gen,\inj\}$. Then there exists a one to one correspondence between
-scaling hierarchical clustering functors and regular spanning\footnote{Recall definitions \ref{def:regular} and \ref{def:spanning}.} classical clustering functors.
+scaling hierarchical clustering functors and regular spanning\footnote{Recall Definitions \ref{def:regular} and \ref{def:spanning}.} classical clustering functors.
 
 \medskip
 More precisely given a regular spanning classical clustering functor $\Cf\colon \M \to \C$ there exists a unique scaling hierarchical clustering functor $\Hf_\Cf\colon \M \to \H$ such that we have
@@ -147,7 +147,7 @@ $$
 We have seen in the above statements that $\Rf$ fulfills the modified \textsc{Kleinberg} conditions.
 Using the uniqueness result of Theorem \ref{thm:uniqueness_of_surjective_regular_functors}, we can now show that the modified \textsc{Kleinberg} conditions uniquely characterize the Vietoris-Rips functor.
 
-\begin{theorem}{Uniqueness of Kleinberg's Conditions}{kleinbergs_uniqueness_conditions}
+\begin{theorem}{Uniqueness Theorem}{kleinbergs_uniqueness_conditions}
     Let $\Hf\colon \M \to \H$ be a hierarchical clustering functor that fulfills the modified \textsc{Kleinberg} conditions. Then we have
     $$
     \Hf = s_\delta \Rf
