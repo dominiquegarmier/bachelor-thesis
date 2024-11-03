@@ -67,7 +67,7 @@ P := \{\{a\}, \{b\}, \{c\}\} \quad \text{and} \quad Q := \{\{a,b\}, \{c\}\}.
 $$
 As the blocks in $P$ are always contained in some block of $Q$ we have $P \refines Q$.
 \end{example}
-This corresponds to the idea of ``merging'' in the sense that if we have $P,Q \in \P(X)$ such that $P \refines Q$ we can say that $Q$ can be optained from $P$ by ``merging'' blocks of $P$.
+This corresponds to the idea of ``merging'' in the sense that if we have $P,Q \in \P(X)$ such that $P \refines Q$ we can say that $Q$ can be obtained from $P$ by ``merging'' blocks of $P$.
 
 There are two extreme kinds of partitions: one where all points belong to the same equivalence class, and another where each point forms its own equivalence class. For this we introduce the following notation.
 
@@ -202,7 +202,7 @@ Let $\{x_1, \dots, x_n\} \subset \R^d$. For $k \in \N$ \emph{$k$-means clusterin
 \label{eq:kmean_optimization}
     \sum_{i = 1}^k \sum_{x \in C_i} \|x - \mu_i\|^2_2
 \end{equation*}
-is minimal, where $\mu_k := \frac{1}{|C_k|}\sum_{x \in C_k} x$ is the \emph{center} of $C_k$\footnote{In case $C_k = \emptyset$ we set $\mu_k = 0 \in \R^d$.}.
+is minimal, where $\mu_k := \frac{1}{|C_k|}\sum_{x \in C_k} x$ is the \emph{center} of $C_k$\footnote{In case $C_k = \emptyset$, we set $\mu_k = 0 \in \R^d$.}.
 \end{definition}
 To find such a partition we would have to check all possible partitions of $x_1, \dots, x_n$. This is computationally infeasible. In practice, we use approximate methods such as \textsc{Lloyd}'s algorithm, which is sometimes simply referred to as \emph{the $k$-means algorithm} \cite[Sec.~3.1.2]{Scitovski2021}.
 
@@ -414,7 +414,7 @@ $$
 $$
 is minimal for $j,\ell \in \{1, \dots, n - k\}$.
 \end{definition}
-The reason this is infact a hierarchical clustering algorithm, is that we can now construct the dendrogram $\theta: \R_{\geq0} \to \P(X)$ given by
+The reason this is in fact a hierarchical clustering algorithm, is that we can now construct the dendrogram $\theta: \R_{\geq0} \to \P(X)$ given by
 $$
 \theta(t) := \{B_1^{(k)}, \dots, B_{n-k}^{(k)}\} \in \P(X)
 $$
@@ -512,7 +512,7 @@ There exists an important result in this regard.
 To state \textsc{Kleinberg}'s theorem we first need to precisely define these properties.
 
 \begin{definition}{Scale Invariance}{}
-We say that a clustering algorithm $\Cf$ is \emph{scale invariant} if for every finite metric space $(X,d)$ and $\lambda > 0$ wex have
+We say that a clustering algorithm $\Cf$ is \emph{scale invariant} if for every finite metric space $(X,d)$ and $\lambda > 0$ we have
 $$
 \Cf(X,d) = \Cf(X, \lambda \cdot d),
 $$
