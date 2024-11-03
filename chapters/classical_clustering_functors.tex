@@ -16,13 +16,13 @@ This is also the setting in which the Vietoris-Rips functor has unique propertie
 
 \begin{myremark}{\cite[Thm.~6.1]{Carlsson2010}}{}
 Let $\mathcal{I}$ denote a collection of representatives of isometry classes of finite metric spaces.
-For each $X \in \mathcal{I}$ consider the isometry group $\mathrm{Iso}(X)$. \par
+For each $X \in \mathcal{I}$ consider the isometry group $\mathrm{Iso}(X)$.
+This group acts on $\mathfrak{P}(X)$ via $(\phi, P) \mapsto \phi_*(P)$.
+Let $\Xi_X \subseteq \mathfrak{P}(X)$ denote the set of fixed points of this group action.
+A clustering functor $\Cf\colon \iso \to \C$ is uniquely determined by a choice of $P_X \in \Xi_X$ for each $X \in \mathcal{I}$.
 
-\medskip This group acts on $\mathfrak{P}(X)$ via $(\phi, P) \mapsto \phi_*(P)$.
-Let $\Xi_X \subseteq \mathfrak{P}(X)$ denote the set of fixed points of this group action. \par
-
-\medskip A clustering functor $\Cf\colon \iso \to \C$ is uniquely determined by a choice of $P_X \in \Xi_X$ for each $X \in \mathcal{I}$.
-\todo[explain this]
+\medskip
+On the one hand, it is clear that if $X \cong Y$ are isometric then $P_X = P_Y$. On the other hand, if $X \not\cong Y$ then there exist no morphisms between $X$ and $Y$ and thus $P_X$ and $P_Y$ can be choosen independently from $\Xi_X$.
 \end{myremark}
 
 \Needspace{3\baselineskip}
@@ -34,7 +34,7 @@ This is the reason that algorithms like single linkage clustering (with ``tie-br
 
 We will quickly talk about a simple yet, as we will see, very general way of constructing clustering functors.
 
-\begin{definition}{Excessive Clustering Functors \cite[Def.~6.2]{Carlsson2010}}{}
+\begin{definition}{Excessive \cite[Def.~6.2]{Carlsson2010}}{}
 Let $\M \in \{\inj, \gen\}$. A clustering functor $\Cf\colon \M \to \C$ is called \emph{excessive} if for every $(X,d) \in \ob(\M)$ and $(X,P) = \Cf(X,d)$ we have that for every block $X_\alpha \in P$:
 $$
 \Cf(X_\alpha, d|_{X_\alpha \times X_\alpha}) = (X_\alpha, \{X_\alpha\})
@@ -43,7 +43,7 @@ $$
 
 Let $\Omega$ be a family of finite non-empty metric spaces. Such $\Omega$'s can be used to construct clustering functors. We think of $\Omega$ as being a collection of ``patterns'' and our clustering algorithm as detecting these ``patterns''.
 
-\begin{definition}{Representable Clustering Functors \cite[Sec.~6.2]{Carlsson2010}}{construction_of_representable_clustering_functors}
+\begin{definition}{Representable \cite[Sec.~6.2]{Carlsson2010}}{construction_of_representable_clustering_functors}
 Let $\M \in \{\inj, \gen\}$. We define the clustering functor \emph{represented by $\Omega$} as
 $$
 \Cf^\Omega\colon \M \to \C
@@ -72,7 +72,11 @@ With this notation we get a new way of defining the Vietoris-Rips functor, \ie,
 $$
 \Rf_\delta = \Cf^{\{\Delta_2(\delta)\}}.
 $$
-\todo[explain this]
+Indeed, if $(X,d) \in \gen$ and $x,y \in X$ then there eixsts
+$$
+\phi \in \mor_\gen(\Delta_2(\delta), (X,d))
+$$
+with $\{x,y\} \subset \image(\phi)$ if and only if $d(x,y) \leq \delta$.
 \end{example}
 The fact that $\Rf_\delta$ is representable is not a coincidence as we will see in the remainder of this section.
 \begin{myremark}{\cite[Rem.~6.3]{Carlsson2010}}{}
@@ -196,7 +200,7 @@ Following this, we immediately see that scale invariant clustering functors cann
 
 Another conditions in \textsc{Kleinberg}'s impossibility theorem (Theorem \ref{thm:kleinberg}) was richness (Definition \ref{def:richness}). We now extend this notion to clustering functors.
 
-\begin{definition}{Surjective Clustering Functors}{}
+\begin{definition}{Surjective}{}
     A classical clustering functor $\Cf\colon \M \to \C$ is called \emph{surjective} if for every finite set $X$ and every $P \in \P(X)$ there exists a metric $d$ on $X$ such that
     \begin{equation*}
         \Cf(X,d) = (X,P).
@@ -232,7 +236,7 @@ Finally, for $P_3$ we can use the metric $d_3$ with $d_3(a,b) = \delta$ and $d_3
 
 The following property of surjective clustering functors hints that surjectivity and the Vietoris-Rips functor are closely related.
 
-\begin{definition}{}{spanning}
+\begin{definition}{Spanning}{spanning}
     We say that a clustering functor $\Cf\colon \M \to \C$ is \emph{spanning} if for every ${(X,d) \in \ob(\M)}$ we can find $\lambda_0, \lambda_1 > 0$ such that
     \begin{enumerate}
         \item $\Cf(X,\lambda \cdot d)$ is trivial for all $0 < \lambda \le \lambda_0$,
@@ -300,7 +304,7 @@ $$
 As observed by \cite[Thm.~6.4]{Carlsson2010}, a characterizing property of the Vietoris-Rips functor is its behavior on the space $\Delta_2(\lambda)$. In particular, we have that $\Rf_\delta(\Delta_2(\lambda))$ is trivial if $\lambda \le \delta$ and discrete otherwise.
 This motivates the following definition.
 
-\begin{definition}{}{}
+\begin{definition}{Splitting}{}
     A clustering functor $\Cf\colon \M \to \C$ is called \emph{splitting} at $\delta_0 > 0$ if we have
     \begin{enumerate}
         \item $\Cf(\Delta_2(\delta))$ is trivial for all $\delta \leq \delta_0$,
@@ -378,16 +382,15 @@ In this section we present the new result that under certain technical assumptio
 
 In Chapter \ref{chapter__hierarchical} we will discuss the implications this has on \textsc{Kleinberg}'s theorem (Theorem \ref{thm:kleinberg}).
 
-\begin{definition}{}{regular}
+\begin{definition}{Regularity}{regular}
     A clustering functor $\Cf\colon \M \to \C$ is \emph{regular} if for all $(X,d) \in \ob(\M)$ there exists some $\lambda \in (0, 1)$ such that
     $$
     \Cf(X,d) = \Cf(X, \lambda \cdot d).
     $$
-    \todo[discuss with sara]
 \end{definition}
 
 Notice that $\Rf_\delta$ is regular. 
-The reason we ask for $\lambda \in (0,1)$ and not $\lambda \in (1, \infty)$ is that this corresponds to the regularity condition \ref{rem:regularity_of_dendrograms} for dendrograms.\par
+The reason we ask for $\lambda \in (0,1)$ and not $\lambda \in (1, \infty)$ is that this corresponds to the regularity condition \ref{rem:regularity_of_dendrograms} for dendrograms.
 
 \begin{myremark}{}{regularity_classical_clustering_functors}
 It might seem overly restrictive to ask for regularity.

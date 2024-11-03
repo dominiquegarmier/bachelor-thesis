@@ -8,7 +8,7 @@ This construction closely follows the one by \textsc{Carlsson} and \textsc{M\'em
 \section{Finite Metric Spaces}
 \label{section__finite_metric_spaces}
 
-First we need to define the category of ``inputs'' of clustering algorithms. As we have seen before that it is natural to think of \emph{data} as a finite metric space. This motivates the following definition.
+First we need to define the category of ``inputs'' of clustering functors. As we have seen before that it is natural to think of \emph{data} as a finite metric space. This motivates the following definition.
 
 \begin{definition}{Finite Metric Spaces \cite[Sec.~3.2]{Carlsson2010}}{}
 We define three categories $\iso, \inj$ and $\gen$, all sharing the same objects:
@@ -41,14 +41,10 @@ $$
 for some $b \in B$.
 
 \section{Outputs of Clustering Functors}
-\label{section__partitions_old}
+\label{section__outputs}
 
-
-
-
-
-
-At this point we need some additional structure that will allow us to define categories based on partitions.
+In this section we define the category of ``outputs'' of clustering functors. For this, recall the definition of a partition and dendrogram from Section \ref{section__partitions} (see Definitions \ref{def:part_of_finite_sets} and \ref{def:dendrogram}).
+We need additional structure that will allow us to define categories based on partitions or dendrograms respectively.
 
 \begin{definition}{}{}
 Let $f\colon X \to Y$ be a map. For some partition $P \in \P(Y)$ we define $f^*(P) \in \P(X)$ to be the partition such that
@@ -67,12 +63,17 @@ If we have a partition
 $$
 Q := \{\{a\}, \{b\}\}
 $$
-of $Y$. Then $f^*(Q) = \{\{a\}, \{b,c\}\}$ is the pullback partition of $Q$ w.r.t $f$. Notice how $f^*(Q)$ consists of the preimages of the parts of $Q$. 
+of $Y$, then $f^*(Q) = \{\{a\}, \{b,c\}\}$ is the pullback partition of $Q$ w.r.t $f$. Notice how $f^*(Q)$ consists of the preimages of the parts of $Q$. 
 \end{example}
 
+We would like to combine the idea of a pullback partition defined above with the concept of refinement from Definition \ref{def:refinement}.
 
 \begin{definition}{}{}
-Moreover, if $f \colon X \to Y$ is a map and $Q \in \P(Y)$ then we write $P \refines_f Q$ if $P \refines f^*(Q)$ and say that $P$ \emph{refines} $Q$ \emph{via} $f$.
+Let $f \colon X \to Y$ be a map $P \in \P(X)$ and $Q \in \P(Y)$. Then we write
+$$
+P \refines_f Q
+$$
+if $P \refines f^*(Q)$ and say that $P$ \emph{refines} $Q$ \emph{via} $f$.
 \end{definition}
 
 \begin{example}{}{refinement_via}
@@ -93,16 +94,16 @@ A useful fact to remember is that if $\mathrm{id}\colon X \to X$ is the identity
     P \refines_{\mathrm{id}} Q \iff P \refines Q.
 \end{equation}
 
-We can finally define the categories which will be the ``outputs'' of clustering functors.
+With this, we can finally define the categories which will be the ``outputs'' of clustering functors.
 
 \begin{definition}{Classical Clustering Outputs\cite[Def.~3.2]{Carlsson2010}}{output_classical_clustering_functors}
 The category $\C$ of \emph{classical clustering outputs} is defined by
 \begin{equation*}
-    \ob(\C) := \{(X, P): X \text{ finite non-empty and } P \in \P(X)\}
+    \ob(\C) := \{(X, P)\mid X \text{ finite non-empty and } P \in \P(X)\}
 \end{equation*}
 and for all $(X,P), (Y,Q) \in \ob(\C)$ we have the morphisms
 \begin{equation*}
-    \mor_\C((X,P), (Y,Q)) := \{f\colon X \to Y: P \refines_f Q\}.
+    \mor_\C((X,P), (Y,Q)) := \{f\colon X \to Y\mid P \refines_f Q\}.
 \end{equation*}
 In short, we write $(X,P) \refines_f (Y,Q)$ for such a morphism. As before, the composition is given by composition of maps and the identity is the identity map.
 \end{definition}
@@ -111,13 +112,13 @@ In short, we write $(X,P) \refines_f (Y,Q)$ for such a morphism. As before, the 
 Similarly, we define the category $\H$ of \emph{hierarchical clustering outputs}, given by
 \begin{equation*}
 \begin{multlined}[c][.8\displaywidth]
-    \ob(\H) := \Big\{(X, \theta_X): X \text{ finite non-empty} \\ \text{and } \theta_X: \R_{\geq0} \to \P(X) \ \text{a dendrogram}\Big\}
+    \ob(\H) := \Big\{(X, \theta_X) \ \Big\vert \ X \text{ finite non-empty} \\ \text{and } \theta_X: \R_{\geq0} \to \P(X) \ \text{a dendrogram}\Big\}
 \end{multlined}
 \end{equation*}
 and for all $(X, \theta_X), (Y, \theta_Y) \in \ob(\H)$ we have the morphisms
 \begin{equation*}
     \mor_\H((X, \theta_X), (Y,\theta_Y)) :=
-    \left\{f\colon X \to Y: \forall r \in \R_{\geq0}: \theta_X(r) \refines_f \theta_Y(r)) \right\}.
+    \left\{f\colon X \to Y\mid \forall r \in \R_{\geq0}: \theta_X(r) \refines_f \theta_Y(r)) \right\}.
 \end{equation*}
 Again, we write $(X, \theta_X) \refines_f (Y, \theta_Y)$ for such a morphism, and the composition and identity are defined as before.
 \end{definition}
@@ -133,7 +134,7 @@ We now have all the tools to define a \emph{clustering functor}.
 \begin{definition}{Clustering Functor \cite[Sec.~4.1]{Carlsson2010}}{}
 Let $\M \in \{\iso, \inj, \gen\}$ and $\A \in \{\C, \H\}$. An $\M$-\emph{functorial clustering functor} (or $\M$ \emph{clustering functor}) is a functor from $\M$ to $\A$
 $$\Cf : \M \longrightarrow \A$$
-such that $\Cf$ factorizes the forgetful functors (see \ref{not:factorizing_forgetful_functor}). If $\A = \C$ we say that $\Cf$ is \emph{classical} and otherwise if $\A = \H$ we say it is \emph{hierarchical}.
+such that $\Cf$ factorizes the forgetful functors (see Definition \ref{def:factorizing_forgetful_functor}). If $\A = \C$ we say that $\Cf$ is \emph{classical} and otherwise if $\A = \H$ we say it is \emph{hierarchical}.
 \end{definition}
 
 We can express the functoriality of a clustering functor $\Cf$ by the following commutative diagram.
@@ -181,7 +182,7 @@ A very natural example of a clustering functor is the so-called \emph{Vietoris-R
     $$
     \Rf_\delta\colon \M \to \C
     $$
-    assigns to each metric space $(X,d) \in \M$ the partition $(X,P)$ where $\sim_P$ is the equivalence relation generated by:
+    assigns to each metric space $(X,d) \in \M$ the partition $(X,P)$ where $\sim_P$ is the equivalence relation generated\footnote{To be understood in the sense of Definition \ref{def:trans_closure}.} by:
     \begin{equation}
         \label{eq:vietoris_rips_equivalence_relation}
         \forall x,y \in X: d(x,y) \leq \delta \implies x \sim_P y.
@@ -203,6 +204,8 @@ A very natural example of a clustering functor is the so-called \emph{Vietoris-R
     and therefore $f(x) \sim_{Q} f(y)$.
     By taking the transitive closure we get that $P \refines_f Q$, and we are done.
 \end{example}
+
+Since we take the transitive closure of the condition of \eqref{eq:vietoris_rips_equivalence_relation} two points $x,y \in X$ are in the same cluster if and only if there is a path of points $x = x_1, x_2, \dots, x_n = y$ such that $d(x_k, x_{k+1}) \leq \delta$ for all $k = 1, \dots, n-1$.
 
 \begin{myremark}{}{}
 One could use a proper inequality in \eqref{eq:vietoris_rips_equivalence_relation}. The entire theory we are going to present would still hold, provided we tweak certain definitions accordingly, in particular, Definition \ref{def:dendrogram}.

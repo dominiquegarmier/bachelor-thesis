@@ -23,7 +23,7 @@ If we model this noise as some transformation of the ``ground truth'' we can the
 \label{section__partitions}
 In this section, we make precise what we mean by a ``partition'' or a ``dendrogram'', which will enable us to formally define \emph{clustering algorithms}.
 
-\begin{definition}{Partitions of Finite Sets}{}
+\begin{definition}{Partitions of Finite Sets}{part_of_finite_sets}
 Let $X$ be a finite set. A \emph{partition} $P$ of $X$ is the set of equivalence classes $X/_{\sim_P}$ for some equivalence relation $\sim_P$ on $X$. The set of all such partitions is denoted by $\P(X)$.\par
 
 \medskip Furthermore:
@@ -37,12 +37,12 @@ It naturally makes sense to use partitions as outputs of (classical) clustering 
 
 When describing a partition it is often easier to describe a minimal set of conditions the partition relation must satisfy. More formally, we talk about taking the \emph{transitive closure} of a relation.
 
-\begin{definition}{}{}
+\begin{definition}{}{trans_closure}
     Given a relation $\sim$ on a set $X$ its \emph{transitive closure} is the transitive relation $\sim^+$ such that for $x,y \in X$ we have
     $$
     x \sim^+ y
     $$
-    if there exists a sequence $x = x_0, x_1, \dots, x_n = y$ with $x_i \sim_R x_{i+1}$ for all $i = 0, \dots, n-1$ \cite[p.337]{Lidl1997-kc}.
+    if there exists a sequence $x = x_0, x_1, \dots, x_n = y$ with $x_i \sim_R x_{i+1}$ for all $i = 0, \dots, n-1$ \cite[p.337]{Lidl1997-kc}. In this case we also say that $\sim^+$ is \emph{generated} by $\sim$.
 \end{definition}
 
 In particular, if $\sim$ is reflexive and symmetric then $\sim^+$ is an equivalence relation.
@@ -54,7 +54,7 @@ Let $G = (V,E)$ be a graph, then $E$ is a binary symmetric relation on $V$. Two 
 
 To define a \emph{dendrogram} we need to give a precise meaning to what we previously informally described as the ``merging'' of clusters.
 
-\begin{definition}{Refinement}{}
+\begin{definition}{Refinement}{refinement}
 Let $P, Q \in \mathfrak{P}(X)$. Then we write $P \refines Q$ and say that $P$ \emph{refines} $Q$ if
 \begin{equation*}
     \forall x,y \in X: x \sim_P y \implies x \sim_Q y.
