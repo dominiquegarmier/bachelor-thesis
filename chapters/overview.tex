@@ -24,9 +24,7 @@ If we model this noise as some transformation of the ``ground truth'' we can the
 In this section, we make precise what we mean by a ``partition'' or a ``dendrogram'', which will enable us to formally define \emph{clustering algorithms}.
 
 \begin{definition}{Partitions of Finite Sets}{part_of_finite_sets}
-Let $X$ be a finite set. A \emph{partition} $P$ of $X$ is the set of equivalence classes $X/_{\sim_P}$ for some equivalence relation $\sim_P$ on $X$. The set of all such partitions is denoted by $\P(X)$.\par
-
-\medskip Furthermore:
+Let $X$ be a finite set. A \emph{partition} $P$ of $X$ is the set of equivalence classes $X/_{\sim_P}$ for some equivalence relation $\sim_P$ on $X$. The set of all such partitions is denoted by $\P(X)$. Furthermore:
 \begin{itemize}
     \item We interchangeably use $P$ (the partition) and $\sim_P$ (the corresponding equivalence relation).
     \item A single equivalence class $X_\alpha \in P$ will be called a \emph{block} or \emph{part} of $P$.
@@ -42,7 +40,7 @@ When describing a partition it is often easier to describe a minimal set of cond
     $$
     x \sim^+ y
     $$
-    if there exists a sequence $x = x_0, x_1, \dots, x_n = y$ with $x_i \sim_R x_{i+1}$ for all $i = 0, \dots, n-1$ \cite[p.337]{Lidl1997-kc}. In this case we also say that $\sim^+$ is \emph{generated} by $\sim$.
+    if there exists a sequence $x = x_0, x_1, \dots, x_n = y$ with $x_i \sim_R x_{i+1}$ for all ${i = 0, \dots, n-1}$ \cite[p.337]{Lidl1997-kc}. In this case we also say that $\sim^+$ is \emph{generated} by $\sim$.
 \end{definition}
 
 In particular, if $\sim$ is reflexive and symmetric then $\sim^+$ is an equivalence relation.
@@ -487,7 +485,7 @@ As an example, consider the data points in Figure \ref{fig:sl_clustering} and th
 A downside of this definition of linkage clustering is that the output will always be a binary tree. In particular, if we have three equidistant points it is unclear which should be merged first. We can fix this by introducing a ``tie-breaking'' rule or by merging more than two clusters at once. We will see more about this once we define \emph{hierarchical clustering functors} in Chapter \ref{chapter__clustering_functor}.
 
 Other problems of single-linkage clustering include its insensitivity to density and the tendency to produce long chains as clusters.
-Complete-linkage and average-linkage clustering have nice properties with regard to density, but it was show that they are not stable under small perturbations of the data \cite[Sec.~3.6]{JMLR:v11:carlsson10a}, \cite{Lance1967-ci}.
+Complete-linkage and average-linkage clustering, on the other hand, have nice properties with regard to density, but it has been shown that they are not stable under small perturbations of the data \cite[Sec.~3.6]{JMLR:v11:carlsson10a}, \cite{Lance1967-ci}.
 
 \section{Invariance of Clustering Algorithms}
 \label{seciton__preserving_structure}
@@ -502,8 +500,8 @@ When searching for a (classical) clustering algorithm that finds friendship grou
 
 \begin{enumerate}
     \item If we rescale the metric $d$, \ie, we change the unit with which we measure distance, the algorithm will not change its belief.
-    \item No matter what the firendship groups are, the guests could arrange themselves appropriately such that our algorithm can detect them (\ie, guests in the same group move close together).
-    \item When guests that the algorithm believes belong to the same group move closer together, the algorithm will continue to classify them as part of the same group.
+    \item No matter what the friendship groups are, the guests should be able to arrange themselves in such a way that the algorithm can detect the groups properly.
+    \item When guests that the algorithm has classified as belonging to the same group move even closer to one another, the algorithm should continue to classify them as part of the same group.
 \end{enumerate}
 \end{example}
 

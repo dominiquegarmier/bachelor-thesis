@@ -204,7 +204,7 @@ which maps a vector space $V$ to its (algebraic) dual $V^*$ and maps a linear ma
 \end{example}
 
 
-\begin{example}{Fundamental Group Functor \cite[Ex.~1.2.5]{Leinster2014-dc}}{}
+\begin{example}{Fundamental Group Functor \cite[Sec.~1.1.2]{Hatcher2001}}{}
 The map that assigns to a based topological space $(X,x_0)$ its fundamental group $\pi_1(X,x_0)$ and maps continuous functions $f\colon (X,x_0) \to (Y,y_0)$ to the group homomorphism 
 $$
 \pi_1(X,x_0) \ni [\alpha] \mapsto [f \circ \alpha] \in \pi_1(Y,y_0)
@@ -256,10 +256,9 @@ where $\alpha_\C$ maps objects to their underlying set and morphisms get mapped 
 \end{definition}
 
 \begin{example}{}{}
-Consider the category of topological spaces $\mathrm{TOP}$ from Example \ref{exa:cat_top_spaces}. In this case objects $(X,\tau) \in \ob(\mathrm{TOP})$ are sets equipped with a topology and morphisms $f\colon (X,\tau) \to (Y,\sigma)$ are continuous maps.
+Consider the category of topological spaces $\mathrm{TOP}$ from Example \ref{exa:cat_top_spaces}. In this case objects $(X,\tau), (Y,\sigma) \in \ob(\mathrm{TOP})$ are sets equipped with topologies and morphisms $f\colon (X,\tau) \to (Y,\sigma)$ are continuous maps.
 In this case the forgetful functor $\alpha_{\mathrm{TOP}}$ \emph{forgets} the topology $\tau$ and the fact that $f$ is continuous, \ie, it maps $(X,\tau)$ to $X$ and $f$ to $f$.
 \end{example}
-
 In particular, we will use the following notation related to the forgetful functor.
 
 \begin{definition}{}{factorizing_forgetful_functor}

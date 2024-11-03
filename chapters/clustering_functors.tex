@@ -3,7 +3,7 @@
 
 In this chapter we introduce the notion of a \emph{clustering functor}.
 Ultimately, a clustering functor will be a functor, with certain properties, from a category of finite metric spaces to a category of partitions. Functoriality gives us a nice way of talking about certain invariances described in Section \ref{seciton__preserving_structure}.
-This construction closely follows the one by \textsc{Carlsson} and \textsc{M\'emoli} \cite{Carlsson2010}.
+This chapter is based on work done by \textsc{Carlsson} and \textsc{M\'emoli} \cite{Carlsson2010}.
 
 \section{Finite Metric Spaces}
 \label{section__finite_metric_spaces}
@@ -13,14 +13,14 @@ First we need to define the category of ``inputs'' of clustering functors. As we
 \begin{definition}{Finite Metric Spaces \cite[Sec.~3.2]{Carlsson2010}}{}
 We define three categories $\iso, \inj$ and $\gen$, all sharing the same objects:
 \begin{equation*}
-\ob(\M) := \{(X,d): \text{$X$ a finite non-empty set and $d$ a metric on $X$}\}
+\ob(\M) := \{(X,d) \mid \text{$X$ is a finite non-empty set and $d$ a metric on $X$}\}
 \end{equation*}
 for $\M \in \{\iso, \inj, \gen\}$.
-The three categories are distinguished by their morphisms. For $A, B \in \ob(\M)$ we set:
+The three categories are distinguished by their morphisms. For $A, B \in \ob(\M)$:
 \begin{itemize}
-    \item $\mor_\gen(A,B)$ the distance non-increasing functions $f\colon A \to B$;
-    \item $\mor_\inj(A,B)$ the distance non-increasing injective functions $f\colon A \to B$;
-    \item $\mor_\iso(A,B)$ the isometries $f\colon A \to B$.
+    \item $\mor_\gen(A,B)$ consists of distance non-increasing functions $f\colon A \to B$;
+    \item $\mor_\inj(A,B)$ consists of distance non-increasing injective functions $f\colon A \to B$;
+    \item $\mor_\iso(A,B)$ consists of isometries $f\colon A \to B$.
 \end{itemize}
 The composition of morphisms is given by the composition of functions, and the identity morphism is the identity function.
 \end{definition}
@@ -43,7 +43,7 @@ for some $b \in B$.
 \section{Outputs of Clustering Functors}
 \label{section__outputs}
 
-In this section we define the category of ``outputs'' of clustering functors. For this, recall the definition of a partition and dendrogram from Section \ref{section__partitions} (see Definitions \ref{def:part_of_finite_sets} and \ref{def:dendrogram}).
+In this section we define the category of ``outputs'' of clustering functors. To do this, we recall the definition of a partition and dendrogram introduced in Section \ref{section__partitions} (see Definitions \ref{def:part_of_finite_sets} and \ref{def:dendrogram}).
 We need additional structure that will allow us to define categories based on partitions or dendrograms respectively.
 
 \begin{definition}{}{}
@@ -182,7 +182,7 @@ A very natural example of a clustering functor is the so-called \emph{Vietoris-R
     $$
     \Rf_\delta\colon \M \to \C
     $$
-    assigns to each metric space $(X,d) \in \M$ the partition $(X,P)$ where $\sim_P$ is the equivalence relation generated\footnote{To be understood in the sense of Definition \ref{def:trans_closure}.} by:
+    assigns to each metric space $(X,d) \in \M$ the partition $(X,P)$ where $\sim_P$ is the equivalence relation generated\footnote{\emph{Generated} is to be understood in the sense of Definition \ref{def:trans_closure}.} by:
     \begin{equation}
         \label{eq:vietoris_rips_equivalence_relation}
         \forall x,y \in X: d(x,y) \leq \delta \implies x \sim_P y.
