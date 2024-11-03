@@ -22,7 +22,7 @@ Let $\Xi_X \subseteq \mathfrak{P}(X)$ denote the set of fixed points of this gro
 A clustering functor $\Cf\colon \iso \to \C$ is uniquely determined by a choice of $P_X \in \Xi_X$ for each $X \in \mathcal{I}$.
 
 \medskip
-On the one hand, it is clear that if $X \cong Y$ are isometric then $P_X = P_Y$. On the other hand, if $X \not\cong Y$ then there exist no morphisms between $X$ and $Y$ and thus $P_X$ and $P_Y$ can independently be chosen from $\Xi_X$.
+On the one hand, it is clear that if $(X,d) \cong (Y,d')$ are isometric then ${\Cf(X,d) = \Cf(Y,d')}$. On the other hand, if $(X,d) \not\cong (Y,d')$ then there exist no morphisms between $X$ and $Y$ and thus $\Cf(X,d)$ and $\Cf(Y,d')$ can be independently chosen from $\Xi_X$ and $\Xi_Y$ respectively.
 \end{myremark}
 
 \Needspace{3\baselineskip}
@@ -72,11 +72,7 @@ With this notation we get a new way of defining the Vietoris-Rips functor, \ie,
 $$
 \Rf_\delta = \Cf^{\{\Delta_2(\delta)\}}.
 $$
-Indeed, if $(X,d) \in \gen$ and $x,y \in X$ then there exists
-$$
-\phi \in \mor_\gen(\Delta_2(\delta), (X,d))
-$$
-with $\{x,y\} \subset \image(\phi)$ if and only if $d(x,y) \leq \delta$.
+Indeed, if $(X,d) \in \gen$ and $x,y \in X$ then there exists a morphism ${\phi \colon \Delta_2(\delta) \to (X,d)}$ with $\{x,y\} \subset \image(\phi)$ if and only if $d(x,y) \leq \delta$.
 \end{example}
 The fact that $\Rf_\delta$ is representable is not a coincidence as we will see in the remainder of this section.
 \begin{myremark}{\cite[Rem.~6.3]{Carlsson2010}}{}
@@ -257,12 +253,12 @@ For the proof of this lemma we need to introduce the following notation.
     \begin{equation*}
     \sep(X,d) := \sep(X) := \begin{cases}
         0 & \text{if } |X| \le 1\\
-        \inf\{d(x,y): x,y \in X, x \neq y\} & \text{otherwise}
+        \inf\{d(x,y) \mid x,y \in X, x \neq y\} & \text{otherwise}
     \end{cases}
     \end{equation*}
     and the \emph{diameter}
     \begin{equation*}
-    \diam(X,d) := \diam(X) := \sup\{d(x,y): x,y \in X\}.
+    \diam(X,d) := \diam(X) := \sup\{d(x,y) \mid x,y \in X\}.
     \end{equation*}
 \end{definition}
 

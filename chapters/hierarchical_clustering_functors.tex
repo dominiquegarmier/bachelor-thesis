@@ -63,11 +63,11 @@ The Vietoris-Rips functor $\Rf\colon \M \to \H$ is surjective and scaling.
 \begin{proof}
 Let $X$ be a finite set and $\theta: \R_{\geq0} \to \P(X)$ be a dendrogram. For any $x,y \in X$ we can define
 $$
-\mathfrak{d}(x,y) := \inf\{r \in \R_{\geq0}: x \sim_{\theta(r)} y\}.
+\mathfrak{d}(x,y) := \inf\{r \in \R_{\geq0} \mid x \sim_{\theta(r)} y\}.
 $$
 Using this we define the metric:
 $$
-d(x,y) := \inf\left\{\sum_{k=1}^{n-1} \mathfrak{d}(x_k, x_{k+1}): \forall n \in \N \ \forall x = x_1, \dots, x_n = y\right\}.
+d(x,y) := \inf\left\{\sum_{k=1}^{n-1} \mathfrak{d}(x_k, x_{k+1}) \ \Bigg\vert \ \forall n \in \N \ \forall x = x_1, \dots, x_n = y\right\}.
 $$
 It is easy to verify that $\Rf(X,d) = (X,\theta)$. Thus, $\Rf$ is surjective. The fact that $\Rf$ is scaling follows directly from its definition.
 \end{proof}
