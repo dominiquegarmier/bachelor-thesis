@@ -5,17 +5,8 @@ In this chapter, we first establish a link between \emph{scaling} hierarchical c
 With this, we can then tackle the modified \textsc{Kleinberg} conditions presented in \cite[Sec.~7.3.1]{Carlsson2010}.
 We prove that these conditions uniquely characterize the hierarchical Vietoris-Rips clustering functor $\Rf$ from Example \ref{exa:hierarchical_vr}. \textsc{Carlsson} and \textsc{M\'emoli} already proved a similar result where \textsc{Kleinberg}'s assumption of surjectivity was replaced by what we termed splitting \cite[Thm.~18]{JMLR:v11:carlsson10a}.
 
-% \begin{definition}{Vietoris-Rips Functor \cite[Ex.~7.1]{Carlsson2010}}{hierarchical_vr}
-% For $\M \in \{\gen,\inj,\iso\}$ we can define the Vietoris-Rips hierarchical clustering functor by
-% $$
-% \Rf\colon \M \to \H
-% $$
-% where for $(X,d) \in \ob(\M)$ and $\delta \in \R_{\geq0}$ we set
-% $$
-% \Rf(X,d; \delta) := \Rf_\delta(X,d).
-% $$
-% \end{definition}
-% Notice that since $\Rf_\delta \refines \Rf_{\delta'}$ for $\delta \leq \delta'$, this is indeed a hierarchical functor.
+
+\section{Properties of Hierarchical Clustering Functors}
 
 Similar to classical clustering functors, we also want to define some properties for hierarchical clustering functors.
 
@@ -131,7 +122,7 @@ s_\lambda \Rf = s_\lambda \Hf_{\Rf_1} = \Hf_{\Rf_{1/\lambda}}.
 $$
 \end{example}
 
-\section{Kleinberg's Conditions}
+\section{Uniqueness of Hierarchical Clustering Functors}
 
 \textsc{Carlsson} and \textsc{M\'emoli} noticed that \textsc{Kleinberg}'s impossibility conditions can be interpreted in the context of hierarchical clustering functors \cite[Sec.~7.3.1]{Carlsson2010}.
 
