@@ -10,7 +10,7 @@ This repository contains the LaTeX source code for my bachelor thesis at ETH Zü
 You can download the pdf [here](https://github.com/dominiquegarmier/bachelor-thesis/releases/download/v1.0.0/main.pdf).
 
 ### Cite
-```
+```bibtex
 @article{https://doi.org/10.3929/ethz-b-000704239,
   doi = {10.3929/ETHZ-B-000704239},
   url = {http://hdl.handle.net/20.500.11850/704239},
